@@ -5,11 +5,11 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcmsgControllerInnerMsg extends EcControllerLegacy {
+class EccontControllerInnerCont extends EcControllerLegacy {
 	
 	public function t1() { //EcDebug::lp(__method__);
-		$ctrMsg = EcmsgFactory::getControllerInnerMsg(); //$ctrMsg->test();
-		$model = $ctrMsg->getModel();
+		$ctrCont = EccontFactory::getControllerInnerCont(); //$ctrCont->test();
+		$model = $ctrCont->getModel();
 		//EcDebug::lp($model);
 	}
 
