@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="msg">
+		<field id="body" name="body" type="textarea" class="inputbox required"
+			filter="safehtml" label="COM_ECMSG_MSG_BODY_LABEL"  
+			description="COM_ECMSG_MSG_BODY_DESC" rows="4" />
+		<field id="user" name="user" type="hidden" default="0" />
+		<field id="msg" name="msg" type="hidden" default="0" />
+	</fieldset>
+	<fieldset name="img">
+		<field id="img" name="img" type="file" label="label" description="desc" 
+			accept="image/*" onchange="msg_saveImg" />
+		<field id="img_url" name="img_url" type="url" label="" description="" />
+		<field id="user" name="user" type="hidden" default="0" />
+		<field id="msg" name="msg" type="hidden" default="0" />
+	</fieldset>
+	<fieldset name="video">
+		<field id="video_url" name="video_url" type="url" label="" description="" />
+		<field id="user" name="user" type="hidden" default="0" />
+		<field id="msg" name="msg" type="hidden" default="0" />
+	</fieldset>
+</form>
