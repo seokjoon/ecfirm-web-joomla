@@ -5,8 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-$icUser = 'media/com_ec/images/ic_user-48.png';
-$item = $this->item;
-$nameKey = $this->nameKey;
-$optionCom = JFactory::getApplication()->input->get('option');
-require_once 'default_item.php';
+class EcpageModelPagelike extends EcModelItem	{
+	
+}

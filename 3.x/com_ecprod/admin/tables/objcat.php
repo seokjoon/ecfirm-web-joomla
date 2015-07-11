@@ -5,8 +5,9 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-$icUser = 'media/com_ec/images/ic_user-48.png';
-$item = $this->item;
-$nameKey = $this->nameKey;
-$optionCom = JFactory::getApplication()->input->get('option');
-require_once 'default_item.php';
+class EcprodTableObjcat extends JTable	{
+	/** * @param   JDatabaseDriver  A database connector object */
+	public function __construct(&$_db)	{
+		parent::__construct('#__ec_objcat', 'objcat', $_db);
+	}
+}

@@ -5,9 +5,9 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcpageTableObjcat extends JTable	{
+class EcprodTableObjtype extends JTable	{
 	/** * @param   JDatabaseDriver  A database connector object */
 	public function __construct(&$_db)	{
-		parent::__construct('#__ec_objcat', 'objcat', $_db);
+		parent::__construct('#__ec_objtype', 'objtype', $_db);
 	}
 }

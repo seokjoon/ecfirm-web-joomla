@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="page">
+		<field id="body" name="body" type="textarea" class="inputbox required"
+			filter="safehtml" label="COM_ECPAGE_PAGE_BODY_LABEL"  
+			description="COM_ECPAGE_PAGE_BODY_DESC" rows="4" />
+		<field id="user" name="user" type="hidden" default="0" />
+		<field id="page" name="page" type="hidden" default="0" />
+	</fieldset>
+	<fieldset name="img">
+		<field id="img" name="img" type="file" label="label" description="desc" 
+			accept="image/*" onchange="page_saveImg" />
+		<field id="img_url" name="img_url" type="url" label="" description="" />
+		<field id="user" name="user" type="hidden" default="0" />
+		<field id="page" name="page" type="hidden" default="0" />
+	</fieldset>
+	<fieldset name="video">
+		<field id="video_url" name="video_url" type="url" label="" description="" />
+		<field id="user" name="user" type="hidden" default="0" />
+		<field id="page" name="page" type="hidden" default="0" />
+	</fieldset>
+</form>
