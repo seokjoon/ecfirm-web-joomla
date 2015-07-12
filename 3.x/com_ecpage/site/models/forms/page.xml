@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
+	<fieldset name="pageObj"
+		addfieldpath="/administrator/components/com_ec/models/fields">
+		<field name="objtype" type="objtype" required="true" 
+			label="COM_ECPAGE_PAGE_OBJTYPE_LABEL"
+			description="COM_ECPAGE_PAGE_OBJTYPE_DESC" />
+		<field name="objcat" type="objcat" required="true" 
+			label="COM_ECPAGE_PAGE_OBJCAT_LABEL"
+			description="COM_ECPAGE_PAGE_OBJCAT_DESC" />
+	</fieldset>
 	<fieldset name="page">
 		<field id="body" name="body" type="textarea" class="inputbox required"
 			filter="safehtml" label="COM_ECPAGE_PAGE_BODY_LABEL"  
