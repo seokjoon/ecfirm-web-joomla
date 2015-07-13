@@ -19,7 +19,12 @@
 	<fieldset name="img">
 		<field id="img" name="img" type="file" label="label" description="desc" 
 			accept="image/*" onchange="prod_saveImg" />
-		<field id="img_url" name="img_url" type="url" label="" description="" />
+		<field name="imgList" type="imagelist" directory="/images" hide_none="1" 
+			label="COM_ECPROD_PROD_IMGLIST_LABEL"
+			description="COM_ECPROD_PROD_IMGLIST_DESC" />
+		<field name="imgBg" type="media" directory="" 
+			label="COM_ECPROD_PROD_BG_LABEL" 
+			description="COM_ECPROD_PROD_BG_DESC" />
 		<field id="user" name="user" type="hidden" default="0" />
 		<field id="prod" name="prod" type="hidden" default="0" />
 	</fieldset>

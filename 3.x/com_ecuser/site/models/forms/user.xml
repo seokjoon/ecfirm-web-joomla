@@ -1,26 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fieldset name="userObj"
-		addfieldpath="/administrator/components/com_ec/models/fields">
-		<field name="objtype" type="objtype" required="true" 
-			label="COM_ECUSER_USER_OBJTYPE_LABEL"
-			description="COM_ECUSER_USER_OBJTYPE_DESC" />
-		<field name="objcat" type="objcat" required="true" 
-			label="COM_ECUSER_USER_OBJCAT_LABEL"
-			description="COM_ECUSER_USER_OBJCAT_DESC" />
+
+	<fieldset name="account">
+		<field name="password" type="password" autocomplete="off" size="30"
+			class="validate-password" filter="raw" validate="password"
+			label="COM_ECUSER_USER_PASSWORD_LABEL" required="true" 
+			description="COM_ECUSER_USER_PASSWORD_DESC" />
+		<field name="password2" type="password" autocomplete="off" size="30"
+			class="validate-password" filter="raw" validate="equals" field="password" 
+			label="COM_ECUSER_USER_PASSWORD2_LABEL" 
+			description="COM_ECUSER_USER_PASSWORD2_DESC" 
+			message="COM_ECUSER_USER_PASSWORD2_MESSAGE" />
+		<field name="email" type="email" class="inputbox" size="40" 
+			required="true" filter="string" unique="true" validate="email"
+			label="COM_ECUSER_USER_EMAIL_LABEL" 
+			description="COM_ECUSER_USER_EMAIL_DESC" />
+		<field id="user" name="user" type="hidden" default="0" />	
 	</fieldset>
-	<fieldset name="user">
-		<field id="body" name="body" type="textarea" class="inputbox required"
-			filter="safehtml" label="COM_ECUSER_USER_BODY_LABEL"  
-			description="COM_ECUSER_USER_BODY_DESC" rows="4" />
-		<field id="user" name="user" type="hidden" default="0" />
+	
+
+	
+	<fieldset name="address">
+		<field name="address" type="text" class="inputbox"  
+			label="COM_ECUSER_USER_ADDRESS_LABEL" 
+			description="COM_ECUSER_USER_ADDRESS_DESC" />
+		<field name="tel" type="text" class="inputbox"  
+			label="COM_ECUSER_USER_TEL_LABEL" 
+			description="COM_ECUSER_USER_TEL_DESC" />
+		<field name="tel2" type="text" class="inputbox"  
+			label="COM_ECUSER_USER_TEL2_LABEL" 
+			description="COM_ECUSER_USER_TEL2_DESC" />
 		<field id="user" name="user" type="hidden" default="0" />
 	</fieldset>
-	<fieldset name="img">
+
+
+
+	<fieldset name="profile">
+		<field name="name" type="text" class="inputbox" required="true" 
+			label="COM_ECUSER_USER_NAME_LABEL" filter="string"
+			description="COM_ECUSER_USER_NAME_DESC" />
 		<field id="img" name="img" type="file" label="label" description="desc" 
 			accept="image/*" onchange="user_saveImg" />
-		<field id="img_url" name="img_url" type="url" label="" description="" />
-		<field id="user" name="user" type="hidden" default="0" />
+		<field name="imgList" type="imagelist" directory="/images" hide_none="1" 
+			label="COM_ECUSER_USER_IMGLIST_LABEL"
+			description="COM_ECUSER_USER_IMGLIST_DESC" />
+		<field name="imgBg" type="media" directory="" 
+			label="COM_ECUSER_USER_BG_LABEL" 
+			description="COM_ECUSER_USER_BG_DESC" />
 		<field id="user" name="user" type="hidden" default="0" />
 	</fieldset>
+
 </form>

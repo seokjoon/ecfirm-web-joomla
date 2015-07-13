@@ -19,7 +19,12 @@
 	<fieldset name="img">
 		<field id="img" name="img" type="file" label="label" description="desc" 
 			accept="image/*" onchange="page_saveImg" />
-		<field id="img_url" name="img_url" type="url" label="" description="" />
+		<field name="imgList" type="imagelist" directory="/images" hide_none="1" 
+			label="COM_ECPAGE_PAGE_IMGLIST_LABEL"
+			description="COM_ECPAGE_PAGE_IMGLIST_DESC" />
+		<field name="imgBg" type="media" directory="" 
+			label="COM_ECPAGE_PAGE_BG_LABEL" 
+			description="COM_ECPAGE_PAGE_BG_DESC" />
 		<field id="user" name="user" type="hidden" default="0" />
 		<field id="page" name="page" type="hidden" default="0" />
 	</fieldset>
