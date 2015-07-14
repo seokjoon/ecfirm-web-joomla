@@ -5,6 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcuserModelUserform extends EcModelForm	{
+class EcuserControllerReset extends EcControllerForm {
 	
 }

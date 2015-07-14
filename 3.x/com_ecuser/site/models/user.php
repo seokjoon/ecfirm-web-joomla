@@ -5,6 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcprodModelUser extends EcModelItem	{
+class EcuserModelUser extends EcModelItem	{
 	
 }

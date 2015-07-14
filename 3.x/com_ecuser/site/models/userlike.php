@@ -5,6 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcpageModelUserlike extends EcModelItem	{
+class EcuserModelUserlike extends EcModelItem	{
 	
 }
