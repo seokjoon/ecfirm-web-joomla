@@ -256,6 +256,7 @@ class EcControllerLegacy extends JControllerLegacy {
 		$url = (isset($url)) ? $params['url'] : $prefix.$option.$view.$task.$format.$etc;
 		$msg = (isset($params['msg'])) ? $params['msg'] : null;
 		$type = (isset($params['type'])) ? $params['type'] : null;
+		//EcDebug::lp($url, 'url'); EcDebug::lp($msg, 'msg'); EcDebug::lp($type, 'type');
 		$this->setRedirect($url, $msg, $type); //$this->setRedirect(JRoute::_($url));
 		//$this->redirect();
 	}

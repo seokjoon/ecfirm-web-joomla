@@ -17,8 +17,9 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @return  mixed  True if the record can be added, a error object if not.
 	 * @since   12.2 JControllerForm */
 	public function add() {
+		$params['view'] = $this->nameKey;
 		if(parent::add()) $params['etc'] = $this->getRedirectToItemAppend();
-		else $params['etc'] = $this->getRedirectToListAppend();
+		else $params['etc'] = $this->getRedirectToListAppend(); //EcDebug::log($params);
 		$this->setRedirectParams($params);
 	}
 	
@@ -65,13 +66,13 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @return  string  The arguments to append to the redirect URL.
 	 * @since   12.2 JControllerForm */
 	protected function getRedirectToItemAppend($valueKey = 0, $nameKey = null) {
-		if(empty($urlVar))
+		$nameKey = (empty($nameKey)) ? $this->nameKey : $nameKey;
 		$tmpl   = $this->input->get('tmpl');
 		$layout = $this->input->get('layout', 'edit', 'string');
 		$append = '';
 		if($tmpl) $append .= '&tmpl='.$tmpl; 
 		if($layout) $append .= '&layout='.$layout; 
-		if(!($valueKey > 0)) $append .= '&'.$nameKey.'='.$valueKey; 
+		if(!($valueKey > 0)) $append .= '&'.$nameKey.'='.$valueKey;
 		return $append;
 	}
 	

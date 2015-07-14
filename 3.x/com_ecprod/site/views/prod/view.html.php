@@ -5,11 +5,11 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-/* //https://docs.joomla.org/J3.x:Javascript_Frameworks
+//https://docs.joomla.org/J3.x:Javascript_Frameworks
 JHtml::_('behavior.framework'); //bootstrap framework
 //JHtml::_('behavior.core'); //DELETE ME
 JHtml::_('behavior.formvalidator');
-JHtml::_('behavior.keepalive'); //Keep session alive(editing or creating an article) */
+JHtml::_('behavior.keepalive'); //Keep session alive(editing or creating an article)
 
 
 
@@ -18,6 +18,12 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 
-class EcmsgViewMsgcmt extends EcViewItemAjax {
-
+class EcprodViewProd extends EcViewItem {
+	
+	protected function getItem($valueKey) {
+		$model = $this->getModel($this->getName());
+		$model->setState('enabledPlugin', true);
+		//$model->setState('joinUser', true);
+		return parent::getItem($valueKey);
+	}
 }

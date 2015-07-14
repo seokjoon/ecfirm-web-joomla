@@ -18,17 +18,15 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 
-class EcmsgViewMsg extends EcViewItemAjax {
+class EcprodViewProds extends EcViewList {
 	
-	protected function getItem($valueKey) {
+	protected function getItems() {
 		$model = $this->getModel($this->getName());
+		if(($model->getState('list.limit', 0)) != 10) $model->setState('list.limit', 10);
+		$model->setState('order', 'prod DESC');
 		$model->setState('enabledPlugin', true);
-		$model->setState('joinUser', true);
-		return parent::getItem($valueKey);
-	}
-	
-	public function save($valueKey) {
-		if($valueKey == 0) $this->addPre(false); 
-		parent::save($valueKey);
+		//$model->setState('joinUser', true);
+		$limit = $model->getState();
+		return parent::getItems();
 	}
 }

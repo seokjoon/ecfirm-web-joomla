@@ -18,7 +18,7 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 
-class EcmsgViewMsglike extends EcViewItem {
+class EcmsgViewMsglike extends EcViewItemAjax {
 	
 	public function delete($valueCol) {
 		$model = $this->getModel('msg');
