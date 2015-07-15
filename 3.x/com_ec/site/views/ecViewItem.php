@@ -6,6 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 class EcViewItem extends EcViewLegacy {
+	protected $form;
 	
 	public function __construct($config = array()) {
 		parent::__construct($config);

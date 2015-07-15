@@ -7,7 +7,6 @@ defined('_JEXEC') or die('Restricted access');
 
 abstract class EcViewLegacy extends JViewLegacy {
 	protected $context;
-	protected $form;
 	protected $item;
 	protected $nameKey;
 	protected $params;

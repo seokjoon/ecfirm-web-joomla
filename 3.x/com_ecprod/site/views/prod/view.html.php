@@ -18,7 +18,7 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 
-class EcprodViewProd extends EcViewItem {
+class EcprodViewProd extends EcViewItemForm {
 	
 	protected function getItem($valueKey) {
 		$model = $this->getModel($this->getName());

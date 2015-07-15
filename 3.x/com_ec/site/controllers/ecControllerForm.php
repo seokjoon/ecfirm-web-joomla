@@ -43,6 +43,14 @@ class EcControllerForm extends EcControllerLegacy {
 		$this->setRedirectParams($params);
 	}
 	
+	public function display($cachable = false, $urlparams = false) {
+		if($this->input->get('layout', null, 'string') == 'edit') {
+			$view = $this->getView($this->default_view, JFactory::getDocument()->getType());
+			$view->setModel($this->getModel($this->nameKey)); 
+			$view->setModel($this->getModel($this->nameKey.'form')); }
+		parent::display($cachable, $urlparams);
+	}
+	
 	/**
 	 * Method to edit an existing record.
 	 * @param   string  $nameKey     The name of the primary key of the URL variable.
