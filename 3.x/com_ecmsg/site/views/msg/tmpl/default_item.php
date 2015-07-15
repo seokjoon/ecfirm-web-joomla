@@ -19,13 +19,13 @@ $body = ($sizeIntro < $sizeBody) ?
 	$intro.EcWidget::spanReadmore($item->body) : $intro;
 $modified = EcDatetime::interval($item->modified);
 $juName = JHtml::_('string.abridge', $item->ju_name, 10, 3);
-echo '<div id="'.$this->nameKey.'_'.$valueKey.'_item" class="well well-small">'; 
+echo '<div id="'.$nameKey.'_'.$valueKey.'_item" class="well well-small">'; 
 	if(isset($item->event->beforeDisplay)) echo $item->event->beforeDisplay;
 	
 
 
 	echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" '
-		.'id="'.$this->nameKey.'_'.$valueKey.'_form">';
+		.'id="'.$nameKey.'_'.$valueKey.'_form">';
 	
 		echo '<div class="pull-left" style="width:80%" align="left">';
 			echo '<div class="pull-left media" style="margin-right:10px;">';
@@ -44,23 +44,23 @@ echo '<div id="'.$this->nameKey.'_'.$valueKey.'_item" class="well well-small">';
 				echo EcWidget::btnCaret(false);
 				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
 					if($availableEdit) echo EcWidget::btnLiSubmit($optionCom, 
-						$this->nameKey, $valueKey, array('body'), '', 'edit', false);
+						$nameKey, $valueKey, array('body'), '', 'edit', false);
 					echo '<li class="divider"></li>';
 					if($availableDelete) echo EcWidget::btnLiSubmit($optionCom, 
-						$this->nameKey, $valueKey, array(''), 'item', 'delete', false);
+						$nameKey, $valueKey, array(''), 'item', 'delete', false);
 				echo '</ul>';
 			echo '</div>';
 		echo '</div>';
 	
-		echo '<input type="hidden" name="'.$this->nameKey.'" value="'.$valueKey.'" />';
+		echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'" />';
 		echo '<input type="hidden" name="task" value="" />';
 		echo JHtml::_('form.token');
 	echo '</form><div class="clearfix"></div>';
 
 	
 
-	echo '<div id="'.$this->nameKey.'_'.$valueKey.'_body">'.$body.'</div>';
-	echo '<div id="'.$this->nameKey.'_'.$valueKey.'_img"></div>';
+	echo '<div id="'.$nameKey.'_'.$valueKey.'_body">'.$body.'</div>';
+	echo '<div id="'.$nameKey.'_'.$valueKey.'_img"></div>';
 	
 	
 

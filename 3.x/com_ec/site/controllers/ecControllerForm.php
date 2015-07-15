@@ -17,9 +17,9 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @return  mixed  True if the record can be added, a error object if not.
 	 * @since   12.2 JControllerForm */
 	public function add() {
-		$params['view'] = $this->nameKey;
-		if(parent::add()) $params['etc'] = $this->getRedirectToItemAppend();
-		else $params['etc'] = $this->getRedirectToListAppend(); //EcDebug::log($params);
+		if(parent::add()) {
+			$params['view'] = $this->nameKey;
+			$params['task'] = $this->nameKey.'.editForm'; }
 		$this->setRedirectParams($params);
 	}
 	
@@ -43,14 +43,6 @@ class EcControllerForm extends EcControllerLegacy {
 		$this->setRedirectParams($params);
 	}
 	
-	public function display($cachable = false, $urlparams = false) {
-		if($this->input->get('layout', null, 'string') == 'edit') {
-			$view = $this->getView($this->default_view, JFactory::getDocument()->getType());
-			$view->setModel($this->getModel($this->nameKey)); 
-			$view->setModel($this->getModel($this->nameKey.'form')); }
-		parent::display($cachable, $urlparams);
-	}
-	
 	/**
 	 * Method to edit an existing record.
 	 * @param   string  $nameKey     The name of the primary key of the URL variable.
@@ -61,40 +53,21 @@ class EcControllerForm extends EcControllerLegacy {
 	public function edit($nameKey = null, $urlVar = null) {
 		if(empty($nameKey)) $nameKey = $this->nameKey;
 		$valueKey = $this->input->get($nameKey, 0, 'uint');
-		if(parent::edit($nameKey, $urlVar))
-			$params['etc'] = $this->setRedirectToItemAppend($valueKey, $nameKey);
-		else $params['etc'] = $this->setRedirectToListAppend();
+		if(parent::edit($nameKey, $urlVar)) {
+			$params['view'] = $nameKey;
+			$params['task'] = $nameKey.'editForm'; }
 		$this->setRedirectParams($params);
 	}
+	
+	public function editForm() {
+		//TODO internal redirect check
+		$view = $this->getView($this->default_view, 
+			JFactory::getDocument()->getType(), '', array('layout' => 'edit'));
+		$view->setModel($this->getModel($this->nameKey));
+		$view->setModel($this->getModel($this->nameKey.'form'));
+		$view->editForm();
+	}
 
-	/**
-	 * Gets the URL arguments to append to an item redirect.
-	 * @param   integer  $valueKey  The primary key id for the item.
-	 * @param   string   $nameKey    The name of the URL variable for the id.
-	 * @return  string  The arguments to append to the redirect URL.
-	 * @since   12.2 JControllerForm */
-	protected function getRedirectToItemAppend($valueKey = 0, $nameKey = null) {
-		$nameKey = (empty($nameKey)) ? $this->nameKey : $nameKey;
-		$tmpl   = $this->input->get('tmpl');
-		$layout = $this->input->get('layout', 'edit', 'string');
-		$append = '';
-		if($tmpl) $append .= '&tmpl='.$tmpl; 
-		if($layout) $append .= '&layout='.$layout; 
-		if(!($valueKey > 0)) $append .= '&'.$nameKey.'='.$valueKey;
-		return $append;
-	}
-	
-	/**
-	 * Gets the URL arguments to append to a list redirect.
-	 * @return  string  The arguments to append to the redirect URL.
-	 * @since   12.2 JControllerForm */
-	protected function getRedirectToListAppend() {
-		$tmpl = JFactory::getApplication()->input->get('tmpl');
-		$append = '';
-		if ($tmpl) $append .= '&tmpl=' . $tmpl;
-		return $append;
-	}
-	
 	/**
 	 * Method to save a record.
 	 * @param   string  $nameKey     The name of the primary key of the URL variable.
