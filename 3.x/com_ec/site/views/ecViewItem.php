@@ -32,6 +32,7 @@ class EcViewItem extends EcViewLegacy {
 			JFactory::getApplication()->input->getInt($this->nameKey) : $valueKey;
 		$model->setState($this->nameKey, $valueKey);
 		$item = $this->get('Item', $this->nameKey);
+		if(empty($item)) return $item;
 		$state = $this->get('State', $this->nameKey);
 		if((isset($state->enabledPlugin)) && ($state->enabledPlugin)) {
 			JPluginHelper::importPlugin('ec');
