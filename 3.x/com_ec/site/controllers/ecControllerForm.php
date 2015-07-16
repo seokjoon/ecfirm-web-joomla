@@ -29,7 +29,7 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @return  boolean  True if access level checks pass, false otherwise.
 	 * @since   12.2 JControllerForm */
 	public function cancel($nameKey = null) {
-		if(parent::cancel()) $this->setRedirectParams();
+		if(parent::cancel()) $this->setRedirectParams(array('view' => $this->nameKey.'s'));
 	}
 	
 	/** * Removes an item.
@@ -76,9 +76,10 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @since   12.2 JControllerForm */
 	public function save($nameKey = null, $urlVar = null) {
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-		$result = parent::save($nameKey, $urlVar);
-		$params['msg'] = 
-			JText::_('COM_'.$this->name.'_'.$this->nameKey.'_SAVE_SUCCESS');
-		if($result) $this->setRedirectParams($params);
+		if(parent::save($nameKey, $urlVar)) {
+			$params['view'] = $this->nameKey.'s';
+			$params['msg'] = 
+				JText::_('COM_'.$this->name.'_'.$this->nameKey.'_SAVE_SUCCESS'); }
+		$this->setRedirectParams($params);
 	}
 }
