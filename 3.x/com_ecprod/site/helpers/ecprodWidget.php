@@ -16,13 +16,13 @@ class EcprodWidget {
 	/**
 	 * @param array $params
 	 * - essential: optionCom, nameKey, valueKey, task
-	 * - optional: nameCol, valueCol, cols, idPostfix, post, validate */
+	 * - optional: nameCol, valueCol, nameCols, idPostfix, post, validate */
 	public static function submitBtn($params) {
 		extract($params);
 		$icon = self::getIcon($task);
 		$id = $nameKey.'_'.$valueKey;
 		if(isset($nameCol)) $id = $id.'_'.$nameCol.'_'.$valueCol;
-		if(isset($idPostfix)) $id = $id.'_'.$idPostFix;
+		if(isset($idPostfix)) $id = $id.'_'.$idPostfix;
 		if(!(isset($post))) $post = false;
 		if(!(isset($validate))) $validate = false;
 		$params['id'] = $id;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fieldset name="prodObj"
+	<!-- fieldset name="prodObj"
 		addfieldpath="/administrator/components/com_ec/models/fields">
 		<field name="objtype" type="objtype" required="true" 
 			label="COM_ECPROD_PROD_OBJTYPE_LABEL"
@@ -8,7 +8,7 @@
 		<field name="objcat" type="objcat" required="true" 
 			label="COM_ECPROD_PROD_OBJCAT_LABEL"
 			description="COM_ECPROD_PROD_OBJCAT_DESC" />
-	</fieldset>
+	</fieldset-->
 	<fieldset name="prod">
 		<field id="body" name="body" type="textarea" class="inputbox required"
 			filter="safehtml" label="COM_ECPROD_PROD_BODY_LABEL"  

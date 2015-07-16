@@ -10,7 +10,7 @@ class EcprodAjax {
 	/**
 	 * @param array $params
 	 * - essential: optionCom, nameKey, valueKey, task, id, validate
-	 * - optional: nameCol, valueCol, cols, idPostfix, post */
+	 * - optional: nameCol, valueCol, nameCols, idPostfix, post */
 	public static function submit($params) {
 		extract($params);
 		$extra = null;
