@@ -10,18 +10,34 @@ $item = $this->item;
 $nameKey = $this->nameKey;
 $valueKey = (is_object($item)) ? $item->$nameKey : 0;
 $optionCom = JFactory::getApplication()->input->get('option');
+$availableTask = (1) ? true : false; //TODO
 
 
 
 echo '<div id="" class="well well-small">';
-	echo '<form action="" method="" id="">';
+	echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
+		.$nameKey.'_'.$valueKey.'_form" class="form-validate form-vertical">';
 
-
-
-	if(is_object($this->form)) foreach(($this->form->getFieldset('prod')) as $field)
-		echo $field->input;
-
-
+		if(is_object($this->form)) foreach(($this->form->getFieldset('prod')) as $field) {
+			echo '<span>'.$field->label.'</span>';
+			echo str_replace('<textarea', '<textarea style="width:97%;"', $field->input); }
+			
+		echo '<span style="float:right"><div class="btn-group">';
+			$params['optionCom'] = $optionCom;
+			$params['nameKey'] = $nameKey;
+			$params['valueKey'] = $valueKey;
+			$params['task'] = 'cancel';
+			$params['post'] = true;
+			echo EcprodWidget::submitBtn($params);
+			$params['task'] = 'save';
+			$params['validate'] = true;
+			echo EcprodWidget::submitBtn($params);
+			/* echo EcWidget::btnSubmit($optionCom, $nameKey,
+				$valueKey, array('body'), '_form', 'cancel', false, false);
+			echo EcWidget::btnSubmit($optionCom, $nameKey,
+				$valueKey, array('body', 'user', 'msg'), '_form', 'save', false, true); */
+		echo '</div></span>';
+		
 		echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'" />';
 		echo '<input type="hidden" name="task" value="" />';
 		echo JHtml::_('form.token');
