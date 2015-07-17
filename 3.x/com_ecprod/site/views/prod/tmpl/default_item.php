@@ -6,6 +6,14 @@ defined('_JEXEC') or die('Restricted access');
 
 
 $valueKey = (is_object($item)) ? $item->$nameKey : 0; //EcDebug::lp($item);
+$availableEdit = (1) ? true : false;
+$availableDelete = (1) ? true : false;
+$intro = nl2br(JHtml::_('string.truncateComplex', $item->body, 80));
+$sizeIntro = JString::strlen($intro);
+$sizeBody = JString::strlen($item->body); //EcDebug::lp($sizeIntro); EcDebug::lp($sizeBody);
+$body = ($sizeIntro < $sizeBody) ?
+$intro.EcWidget::spanReadmore($item->body) : $intro;
+$modified = EcDatetime::interval($item->modified);
 
 
 
@@ -26,6 +34,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			echo '<div class="media-body">';
 				echo '<div>'.$item->user.'</div>';
 				echo '<div>'.$item->modified.'</div>';
+				echo '<div>'.$body.'</div>';
 			echo '</div>';
 		echo '</div>';	
 
@@ -33,19 +42,21 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			echo '<div class="btn-group">';
 				echo EcprodWidget::caretBtn(false);
 				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
-					if($availableEdit) echo EcWidget::btnLiSubmit($optionCom, 
-						$nameKey, $valueKey, array('body'), '', 'edit', false);
+					$params['nameCols'] = array('prod', 'user');
+					$params['optionCom'] = $optionCom;
+					$params['nameKey'] = $nameKey;
+					$params['valueKey'] = $valueKey;
+					$params['task'] = 'edit';
+					$params['idPostfix'] = 'form';
+					$params['post'] = true;
+					if($availableEdit) echo EcprodWidget::submitBtnLi($params);
 					echo '<li class="divider"></li>';
-					if($availableDelete) echo EcWidget::btnLiSubmit($optionCom, 
-						$nameKey, $valueKey, array(''), 'item', 'delete', false);
+					$params['task'] = 'delete';
+					if($availableDelete) echo EcprodWidget::submitBtnLi($params);
 				echo '</ul>';
 			echo '</div>';
-		echo '</div>';
+		echo '</div>'; //EcDebug::lp($params);
 	
-	
-		$params['nameCols'] = array();
-		
-
 		
 		
 		echo '<input type="hidden" name="task" value="" />';
@@ -54,8 +65,8 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 	
 	
 	
-	echo '<div id="'.$nameKey.'_'.$valueKey.'_body">'.$item->body.'</div>';
-	echo '<div id="'.$nameKey.'_'.$valueKey.'_img"></div>';
+	//echo '<div id="'.$nameKey.'_'.$valueKey.'_body">'.$item->body.'</div>';
+	//echo '<div id="'.$nameKey.'_'.$valueKey.'_img"></div>';
 
 	
 	

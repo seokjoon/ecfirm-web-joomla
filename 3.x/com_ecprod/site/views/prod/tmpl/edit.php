@@ -35,10 +35,6 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			$params['task'] = 'save';
 			$params['validate'] = true;
 			echo EcprodWidget::submitBtn($params);
-			/* echo EcWidget::btnSubmit($optionCom, $nameKey,
-				$valueKey, array('body'), '_form', 'cancel', false, false);
-			echo EcWidget::btnSubmit($optionCom, $nameKey,
-				$valueKey, array('body', 'user', 'msg'), '_form', 'save', false, true); */
 		echo '</div></span>';
 		
 		//echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'" />';
