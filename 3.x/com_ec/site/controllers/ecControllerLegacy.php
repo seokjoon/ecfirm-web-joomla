@@ -250,10 +250,12 @@ class EcControllerLegacy extends JControllerLegacy {
 		$view = (isset($params['view'])) ? '&view='.$params['view'] : 
 			'&view='.($this->input->get('view', null, 'string'));
 		$task = (isset($params['task'])) ? '&task='.$params['task'] : ''; 
+		$key = ((isset($params['nameKey'])) && (isset($params['valueKey']))) 
+			? '&'.$params['nameKey'].'='.$params['valueKey'] : '';
 		$format = (isset($params['format'])) ? '&format='.$params['format'] : 
 			'&format='.($this->input->get('format', 'html', 'string'));
 		$etc = (isset($params['etc'])) ? '&'.$params['etc'] : '';
-		$url = (isset($url)) ? $params['url'] : $prefix.$option.$view.$task.$format.$etc;
+		$url = (isset($url)) ? $params['url'] : $prefix.$option.$view.$task.$key.$format.$etc;
 		$msg = (isset($params['msg'])) ? $params['msg'] : null;
 		$type = (isset($params['type'])) ? $params['type'] : null;
 		//EcDebug::lp($url, 'url'); EcDebug::lp($msg, 'msg'); EcDebug::lp($type, 'type');

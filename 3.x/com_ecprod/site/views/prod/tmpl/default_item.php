@@ -58,7 +58,8 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 		echo '</div>'; //EcDebug::lp($params);
 	
 		
-		
+
+		echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'">';
 		echo '<input type="hidden" name="task" value="" />';
 		echo JHtml::_('form.token');
 	echo '</form><div class="clearfix"></div>';

@@ -18,6 +18,7 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @since   12.2 JControllerForm */
 	public function add() {
 		if(parent::add()) {
+			$this->turnbackPush('edit');
 			$params['view'] = $this->nameKey;
 			$params['task'] = $this->nameKey.'.editForm'; }
 		$this->setRedirectParams($params);
@@ -29,7 +30,7 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @return  boolean  True if access level checks pass, false otherwise.
 	 * @since   12.2 JControllerForm */
 	public function cancel($nameKey = null) {
-		if(parent::cancel()) $this->setRedirectParams(array('view' => $this->nameKey.'s'));
+		if(parent::cancel()) $this->turnbackPop('edit'); 
 	}
 	
 	/** * Removes an item.
@@ -37,10 +38,14 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @since   12.2 JControllerAdmin */
 	public function delete() {
 		JSession::checkToken() or die(JText::_('JINVALID_TOKEN')); //XXX
-		$params['msg'] = (parent::delete()) ?  
-			JText::_('COM_'.$this->name.'_'.$this->nameKey.'_DELETE_SUCCESS') :
-			JText::_('COM_'.$this->name.'_'.$this->nameKey.'_DELETE_FAILURE');
-		$this->setRedirectParams($params);
+		if(parent::delete()) {
+			$params['view'] = $this->nameKey.'s';
+			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_DELETE_SUCCESS'); 
+			$this->setRedirectParams($params); }
+		else {
+			$this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_DELETE_FAILURE'));
+			$this->turnbackPush();
+			$this->turnbackPop(); }
 	}
 	
 	/**
@@ -54,9 +59,12 @@ class EcControllerForm extends EcControllerLegacy {
 		if(empty($nameKey)) $nameKey = $this->nameKey;
 		$valueKey = $this->input->get($nameKey, 0, 'uint');
 		if(parent::edit($nameKey, $urlVar)) {
+			$this->turnbackPush('edit');
+			$params['nameKey'] = $nameKey;
+			$params['valueKey'] = $valueKey;
 			$params['view'] = $nameKey;
-			$params['task'] = $nameKey.'editForm'; }
-		$this->setRedirectParams($params);
+			$params['task'] = $nameKey.'.editForm'; 
+			$this->setRedirectParams($params); }
 	}
 	
 	public function editForm() {
@@ -76,10 +84,21 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @since   12.2 JControllerForm */
 	public function save($nameKey = null, $urlVar = null) {
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-		if(parent::save($nameKey, $urlVar)) {
-			$params['view'] = $this->nameKey.'s';
-			$params['msg'] = 
-				JText::_('COM_'.$this->name.'_'.$this->nameKey.'_SAVE_SUCCESS'); }
-		$this->setRedirectParams($params);
+		if(parent::save($nameKey, $urlVar)) 
+			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_SAVE_SUCCESS'); 
+		else $this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_SAVE_FAILURE'));
+		$this->turnbackPop('edit'); 
+	}
+	
+	protected function turnbackPop($task = null) { //EcDebug::log($task, __function__);
+		if(empty($task)) $task = $this->task;
+		$turnback = $this->getUserState($task, 'turnback', null);
+		$this->setUserState($task, 'turnback', null);
+		if(!(empty($turnback))) $this->setRedirect($turnback);
+	}
+	
+	protected function turnbackPush($task = null) { //EcDebug::log($task, __function__);
+		if(empty($task)) $task = $this->task;
+		$this->setUserState($task, 'turnback', JUri::getInstance()->toString());
 	}
 }
