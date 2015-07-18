@@ -8,11 +8,17 @@ defined('_JEXEC') or die('Restricted access');
 abstract class EcViewLegacy extends JViewLegacy {
 	protected $context;
 	protected $item;
+	protected $nameCom;
 	protected $nameKey;
 	protected $params;
 	protected $user;
 	
-
+	
+	
+	public function __construct($config = array()) {
+		parent::__construct($config);
+		$this->nameCom = JFactory::getApplication()->input->get('option');
+	}
 	
 	public function display($tpl = null) {
 		$classNameArray = explode('View', get_called_class());

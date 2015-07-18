@@ -8,7 +8,7 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * valueCol: msg value
  * this->items: msgcmts objects
- * optionCom: 'com_ecmsg'
+ * nameCom: 'com_ecmsg'
  * nameKey: 'msgcmt'
  * this->form: msgcmtform object
  * nameCol: 'msg'
@@ -25,8 +25,8 @@ echo '<div id="'.$nameKey.'_0_'.$nameCol.'_'.$valueCol.'_item" style="padding-to
 		echo str_replace('<textarea', '<textarea style="width:96%;"', $field->input);
 	echo '<input type="hidden" name="task" value="" />';
 	echo JHtml::_('form.token');
-	echo EcWidget::keySubmit
-		($optionCom, $nameKey, $valueCol, array('msgcmt', 'msg', 'body', 'user'), null, 'save', true);
+	echo EcWidget::keySubmit($nameCom, $nameKey, $valueCol, 
+		array('msgcmt', 'msg', 'body', 'user'), null, 'save', true);
 	
 	//echo '</form>';
 	
