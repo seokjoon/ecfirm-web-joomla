@@ -33,7 +33,7 @@ class EcmsgViewMsgcmts extends EcViewList {
 		$this->form = $this->get('Form', ($nameKey.'form'));
 		$nameCol = 'msg';
 		$countCol = $this->getModel($nameCol)->getItem($valueCol)->$nameKey;
-		echo EcWidget::spanCmt($this->nameCom, $this->getName(), 
+		echo EcWidget::spanCmt($this->optionCom, $this->getName(), 
 			array($nameCol), $valueCol, 'hide', $countCol);
 		require JPATH_COMPONENT.'/views/'.$this->getName().'/tmpl/default.php';
 		jexit();

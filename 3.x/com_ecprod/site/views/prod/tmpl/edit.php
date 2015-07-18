@@ -9,7 +9,6 @@ $icUser = 'media/com_ec/images/ic_user-48.png';
 $item = $this->item;
 $nameKey = $this->nameKey;
 $valueKey = (is_object($item)) ? $item->$nameKey : 0;
-$optionCom = JFactory::getApplication()->input->get('option');
 $availableTask = (1) ? true : false; //TODO
 
 
