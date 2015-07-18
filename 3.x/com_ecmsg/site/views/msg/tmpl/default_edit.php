@@ -5,6 +5,10 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
+$optionCom = $this->optionCom;
+
+
+
 $valueKey = (isset($valueKey)) ? $valueKey : 0;
 echo '<div id="'.$this->nameKey.'_'.$valueKey.'_body" class="tab-pane active">';
 	echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
