@@ -5,8 +5,8 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-$icUser = 'media/com_ec/images/ic_user-48.png';
-$icProd = 'media/com_ec/images/ic_prod-128.png';
+$icUser = 'media/com_ec/images/ic_user_48.png';
+$icProd = 'media/com_ec/images/ic_prod_128.png';
 $nameKey = $this->nameKey;
 $optionCom = $this->optionCom;
 
