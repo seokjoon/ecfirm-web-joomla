@@ -18,7 +18,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 		.$nameKey.'_'.$valueKey.'_form" class="form-validate form-vertical">';
 
 		$params['nameCols'] = array();
-		if(is_object($this->form)) foreach(($this->form->getFieldset('prod')) as $field) {
+		if(is_object($this->form)) foreach(($this->form->getFieldset('page')) as $field) {
 			array_push($params['nameCols'], $field->name/* $field->fieldname */);
 			echo '<span>'.$field->label.'</span>';
 			echo str_replace('<textarea', '<textarea style="width:97%;"', $field->input); }
@@ -30,10 +30,10 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			$params['task'] = 'cancel';
 			$params['idPostfix'] = 'form';
 			$params['post'] = true;
-			echo EcprodWidget::submitBtn($params);
+			echo EcpageWidget::submitBtn($params);
 			$params['task'] = 'save';
 			$params['validate'] = true;
-			echo EcprodWidget::submitBtn($params);
+			echo EcpageWidget::submitBtn($params);
 		echo '</div></span>';
 		
 		//echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'" />';
