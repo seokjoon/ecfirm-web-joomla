@@ -18,6 +18,12 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 
-class EcpageViewPage extends EcViewItem {
+class EcpageViewPage extends EcViewItemForm {
 	
+	protected function getItem($valueKey) {
+		$model = $this->getModel($this->getName());
+		$model->setState('enabledPlugin', true);
+		//$model->setState('joinUser', true);
+		return parent::getItem($valueKey);
+	}
 }
