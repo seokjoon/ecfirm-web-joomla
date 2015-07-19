@@ -10,9 +10,14 @@
 			description="COM_ECPAGE_PAGE_OBJCAT_DESC" />
 	</fieldset>
 	<fieldset name="page">
-		<field id="body" name="body" type="textarea" class="inputbox required"
-			filter="safehtml" label="COM_ECPAGE_PAGE_BODY_LABEL"  
-			description="COM_ECPAGE_PAGE_BODY_DESC" rows="4" />
+		<field id="title" name="title" type="text" class="inputbox input-xxlarge"
+			required="true" size="40" label="COM_ECPAGE_PAGE_TITLE_LABEL" 
+			description="COM_ECPAGE_PAGE_TITLE_DESC" 
+			hint="COM_ECPAGE_PAGE_TITLE_HINT" />
+		<field id="body" name="body" type="editor" class="inputbox required"
+			filter="JComponentHelper::filterText" buttons="false" required="true"
+			label="COM_ECPAGE_PAGE_BODY_LABEL"  
+			description="COM_ECPAGE_PAGE_BODY_DESC" />
 		<field id="user" name="user" type="hidden" default="0" />
 		<field id="page" name="page" type="hidden" default="0" />
 	</fieldset>

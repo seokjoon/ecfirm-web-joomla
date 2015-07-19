@@ -24,7 +24,7 @@ class EcpageModelPages extends EcModelList	{
 	protected function getListQuery() {
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('p.page, p.objtype, p.objcat, p.obj, p.modified, p.user, 
+		$query->select('p.page, p.objtype, p.objcat, p.obj, p.modified, p.title, p.user, 
 			p.pagelike, p.option, p.body')
 			->from('#__ec_page as p');
 		if($this->getState('joinUser')) 
