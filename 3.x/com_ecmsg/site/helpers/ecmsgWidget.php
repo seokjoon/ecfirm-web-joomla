@@ -19,7 +19,7 @@ class EcmsgWidget {
 		$id = $nameKey.'_'.$valueKey.'_'.$nameCols[0].$id;
 		$click = ($post) ? ' onClick="Joomla.submitform(\''.$nameKey.'.'.$task
 			.'\', document.getElementById(\''.$id.'\'))" ' : ' onClick="'.$id.'_'.$task.'()" ';
-		$out = ($post) ? '' : EcAjax::submit
+		$out = ($post) ? '' : EcmsgAjax::submit
 			($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, false);
 		$out .= '<li><a href="javascript:;"'.$click.'><span class="'.$icon.'">&#160;'
 			.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</span></a></li>';
@@ -34,7 +34,7 @@ class EcmsgWidget {
 		$class = ($validate) ? ' btn-primary validate ' : ' btn-default ';
 		$click = ($post) ? ' onClick="Joomla.'.$submitbutton.'(\''.$nameKey.'.'.$task
 			.'\', document.getElementById(\''.$id.'\'))" ' : ' onClick="'.$id.'_'.$task.'()" ';
-		$out = ($post) ? self::getSubmitbutton($id) : EcAjax::submit
+		$out = ($post) ? self::getSubmitbutton($id) : EcmsgAjax::submit
 			($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, $validate);
 		$out .= '<button type="button" class="btn'.$class.'" '.$click.'><span class="'
 			.$icon.'"></span>&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</button>';
@@ -70,7 +70,7 @@ class EcmsgWidget {
 		($optionCom, $nameKey, $valueCol, $nameCols, $id, $task, $validate) {
 		//$id = (empty($id)) ? $nameCols[1].'_'.$valueCol.'_'.$nameKey.'_0_item' : $id;
 		$id = (empty($id)) ? $nameKey.'_0_'.$nameCols[1].'_'.$valueCol.'_item' : $id;
-		$out = EcAjax::submit($optionCom, $nameKey, $valueCol, $nameCols, $id, $task, $validate);
+		$out = EcmsgAjax::submit($optionCom, $nameKey, $valueCol, $nameCols, $id, $task, $validate);
 		$out .= '<script type="text/javascript">
 			jQuery("#'.$id.' #jform_body").keydown(function(key) {
 				if((key.keyCode == 13)) {
@@ -118,7 +118,7 @@ class EcmsgWidget {
 		$out = '<span id="'.$id.'">&#160;';
 		if($task == 'show') $out .= '<script>jQuery("#'.$nameCols[0].'_'.$valueCol
 			.'_'.$nameKey.'_list").replaceWith("");</script>';
-		$out .= EcAjax::submit
+		$out .= EcmsgAjax::submit
 			($optionCom, $nameKey, 0, $nameCols, $id, $task, false);
 		$icon = '<span class="'.self::getIcon('comment').'"></span>';
 		$text = $countKey.'&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task);
@@ -135,7 +135,7 @@ class EcmsgWidget {
 		$id = $nameCols[0].'_'.(int)$valueCol.'_'.$nameKey.'_'.(int)$valueKey.'_item';
 		$click = ' onClick="'.$id.'_'.$task.'()'.'" ';
 		$out = '<span id="'.$id.'">&#160;';
-		$out .= EcAjax::submit
+		$out .= EcmsgAjax::submit
 			($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, false);
 		$icon = '<span class="'.self::getIcon('like').'"></span>';
 		$text = $countKey.'&#160;'.JText::_($optionCom.'_'.$nameKey.'_item_'.$task);
@@ -160,7 +160,7 @@ class EcmsgWidget {
 		$click = ($post) ? ' onClick="Joomla.submitform(\''.$nameKey.'.'.$task
 			.'\', document.getElementById(\''.$id.'\'))" ' : ' onClick="'.$id.'_'.$task.'()" ';
 		$out = ($post) ? self::getSubmitbutton($id) : 
-			EcAjax::submit($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, false);
+			EcmsgAjax::submit($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, false);
 		$out .= '<textarea '.$click.' style="width:96%" rows="2" placeholder="'
 			.JText::_($optionCom.'_'.$nameKey.'_'.$task).'"></textarea>';
 		return $out;

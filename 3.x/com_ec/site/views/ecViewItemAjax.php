@@ -14,7 +14,6 @@ class EcViewItemAjax extends EcViewItem {
 	
 	public function add() {
 		$this->form = $this->get('Form', $this->nameKey.'form');
-		//$optionCom = JFactory::getApplication()->input->get('option');
 		$task = __function__;
 		require_once JPATH_COMPONENT.'/views/'.$this->nameKey.'/tmpl/default_add.php';
 		echo EcAjax::focus($this->nameKey.'_0_item #jform_body');
@@ -22,7 +21,6 @@ class EcViewItemAjax extends EcViewItem {
 	}
 	
 	public function addPre($exit = false) {
-		//$optionCom = JFactory::getApplication()->input->get('option');
 		require_once JPATH_COMPONENT.'/views/'.$this->nameKey.'/tmpl/default_addPre.php';
 		if($exit) jexit();
 	}
@@ -30,7 +28,7 @@ class EcViewItemAjax extends EcViewItem {
 	public function cancel($valueKey) { $this->save($valueKey); }
 	
 	public function delete($valueKey) { //TODO echo JHtml::_('form.token');
-		echo EcWidget::modalConfirm('com_ecmsg', $this->nameKey, $valueKey,
+		echo EcmsgWidget::modalConfirm($this->optionCom, $this->nameKey, $valueKey,
 			array(''), 'item', 'deleteConfirm', false);
 		jexit();
 	}
@@ -40,7 +38,6 @@ class EcViewItemAjax extends EcViewItem {
 		$model->setState($this->nameKey, $valueKey);
 		$this->form = $this->get('Form', $this->nameKey.'form');
 		$availableTask = (1) ? true : false;
-		//$optionCom = JFactory::getApplication()->input->get('option');
 		$task = __function__;
 		require_once JPATH_COMPONENT.'/views/'.$this->nameKey.'/tmpl/default_edit.php';
 		echo EcAjax::focus($this->nameKey.'_'.$valueKey.'_item #jform_body');
