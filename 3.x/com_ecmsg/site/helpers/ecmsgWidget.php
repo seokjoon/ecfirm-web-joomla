@@ -7,12 +7,14 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcmsgWidget {
 
-	public static function btnCaret($link = false) {
+	public static function caretBtn($link = false) {
 		$class = ($link) ? ' btn-default ' : ' btn-link ';
 		return '<button type="button" class="btn'.$class.'dropdown-toggle" '
 			.'data-toggle="dropdown"><span class="caret"></span></button>';
 	}
-	
+
+	/**
+	 * @deprecated TODO */
 	public static function btnLiSubmit
 		($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, $post) {
 		$icon = self::getIcon($task);
@@ -25,7 +27,9 @@ class EcmsgWidget {
 			.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</span></a></li>';
 		return $out;
 	}
-	
+
+	/**
+	 * @deprecated TODO */
 	public static function btnSubmit
 		($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, $post, $validate) {
 		$icon = self::getIcon($task);
@@ -65,7 +69,9 @@ class EcmsgWidget {
 				.'Joomla.submitform(task, document.getElementById("'.$id.'")); } } 
 			</script>';
 	}
-	
+
+	/**
+	 * @deprecated TODO */
 	public static function keySubmit
 		($optionCom, $nameKey, $valueCol, $nameCols, $id, $task, $validate) {
 		//$id = (empty($id)) ? $nameCols[1].'_'.$valueCol.'_'.$nameKey.'_0_item' : $id;
@@ -81,7 +87,9 @@ class EcmsgWidget {
 		</script>';
 		return $out;
 	}
-	
+
+	/**
+	 * @deprecated TODO */
 	public static function modalConfirm
 		($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, $post) {
 		$idOrg = $id;
@@ -109,7 +117,9 @@ class EcmsgWidget {
 		$out .= '</div>';
 		return $out;
 	} //<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	
+
+	/**
+	 * @deprecated TODO */
 	public static function spanCmt
 		($optionCom, $nameKey, $nameCols, $valueCol, $task, $countKey) {
 		//msg_55_msgcmt_list
@@ -129,6 +139,8 @@ class EcmsgWidget {
 		return $out;
 	}
 
+	/**
+	 * @deprecated TODO */
 	public static function spanLike
 		($optionCom, $nameKey, $valueKey, $nameCols, $valueCol, $task, $countKey) {
 		//$id = $nameKey.'_'.(int)$valueKey.'_item';
@@ -145,15 +157,13 @@ class EcmsgWidget {
 		$out .= '&#160;</span>';
 		return $out;
 	}
+
+	/**
+	 * @deprecated TODO */
+	public static function spanReadmore() { }
 	
-	public static function spanReadmore() {
-	
-	}
-	
-	public static function  spanSubmit() {
-		
-	}
-	
+	/**
+	 * @deprecated TODO */
 	public static function textareaSubmit
 		($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, $post, $validate) {
 		$id = $nameKey.'_'.$valueKey.'_'.$nameCols[0].$id;

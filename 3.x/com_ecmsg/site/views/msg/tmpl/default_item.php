@@ -41,7 +41,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'_item" class="well well-small">';
 
 		echo '<div class="pull-right" style="width:20%" align="right">';
 			echo '<div class="btn-group">';
-				echo EcmsgWidget::btnCaret(false);
+				echo EcmsgWidget::caretBtn(false);
 				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
 					if($availableEdit) echo EcmsgWidget::btnLiSubmit($optionCom, 
 						$nameKey, $valueKey, array('body'), '', 'edit', false);

@@ -7,16 +7,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcmsgAjax {
 	
-	public static function focus($id) {
-		return '<script type="text/javascript">jQuery("#'.$id.'").focus();</script>';
-	}
-	
-	private static function popoverStrip($id, $title, $content) {
-		return 'jQuery("#'.$id.'").popover({
-			content: "content", placement: "top", title: "title",
-		});';
-	}
-	
 	public static function submit
 		($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, $validate) {
 		$extra = null;
@@ -61,7 +51,7 @@ class EcmsgAjax {
 				else { 
 					jQuery("#system-message-container").replaceWith
 						("<div id=system-message-container style=height:0px;>&nbsp;</div>");
-					'.self::popoverStrip($id, "title", "content").' }
+					'.EcAjax::popoverStrip($id, "title", "content").' }
 			};</script>';
 	}
 }
