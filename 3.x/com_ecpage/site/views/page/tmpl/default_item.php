@@ -34,14 +34,14 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			echo '<div class="media-body">';
 				echo '<div>'.$item->user.'</div>';
 				echo '<div>'.$item->modified.'</div>';
-				echo '<div>'.$title.'</div>';
+				echo '<div>'.$item->title.'</div>';
 				echo '<div>'.$body.'</div>';
 			echo '</div>';
 		echo '</div>';	
 
 		echo '<div class="pull-right" style="width:20%" align="right">';
 			echo '<div class="btn-group">';
-				echo EcageWidget::caretBtn(false);
+				echo EcpageWidget::caretBtn(false);
 				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
 					$params['nameCols'] = array('page', 'user');
 					$params['optionCom'] = $optionCom;
