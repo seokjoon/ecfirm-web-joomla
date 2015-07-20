@@ -14,6 +14,8 @@ $sizeBody = JString::strlen($item->body); //EcDebug::lp($sizeIntro); EcDebug::lp
 $body = ($sizeIntro < $sizeBody) ?
 $intro.EcWidget::spanReadmore($item->body) : $intro;
 $modified = EcDatetime::interval($item->modified);
+$itemLink = '?option='.$optionCom.'&view='.$nameKey.'&'.$nameKey.'='.$valueKey;
+$title = ($this->plural) ? '<a href="'.$itemLink.'">'.$item->title.'</a>' : $item->title;
 
 
 
@@ -34,8 +36,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			echo '<div class="media-body">';
 				echo '<div>'.$item->user.'</div>';
 				echo '<div>'.$item->modified.'</div>';
-				echo '<div>'.$item->title.'</div>';
-				echo '<div>'.$body.'</div>';
+				echo '<div>'.$title.'</div>';
 			echo '</div>';
 		echo '</div>';	
 

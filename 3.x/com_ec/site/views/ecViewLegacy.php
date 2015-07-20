@@ -11,6 +11,7 @@ abstract class EcViewLegacy extends JViewLegacy {
 	protected $optionCom;
 	protected $nameKey;
 	protected $params;
+	protected $plural;
 	protected $user;
 	
 	

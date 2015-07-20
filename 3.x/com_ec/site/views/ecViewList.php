@@ -12,6 +12,7 @@ class EcViewList extends EcViewLegacy {
 	public function __construct($config = array()) {
 		parent::__construct($config);
 		$this->nameKey = substr($this->getName(), 0, -1);
+		$this->plural = true;
 	}
 	
 	/**
