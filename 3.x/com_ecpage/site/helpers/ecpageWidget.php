@@ -69,5 +69,7 @@ class EcpageWidget {
 					.'Joomla.submitform(task, document.getElementById("'.$id.'")); } }
 			</script>';
 	}
+	
+	public static function spanReadmore() { }
 
 }

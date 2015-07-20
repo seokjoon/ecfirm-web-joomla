@@ -12,7 +12,7 @@ $intro = nl2br(JHtml::_('string.truncateComplex', $item->body, 80));
 $sizeIntro = JString::strlen($intro);
 $sizeBody = JString::strlen($item->body); //EcDebug::lp($sizeIntro); EcDebug::lp($sizeBody);
 $body = ($sizeIntro < $sizeBody) ?
-$intro.EcWidget::spanReadmore($item->body) : $intro;
+	$intro.EcprodWidget::spanReadmore($item->body) : $intro;
 $modified = EcDatetime::interval($item->modified);
 
 

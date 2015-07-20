@@ -17,11 +17,11 @@ echo '<div id="'.$this->nameKey.'_'.$valueKey.'_body" class="tab-pane active">';
 			echo '<span style="display:none;">'.$field->label.'</span>';
 			echo str_replace('<textarea', '<textarea style="width:96%;"', $field->input); }
 		echo '<span style="float:right"><div class="btn-group">';
-		if(($availableTask) && ($task == 'edit')) echo EcWidget::btnSubmit
+		if(($availableTask) && ($task == 'edit')) echo EcmsgWidget::btnSubmit
 			($optionCom, $this->nameKey, $valueKey, array('body'), '_form', 'cancel', false, false);
-		else if(($availableTask) && ($task == 'add')) echo EcWidget::btnSubmit
+		else if(($availableTask) && ($task == 'add')) echo EcmsgWidget::btnSubmit
 			($optionCom, $this->nameKey, $valueKey, array(''), 'item', 'addPre', false, false); 
-		echo EcWidget::btnSubmit($optionCom, $this->nameKey, 
+		echo EcmsgWidget::btnSubmit($optionCom, $this->nameKey, 
 			$valueKey, array('body', 'user', 'msg'), '_form', 'save', false, true);
 		echo '</div></span>';
 		echo '<input type="hidden" name="task" value="" />';

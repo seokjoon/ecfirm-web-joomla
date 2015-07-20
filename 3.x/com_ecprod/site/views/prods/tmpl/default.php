@@ -15,7 +15,14 @@ $optionCom = $this->optionCom;
 echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" '
 	.'id="'.$nameKey.'_0_item" class="form-validate">';
 	echo '<div class="pull-right">';
-		echo EcWidget::btnSubmit($optionCom, $nameKey, 0, array(''), 'item', 'add', true, false);
+		$params['nameCols'] = array();
+		$params['optionCom'] = $optionCom;
+		$params['nameKey'] = $nameKey;
+		$params['valueKey'] = 0;
+		$params['task'] = 'add';
+		$params['idPostfix'] = 'item';
+		$params['post'] = true;
+		echo EcprodWidget::submitBtn($params);
 	echo '</div><div class="clearfix"></div>';
 	echo '<input type="hidden" name="task" value="" />';
 echo '</form>';

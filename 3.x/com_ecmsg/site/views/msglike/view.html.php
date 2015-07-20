@@ -23,7 +23,7 @@ class EcmsgViewMsglike extends EcViewItemAjax {
 	public function delete($valueCol) {
 		$model = $this->getModel('msg');
 		$countKey = $model->getItem($valueCol)->msglike;
-		echo EcWidget::spanLike
+		echo EcmsgWidget::spanLike
 			('com_ecmsg', 'msglike', 0, array('msg'), $valueCol, 'add', $countKey);
 		jexit();
 	}
@@ -34,7 +34,7 @@ class EcmsgViewMsglike extends EcViewItemAjax {
 		$countKey = $model->getItem($valueCol)->$nameKey;
 		$params['where'] = array('msg' => $valueCol, 'user' => JFactory::getUser()->id);
 		$valueKey = EcDml::selectByParams($params, $nameKey);
-		echo EcWidget::spanLike('com_ecmsg', $nameKey, $valueKey, array('msg'), 
+		echo EcmsgWidget::spanLike('com_ecmsg', $nameKey, $valueKey, array('msg'), 
 			$valueCol, 'delete', $countKey);
 		jexit();
 	}

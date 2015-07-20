@@ -37,9 +37,9 @@ echo '<div id="'.$nameKey.'_'.$item->msgcmt.'_'.$nameCol.'_'.$valueCol.'_item">'
 	
 	echo '<div class="pull-right" style="width:20%" align="right">';
 		echo '<div class="btn-group">';
-			echo EcWidget::btnCaret(false);
+			echo EcmsgWidget::btnCaret(false);
 			echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
-				if($availableDelete) echo EcWidget::btnLiSubmit($optionCom, $nameKey, 
+				if($availableDelete) echo EcmsgWidget::btnLiSubmit($optionCom, $nameKey, 
 					$item->$nameKey, array('msg', 'msgcmt', 'user'), '_'.$valueCol.'_item', 'delete', false);
 			echo '</ul>';
 		echo '</div>';

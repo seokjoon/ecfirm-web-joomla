@@ -22,7 +22,7 @@ class EcmsgViewMsgcmts extends EcViewList {
 	
 	public function hide($valueCol) {
 		$countCol = $this->getModel('msg')->getItem($valueCol)->msgcmt;
-		echo EcWidget::spanCmt('com_ecmsg', 'msgcmts', array('msg'),
+		echo EcmsgWidget::spanCmt('com_ecmsg', 'msgcmts', array('msg'),
 			$valueCol, 'show', $countCol);
 		jexit();
 	}
@@ -33,7 +33,7 @@ class EcmsgViewMsgcmts extends EcViewList {
 		$this->form = $this->get('Form', ($nameKey.'form'));
 		$nameCol = 'msg';
 		$countCol = $this->getModel($nameCol)->getItem($valueCol)->$nameKey;
-		echo EcWidget::spanCmt($this->optionCom, $this->getName(), 
+		echo EcmsgWidget::spanCmt($this->optionCom, $this->getName(), 
 			array($nameCol), $valueCol, 'hide', $countCol);
 		require JPATH_COMPONENT.'/views/'.$this->getName().'/tmpl/default.php';
 		jexit();
