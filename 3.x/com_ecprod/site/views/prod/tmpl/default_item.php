@@ -40,7 +40,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 
 		echo '<div class="pull-right" style="width:20%" align="right">';
 			echo '<div class="btn-group">';
-				echo EcprodWidget::caretBtn(false);
+				echo EcWidget::caretBtn(false);
 				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
 					$params['nameCols'] = array('prod', 'user');
 					$params['optionCom'] = $optionCom;

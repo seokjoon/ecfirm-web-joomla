@@ -7,7 +7,14 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcWidget {
 	
+	public static function caretBtn($link = false) {
+		$class = ($link) ? ' btn-default ' : ' btn-link ';
+		return '<button type="button" class="btn'.$class.'dropdown-toggle" '
+			.'data-toggle="dropdown"><span class="caret"></span></button>';
+	}
+	
 	/**
+	 * @deprecated TODO
 	 * @param array $params
 	 * - essential: 
 	 * - optional: */
@@ -17,6 +24,33 @@ class EcWidget {
 		
 	}
 	
+	public static function getIcon($task) {
+		switch ($task) {
+			case 'add': $icon = 'icon-edit'; break;
+			case 'addPre': $icon = 'icon-trash'; break;
+			case 'cancel': $icon = 'icon-trash'; break;
+			case 'comment': $icon = 'icon-comment'; break;
+			case 'delete': $icon = 'icon-trash'; break;
+			case 'edit': $icon = 'icon-edit'; break;
+			case 'like': $icon = 'icon-thumbs-up'; break;
+			case 'option': $icon = 'icon-cog'; break;
+			case 'save': $icon = 'icon-edit'; break;
+			case 'saveImg': $icon = 'icon-edit'; break;
+			case 'share': $icon = 'icon-share'; break;
+			default: $icon = ''; break; }
+		return $icon;
+	}	
+	
+	public static function getSubmitbutton($id) {
+		return '<script type="text/javascript">
+			Joomla.submitbutton = function(task) {
+				if(document.formvalidator.isValid(document.id("'.$id.'"))){'
+				.'Joomla.submitform(task, document.getElementById("'.$id.'")); } } 
+			</script>';
+	}
+	
+	/**
+	 * @deprecated TODO */
 	public static function modalConfirm
 		($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, $post) {
 		$idOrg = $id;

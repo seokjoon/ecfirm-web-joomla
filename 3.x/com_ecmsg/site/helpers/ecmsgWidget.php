@@ -7,17 +7,11 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcmsgWidget {
 
-	public static function caretBtn($link = false) {
-		$class = ($link) ? ' btn-default ' : ' btn-link ';
-		return '<button type="button" class="btn'.$class.'dropdown-toggle" '
-			.'data-toggle="dropdown"><span class="caret"></span></button>';
-	}
-
 	/**
 	 * @deprecated TODO */
 	public static function btnLiSubmit
 		($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, $post) {
-		$icon = self::getIcon($task);
+		$icon = EcWidget::getIcon($task);
 		$id = $nameKey.'_'.$valueKey.'_'.$nameCols[0].$id;
 		$click = ($post) ? ' onClick="Joomla.submitform(\''.$nameKey.'.'.$task
 			.'\', document.getElementById(\''.$id.'\'))" ' : ' onClick="'.$id.'_'.$task.'()" ';
@@ -32,44 +26,19 @@ class EcmsgWidget {
 	 * @deprecated TODO */
 	public static function btnSubmit
 		($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, $post, $validate) {
-		$icon = self::getIcon($task);
+		$icon = EcWidget::getIcon($task);
 		$id = $nameKey.'_'.$valueKey.'_'.$nameCols[0].$id; 
 		$submitbutton = ($validate) ? 'submitbutton' : 'submitform';
 		$class = ($validate) ? ' btn-primary validate ' : ' btn-default ';
 		$click = ($post) ? ' onClick="Joomla.'.$submitbutton.'(\''.$nameKey.'.'.$task
 			.'\', document.getElementById(\''.$id.'\'))" ' : ' onClick="'.$id.'_'.$task.'()" ';
-		$out = ($post) ? self::getSubmitbutton($id) : EcmsgAjax::submit
+		$out = ($post) ? EcWidget::getSubmitbutton($id) : EcmsgAjax::submit
 			($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, $validate);
 		$out .= '<button type="button" class="btn'.$class.'" '.$click.'><span class="'
 			.$icon.'"></span>&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</button>';
 		return $out;
 	}
 	
-	private static function getIcon($task) {
-		switch ($task) {
-			case 'add': $icon = 'icon-edit'; break;
-			case 'addPre': $icon = 'icon-trash'; break;
-			case 'cancel': $icon = 'icon-trash'; break;
-			case 'comment': $icon = 'icon-comment'; break;
-			case 'delete': $icon = 'icon-trash'; break;
-			case 'edit': $icon = 'icon-edit'; break;
-			case 'like': $icon = 'icon-thumbs-up'; break;
-			case 'option': $icon = 'icon-cog'; break;
-			case 'save': $icon = 'icon-edit'; break;
-			case 'saveImg': $icon = 'icon-edit'; break;
-			case 'share': $icon = 'icon-share'; break;
-			default: $icon = ''; break; }
-		return $icon;
-	}
-	
-	private static function getSubmitbutton($id) {
-		return '<script type="text/javascript">
-			Joomla.submitbutton = function(task) {
-				if(document.formvalidator.isValid(document.id("'.$id.'"))){'
-				.'Joomla.submitform(task, document.getElementById("'.$id.'")); } } 
-			</script>';
-	}
-
 	/**
 	 * @deprecated TODO */
 	public static function keySubmit
@@ -130,7 +99,7 @@ class EcmsgWidget {
 			.'_'.$nameKey.'_list").replaceWith("");</script>';
 		$out .= EcmsgAjax::submit
 			($optionCom, $nameKey, 0, $nameCols, $id, $task, false);
-		$icon = '<span class="'.self::getIcon('comment').'"></span>';
+		$icon = '<span class="'.EcWidget::getIcon('comment').'"></span>';
 		$text = $countKey.'&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task);
 		$input = '<input type="hidden" id="jform_msg" value="'.$valueCol.'" />';
 		$out .= '<a href="javascript:;"'.$click.' style="text-decoration: none;">'
@@ -144,13 +113,13 @@ class EcmsgWidget {
 	public static function spanLike
 		($optionCom, $nameKey, $valueKey, $nameCols, $valueCol, $task, $countKey) {
 		//$id = $nameKey.'_'.(int)$valueKey.'_item';
-		$id = $nameCols[0].'_'.(int)$valueCol.'_'.$nameKey.'_'.(int)$valueKey.'_item';
+		$id = $nameCols[0].'_'.(int)$valueCol.'_'.$nameKey.'_'.(int)$valueKey;
 		$click = ' onClick="'.$id.'_'.$task.'()'.'" ';
 		$out = '<span id="'.$id.'">&#160;';
 		$out .= EcmsgAjax::submit
 			($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, false);
-		$icon = '<span class="'.self::getIcon('like').'"></span>';
-		$text = $countKey.'&#160;'.JText::_($optionCom.'_'.$nameKey.'_item_'.$task);
+		$icon = '<span class="'.EcWidget::getIcon('like').'"></span>';
+		$text = $countKey.'&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task);
 		$input = '<input type="hidden" id="jform_msg" value="'.$valueCol.'" />';
 		$out .= '<a href="javascript:;"'.$click.' style="text-decoration: none;">'
 			.$icon.$text.$input.'</a>';
@@ -169,7 +138,7 @@ class EcmsgWidget {
 		$id = $nameKey.'_'.$valueKey.'_'.$nameCols[0].$id;
 		$click = ($post) ? ' onClick="Joomla.submitform(\''.$nameKey.'.'.$task
 			.'\', document.getElementById(\''.$id.'\'))" ' : ' onClick="'.$id.'_'.$task.'()" ';
-		$out = ($post) ? self::getSubmitbutton($id) : 
+		$out = ($post) ? EcWidget::getSubmitbutton($id) : 
 			EcmsgAjax::submit($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, false);
 		$out .= '<textarea '.$click.' style="width:96%" rows="2" placeholder="'
 			.JText::_($optionCom.'_'.$nameKey.'_'.$task).'"></textarea>';
