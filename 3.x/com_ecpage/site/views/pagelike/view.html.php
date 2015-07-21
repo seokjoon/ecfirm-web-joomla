@@ -18,6 +18,6 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 
-class EcpageViewPagelike extends EcViewItem {
+class EcpageViewPagelike extends EcViewItemLike {
 	
 }

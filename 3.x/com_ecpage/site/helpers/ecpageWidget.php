@@ -9,7 +9,7 @@ class EcpageWidget {
 	
 	/**
 	 * @param array $params: optionCom, nameKey, valueKey, nameCol, valueCol, 
-	 * task, countKey */
+	 * nameCols, task, countKey */
 	public static function likeSpan($params) {
 		extract($params);
 		$id = $nameCol.'_'.(int)$valueCol.'_'.$nameKey.'_'.(int)$valueKey;

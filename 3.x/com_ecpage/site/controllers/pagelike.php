@@ -5,6 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcpageControllerPagelike extends EcControllerAjax {
+class EcpageControllerPagelike extends EcControllerLike {
 	
 }
