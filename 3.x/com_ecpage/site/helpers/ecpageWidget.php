@@ -13,6 +13,8 @@ class EcpageWidget {
 	public static function likeSpan($params) {
 		extract($params);
 		$id = $nameCol.'_'.(int)$valueCol.'_'.$nameKey.'_'.(int)$valueKey;
+		$params['id'] = $id;
+		$params['validate'] = false;
 		$out = '<span id="'.$id.'">&#160;'.EcpageAjax::submit($params);
 		$click = ' onClick="'.$id.'_'.$task.'()'.'" ';
 		$icon = '<span class="'.EcWidget::getIcon('like').'"></span>';

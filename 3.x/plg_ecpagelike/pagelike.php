@@ -25,7 +25,7 @@ class PlgEcPagelike extends JPlugin {
 		$valueCol = $item->$nameCol;
 		$params['where'] = 
 			array($nameCol => $valueCol, 'user' => JFactory::getUser()->id);
-		$valueKey = EcDml::selectByParams($params, $nameKey);
+		$valueKey = (int)EcDml::selectByParams($params, $nameKey);
 		$task = ($valueKey > 0) ? 'delete' : 'add';
 		$params = array();
 		$params['optionCom'] = $optionCom;
