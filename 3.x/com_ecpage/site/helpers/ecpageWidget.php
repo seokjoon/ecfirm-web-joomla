@@ -8,6 +8,22 @@ defined('_JEXEC') or die('Restricted access');
 class EcpageWidget {
 	
 	/**
+	 * @param array $params: optionCom, nameKey, valueKey, nameCol, valueCol, 
+	 * task, countKey */
+	public static function likeSpan($params) {
+		extract($params);
+		$id = $nameCol.'_'.(int)$valueCol.'_'.$nameKey.'_'.(int)$valueKey;
+		$out = '<span id="'.$id.'">&#160;'.EcpageAjax::submit($params);
+		$click = ' onClick="'.$id.'_'.$task.'()'.'" ';
+		$icon = '<span class="'.EcWidget::getIcon('like').'"></span>';
+		$text = $countKey.'&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task);
+		$input = '<input type="hidden" id="jform_'.$nameCol.'" value="'.$valueCol.'" />';
+		$out .= '<a href="javascript:;"'.$click.' style="text-decoration: none;">'
+			.$icon.$text.$input.'</a>&#160;</span>';
+		return $out;
+	}
+	
+	/**
 	 * @param array $params
 	 * - essential: optionCom, nameKey, valueKey, task
 	 * - optional: nameCol, valueCol, nameCols, idPostfix, post, validate, li */

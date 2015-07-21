@@ -27,8 +27,15 @@ class PlgEcPagelike extends JPlugin {
 			array($nameCol => $valueCol, 'user' => JFactory::getUser()->id);
 		$valueKey = EcDml::selectByParams($params, $nameKey);
 		$task = ($valueKey > 0) ? 'delete' : 'add';
-		$result = EcpageWidget::spanLike($optionCom, $nameKey, $valueKey, 
-			array($nameCol), $valueCol, $task, $item->$nameKey);
+		$params = array();
+		$params['optionCom'] = $optionCom;
+		$params['nameKey'] = $nameKey;
+		$params['valueKey'] = $valueKey;
+		$params['nameCol'] = $nameCol;
+		$params['valueCol'] = $valueCol;
+		$params['task'] = $task;
+		$params['countKey'] = $item->$nameKey;
+		$result = EcpageWidget::likespan($params);
 		return $result;
 	}
 }
