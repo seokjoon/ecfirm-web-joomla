@@ -21,7 +21,6 @@ class EcWidget {
 	public static function confirmModal($params) {
 		extract($params);
 		
-		
 	}
 	
 	public static function getIcon($task) {
@@ -50,33 +49,55 @@ class EcWidget {
 	}
 	
 	/**
-	 * @deprecated TODO */
-	public static function modalConfirm
-		($optionCom, $nameKey, $valueKey, $nameCols, $id, $task, $post) {
-		$idOrg = $id;
-		$id = $nameKey.'_'.$valueKey.'_'.$nameCols[0].$id;
-		$out = '<div id="'.$id.'">';
-		$id .= '_confirm';
-		$out .= '<script>jQuery("#'.$id.'")
-			.modal({ backdrop: false, keyboard: false });</script>';
-		$out .= '<div id="'.$id.'" class="modal hide fade" tabindex="-1" role="dialog" 
-			style="position: static; margin-left: 0; width: 100%;" 
-			aria-labelledby="modalLabel" aria-hidden="true">
-			<div class="modal-dialog"><div class="modal-content">
-				<div class="modal-header">
-					<h3 id="modalLabel" class="modal-title">'
-						.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</h3>
-				</div>
-				<div class="modal-body"><div>
-					<div id="test" class="pull-left">&#160;'.'&#160;</div>
-				</div></div>
-				<div class="modal-footer">'
-					.self::btnSubmit($optionCom, $nameKey, $valueKey, $nameCols, $idOrg, 'cancel', $post, false)
-					.self::btnSubmit($optionCom, $nameKey, $valueKey, $nameCols, $idOrg, $task, $post, false)
-				.'</div>
-			</div></div></div>';
-		$out .= '</div>';
+	 * @param array $params: optionCom, nameKey, valueKey, nameCol, valueCol, 
+	 * nameCols, task, countKey */
+	public static function likeSpan($params) {
+		extract($params);
+		$id = $nameCol.'_'.(int)$valueCol.'_'.$nameKey.'_'.(int)$valueKey;
+		$params['id'] = $id;
+		$params['validate'] = false;
+		$out = '<span id="'.$id.'">&#160;'.EcAjax::submit($params);
+		$click = ' onClick="'.$id.'_'.$task.'()'.'" ';
+		$icon = '<span class="'.self::getIcon('like').'"></span>';
+		$text = $countKey.'&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task);
+		$input = '<input type="hidden" id="jform_'.$nameCol.'" value="'.$valueCol.'" />';
+		$out .= '<a href="javascript:;"'.$click.' style="text-decoration: none;">'
+			.$icon.$text.$input.'</a>&#160;</span>';
 		return $out;
-	} //<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	}
+	
+	public static function readmoreSpan() { }
+	
+	/**
+	 * @param array $params
+	 * - essential: optionCom, nameKey, valueKey, task
+	 * - optional: nameCol, valueCol, nameCols, idPostfix, post, validate, li */
+	public static function submitBtn($params) { //EcDebug::log($params);
+		extract($params);
+		$icon = self::getIcon($task);
+		$id = $nameKey.'_'.$valueKey;
+		if(isset($nameCol)) $id = $id.'_'.$nameCol.'_'.$valueCol;
+		if(isset($idPostfix)) $id = $id.'_'.$idPostfix;
+		if(!(isset($post))) $post = false;
+		if(!(isset($validate))) $validate = false;
+		if(!(isset($li))) $li = false;
+		$params['id'] = $id;
+		$params['validate'] = $validate;
+		$submitbutton = ($validate) ? 'submitbutton' : 'submitform';
+		$class = ($validate) ? ' btn-primary validate ' : ' btn-default ';
+		$click = ($post) ? ' onClick="Joomla.'.$submitbutton.'(\''.$nameKey.'.'.$task
+			.'\', document.getElementById(\''.$id.'\'))" ' : ' onClick="'.$id.'_'.$task.'()" ';	
+		$out = ($post) ? self::getSubmitbutton($id) : EcAjax::submit($params);
+		if($li) $out .= '<li><a href="javascript:;"'.$click.'><span class="'.$icon.'">&#160;'
+			.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</span></a></li>';
+		else $out .= '<button type="button" class="btn'.$class.'" '.$click.'><span class="'
+			.$icon.'"></span>&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</button>';
+		return $out;
+	}
+	
+	public static function submitBtnLi($params) { 
+		$params['li'] = true;
+		return self::submitBtn($params);
+	}
 	
 }

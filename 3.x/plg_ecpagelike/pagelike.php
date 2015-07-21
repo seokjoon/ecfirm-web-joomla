@@ -36,7 +36,7 @@ class PlgEcPagelike extends JPlugin {
 		$params['nameCols'] = array($nameCol);
 		$params['task'] = $task;
 		$params['countKey'] = $item->$nameKey;
-		$result = EcpageWidget::likespan($params);
+		$result = EcWidget::likespan($params);
 		return $result;
 	}
 }

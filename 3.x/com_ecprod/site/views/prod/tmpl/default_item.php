@@ -12,7 +12,7 @@ $intro = nl2br(JHtml::_('string.truncateComplex', $item->body, 80));
 $sizeIntro = JString::strlen($intro);
 $sizeBody = JString::strlen($item->body); //EcDebug::lp($sizeIntro); EcDebug::lp($sizeBody);
 $body = ($sizeIntro < $sizeBody) ?
-	$intro.EcprodWidget::spanReadmore($item->body) : $intro;
+	$intro.EcWidget::readmoreSpan($item->body) : $intro;
 $modified = EcDatetime::interval($item->modified);
 
 
@@ -49,10 +49,10 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 					$params['task'] = 'edit';
 					$params['idPostfix'] = 'form';
 					$params['post'] = true;
-					if($availableEdit) echo EcprodWidget::submitBtnLi($params);
+					if($availableEdit) echo EcWidget::submitBtnLi($params);
 					echo '<li class="divider"></li>';
 					$params['task'] = 'delete';
-					if($availableDelete) echo EcprodWidget::submitBtnLi($params);
+					if($availableDelete) echo EcWidget::submitBtnLi($params);
 				echo '</ul>';
 			echo '</div>';
 		echo '</div>'; //EcDebug::lp($params);

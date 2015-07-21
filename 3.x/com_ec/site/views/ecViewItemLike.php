@@ -20,8 +20,7 @@ class EcViewItemLike extends EcViewItemAjax {
 		$params['nameCols'] = array($nameCol);
 		$params['task'] = 'add';
 		$params['countKey'] = $countKey;
-		$widget = 'Ec'.$nameCol.'Widget';
-		echo $widget::likeSpan($params);
+		echo EcWidget::likeSpan($params);
 		jexit();
 	}
 	
@@ -40,8 +39,7 @@ class EcViewItemLike extends EcViewItemAjax {
 		$params['nameCols'] = array($nameCol);
 		$params['task'] = 'delete';
 		$params['countKey'] = $countKey;
-		$widget = 'Ec'.$nameCol.'Widget';
-		echo $widget::likeSpan($params);
+		echo EcWidget::likeSpan($params);
 		jexit();
 	}
 }

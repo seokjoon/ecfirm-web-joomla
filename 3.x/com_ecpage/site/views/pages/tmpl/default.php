@@ -22,7 +22,7 @@ echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" '
 		$params['task'] = 'add';
 		$params['idPostfix'] = 'item';
 		$params['post'] = true;
-		echo EcpageWidget::submitBtn($params);
+		echo EcWidget::submitBtn($params);
 	echo '</div><div class="clearfix"></div>';
 	echo '<input type="hidden" name="task" value="" />';
 echo '</form>';

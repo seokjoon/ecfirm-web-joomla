@@ -34,10 +34,10 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			$params['task'] = 'cancel';
 			$params['idPostfix'] = 'form';
 			$params['post'] = true;
-			echo EcpageWidget::submitBtn($params);
+			echo EcWidget::submitBtn($params);
 			$params['task'] = 'save';
 			$params['validate'] = true;
-			echo EcpageWidget::submitBtn($params);
+			echo EcWidget::submitBtn($params);
 		echo '</div></span>';
 		
 		//echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'" />';

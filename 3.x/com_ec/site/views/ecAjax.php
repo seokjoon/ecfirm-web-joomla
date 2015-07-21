@@ -16,4 +16,41 @@ class EcAjax {
 			content: "content", placement: "top", title: "title",
 		});';
 	}
+	
+	/**
+	 * @param array $params: optionCom, nameKey, valueKey, nameCol, valueCol, 
+	 * nameCols, task, idPostfix, post, validate, li, id */
+	public static function submit($params) {
+		extract($params); //EcDebug::lp($params);	
+		$extra = null;
+		$validate = ($validate) ? 'true' : 'false';
+		$out = $id;
+		
+		if(isset($nameCols)) {
+			$jform = '{ ';
+			foreach($nameCols as $col)
+				$jform .= $col.': jQuery("#'.$id.' #jform_'.$col.'").val(), ';
+			$jform .= ' };'; }
+		else $jform = '"";';
+		
+		return '<script type="text/javascript">
+				
+			function '.$id.'_'.$task.'() {'.$extra.'
+				if('.$validate.') var validate = document.formvalidator.isValid(document.id("'.$id.'"));
+				else var validate = true;
+				if(validate) { 
+					var jform = '.$jform.'
+					jQuery.ajax({
+						url: "?option='.$optionCom.'&task='.$nameKey.'.'.$task.'",
+						method: "POST",
+						data: { '.$nameKey.': '.(int)$valueKey.', jform: jform, user: 0 },
+						dataType: "html",
+						success: function(out) { if(out != "false") jQuery("#'.$out.'").replaceWith(out); }
+					}); }
+				else { 
+					jQuery("#system-message-container").replaceWith
+						("<div id=system-message-container style=height:0px;>&nbsp;</div>");
+					'.self::popoverStrip($id, "title", "content").' }
+			};</script>';
+	}
 }
