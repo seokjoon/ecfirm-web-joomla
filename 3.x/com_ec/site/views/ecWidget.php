@@ -148,6 +148,7 @@ class EcWidget {
 	 * @param array $params: optionCom, nameKey, valueKey, nameCol, valueCol, 
 	 * nameCols, task, validate */
 	public static function submitKey($params) {
+		extract($params);
 		$id = $nameKey.'_'.$valueKey.'_'.$nameCol.'_'.$valueCol; //valueKey == 0
 		$params['id'] = $id;
 		$out = EcAjax::submit($params);
@@ -159,6 +160,20 @@ class EcWidget {
 				}
 			});
 		</script>';
+		return $out;
+	}
+	
+	/**
+	 * @param array $params: optionCom, nameKey, valueKey, task, post, validate */
+	public static function submitTextarea($params) {
+		extract($params);
+		$id = $nameKey.'_'.$valueKey; //valueKey == 0
+		$params['id'] = $id;
+		$click = ($post) ? ' onClick="Joomla.submitform(\''.$nameKey.'.'.$task
+			.'\', document.getElementById(\''.$id.'\'))" ' : ' onClick="'.$id.'_'.$task.'()" ';
+		$out = ($post) ? EcWidget::getSubmitbutton($id) : EcAjax::submit($params);
+		$out .= '<textarea '.$click.' style="width:96%" rows="2" placeholder="'
+			.JText::_($optionCom.'_'.$nameKey.'_'.$task).'"></textarea>';
 		return $out;
 	}
 	
