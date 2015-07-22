@@ -43,8 +43,8 @@ class EcmsgWidget {
 	 * @deprecated TODO */
 	public static function keySubmit
 		($optionCom, $nameKey, $valueCol, $nameCols, $id, $task, $validate) {
-		//$id = (empty($id)) ? $nameCols[1].'_'.$valueCol.'_'.$nameKey.'_0_item' : $id;
-		$id = (empty($id)) ? $nameKey.'_0_'.$nameCols[1].'_'.$valueCol.'_item' : $id;
+		//$id = (empty($id)) ? $nameCols[1].'_'.$valueCol.'_'.$nameKey.'_0' : $id;
+		$id = (empty($id)) ? $nameKey.'_0_'.$nameCols[1].'_'.$valueCol : $id;
 		$out = EcmsgAjax::submit($optionCom, $nameKey, $valueCol, $nameCols, $id, $task, $validate);
 		$out .= '<script type="text/javascript">
 			jQuery("#'.$id.' #jform_body").keydown(function(key) {
@@ -112,7 +112,7 @@ class EcmsgWidget {
 	 * @deprecated TODO */
 	public static function spanLike
 		($optionCom, $nameKey, $valueKey, $nameCols, $valueCol, $task, $countKey) {
-		//$id = $nameKey.'_'.(int)$valueKey.'_item';
+		//$id = $nameKey.'_'.(int)$valueKey;
 		$id = $nameCols[0].'_'.(int)$valueCol.'_'.$nameKey.'_'.(int)$valueKey;
 		$click = ' onClick="'.$id.'_'.$task.'()'.'" ';
 		$out = '<span id="'.$id.'">&#160;';

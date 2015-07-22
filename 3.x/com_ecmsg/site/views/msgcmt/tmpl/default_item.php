@@ -18,8 +18,8 @@ $availableEdit = (1) ? true : false;
 $availableDelete = (1) ? true : false;
 $modified = EcDatetime::interval($item->modified);
 $juName = JHtml::_('string.abridge', $item->ju_name, 10, 3);
-//msg_1_msgcmt_1_item
-echo '<div id="'.$nameKey.'_'.$item->msgcmt.'_'.$nameCol.'_'.$valueCol.'_item">';
+//msg_1_msgcmt_1
+echo '<div id="'.$nameKey.'_'.$item->msgcmt.'_'.$nameCol.'_'.$valueCol.'">';
 
 
 
@@ -40,7 +40,7 @@ echo '<div id="'.$nameKey.'_'.$item->msgcmt.'_'.$nameCol.'_'.$valueCol.'_item">'
 			echo EcWidget::caretBtn(false);
 			echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
 				if($availableDelete) echo EcmsgWidget::btnLiSubmit($optionCom, $nameKey, 
-					$item->$nameKey, array('msg', 'msgcmt', 'user'), '_'.$valueCol.'_item', 'delete', false);
+					$item->$nameKey, array('msg', 'msgcmt', 'user'), '_'.$valueCol, 'delete', false);
 			echo '</ul>';
 		echo '</div>';
 	echo '</div>';

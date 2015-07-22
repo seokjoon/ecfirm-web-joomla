@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 
 $availableTask = (1) ? true : false;
 //$task = 'add';
-echo '<div id="'.$this->nameKey.'_0_item"><fieldset>';
+echo '<div id="'.$this->nameKey.'_0"><fieldset>';
 	
 	
 	

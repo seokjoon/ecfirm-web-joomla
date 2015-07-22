@@ -16,7 +16,7 @@ class EcViewItemAjax extends EcViewItem {
 		$this->form = $this->get('Form', $this->nameKey.'form');
 		$task = __function__;
 		require_once JPATH_COMPONENT.'/views/'.$this->nameKey.'/tmpl/default_add.php';
-		echo EcAjax::focus($this->nameKey.'_0_item #jform_body');
+		echo EcAjax::focus($this->nameKey.'_0 #jform_body');
 		jexit();
 	}
 	
@@ -29,7 +29,7 @@ class EcViewItemAjax extends EcViewItem {
 	
 	public function delete($valueKey) { //TODO echo JHtml::_('form.token');
 		echo EcmsgWidget::modalConfirm($this->optionCom, $this->nameKey, $valueKey,
-			array(''), 'item', 'deleteConfirm', false);
+			array(''), '', 'deleteConfirm', false);
 		jexit();
 	}
 	
@@ -40,7 +40,7 @@ class EcViewItemAjax extends EcViewItem {
 		$availableTask = (1) ? true : false;
 		$task = __function__;
 		require_once JPATH_COMPONENT.'/views/'.$this->nameKey.'/tmpl/default_edit.php';
-		echo EcAjax::focus($this->nameKey.'_'.$valueKey.'_item #jform_body');
+		echo EcAjax::focus($this->nameKey.'_'.$valueKey.' #jform_body');
 		jexit();
 	}
 	

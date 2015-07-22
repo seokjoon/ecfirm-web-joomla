@@ -19,7 +19,7 @@ $body = ($sizeIntro < $sizeBody) ?
 	$intro.EcmsgWidget::spanReadmore($item->body) : $intro;
 $modified = EcDatetime::interval($item->modified);
 $juName = JHtml::_('string.abridge', $item->ju_name, 10, 3);
-echo '<div id="'.$nameKey.'_'.$valueKey.'_item" class="well well-small">'; 
+echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">'; 
 	if(isset($item->event->beforeDisplay)) echo $item->event->beforeDisplay;
 	
 
@@ -47,7 +47,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'_item" class="well well-small">';
 						$nameKey, $valueKey, array('body'), '', 'edit', false);
 					echo '<li class="divider"></li>';
 					if($availableDelete) echo EcmsgWidget::btnLiSubmit($optionCom, 
-						$nameKey, $valueKey, array(''), 'item', 'delete', false);
+						$nameKey, $valueKey, array(''), '', 'delete', false);
 				echo '</ul>';
 			echo '</div>';
 		echo '</div>';

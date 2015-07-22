@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-echo '<div id="'.$this->nameKey.'_0_item">';
+echo '<div id="'.$this->nameKey.'_0">';
 	echo EcmsgWidget::textareaSubmit($this->optionCom, $this->nameKey, 0, 
 		array(''), 'item', 'add', false, false);
 echo '</div>';

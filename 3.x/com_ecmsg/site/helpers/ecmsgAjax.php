@@ -15,14 +15,14 @@ class EcmsgAjax {
 		
 		switch($task) {
 			case 'edit': $out = $id; break;
-			default: $out = $nameKey.'_'.(int)$valueKey.'_item'; break; }
+			default: $out = $nameKey.'_'.(int)$valueKey; break; }
 			
 		switch($nameKey) { 
 			case 'msglike': $out = $id; break;
 			case 'msgcmts': $out = $id; break;
 			case 'msgcmt': 
 				if($task == 'save') $out = $nameCols[1].'_'.$valueKey.'_'.$nameKey.'s_list';
-				if($task == 'delete') { //id: msgcmt_30_msg_1_item: 
+				if($task == 'delete') { //id: msgcmt_30_msg_1: 
 					$idArray = explode('_', $id);
 					$out = $idArray[2].'_'.$idArray[3].'_'.$nameKey.'s_list';
 					$extra .= 'jQuery("#'.$idArray[2].'_'.$idArray[3].'_'.$idArray[0].'s").replaceWith("");'; }

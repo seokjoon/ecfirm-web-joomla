@@ -20,7 +20,7 @@ echo '<div id="'.$this->nameKey.'_'.$valueKey.'_body" class="tab-pane active">';
 		if(($availableTask) && ($task == 'edit')) echo EcmsgWidget::btnSubmit
 			($optionCom, $this->nameKey, $valueKey, array('body'), '_form', 'cancel', false, false);
 		else if(($availableTask) && ($task == 'add')) echo EcmsgWidget::btnSubmit
-			($optionCom, $this->nameKey, $valueKey, array(''), 'item', 'addPre', false, false); 
+			($optionCom, $this->nameKey, $valueKey, array(''), '', 'addPre', false, false); 
 		echo EcmsgWidget::btnSubmit($optionCom, $this->nameKey, 
 			$valueKey, array('body', 'user', 'msg'), '_form', 'save', false, true);
 		echo '</div></span>';

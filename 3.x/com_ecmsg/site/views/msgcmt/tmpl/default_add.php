@@ -17,8 +17,8 @@ defined('_JEXEC') or die('Restricted access');
 $this->form->setFieldAttribute($nameCol, 'default', $valueCol); //EcDebug::lp($this->form);
 $this->form->reset();
 $availableTask = (1) ? true : false;
-//msg_1_msgcmt_0_item
-echo '<div id="'.$nameKey.'_0_'.$nameCol.'_'.$valueCol.'_item" style="padding-top: 6px;">';
+//msg_1_msgcmt_0
+echo '<div id="'.$nameKey.'_0_'.$nameCol.'_'.$valueCol.'" style="padding-top: 6px;">';
 	//echo '<form action="" method="post" id="" class="form-validate form-vertical">';
 	
 	foreach($this->form->getFieldset($nameKey) as $field) 
