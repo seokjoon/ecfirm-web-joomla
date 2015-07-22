@@ -25,8 +25,16 @@ echo '<div id="'.$nameKey.'_0_'.$nameCol.'_'.$valueCol.'" style="padding-top: 6p
 		echo str_replace('<textarea', '<textarea style="width:96%;"', $field->input);
 	echo '<input type="hidden" name="task" value="" />';
 	echo JHtml::_('form.token');
-	echo EcmsgWidget::keySubmit($optionCom, $nameKey, $valueCol, 
-		array('msgcmt', 'msg', 'body', 'user'), null, 'save', true);
+	
+	$params['optionCom'] = $optionCom;
+	$params['nameKey'] = $nameKey;
+	$params['valueKey'] = 0;
+	$params['nameCol'] = 'msg';
+	$params['valueCol'] = $valueCol;
+	$params['nameCols'] = array($nameKey, 'msg', 'body', 'user');
+	$params['task'] = 'save';
+	$params['validate'] = true;
+	echo EcWidget::submitKey($params);
 	
 	//echo '</form>';
 	

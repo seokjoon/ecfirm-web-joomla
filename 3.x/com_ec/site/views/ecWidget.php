@@ -14,14 +14,36 @@ class EcWidget {
 	}
 	
 	/**
-	 * @deprecated TODO
-	 * @param array $params
-	 * - essential: 
-	 * - optional: */
+	 * @param array $params: optionCom, nameKey, valueKey, task */
 	public static function confirmModal($params) {
 		extract($params);
-		
-	}
+		$id = $nameKey.'_'.$valueKey;
+		$out = '<div id="'.$id.'">';
+		$id .= '_confirm';
+		$paramsCancel = $params;
+		$paramsCancel['task'] = 'cancel';
+		$paramsConfirm = $params;
+		$paramsConfirm['task'] = $task;
+		$out .= '<script>jQuery("#'.$id.'").modal({ backdrop: false, keyboard: false });</script>';
+		$out .= '<div id="'.$id.'" class="modal hide fade" tabindex="-1" role="dialog" 
+			style="position: static; margin-left: 0; width: 100%;" 
+			aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog"><div class="modal-content">
+				<div class="modal-header">
+					<h3 id="modalLabel" class="modal-title">'
+						.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</h3>
+				</div>
+				<div class="modal-body"><div>
+					<div id="test" class="pull-left">&#160;'.'&#160;</div>
+				</div></div>
+				<div class="modal-footer">'
+					.self::submitBtn($paramsCancel)
+					.self::submitBtn($paramsConfirm)
+				.'</div>
+			</div></div></div>';
+		$out .= '</div>';
+		return $out;
+	}//<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	
 	public static function getIcon($task) {
 		switch ($task) {
@@ -46,6 +68,28 @@ class EcWidget {
 				if(document.formvalidator.isValid(document.id("'.$id.'"))){'
 				.'Joomla.submitform(task, document.getElementById("'.$id.'")); } } 
 			</script>';
+	}
+	
+	/**
+	 * @param array $params: optionCom, nameKey, nameCol, valueCol, nameCols, 
+	 * task, countKey */
+	public static function cmtSpan($params) {
+		extract($params);
+		$id = $nameCol.'_'.(int)$valueCol.'_'.$nameKey;
+		$out = '<span id="'.$id.'">&#160;';
+		if($task == 'show') $out .= '<script>jQuery("#'.$nameCol.'_'.$valueCol
+			.'_'.$nameKey.'_list").replaceWith("");</script>';
+		$params['id'] = $id;
+		$params['validate'] = false;
+		$params['valueKey'] = 0;		
+		$out .= EcAjax::submit($params);
+		$icon = '<span class="'.self::getIcon('comment').'"></span>';
+		$text = $countKey.'&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task);
+		$input = '<input type="hidden" id="jform_'.$nameCol.'" value="'.$valueCol.'" />';
+		$click = ' onClick="'.$id.'_'.$task.'()" ';
+		$out .= '<a href="javascript:;"'.$click.' style="text-decoration: none;">'
+			.$icon.$text.$input.'</a>&#160;</span>';
+		return $out;
 	}
 	
 	/**
@@ -98,6 +142,24 @@ class EcWidget {
 	public static function submitBtnLi($params) { 
 		$params['li'] = true;
 		return self::submitBtn($params);
+	}
+	
+	/**
+	 * @param array $params: optionCom, nameKey, valueKey, nameCol, valueCol, 
+	 * nameCols, task, validate */
+	public static function submitKey($params) {
+		$id = $nameKey.'_'.$valueKey.'_'.$nameCol.'_'.$valueCol; //valueKey == 0
+		$params['id'] = $id;
+		$out = EcAjax::submit($params);
+		$out .= '<script type="text/javascript">
+			jQuery("#'.$id.' #jform_body").keydown(function(key) {
+				if((key.keyCode == 13)) {
+					jQuery("#'.$nameCol.'_'.$valueCol.'_'.$nameKey.'s").replaceWith("");
+					'.$id.'_'.$task.'();
+				}
+			});
+		</script>';
+		return $out;
 	}
 	
 }

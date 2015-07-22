@@ -22,19 +22,31 @@ class EcmsgViewMsgcmts extends EcViewList {
 	
 	public function hide($valueCol) {
 		$countCol = $this->getModel('msg')->getItem($valueCol)->msgcmt;
-		echo EcmsgWidget::spanCmt('com_ecmsg', 'msgcmts', array('msg'),
-			$valueCol, 'show', $countCol);
+		$params['optionCom'] = $this->optionCom;
+		$params['nameKey'] = 'msgcmts';
+		$params['nameCol'] = 'msg';
+		$params['valueCol'] = $valueCol;
+		$params['nameCols'] = array('msg');
+		$params['task'] = 'show';
+		$params['countKey'] = $countCol;
+		echo EcWidget::cmtSpan($params);
 		jexit();
 	}
 	
-	public function show($valueCol) { //EcDebug::log($valueCol, __method__);
+	public function show($valueCol) { 
 		$this->items = $this->getItems();
 		$nameKey = $this->nameKey;
 		$this->form = $this->get('Form', ($nameKey.'form'));
 		$nameCol = 'msg';
 		$countCol = $this->getModel($nameCol)->getItem($valueCol)->$nameKey;
-		echo EcmsgWidget::spanCmt($this->optionCom, $this->getName(), 
-			array($nameCol), $valueCol, 'hide', $countCol);
+		$params['optionCom'] = $this->optionCom;
+		$params['nameKey'] = $this->getName();
+		$params['nameCol'] = $nameCol;
+		$params['valueCol'] = $valueCol;
+		$params['nameCols'] = array($nameCol);
+		$params['task'] = 'hide';
+		$params['countKey'] = $countCol;
+		echo EcWidget::cmtSpan($params);	
 		require JPATH_COMPONENT.'/views/'.$this->getName().'/tmpl/default.php';
 		jexit();
 	}

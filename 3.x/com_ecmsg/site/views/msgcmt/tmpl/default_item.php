@@ -39,8 +39,16 @@ echo '<div id="'.$nameKey.'_'.$item->msgcmt.'_'.$nameCol.'_'.$valueCol.'">';
 		echo '<div class="btn-group">';
 			echo EcWidget::caretBtn(false);
 			echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
-				if($availableDelete) echo EcmsgWidget::btnLiSubmit($optionCom, $nameKey, 
-					$item->$nameKey, array('msg', 'msgcmt', 'user'), '_'.$valueCol, 'delete', false);
+				if($availableDelete) {
+					$params['optionCom'] = $optionCom;
+					$params['nameKey'] = $nameKey;
+					$params['valueKey'] = $item->$nameKey;
+					$params['nameCol'] = 'msg';
+					$params['valueCol'] = $valueCol;
+					$params['nameCols'] = array('msgcmt', 'msg', 'user');
+					$params['task'] = 'delete';
+					$params['validate'] = false;
+					echo EcWidget::submitBtnLi($params); }
 			echo '</ul>';
 		echo '</div>';
 	echo '</div>';

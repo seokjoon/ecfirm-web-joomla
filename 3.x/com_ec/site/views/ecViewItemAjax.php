@@ -28,8 +28,11 @@ class EcViewItemAjax extends EcViewItem {
 	public function cancel($valueKey) { $this->save($valueKey); }
 	
 	public function delete($valueKey) { //TODO echo JHtml::_('form.token');
-		echo EcmsgWidget::modalConfirm($this->optionCom, $this->nameKey, $valueKey,
-			array(''), '', 'deleteConfirm', false);
+		$params['optionCom'] = $this->optionCom;
+		$params['nameKey'] = $this->nameKey;
+		$params['valueKey'] = $valueKey;
+		$params['task'] = 'deleteConfirm';
+		echo EcWidget::confirmModal($params);
 		jexit();
 	}
 	
