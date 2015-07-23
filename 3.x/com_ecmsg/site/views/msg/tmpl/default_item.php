@@ -16,7 +16,7 @@ $intro = nl2br(JHtml::_('string.truncateComplex', $item->body, 80));
 $sizeIntro = JString::strlen($intro);
 $sizeBody = JString::strlen($item->body); //EcDebug::lp($sizeIntro); EcDebug::lp($sizeBody);
 $body = ($sizeIntro < $sizeBody) ? 
-	$intro.EcmsgWidget::spanReadmore($item->body) : $intro;
+	$intro.EcWidget::readmoreSpan($item->body) : $intro;
 $modified = EcDatetime::interval($item->modified);
 $juName = JHtml::_('string.abridge', $item->ju_name, 10, 3);
 echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">'; 
@@ -43,11 +43,20 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			echo '<div class="btn-group">';
 				echo EcWidget::caretBtn(false);
 				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
-					if($availableEdit) echo EcmsgWidget::btnLiSubmit($optionCom, 
-						$nameKey, $valueKey, array('body'), '', 'edit', false);
+					if($availableEdit) {
+						$params['optionCom'] = $optionCom;
+						$params['nameKey'] = $nameKey;
+						$params['valueKey'] = $valueKey;
+						$params['idPostfix'] = 'body';
+						$params['task'] = 'edit';
+						$params['post'] = false;
+						$params['validate'] = false;
+						echo EcWidget::submitBtnLi($params); }
 					echo '<li class="divider"></li>';
-					if($availableDelete) echo EcmsgWidget::btnLiSubmit($optionCom, 
-						$nameKey, $valueKey, array(''), '', 'delete', false);
+					if($availableDelete) {
+						$params['nameCols'] = array();
+						$params['task'] = 'delete';
+						echo EcWidget::submitBtnLi($params); }
 				echo '</ul>';
 			echo '</div>';
 		echo '</div>';

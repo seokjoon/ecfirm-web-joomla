@@ -23,8 +23,13 @@ class PlgEcMsgcmt extends JPlugin {
 		$nameKey = 'msgcmt';
 		$nameCol = 'msg';
 		$valueCol = $item->$nameCol;
-		$result = EcmsgWidget::spanCmt($optionCom, $nameKey.'s', array($nameCol), 
-			$valueCol, 'show', $item->$nameKey);
-		return $result;
+		$params['optionCom'] = $optionCom;
+		$params['nameKey'] = $nameKey.'s';
+		$params['nameCol'] = $nameCol;
+		$params['valueCol'] = $valueCol;
+		$params['nameCols'] = array($nameCol);
+		$params['task'] = 'show';
+		$params['countKey'] = $item->$nameKey;
+		return EcWidget::cmtSpan($params);
 	}
 }

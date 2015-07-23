@@ -5,6 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcprodControllerProdlike extends EcControllerAjax {
+class EcprodControllerProdlike extends EcControllerLike {
 	
 }

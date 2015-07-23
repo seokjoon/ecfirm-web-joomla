@@ -5,6 +5,9 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcmsgWidget {
-
+class EcTableObj extends JTable	{
+	/** * @param   JDatabaseDriver  A database connector object */
+	public function __construct(&$_db)	{
+		parent::__construct('#__ec_obj', 'obj', $_db);
+	}
 }
