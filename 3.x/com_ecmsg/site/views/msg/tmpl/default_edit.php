@@ -17,12 +17,26 @@ echo '<div id="'.$this->nameKey.'_'.$valueKey.'_body" class="tab-pane active">';
 			echo '<span style="display:none;">'.$field->label.'</span>';
 			echo str_replace('<textarea', '<textarea style="width:96%;"', $field->input); }
 		echo '<span style="float:right"><div class="btn-group">';
-		if(($availableTask) && ($task == 'edit')) echo EcmsgWidget::btnSubmit
-			($optionCom, $this->nameKey, $valueKey, array('body'), '_form', 'cancel', false, false);
-		else if(($availableTask) && ($task == 'add')) echo EcmsgWidget::btnSubmit
-			($optionCom, $this->nameKey, $valueKey, array(''), '', 'addPre', false, false); 
-		echo EcmsgWidget::btnSubmit($optionCom, $this->nameKey, 
-			$valueKey, array('body', 'user', 'msg'), '_form', 'save', false, true);
+			$params['optionCom'] = $optionCom;
+			$params['nameKey'] = $this->nameKey;
+			$params['valueKey'] = $valueKey;
+			$params['nameCols'] = array('body');
+			$params['task'] = 'cancel';
+			$params['idPostfix'] = 'body_form';
+			$params['post'] = false;
+			$params['validate'] = false;
+			if(($availableTask) && ($task == 'edit')) 
+				echo EcWidget::submitBtn($params);
+			else if(($availableTask) && ($task == 'add')) {
+				$params['nameCols'] = array();
+				$params['task'] = 'addPre'; 
+				$params['idPostfix'] = null;
+				echo EcWidget::submitBtn($params); }
+			$params['nameCols'] = array('body', 'user', 'msg');
+			$params['task'] = 'save';
+			$params['idPostfix'] = 'body_form';
+			$params['validate'] = true;
+			echo EcWidget::submitBtn($params);
 		echo '</div></span>';
 		echo '<input type="hidden" name="task" value="" />';
 		echo JHtml::_('form.token');

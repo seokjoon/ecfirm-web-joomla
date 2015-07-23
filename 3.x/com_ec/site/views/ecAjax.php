@@ -24,7 +24,14 @@ class EcAjax {
 		extract($params); //EcDebug::lp($params);	
 		$extra = null;
 		$validate = ($validate) ? 'true' : 'false';
-		$out = $id;
+		
+		switch($nameKey) {
+			case 'msg' :
+				switch($task) {
+					case 'cancel' :
+					case 'save' : $out = $nameKey.'_'.(int)$valueKey; break; } break;
+			default : $out = $id; break;
+		}
 		
 		if(isset($nameCols)) {
 			$jform = '{ ';

@@ -119,8 +119,8 @@ class EcWidget {
 	public static function submitBtn($params) { //EcDebug::log($params);
 		extract($params);
 		$icon = self::getIcon($task);
-		$id = $nameKey.'_'.$valueKey;
-		if(isset($nameCol)) $id = $id.'_'.$nameCol.'_'.$valueCol;
+		$id = $nameKey.'_'.(int)$valueKey;
+		if(isset($nameCol)) $id = $id.'_'.$nameCol.'_'.(int)$valueCol;
 		if(isset($idPostfix)) $id = $id.'_'.$idPostfix;
 		if(!(isset($post))) $post = false;
 		if(!(isset($validate))) $validate = false;
