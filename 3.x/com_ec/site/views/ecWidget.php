@@ -156,10 +156,7 @@ class EcWidget {
 			jQuery("#'.$id.' #jform_body").keydown(function(key) {
 				if((key.keyCode == 13)) {
 					jQuery("#'.$nameCol.'_'.$valueCol.'_'.$nameKey.'s").replaceWith("");
-					'.$id.'_'.$task.'();
-				}
-			});
-		</script>';
+					'.$id.'_'.$task.'(); } }); </script>';
 		return $out;
 	}
 	

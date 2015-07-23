@@ -27,8 +27,16 @@ class PlgEcMsglike extends JPlugin {
 			array($nameCol => $valueCol, 'user' => JFactory::getUser()->id);
 		$valueKey = EcDml::selectByParams($params, $nameKey);
 		$task = ($valueKey > 0) ? 'delete' : 'add';
-		$result = EcmsgWidget::spanLike($optionCom, $nameKey, $valueKey, 
-			array($nameCol), $valueCol, $task, $item->$nameKey);
+		$params = array();
+		$params['optionCom'] = $optionCom;
+		$params['nameKey'] = $nameKey;
+		$params['valueKey'] = $valueKey;
+		$params['nameCol'] = $nameCol;
+		$params['valueCol'] = $valueCol;
+		$params['nameCols'] = array($nameCol);
+		$params['task'] = $task;
+		$params['countKey'] = $item->$nameKey;
+		$result = EcWidget::likespan($params);
 		return $result;
 	}
 }

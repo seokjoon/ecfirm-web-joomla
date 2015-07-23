@@ -29,9 +29,20 @@ class EcAjax {
 			case 'msg' :
 				switch($task) {
 					case 'cancel' :
-					case 'save' : $out = $nameKey.'_'.(int)$valueKey; break; } break;
-			default : $out = $id; break;
-		}
+					case 'save' : $out = $nameKey.'_'.(int)$valueKey; break;
+					default : $out = $id; break; } 
+				break;
+			case 'msgcmt' :
+				switch($task) {
+					case 'delete' : 
+						$extra .= 'jQuery("#'.$nameCol.'_'.$valueCol.'_'.$nameKey.'s").replaceWith("");';
+						$out = $nameCol.'_'.$valueCol.'_'.$nameKey.'s_list';
+						break; //msgcmt_n_msg_n
+					case 'save' : $out = $nameCol.'_'.$valueCol.'_'.$nameKey.'s_list';
+						break;//msg_n_msgcmts_list
+					default : $out = $id; break; }
+				break;
+			default : $out = $id; break; }
 		
 		if(isset($nameCols)) {
 			$jform = '{ ';
