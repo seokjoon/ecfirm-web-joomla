@@ -9,14 +9,22 @@
 			label="COM_ECPAGE_PAGE_OBJCAT_LABEL"
 			description="COM_ECPAGE_PAGE_OBJCAT_DESC" />
 	</fieldset -->
+	<!-- fieldset name="prod"
+		addfieldpath="/administrator/components/com_ec/models/fields">
+		<field name="prod" type="prod" required="true"
+			label="" 
+			description="" />
+	</fieldset-->
 	<fieldset name="page">
 		<field id="title" name="title" type="text" class="inputbox input-xlarge"
 			required="true" label="COM_ECPAGE_PAGE_TITLE_LABEL" 
 			description="COM_ECPAGE_PAGE_TITLE_DESC" 
 			hint="COM_ECPAGE_PAGE_TITLE_DESC" />
-		<field id="body" name="body" type="textarea" class="inputbox required"
-			filter="safehtml" label="COM_ECPAGE_PAGE_BODY_LABEL"  
-			description="COM_ECPAGE_PAGE_BODY_DESC" rows="4" />
+		<field id="body" name="body" type="textarea" 
+			class="inputbox required" filter="safehtml" rows="4" 
+			label="COM_ECPAGE_PAGE_BODY_LABEL"  
+			description="COM_ECPAGE_PAGE_BODY_DESC" 
+			hint="COM_ECPAGE_PAGE_BODY_DESC" />
 		<field id="user" name="user" type="hidden" default="0" />
 		<field id="page" name="page" type="hidden" default="0" />
 	</fieldset>
