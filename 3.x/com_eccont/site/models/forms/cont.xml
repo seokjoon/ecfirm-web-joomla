@@ -10,9 +10,14 @@
 			description="COM_ECCONT_CONT_OBJCAT_DESC" />
 	</fieldset>
 	<fieldset name="cont">
-		<field id="body" name="body" type="textarea" class="inputbox required"
-			filter="safehtml" label="COM_ECCONT_CONT_BODY_LABEL"  
-			description="COM_ECCONT_CONT_BODY_DESC" rows="4" />
+		<field id="title" name="title" type="text" class="inputbox input-xlarge"
+			required="true" label="COM_ECCONT_CONT_TITLE_LABEL" 
+			description="COM_ECCONT_CONT_TITLE_DESC" 
+			hint="COM_ECCONT_CONT_TITLE_DESC" />
+		<field id="body" name="body" type="editor" class="inputbox required"
+			filter="safehtml" buttons="false" required="true" 
+			label="COM_ECCONT_CONT_BODY_LABEL" 
+			description="COM_ECCONT_CONT_BODY_DESC" />
 		<field id="user" name="user" type="hidden" default="0" />
 		<field id="cont" name="cont" type="hidden" default="0" />
 	</fieldset>

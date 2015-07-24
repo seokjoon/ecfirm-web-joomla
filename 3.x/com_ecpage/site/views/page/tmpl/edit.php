@@ -21,8 +21,8 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 		if(is_object($this->form)) foreach(($this->form->getFieldset('page')) as $field) {
 			array_push($params['nameCols'], $field->name/* $field->fieldname */);
 			echo '<span style="display:none;">'.$field->label.'</span>';
-			echo $field->input;
-			//echo str_replace('<textarea', '<textarea style="width:97%;"', $field->input); 
+			//echo $field->input;
+			echo str_replace('<textarea', '<textarea style="width:97%;"', $field->input); 
 			//echo str_replace('style="width: 100%; height: 550px; display: block;"', 
 				//'style="width: 100%; height: 300px; display: block;"', $field->input); 
 		}

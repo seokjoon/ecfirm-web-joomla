@@ -1,16 +1,3 @@
-CREATE TABLE IF NOT EXISTS `#__ec_obj` (
-	`obj` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
-	`objtype` INT(11) UNSIGNED NOT NULL DEFAULT 0, 
-	`objcat` INT(11) UNSIGNED NOT NULL DEFAULT 0, 
-	`modified` DATETIME NOT NULL DEFAULT '2015-01-01 00:00:00',
-	`name` VARCHAR(255) NOT NULL DEFAULT '',
-	`option` VARCHAR(5120) NOT NULL DEFAULT '',
-	PRIMARY KEY (`obj`),
-	KEY `idx_modified` (`modified`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
 CREATE TABLE IF NOT EXISTS `#__ec_objcat` (
 	`objcat` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
 	`objtype` INT(11) UNSIGNED NOT NULL DEFAULT 0, 
@@ -23,9 +10,9 @@ CREATE TABLE IF NOT EXISTS `#__ec_objcat` (
 
 INSERT INTO `#__ec_objcat` (`objcat`, `objtype`, `name`) VALUES 
 	(1, 1, 'User Default'), (2, 2, 'Page Default'), (3, 3, 'Product Default');
-
-
-
+	
+	
+	
 CREATE TABLE IF NOT EXISTS `#__ec_objtype` (
 	`objtype` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
 	`modified` DATETIME NOT NULL DEFAULT '2015-01-01 00:00:00',
