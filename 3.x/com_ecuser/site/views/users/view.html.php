@@ -18,14 +18,14 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 
-class EcpageViewPages extends EcViewList {
+class EcuserViewUsers extends EcViewList {
 	
 	protected function getItems() {
 		$model = $this->getModel($this->getName());
 		if(($model->getState('list.limit', 0)) != 10) $model->setState('list.limit', 10);
-		$model->setState('order', 'page DESC');
+		$model->setState('order', 'user DESC');
 		$model->setState('enabledPlugin', true);
-		//$model->setState('joinUser', true);
+		$model->setState('joinUser', true);
 		$limit = $model->getState();
 		return parent::getItems();
 	}
