@@ -24,7 +24,7 @@ class EcuserModelUsers extends EcModelList	{
 	protected function getListQuery() {
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('u.user, u.modified, u.like, u.img, u.profile, u.option')
+		$query->select('u.user, u.modified, u.userlike, u.img, u.profile, u.option')
 			->from('#__ec_user as u');
 		if($this->getState('joinUser')) 
 			$query->select('ju.username as username, ju.name as name,

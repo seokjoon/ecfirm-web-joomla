@@ -12,7 +12,8 @@ class EcuserModelUser extends EcModelItem	{
 	 * @return  mixed  Content item data object on success, false on failure.
 	 * @since 12.2 JModelAdmin */
 	public function getItem($keyValue = null)	{
-		$item = parent::getItem($keyValue);
+		$item = parent::getItem($keyValue); //EcDebug::lp($item);
+		if(empty($item)) return $item;
 		if(($this->getState('joinUser')) && ($item->user > 0)) {
 			$table = $this->getTable('User', 'JTable');
 			$table->load($item->user);
