@@ -39,7 +39,7 @@
 
 
 	<fieldset name="profile">
-		<field name="name" type="text" class="inputbox" required="true" 
+		<field name="name" type="text" class="inputbox" 
 			label="COM_ECUSER_USER_NAME_LABEL" filter="string"
 			description="COM_ECUSER_USER_NAME_DESC" />
 		<field id="img" name="img" type="file" label="label" description="desc" 
