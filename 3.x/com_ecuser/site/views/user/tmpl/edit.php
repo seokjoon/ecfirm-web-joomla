@@ -26,8 +26,6 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 				echo $field->input; } 
 		}
 
-		
-		
 		echo '<span style="float:right"><div class="btn-group">';//EcDebug::lp($params);
 			$params['optionCom'] = $optionCom;
 			$params['nameKey'] = $nameKey;
@@ -40,8 +38,6 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			$params['validate'] = true;
 			echo EcWidget::submitBtn($params);
 		echo '</div></span>';
-
-
 		
 		//echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'" />';
 		echo '<input type="hidden" name="task" value="" />';

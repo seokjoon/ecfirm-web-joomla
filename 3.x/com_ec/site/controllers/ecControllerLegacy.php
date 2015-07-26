@@ -206,7 +206,8 @@ class EcControllerLegacy extends JControllerLegacy {
 			$this->setMessage($this->getError(), 'error');
 			return false; }
 		////////
-		if(isset($data['user'])) $data['user'] = JFactory::getUser()->id;
+		if(($nameKey != 'user') && (isset($data['user']))) 
+			$data['user'] = JFactory::getUser()->id;
 		////////
 		////////
 		$modelForm = $this->getModel($this->entity.'form');

@@ -107,7 +107,7 @@ class EcModelItem extends JModelItem {
 	 * @param   array  $data  The form data.
 	 * @return  boolean  True on success, False on error.
 	 * @since   12.2 JModelAdmin */	
-	public function save($data) {
+	public function save($data) { //EcDebug::log($data, __method__);
 		if((isset($data['option'])) && (is_array($data['option']))) {
 			$reg = new Registry;
 			$reg->loadArray($data['option']);

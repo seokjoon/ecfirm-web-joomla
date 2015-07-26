@@ -7,6 +7,11 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcuserModelUser extends EcModelItem	{
 	
+	public function delete(&$valueKeys) { //TODO
+	
+		return parent::delete($valueKeys);
+	}
+	
 	/** Method to get article data.
 	 * @param   integer  $itemId  The id of the article.
 	 * @return  mixed  Content item data object on success, false on failure.
@@ -19,5 +24,21 @@ class EcuserModelUser extends EcModelItem	{
 			$table->load($item->user);
 			$item->ju_name = $table->name; } //TODO
 		return $item;
+	}
+	
+	public function save($data) {
+		foreach($data as $key => $value) {
+			if($key == $this->name) continue;
+			else if(((is_numeric($value)) && ($value == 0)) 
+				|| ((is_string($value)) && (($value == ''))) || ($value == null))
+				unset($data[$key]); }
+		$ju = JUser::getInstance($data['user']);//if user is zero then return new JUser
+		if(!($ju->bind($data))) { $this->setError('bind', $ju->getError()); return false; }
+		if(empty($ju->name)) $ju->name = $ju->username;
+		//if new then user id assigned
+		if(!($ju->save())) { $this->setError('save', $ju->getError()); return false; }
+		if($data['user'] == 0) return EcDml::insertRecord
+			(array($this->name => $ju->id), $this->name);	
+		else return parent::save($data);
 	}
 }

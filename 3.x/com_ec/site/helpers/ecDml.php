@@ -16,6 +16,13 @@ class EcDml {
 		return $db->execute();
 	}
 	
+	public static function insertRecord($params, $nameKey) {
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$record = JArrayHelper::toObject($params);
+		return $db->insertObject('#__ec_'.$nameKey, $record);
+	}
+	
 	public static function loadTable($nameCol, $valueKey, $nameKey, $nameCom) {
 		$table = JTable::getInstance($nameKey, ucfirst($nameCom).'Table');
 		try { $table->load($valueKey); return $table; /* ->$nameCol; */ }
