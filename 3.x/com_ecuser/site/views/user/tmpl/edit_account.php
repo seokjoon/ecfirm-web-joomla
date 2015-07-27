@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-$item = $this->item; 
+$item = $this->item; //EcDebug::lp($this->form); 
 $nameKey = $this->nameKey;
 $optionCom = $this->optionCom;
 $valueKey = (is_object($item)) ? $item->$nameKey : 0;
@@ -19,7 +19,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 		
 		$params['nameCols'] = array();
 		if(is_object($this->form)) { //EcDebug::lp($this->form);
-			foreach($this->form->getFieldset('user') as $field) {
+			foreach($this->form->getFieldset('account') as $field) {
 				array_push($params['nameCols'], $field->name/* $field->fieldname */);
 				//echo '<span style="display:none;">'.$field->label.'</span>';
 				echo $field->label;

@@ -12,12 +12,12 @@ class EcuserControllerUser extends EcControllerForm {
 	}
 	
 	public function editAddress() {
-		$this->input->set('layout', 'edit_address');
+		$this->input->set('layout', 'address');
 		$this->edit();
 	}
 	
 	public function editProfile() {
-		$this->input->set('layout', 'edit_profile');
+		$this->input->set('layout', 'profile');
 		$this->edit();
 	}
 }

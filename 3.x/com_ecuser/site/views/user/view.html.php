@@ -21,7 +21,8 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 class EcuserViewUser extends EcViewItemForm {
 	
 	public function editForm() {
-		$nameModel = $this->nameKey.'form';
+		$layout = JFactory::getApplication()->input->get('layout', null, 'string');
+		$nameModel = (empty($layout)) ? $this->nameKey.'form' : $layout.'form';
 		$this->getModel($nameModel)->setState('joinUser', true);
 		$this->form = $this->get('Form', $nameModel);
 		parent::display(null);

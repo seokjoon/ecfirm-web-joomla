@@ -44,7 +44,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 					$params['optionCom'] = $optionCom;
 					$params['nameKey'] = $nameKey;
 					$params['valueKey'] = $valueKey;
-					$params['task'] = 'edit';
+					$params['task'] = 'editAccount';
 					$params['idPostfix'] = 'form';
 					$params['post'] = true;
 					if($availableEdit) echo EcWidget::submitBtnLi($params);

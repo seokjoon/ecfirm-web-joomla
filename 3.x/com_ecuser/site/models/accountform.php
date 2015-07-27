@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcuserModelUserform extends EcModelForm	{
+class EcuserModelAccountform extends EcModelForm	{
 	
 	public function getItem($keyValue = null)	{ //EcDebug::log(__method__);
 		$item = parent::getItem($keyValue); 
