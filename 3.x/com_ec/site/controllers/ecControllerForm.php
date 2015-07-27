@@ -58,8 +58,6 @@ class EcControllerForm extends EcControllerLegacy {
 	public function edit($nameKey = null, $urlVar = null) {
 		if(empty($nameKey)) $nameKey = $this->nameKey;
 		$valueKey = $this->input->get($nameKey, 0, 'uint');
-		$layout = $this->input->get('layout', null, 'string');
-		if(!empty($layout)) $params['layout'] = $layout;
 		if(parent::edit($nameKey, $urlVar)) {
 			$this->turnbackPush('edit');
 			$params['nameKey'] = $nameKey;
@@ -71,13 +69,10 @@ class EcControllerForm extends EcControllerLegacy {
 	
 	public function editForm() {
 		//TODO internal redirect check
-		$layout = $this->input->get('layout', null, 'string');
-		$nameModelForm = (empty($layout)) ? $this->nameKey.'form' : $layout.'form';
-		$layout = (empty($layout)) ? 'edit' : 'edit_'.$layout; //EcDebug::log($layout, __method__);
 		$view = $this->getView($this->default_view, 
-			JFactory::getDocument()->getType(), '', array('layout' => $layout));
-		//$view->setModel($this->getModel($this->nameKey));
-		$view->setModel($this->getModel($this->$nameModel));
+			JFactory::getDocument()->getType(), '', array('layout' => 'edit'));
+		$view->setModel($this->getModel($this->nameKey));
+		$view->setModel($this->getModel($this->nameKey.'form'));
 		$view->editForm();
 	}
 

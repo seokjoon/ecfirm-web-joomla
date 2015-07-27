@@ -255,7 +255,9 @@ class EcControllerLegacy extends JControllerLegacy {
 			? '&'.$params['nameKey'].'='.$params['valueKey'] : '';
 		$format = (isset($params['format'])) ? '&format='.$params['format'] : ''; 
 			'&format='.($this->input->get('format', 'html', 'string'));
-		$layout = (isset($params['layout'])) ? '&layout='.$params['layout'] : '';
+		$layout = (isset($params['layout'])) ? $params['layout'] : 
+			$this->input->get('layout', null, 'string');
+		$layout = (empty($layout)) ? '' : '&layout='.$layout;
 		$etc = (isset($params['etc'])) ? '&'.$params['etc'] : '';
 		$url = (isset($url)) ? $params['url'] : 
 			$prefix.$option.$view.$task.$key.$format.$layout.$etc;

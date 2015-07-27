@@ -11,9 +11,26 @@ class EcuserControllerUser extends EcControllerForm {
 		parent::__construct($config);
 	}
 	
+	public function editAccount() {
+		$this->input->set('layout', 'account');
+		$this->edit();
+	}
+	
 	public function editAddress() {
 		$this->input->set('layout', 'address');
 		$this->edit();
+	}
+	
+	public function editForm() {
+		//TODO internal redirect check
+		$layout = $this->input->get('layout', null, 'string');
+		$nameModelForm = (empty($layout)) ? $this->nameKey.'form' : $layout.'form';
+		$layout = (empty($layout)) ? 'edit' : 'edit_'.$layout; //EcDebug::log($layout, __method__);
+		$view = $this->getView($this->default_view, 
+			JFactory::getDocument()->getType(), '', array('layout' => $layout));
+		$view->setModel($this->getModel($this->nameKey));
+		$view->setModel($this->getModel($nameModelForm));
+		$view->editForm();
 	}
 	
 	public function editProfile() {

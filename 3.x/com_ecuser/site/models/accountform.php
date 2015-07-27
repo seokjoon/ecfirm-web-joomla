@@ -8,7 +8,9 @@ defined('_JEXEC') or die('Restricted access');
 class EcuserModelAccountform extends EcModelForm	{
 	
 	public function getItem($keyValue = null)	{ //EcDebug::log(__method__);
-		$item = parent::getItem($keyValue); 
+		$valueKey = JFactory::getApplication()->input->get('user', 0, 'uint');
+		$this->setState($this->nameKey, $valueKey);
+		$item = parent::getItem($keyValue); //EcDebug::lp($item);
 		if(empty($item)) return $item;
 		if(($this->getState('joinUser')) && ($item->user > 0)) {
 			$table = $this->getTable('User', 'JTable');
@@ -18,4 +20,8 @@ class EcuserModelAccountform extends EcModelForm	{
 			$item->email = $table->email; } //EcDebug::lp($item);
 		return $item;
 	}
+	
+	public function getTable($type = 'User', $prefix = 'EcuserTable', $config = array()) {
+		return JTable::getInstance($type, $prefix, $config);		
+	}	
 }

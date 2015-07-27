@@ -22,9 +22,9 @@ class EcuserViewUser extends EcViewItemForm {
 	
 	public function editForm() {
 		$layout = JFactory::getApplication()->input->get('layout', null, 'string');
-		$nameModel = (empty($layout)) ? $this->nameKey.'form' : $layout.'form';
-		$this->getModel($nameModel)->setState('joinUser', true);
-		$this->form = $this->get('Form', $nameModel);
+		$nameModelForm = (empty($layout)) ? $this->nameKey.'form' : $layout.'form';
+		$this->getModel($nameModelForm)->setState('joinUser', true);
+		$this->form = $this->get('Form', $nameModelForm);
 		parent::display(null);
 	}
 	
