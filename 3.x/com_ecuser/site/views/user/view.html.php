@@ -20,6 +20,13 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 class EcuserViewUser extends EcViewItemForm {
 	
+	public function editForm() {
+		$nameModel = $this->nameKey.'form';
+		$this->getModel($nameModel)->setState('joinUser', true);
+		$this->form = $this->get('Form', $nameModel);
+		parent::display(null);
+	}
+	
 	protected function getItem($valueKey) {
 		$model = $this->getModel($this->getName());
 		$model->setState('enabledPlugin', true);
