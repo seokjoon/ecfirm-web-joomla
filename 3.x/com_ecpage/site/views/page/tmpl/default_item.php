@@ -26,7 +26,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 
 	echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
 		.$nameKey.'_'.$valueKey.'_form" class="form-validate form-vertical">';
-			
+	
 		echo '<div class="pull-left" style="width:80%" align="left">';
 			echo '<div class="pull-left media" style="margin-right:10px;">';
 				echo '<a href="">';
@@ -38,8 +38,8 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 				echo '<div>'.$item->modified.'</div>';
 				echo '<div>'.$title.'</div>';
 			echo '</div>';
-		echo '</div>';	
-
+		echo '</div>';
+		
 		echo '<div class="pull-right" style="width:20%" align="right">';
 			echo '<div class="btn-group">';
 				echo EcWidget::caretBtn(false);
@@ -58,8 +58,6 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 				echo '</ul>';
 			echo '</div>';
 		echo '</div>'; //EcDebug::lp($params);
-	
-		
 
 		echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'">';
 		echo '<input type="hidden" name="task" value="" />';

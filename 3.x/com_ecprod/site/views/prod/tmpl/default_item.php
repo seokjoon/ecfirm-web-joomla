@@ -56,8 +56,6 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 				echo '</ul>';
 			echo '</div>';
 		echo '</div>'; //EcDebug::lp($params);
-	
-		
 
 		echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'">';
 		echo '<input type="hidden" name="task" value="" />';
