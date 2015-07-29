@@ -210,7 +210,9 @@ class EcControllerLegacy extends JControllerLegacy {
 			$data['user'] = JFactory::getUser()->id;
 		////////
 		////////
-		$modelForm = $this->getModel($this->entity.'form');
+		$layout = $app->input->get('layout', null, 'string');
+		$nameModelForm = (empty($layout)) ? $this->entity.'form' : $layout.'form';
+		$modelForm = $this->getModel($nameModelForm);
 		$form = $modelForm->getForm($data, false);
 		if(!($form)) {
 			$app->enqueueMessage($modelForm->getError(), 'error');

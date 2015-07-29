@@ -11,6 +11,11 @@ class EcuserControllerUser extends EcControllerForm {
 		parent::__construct($config);
 	}
 	
+	public function add() {
+		$this->input->set('layout', 'account');
+		parent::add();
+	}
+	
 	public function editAccount() {
 		$this->input->set('layout', 'account');
 		$this->edit();

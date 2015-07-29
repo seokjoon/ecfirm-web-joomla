@@ -19,6 +19,8 @@ class EcControllerForm extends EcControllerLegacy {
 	public function add() {
 		if(parent::add()) {
 			$this->turnbackPush('edit');
+			$layout = $this->input->get('layout', null, 'string');
+			if(!(empty($layout))) $params['layout'] = $layout;
 			$params['view'] = $this->nameKey;
 			$params['task'] = $this->nameKey.'.editForm'; }
 		$this->setRedirectParams($params);
