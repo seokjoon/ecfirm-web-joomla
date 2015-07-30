@@ -7,8 +7,11 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcuserModelUser extends EcModelItem	{
 	
-	public function delete(&$valueKeys) { //TODO
-	
+	public function delete(&$valueKeys) { 
+		$valueKeys = (array)$valueKeys;
+		foreach($valueKeys as $valueKey) {
+			$ju = JFactory::getUser($valueKey);
+			if(!($ju->delete())) { $this->setError($ju->getError()); return false; } }
 		return parent::delete($valueKeys);
 	}
 	
