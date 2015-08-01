@@ -60,7 +60,7 @@ class EcModelItem extends JModelItem {
 				$this->setError($table->getError());
 				return false; }
 			if($this->getState('enabledPlugin', false)) $dispatcher->trigger
-				('on'.ucfirst($this->name).'AtferDelete', array($this->context, $table)); }
+				('on'.ucfirst($this->name).'AfterDelete', array($this->context, $table)); }
 		$this->cleanCache();
 		return true;
 	}
