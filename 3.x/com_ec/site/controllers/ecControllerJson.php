@@ -56,6 +56,12 @@ class EcControllerJson extends EcControllerLegacy {
 		else if(is_bool($item)) echo new JResponseJson(null, null, !$item);
 	}
 	
+	public function getItems($name = null) {
+		$items = parent::getItems($name);
+		if(is_array($items)) echo new JResponseJson($items);
+		else if(is_bool($items)) echo new JResponseJson(null, null, !$items);
+	}
+	
 	/**
 	 * Method to save a record.
 	 * @param   string  $nameKey     The name of the primary key of the URL variable.
