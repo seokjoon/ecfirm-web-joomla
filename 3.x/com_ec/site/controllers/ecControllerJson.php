@@ -31,6 +31,11 @@ class EcControllerJson extends EcControllerLegacy {
 		echo new JResponseJson(null, null, !(parent::delete()));
 	}
 	
+	public function display($cachable = false, $urlparams = array()) {
+		if(substr($this->entity, -1) == 's') return $this->getItems();
+		else return $this->getItem();
+	}
+	
 	/**
 	 * Method to edit an existing record.
 	 * @param   string  $nameKey     The name of the primary key of the URL variable.
