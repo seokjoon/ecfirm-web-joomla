@@ -22,7 +22,8 @@ class EcControllerForm extends EcControllerLegacy {
 			$layout = $this->input->get('layout', null, 'string');
 			if(!(empty($layout))) $params['layout'] = $layout;
 			$params['view'] = $this->nameKey;
-			$params['task'] = $this->nameKey.'.editForm'; }
+			$params['task'] = $this->nameKey.'.editForm'; 
+		}
 		$this->setRedirectParams($params);
 	}
 	
@@ -43,11 +44,13 @@ class EcControllerForm extends EcControllerLegacy {
 		if(parent::delete()) {
 			$params['view'] = $this->nameKey.'s';
 			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_DELETE_SUCCESS'); 
-			$this->setRedirectParams($params); }
+			$this->setRedirectParams($params); 
+		}
 		else {
 			$this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_DELETE_FAILURE'));
 			$this->turnbackPush();
-			$this->turnbackPop(); }
+			$this->turnbackPop(); 
+		}
 	}
 	
 	/**
@@ -66,7 +69,8 @@ class EcControllerForm extends EcControllerLegacy {
 			$params['valueKey'] = $valueKey;
 			$params['view'] = $nameKey;
 			$params['task'] = $nameKey.'.editForm'; //EcDebug::log($params, __method__);
-			$this->setRedirectParams($params); }
+			$this->setRedirectParams($params); 
+		}
 	}
 	
 	public function editForm() {

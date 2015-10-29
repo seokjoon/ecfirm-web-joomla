@@ -22,13 +22,16 @@ class EcDml {
 		$record = JArrayHelper::toObject($params);
 		return $db->insertObject('#__ec_'.$nameKey, $record);
 	}
-	
+
+	/**
+	 * @see JTable은 model, table에서 사용가능 */
 	public static function loadTable($nameCol, $valueKey, $nameKey, $nameCom) {
 		$table = JTable::getInstance($nameKey, ucfirst($nameCom).'Table');
 		try { $table->load($valueKey); return $table; /* ->$nameCol; */ }
 		catch (Exception $e) { //$this->setError($e->getMessage());
 			EcDebug::lp($e->getMessage());
-			return false; }
+			return false; 
+		}
 	}
 
 	/**
@@ -45,7 +48,8 @@ class EcDml {
 		foreach ($params['where'] as $key => $value) {
 			$where .= $key.'="'.$value.'"';
 			unset($params['where'][$key]);
-			if(count($params['where']) > 0) $where .= ' AND '; }
+			if(count($params['where']) > 0) $where .= ' AND '; 
+		}
 		//EcDebug::log('===='); EcDebug::log($where); EcDebug::log('====');
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -63,7 +67,26 @@ class EcDml {
 		//EcDebug::log($out); //EcDebug::log($db->$out());
 		return $db->$out();
 	}
-	
+
+	/**
+	 * @see JTable은 model, table에서 사용 가능
+	 * @todo valueCol type handling */
+	public static function updateColumn
+		($nameCom, $nameKey, $valuesKey, $nameCol, $valueCol) { //EcDebug::lp($nameCom.':'.$nameKey.':'.$valuesKey.':'.$nameCol.':'.$valueCol); jexit();
+		if(!(is_array($valuesKey))) $valuesKey = array($valuesKey);
+		$table = JTable::getInstance($nameKey, ucfirst($nameCom).'Table');
+		foreach ($valuesKey as $valueKey) {
+			if(!$table->load($valueKey)) return false;
+			$item[$nameKey] = $valueKey;
+			$item[$nameCol] = $valueCol;
+			$bool = $table->save($item);
+			if(!$bool) return $bool; 
+		}
+		return $bool;
+	}
+
+	/**
+	 * @see JTable은 model, table에서 사용 가능 */
 	public static function updateColumnCount
 		($nameCom, $nameKey, $valuesKey, $nameCol, $valueCol) {
 		if(!(is_array($valuesKey))) $valuesKey = array($valuesKey);
@@ -73,7 +96,8 @@ class EcDml {
 			$item[$nameKey] = $valueKey;
 			$item[$nameCol] = (int)$table->$nameCol + (int)$valueCol;
 			$bool = $table->save($item);
-			if(!$bool) return $bool; }
+			if(!$bool) return $bool; 
+		}
 		return $bool;
 	}
 }

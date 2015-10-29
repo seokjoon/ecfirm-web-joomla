@@ -47,13 +47,15 @@ class EcModelForm extends JModelForm {
 		$return = $table->load($valueKey);
 		if(($return === false) && $table->getError()) {
 			$this->setError($table->getError());
-			return false; }
+			return false; 
+		}
 		$properties = $table->getProperties(1);
 		$item = JArrayHelper::toObject($properties, 'JObject');
-		if(property_exists($item, 'option')) {
+		if(property_exists($item, 'options')) {
 			$reg = new Registry;
-			$reg->loadString($item->option);
-			$item->option = $reg->toArray(); }	//$this->_item = $item; //XXX
+			$reg->loadString($item->options);
+			$item->options = $reg->toArray(); 
+		} //$this->_item = $item; //XXX
 		return $item;	
 	}
 	
@@ -115,6 +117,7 @@ class EcModelForm extends JModelForm {
 			('on'.$this->nameKey.'PrepareForm', array($form, $data));
 		if (count($results) && in_array(false, $results, true)) {
 			$error = $dispatcher->getError();
-			if (!($error instanceof Exception)) throw new Exception($error); }
+			if (!($error instanceof Exception)) throw new Exception($error); 
+		}
 	}
 }

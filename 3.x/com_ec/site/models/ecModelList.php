@@ -19,7 +19,9 @@ class EcModelList extends JModelList	{
 		if(!empty($this->keywords))	{
 			foreach ($this->keywords as $keyword)	{
 				$id .= ':'.$this->getState('get.'.$keyword);
-				$id .= ':'.$this->getState('filter.'.$keyword); }	}
+				$id .= ':'.$this->getState('filter.'.$keyword); 
+			}
+		}
 		return parent::getStoreId($id);
 	}
 	
@@ -40,10 +42,13 @@ class EcModelList extends JModelList	{
 				if(is_numeric($keyword)) $word = $input->getInt($keyword);
 				else $word = $input->get($keyword);
 				if(!empty($word) || is_numeric($word)) 
-					$this->setState('get.'.$keyword, $word); } } 
+					$this->setState('get.'.$keyword, $word); 
+			} 
+		} 
 		catch (Exception $e) {
 			$this->setError($e->getMessage()); 
-			return false; }
+			return false; 
+		}
 		parent::populateState($ordering, $direction);
 	}
 }

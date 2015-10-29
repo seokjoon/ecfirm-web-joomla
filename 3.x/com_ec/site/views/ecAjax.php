@@ -17,7 +17,7 @@ class EcAjax {
 		});';
 	}
 	
-	/**
+	/** 
 	 * @param array $params: optionCom, nameKey, valueKey, nameCol, valueCol, 
 	 * nameCols, task, idPostfix, post, validate, li, id */
 	public static function submit($params) {
@@ -25,12 +25,13 @@ class EcAjax {
 		$extra = null;
 		$validate = ($validate) ? 'true' : 'false';
 		
-		switch($nameKey) {
+		switch($nameKey) { //@TODO
 			case 'msg' :
 				switch($task) {
 					case 'cancel' :
 					case 'save' : $out = $nameKey.'_'.(int)$valueKey; break;
-					default : $out = $id; break; } 
+					default : $out = $id; break; 
+				} 
 				break;
 			case 'msgcmt' :
 				switch($task) {
@@ -40,7 +41,8 @@ class EcAjax {
 						break; //msgcmt_n_msg_n
 					case 'save' : $out = $nameCol.'_'.$valueCol.'_'.$nameKey.'s_list';
 						break;//msg_n_msgcmts_list
-					default : $out = $id; break; }
+					default : $out = $id; break; 
+				}
 				break;
 			default : $out = $id; break; }
 		
@@ -48,7 +50,8 @@ class EcAjax {
 			$jform = '{ ';
 			foreach($nameCols as $col)
 				$jform .= $col.': jQuery("#'.$id.' #jform_'.$col.'").val(), ';
-			$jform .= ' };'; }
+			$jform .= ' };'; 
+		}
 		else $jform = '"";';
 		
 		return '<script type="text/javascript">

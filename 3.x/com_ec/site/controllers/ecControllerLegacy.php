@@ -7,8 +7,8 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcControllerLegacy extends JControllerLegacy {
 	protected $entity;
-	protected $nameKey;
 	protected $option;
+	protected $nameKey;
 	
 	public function __construct($config = array()) {
 		parent::__construct($config);
@@ -28,7 +28,8 @@ class EcControllerLegacy extends JControllerLegacy {
 			$this->setError(JText::_
 				('JLIB_APPLICATION_ERROR_CREATE_RECORD_NOT_PERMITTED'));
 			$this->setMessage($this->getError(), 'error');
-			return false; }
+			return false; 
+		}
 		$this->setUserState('edit', 'data', null);
 		return true;
 	}
@@ -88,7 +89,7 @@ class EcControllerLegacy extends JControllerLegacy {
 	protected function delete() {
 		$valueKeys = $this->input->get($this->nameKey, array(), 'array');
 		if(!(is_array($valueKeys)) || count($valueKeys) < 1) return false;
-		$model = $this->getModel();
+		$model = $this->getModel(); //EcDebug::lp($model); jexit();
 		jimport('joomla.utilities.arrayhelper');
 		JArrayHelper::toInteger($valueKeys);
 		if($model->delete($valueKeys)) $this->setMessage(JText::plural
@@ -113,7 +114,8 @@ class EcControllerLegacy extends JControllerLegacy {
 		if(!($this->allowEdit(array($nameKey => $valueKey), $nameKey))) {
 			$this->setError(JText::_('JLIB_APPLICATION_ERROR_EDIT_NOT_PERMITTED'));
 			$this->setMessage($this->getError(), 'error');
-			return false; }
+			return false; 
+		}
 		$this->setUserState('edit', 'data', null);
 		return true;
 	}
@@ -198,13 +200,14 @@ class EcControllerLegacy extends JControllerLegacy {
 		$app = JFactory::getApplication();
 		$lang  = JFactory::getLanguage();
 		$model = $this->getModel();
-		$data = $this->input->post->get('jform', array(), 'array');
+		$data = $this->input->post->get('jform', array(), 'array'); //EcDebug::log($data);
 		//$data[$nameKey] = ((!(isset($data[$nameKey]))) || (empty($data[$nameKey]))) ? 
 			//$this->input->get($nameKey, 0, 'uint') : 0;
 		if(!($this->allowSave($data, $nameKey))) {
 			$this->setError(JText::_('JLIB_APPLICATION_ERROR_SAVE_NOT_PERMITTED'));
 			$this->setMessage($this->getError(), 'error');
-			return false; }
+			return false; 
+		}
 		////////
 		if(($nameKey != 'user') && (isset($data['user']))) 
 			$data['user'] = JFactory::getUser()->id;
@@ -216,8 +219,9 @@ class EcControllerLegacy extends JControllerLegacy {
 		$form = $modelForm->getForm($data, false);
 		if(!($form)) {
 			$app->enqueueMessage($modelForm->getError(), 'error');
-			return false; }
-		$validData = $modelForm->validate($form, $data);
+			return false; 
+		}
+		$validData = $modelForm->validate($form, $data); //EcDebug::log($validData);
 		if($validData === false) {
 			$errors = $modelForm->getErrors();
 			//Push up to three validation messages out to the user.
@@ -226,14 +230,16 @@ class EcControllerLegacy extends JControllerLegacy {
 					$app->enqueueMessage($errors[$i]->getMessage(), 'warning');
 				else $app->enqueueMessage($errors[$i], 'warning');
 			$this->setUserState('edit', 'data', $data);
-			return false; }
+			return false; 
+		}
 		////////
-		if(!($model->save($validData))) {
+		if(!($model->save($validData))) { 
 			$this->setUserState('edit', 'data', $validData);
 			$this->setError(JText::sprintf
 				('JLIB_APPLICATION_ERROR_SAVE_FAILED', $model->getError()));
 			$this->setMessage($this->getError(), 'error');
-			return false; }
+			return false; 
+		}
 		$postfix = ($data[$nameKey] == 0) ? '_SUBMIT' : '_SAVE_SUCCESS';
 		$msg = strtoupper($this->option).$postfix;
 		if(!($lang->hasKey($msg))) $msg = 'JLIB_APPLICATION'.$postfix; 

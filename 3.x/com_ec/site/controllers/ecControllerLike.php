@@ -6,7 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 class EcControllerLike extends EcControllerAjax {
-	
+
 	public function add() {
 		if(!($this->allowAdd())) jexit('false');
 		$nameKey = $this->nameKey;
@@ -18,7 +18,8 @@ class EcControllerLike extends EcControllerAjax {
 		$params['where'] = array($nameCol => $valueCol, 'user' => $data['user']);
 		if(EcDml::selectByParams($params, $nameKey) == 0) {
 			if(!($this->allowSave($data, $nameKey))) jexit('false');
-			if(!($this->getModel()->save($data))) jexit('false'); }
+			if(!($this->getModel()->save($data))) jexit('false'); 
+		}
 		$view = $this->getView($this->default_view, JFactory::getDocument()->getType());
 		$view->setModel($this->getModel($nameCol));
 		$view->save($valueCol);

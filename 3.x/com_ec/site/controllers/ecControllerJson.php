@@ -77,7 +77,7 @@ class EcControllerJson extends EcControllerLegacy {
 		echo new JResponseJson(null, null, !(parent::save($nameKey, $urlVar)));
 	}
 
-	protected function setRedirectParams($params) {
+	protected function setRedirectParams($params = array()) {
 		$params['format'] = 'json';
 		parent::setRedirectParams($params);
 	}

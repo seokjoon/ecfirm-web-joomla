@@ -58,7 +58,9 @@ class EcWidget {
 			case 'save': $icon = 'icon-edit'; break;
 			case 'saveImg': $icon = 'icon-edit'; break;
 			case 'share': $icon = 'icon-share'; break;
-			default: $icon = ''; break; }
+			case 'touch': $icon = 'icon-chevron-up'; break;
+			default: $icon = ''; break; 
+		}
 		return $icon;
 	}	
 	
@@ -173,5 +175,4 @@ class EcWidget {
 			.JText::_($optionCom.'_'.$nameKey.'_'.$task).'"></textarea>';
 		return $out;
 	}
-	
 }

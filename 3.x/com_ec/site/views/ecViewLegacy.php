@@ -14,8 +14,6 @@ abstract class EcViewLegacy extends JViewLegacy {
 	protected $plural;
 	protected $user;
 	
-	
-	
 	public function __construct($config = array()) {
 		parent::__construct($config);
 		$this->optionCom = JFactory::getApplication()->input->get('option');

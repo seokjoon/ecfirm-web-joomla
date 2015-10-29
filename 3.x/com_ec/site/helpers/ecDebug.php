@@ -6,7 +6,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 class EcDebug {
-	
 	public static function log($items, $key = '') {
 		jimport('joomla.log.log');
 		JLog::addLogger(array('text_file' => 'ec.php', ));
@@ -15,7 +14,9 @@ class EcDebug {
 			JLog::add($type, JLog::DEBUG, 'type');
 			foreach ($items as $key=>$item) {
 				if((is_array($item)) || is_object($item)) $item = 'array or object';
-				JLog::add($item, JLog::DEBUG, $key); } }
+				JLog::add($item, JLog::DEBUG, $key); 
+			} 
+		}
 		else JLog::add($items, JLog::DEBUG, $key);
 	}
 	

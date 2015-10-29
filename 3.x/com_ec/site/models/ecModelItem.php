@@ -37,30 +37,37 @@ class EcModelItem extends JModelItem {
 	public function delete(&$valueKeys) {
 		if($this->getState('enabledPlugin', false)) {
 			$dispatcher = JEventDispatcher::getInstance();
-			JPluginHelper::importPlugin('ec'); }
+			JPluginHelper::importPlugin('ec'); 
+		}
 		$valueKeys = (array)$valueKeys;
 		$table = $this->getTable();
 		foreach ($valueKeys as $i => $valueKey) {
 			if(!($table->load($valueKey))) {
 				$this->setError($table->getError());
-				return false; }
+				return false; 
+			}
 			if(!($this->canDelete($table))) {
 				unset($valueKeys[$i]);
 				if($this->getError()) $this->setError('canDelete false');
 				else $this->setError
 					(JText::_('JLIB_APPLICATION_ERROR_DELETE_NOT_PERMITTED'));
-				return false; }
+				return false; 
+			}
 			if($this->getState('enabledPlugin', false)) {
 				$result = $dispatcher->trigger
 					('on'.ucfirst($this->name).'BeforeDelete', array($this->context, $table));
 				if(in_array(false, $result, $true)) {
 					$this->setError($table->getError());
-					return false; } }
+					return false; 
+				} 
+			}
 			if(!($table->delete($valueKey))) {
 				$this->setError($table->getError());
-				return false; }
+				return false; 
+			}
 			if($this->getState('enabledPlugin', false)) $dispatcher->trigger
-				('on'.ucfirst($this->name).'AfterDelete', array($this->context, $table)); }
+				('on'.ucfirst($this->name).'AfterDelete', array($this->context, $table)); 
+		}
 		$this->cleanCache();
 		return true;
 	}
@@ -78,13 +85,15 @@ class EcModelItem extends JModelItem {
 		$return = $table->load($valueKey);
 		if(($return === false) && $table->getError()) {
 			$this->setError($table->getError());
-			return false; }
+			return false; 
+		}
 		$properties = $table->getProperties(1);
 		$item = JArrayHelper::toObject($properties, 'JObject');
-		if(property_exists($item, 'option')) {
+		if(property_exists($item, 'options')) {
 			$reg = new Registry;
-			$reg->loadString($item->option);
-			$item->option = $reg->toArray(); }	
+			$reg->loadString($item->options);
+			$item->options = $reg->toArray(); 
+		}	
 		return $item;	
 	}
 	
@@ -108,13 +117,15 @@ class EcModelItem extends JModelItem {
 	 * @return  boolean  True on success, False on error.
 	 * @since   12.2 JModelAdmin */	
 	public function save($data) { //EcDebug::log($data, __method__);
-		if((isset($data['option'])) && (is_array($data['option']))) {
+		if((isset($data['options'])) && (is_array($data['options']))) {
 			$reg = new Registry;
-			$reg->loadArray($data['option']);
-			$data['option'] = (string)$reg; }
+			$reg->loadArray($data['options']);
+			$data['options'] = (string)$reg; 
+		}
 		if($this->getState('enabledPlugin', false)) {
 			$dispatcher = JEventDispatcher::getInstance();
-			JPluginHelper::importPlugin('ec'); }
+			JPluginHelper::importPlugin('ec'); 
+		}
 		$table = $this->getTable();
 		$nameKey = $table->getKeyName();
 		$valueKey = (!empty($data[$nameKey])) ? $data[$nameKey] : 0;
@@ -122,29 +133,37 @@ class EcModelItem extends JModelItem {
 		try {
 			if($valueKey > 0) {
 				$table->load($valueKey);
-				$isNew = false; } 
+				$isNew = false; 
+			} 
 			if(!($table->bind($data))) {
 				$this->setError($table->getError());
-				return false; }
+				return false; 
+			}
 			//$this->prepareTable($table);
 			if(!($table->check())) {
 				$this->setError($table->getError());
-				return false; }
+				return false; 
+			}
 			if($this->getState('enabledPlugin', false)) {
 				$resule = $dispatcher->trigger
 					('on'.$this->name.'BeforeSave', array($this->context, $table, $isNew));
 				if(in_array(false, $resule, true)) {
 					$this->setError($table->getError());
-					return false; } }
+					return false; 
+				} 
+			}
 			if(!($table->store())) {
 				$this->setError($table->getError());
-				return false; }
+				return false; 
+			}
 			$this->cleanCache();
 			if($this->getState('enabledPlugin', false)) $dispatcher->trigger
-				('on'.$this->name.'AfterSave', array($this->context, $table, $isNew)); }
+				('on'.$this->name.'AfterSave', array($this->context, $table, $isNew)); 
+		}
 		catch(Exception $e) {
 			$this->setError($e->getMessage());
-			return false; }
+			return false; 
+		}
 		return true;
 	}
 }
