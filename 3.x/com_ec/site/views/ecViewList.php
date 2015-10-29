@@ -24,7 +24,8 @@ class EcViewList extends EcViewLegacy {
 		$this->pagination = $this->get('Pagination');	
 		if(count($errors = $this->get('Errors'))) {
 			JError::raiseWarning(500, implode("\n", $errors));
-			return false; }
+			return false; 
+		}
 		parent::display($tpl);
 	}
 	
@@ -34,7 +35,8 @@ class EcViewList extends EcViewLegacy {
 		if((isset($state->enabledPlugin)) && ($state->enabledPlugin)) {
 			JPluginHelper::importPlugin('ec');
 			$dispatcher = JEventDispatcher::getInstance();
-			foreach ($items as $item) $this->eventPlugin($dispatcher, $item); }
+			foreach ($items as $item) $this->eventPlugin($dispatcher, $item); 
+		}
 		return $items;
 	}
 }

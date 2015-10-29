@@ -23,7 +23,8 @@ class EcViewItem extends EcViewLegacy {
 		//$this->return = $this->get('ReturnPage');
 		if(count($errors = $this->get('Errors'))) {
 			JError::raiseWarning(500, implode("\n", $errors));
-			return false; }
+			return false; 
+		}
 		parent::display($tpl);
 	}
 	
@@ -38,7 +39,8 @@ class EcViewItem extends EcViewLegacy {
 		if((isset($state->enabledPlugin)) && ($state->enabledPlugin)) {
 			JPluginHelper::importPlugin('ec');
 			$dispatcher = JEventDispatcher::getInstance();
-			$item = $this->eventPlugin($dispatcher, $item); }
+			$item = $this->eventPlugin($dispatcher, $item); 
+		}
 		return $item;
 	}
 }

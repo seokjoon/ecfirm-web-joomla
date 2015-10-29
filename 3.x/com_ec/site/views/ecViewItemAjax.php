@@ -51,7 +51,8 @@ class EcViewItemAjax extends EcViewItem {
 		if($valueKey == 0) {
 			$params['order'] = 'desc';
 			$params['where'] = array('user' => JFactory::getUser()->id);
-			$valueKey = EcDml::selectByParams($params, $this->nameKey); }
+			$valueKey = EcDml::selectByParams($params, $this->nameKey); 
+		}
 		$this->item = $this->getItem($valueKey);
 		require_once JPATH_COMPONENT.'/views/'.$this->nameKey.'/tmpl/default.php';
 		jexit();
