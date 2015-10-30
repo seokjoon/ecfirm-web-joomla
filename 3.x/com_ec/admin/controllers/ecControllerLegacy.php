@@ -38,7 +38,8 @@ class EcControllerLegacy extends JControllerLegacy {
 			$this->setMessage($this->getError(), 'error');
 			$this->setRedirect(JRoute::_
 				('index.php?option='.$this->option.'&view='.$defaultView, false));
-			return false; }
+			return false; 
+		}
 		parent::display();
 		return $this;
 	}

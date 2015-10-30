@@ -45,8 +45,7 @@ class EcControllerForm extends EcControllerLegacy {
 			$params['view'] = $this->nameKey.'s';
 			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_DELETE_SUCCESS'); 
 			$this->setRedirectParams($params); 
-		}
-		else {
+		} else {
 			$this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_DELETE_FAILURE'));
 			$this->turnbackPush();
 			$this->turnbackPop(); 

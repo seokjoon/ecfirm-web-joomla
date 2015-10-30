@@ -40,20 +40,24 @@ class EcControllerList extends JControllerAdmin	{
 				'com_ec'.$this->nameKey.'.'.$this->nameKey.'.'.(int)$id)) {
 				unset($ids[$i]);
 				JError::raiseNotice(403, 
-					JText::_('JLIB_APPLICATION_ERROR_EDITSTATE_NOT_PERMITTED')); } }
+					JText::_('JLIB_APPLICATION_ERROR_EDITSTATE_NOT_PERMITTED')); 
+			} 
+		}
 		if(empty($ids)) { 
-			JError::raiseWarning(500, JText::_('JERROR_NO_ITEMS_SELECTED')); }
-		else {
+			JError::raiseWarning(500, JText::_('JERROR_NO_ITEMS_SELECTED')); 
+		} else {
 			$model = $this->getModel($this->nameKey); 
 			if(!$model->bool($ids, $value, $attr)) {
-				JError::raiseWarning(500, $model->getError()); }
-			else	{
+				JError::raiseWarning(500, $model->getError()); 
+			} else {
 				if($value == 1) $this->setMessage
 					(JText::plural(JString::strtoupper($this->option)
 						.'_ON_'.$attr.'_N', count($ids)));
 				elseif($value == 0) $this->setMessage
 					(JText::plural(JString::strtoupper($this->option)
-						.'_OFF_'.$attr.'_N', count($ids))); } }		
+						.'_OFF_'.$attr.'_N', count($ids))); 
+			} 
+		}		
 		$this->setRedirect
 			('index.php?option='.$this->option.'&view='.$this->view_list);
 	}

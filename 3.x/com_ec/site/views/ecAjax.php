@@ -51,8 +51,7 @@ class EcAjax {
 			foreach($nameCols as $col)
 				$jform .= $col.': jQuery("#'.$id.' #jform_'.$col.'").val(), ';
 			$jform .= ' };'; 
-		}
-		else $jform = '"";';
+		} else $jform = '"";';
 		
 		return '<script type="text/javascript">
 				

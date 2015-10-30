@@ -34,8 +34,7 @@ class EcFileImg extends EcFile {
 			$paths['img'] = $pathRelative.$nameFile;
 			$paths['thumb'] = $pathRelative.'thumbs/'.$nameFile;
 			return $paths; 
-		}
-		else return false;
+		} else return false;
 	}
 	
 	/**
