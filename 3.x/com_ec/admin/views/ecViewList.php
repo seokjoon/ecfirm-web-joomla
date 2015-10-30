@@ -32,7 +32,7 @@ class EcViewList extends EcViewLegacy {
 	 * @since   1.6 */
 	protected function addToolbar() {
 		$app = JFactory::getApplication();
-		$this->option = $app->input->get('option', 'com_ec');
+		$this->option = $app->input->get('option', 'com_'.EcConst::getPrefix());
 		$this->canDo = EcHelper::getActionsEc($this->option);
 		JToolbarHelper::title
 			(JText::_(JString::strtoupper($this->option)), 'stack article');

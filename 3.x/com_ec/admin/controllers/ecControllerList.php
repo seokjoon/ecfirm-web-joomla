@@ -37,7 +37,7 @@ class EcControllerList extends JControllerAdmin	{
 		$value = JArrayHelper::getValue($values, $task, 0, 'int');
 		foreach ($ids as $i => $id)	{
 			if(!$user->authorise('core.edit.state', 
-				'com_ec'.$this->nameKey.'.'.$this->nameKey.'.'.(int)$id)) {
+				'com_'.EcConst::getPrefix.$this->nameKey.'.'.$this->nameKey.'.'.(int)$id)) {
 				unset($ids[$i]);
 				JError::raiseNotice(403, 
 					JText::_('JLIB_APPLICATION_ERROR_EDITSTATE_NOT_PERMITTED')); 

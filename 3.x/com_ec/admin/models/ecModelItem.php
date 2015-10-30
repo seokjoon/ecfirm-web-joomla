@@ -23,7 +23,7 @@ class EcModelItem extends JModelAdmin	{
 		$user = JFactory::getUser();
 		foreach ($pks as $pk)	{
 			if (!$user->authorise('core.edit', 
-				'com_ec'.$this->name.'.'.$this->name.'.'.$pk)) {
+				'com_'.EcConst::getPrefix().$this->name.'.'.$this->name.'.'.$pk)) {
 				$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_CANNOT_EDIT'));
 				return false; 
 			}
