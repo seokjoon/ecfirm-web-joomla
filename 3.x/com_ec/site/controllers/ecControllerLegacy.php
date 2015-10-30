@@ -147,7 +147,8 @@ class EcControllerLegacy extends JControllerLegacy {
 	
 	protected function getRedirectLogin() {
 		$return = $this->getRequestPage();
-		return 'index.php?option=com_ecuser&view=login&return='.$return;
+		$prefix = EcConst::getPrefix();
+		return 'index.php?option=com_'.$prefix.'user&view=login&return='.$return;
 	}
 	
 	protected function getRedirectRequest() {

@@ -12,4 +12,10 @@ class EcConst {
 	const USER_GROUP_PUBLIC = 1;
 	const USER_GROUP_REGISTERED = 2;
 	const USER_GROUP_SUPERUSER = 8;
+	
+	private static $prefix = 'ec';
+	
+	public static function getPrefix() { return self::$prefix; }
+	
+	public static function setPrefix($namePrefix) { self::$prefix = $namePrefix; }
 }

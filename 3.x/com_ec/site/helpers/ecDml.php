@@ -10,17 +10,19 @@ class EcDml {
 	public static function deleteByColumn($nameCol, $valueCol, $nameKey)	{
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
-		$query->delete('#__ec_'.$nameKey);
+		$query->delete('#__'.self::getPrefix().'_'.$nameKey);
 		$query->where($nameCol.' = '.$valueCol);
 		$db->setQuery($query);
 		return $db->execute();
 	}
 	
+	private static function getPrefix() { return EcConst::getPrefix(); }
+
 	public static function insertRecord($params, $nameKey) {
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		$record = JArrayHelper::toObject($params);
-		return $db->insertObject('#__ec_'.$nameKey, $record);
+		return $db->insertObject('#__'.self::getPrefix().'_'.$nameKey, $record);
 	}
 
 	/**
@@ -42,8 +44,8 @@ class EcDml {
 		if(!isset($params['columns']) || empty($params['columns'])) 
 			$params['columns'] = $nameKey; 
 		if(!isset($params['table']) || empty($params['table']))
-			$params['table'] = '#__ec_'.$nameKey;
-		else $params['table'] = '#__ec_'.$params['table'];
+			$params['table'] = '#__'.self::getPrefix().'_'.$nameKey;
+		else $params['table'] = '#__'.self::getPrefix().'_'.$params['table'];
 		$where = '';
 		foreach ($params['where'] as $key => $value) {
 			$where .= $key.'="'.$value.'"';
