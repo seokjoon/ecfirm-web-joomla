@@ -13,7 +13,7 @@ class EcViewList extends EcViewLegacy {
 	public function display($tpl = null) {
 		if($this->getLayout() !== 'modal') {
 			$this->addToolbar();
-			$helper = 'EcHelper'.ucfirst(substr($this->getName(), 0, -1));
+			$helper = EcConst::getPrefix().'Helper'.ucfirst(substr($this->getName(), 0, -1));
 			$helper::addSubmenu($this->getName()); 
 			$this->sidebar = JHtmlSidebar::render(); 
 		}
