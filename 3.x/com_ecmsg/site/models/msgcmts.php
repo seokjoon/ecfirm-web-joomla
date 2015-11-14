@@ -25,7 +25,7 @@ class EcmsgModelMsgcmts extends EcModelList	{
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 		$query->select('mc.msgcmt, mc.objtype, mc.objcat, mc.obj, mc.modified, 
-			mc.msg, mc.user, mc.option, mc.body')
+			mc.msg, mc.user, mc.options, mc.body')
 			->from('#__ec_msgcmt as mc');
 		if($this->getState('joinUser'))
 			$query->select('ju.name as ju_name')

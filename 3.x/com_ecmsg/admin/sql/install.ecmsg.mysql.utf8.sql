@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `#__ec_msgcmt` (
 	`modified` DATETIME NOT NULL DEFAULT '2015-01-01 00:00:00',
 	`msg` INT(11) UNSIGNED NOT NULL DEFAULT 0,
 	`user` INT(11) UNSIGNED NOT NULL DEFAULT 0,
-	`option` VARCHAR(5120) NOT NULL DEFAULT '',
+	`options` VARCHAR(5120) NOT NULL DEFAULT '',
 	`body` TEXT,
 	PRIMARY KEY (`msgcmt`),
 	KEY `idx_modified` (`modified`),
