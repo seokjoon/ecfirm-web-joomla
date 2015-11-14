@@ -24,8 +24,8 @@ class EccontModelConts extends EcModelList	{
 	protected function getListQuery() {
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('c.cont, c.objtype, c.objcat, c.obj, c.modified, c.featured, 
-			c.user, c.contcmt, c.contlike, c.option, c.body')
+		$query->select('c.cont, c.objtype, c.objcat, c.obj, c.modified, c.enable, 
+			c.featured, c.user, c.contcmt, c.contlike, c.imgs, c.options, c.body')
 			->from('#__ec_cont as c');
 		if($this->getState('joinUser')) 
 			$query->select('ju.name as ju_name')

@@ -25,7 +25,7 @@ class EccontModelContcmts extends EcModelList	{
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 		$query->select('cc.contcmt, cc.objtype, cc.objcat, cc.obj, cc.modified, 
-			cc.cont, cc.user, cc.option, cc.body')
+			cc.cont, cc.user, cc.options, cc.body')
 			->from('#__ec_contcmt as cc');
 		if($this->getState('joinUser'))
 			$query->select('ju.name as ju_name')
