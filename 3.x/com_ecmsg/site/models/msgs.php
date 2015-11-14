@@ -24,8 +24,8 @@ class EcmsgModelMsgs extends EcModelList	{
 	protected function getListQuery() {
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('m.msg, m.objtype, m.objcat, m.obj, m.modified, m.featured, 
-			m.user, m.msgcmt, m.msglike, m.option, m.body')
+		$query->select('m.msg, m.objtype, m.objcat, m.obj, m.modified, m.enable, 
+			m.featured, m.user, m.msgcmt, m.msglike, m.imgs, m.options, m.body')
 			->from('#__ec_msg as m');
 		if($this->getState('joinUser')) 
 			$query->select('ju.name as ju_name')
