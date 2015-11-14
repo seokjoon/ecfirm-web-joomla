@@ -27,7 +27,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 		echo '<div class="pull-left" style="width:80%" align="left">';
 			echo '<div class="pull-left media" style="margin-right:10px;">';
 				echo '<a href="">';
-					echo '<img class="media-object thumbnail" src="'.$icUser.'" alt="">';
+					echo '<img class="media-object thumbnail" src="'.$imgUser.'" alt="">';
 				echo '</a>';
 			echo '</div>';
 			echo '<div class="media-body">';
