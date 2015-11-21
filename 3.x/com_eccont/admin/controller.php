@@ -5,6 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EccontController extends JControllerLegacy	{
+class EccontController extends EcControllerLegacy	{
 	
 }

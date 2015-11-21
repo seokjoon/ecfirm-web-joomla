@@ -12,8 +12,13 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_eccont')) {
 
 	
 define('ECPATH', JPATH_SITE.'/components/com_ec');
+define('ECPATH_ADMINISTRATOR', JPATH_ADMINISTRATOR.'/components/com_ec');
 try { 
 	JLoader::discover('', ECPATH.'/helpers');
+	JLoader::discover('', ECPATH_ADMINISTRATOR.'/controllers');
+	JLoader::discover('', ECPATH_ADMINISTRATOR.'/helpers');
+	JLoader::discover('', ECPATH_ADMINISTRATOR.'/models');
+	JLoader::discover('', ECPATH_ADMINISTRATOR.'/views');
 	JLoader::discover('', JPATH_COMPONENT.'/helpers');
 	JLoader::discover('', JPATH_COMPONENT_ADMINISTRATOR.'/helpers'); }
 catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }

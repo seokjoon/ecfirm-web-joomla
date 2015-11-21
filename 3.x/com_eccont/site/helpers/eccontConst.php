@@ -6,5 +6,5 @@ defined('_JEXEC') or die('Restricted access');
 
 
 class EccontConst {
-	
+	const IMG_CONT = 'media/com_eccont/images/img_cont_128.png';
 }

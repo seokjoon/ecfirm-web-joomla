@@ -6,6 +6,5 @@ defined('_JEXEC') or die('Restricted access');
 
 
 class EcmsgConst {
-	//const MSG = 0;
-	
+	const IMG_USER = 'media/com_ecmsg/images/img_user_48.png';
 }

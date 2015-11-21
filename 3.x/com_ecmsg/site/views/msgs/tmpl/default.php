@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-$imgUser = 'media/com_ec/images/img_user_48.png';
+$imgUser = EcmsgConst::IMG_USER;//'media/com_ecmsg/images/img_user_48.png';
 $nameKey = $this->nameKey;
 $optionCom = $this->optionCom;
 
