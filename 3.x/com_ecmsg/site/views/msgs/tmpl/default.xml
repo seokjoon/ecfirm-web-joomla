@@ -3,7 +3,7 @@
 	<layout title="COM_ECMSG_ECMSGS_VIEW_DEFAULT_TITLE" 
 		option="COM_ECMSG_ECMSGS_VIEW_DEFAULT_DESC">
 		<help key="" />
-		<message><![CDATA[COM_ECMSG_PRODS_VIEW_DEFAULT_DESC]]></message>
+		<message><![CDATA[COM_ECMSG_MSGS_VIEW_DEFAULT_DESC]]></message>
 	</layout>
 	
 	
@@ -12,7 +12,7 @@
 		<fieldset name="request"
 			addfieldpath="/components/com_ec/models/fields"> 
 			<field name="shop" type="shop"
-				label="COM_ECMSG_PRODS_VIEW_DEFAULT_SHOP_LABEL"
+				label="COM_ECMSG_MSGS_VIEW_DEFAULT_SHOP_LABEL"
 				edit="true" clear="false"
 				description="COM_ECMSG_ECMSGS_VIEW_DEFAULT_SHOP_DESC" />
 		</fieldset>

@@ -18,7 +18,7 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 
-class EccontViewCont extends EcViewItem {
+class EccontViewCont extends EcViewForm {
 	
 	protected function getItem($valueKey) {
 		$model = $this->getModel($this->getName());

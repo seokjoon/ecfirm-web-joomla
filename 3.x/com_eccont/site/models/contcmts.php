@@ -43,7 +43,8 @@ class EccontModelContcmts extends EcModelList	{
 		if(!empty($cont)) $query->where('cc.cont = '.(int)$cont);
 		if(!empty($modified)) { //$query->order('cc.contcmt DESC');
 			if(is_numeric($modified)) $modified = date('Y-m-d H:i:s', $modified);
-			$query->where('cc.modified >= "'.$modified.'"'); }
+			$query->where('cc.modified >= "'.$modified.'"'); 
+		}
 		if(!empty($search))
 			$query->where('cc.body LIKE '.$db->quote('%'.$search.'%'));
 		//$this->setError($query);

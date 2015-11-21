@@ -17,7 +17,8 @@ class EccontModelCont extends EcModelItem	{
 		if(($this->getState('joinUser')) && ($item->user > 0)) {
 			$table = $this->getTable('User', 'JTable');
 			$table->load($item->user);
-			$item->ju_name = $table->name; }
+			$item->ju_name = $table->name; 
+		}
 		return $item;
 	}
 }

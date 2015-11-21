@@ -37,7 +37,8 @@ class EccontModelContlikes extends EcModelList	{
 		if(!empty($cont)) $query->where('cl.cont = '.(int)$cont);
 		if(!empty($modified)) { //$query->order('cl.contlike DESC');
 			if(is_numeric($modified)) $modified = date('Y-m-d H:i:s', $modified);
-			$query->where('cl.modified >= "'.$modified.'"'); }
+			$query->where('cl.modified >= "'.$modified.'"'); 
+		}
 		//$this->setError($query);
 		return $query;
 	}

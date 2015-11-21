@@ -28,9 +28,9 @@
 		<field id="user" name="user" type="hidden" default="0" />
 		<field id="cont" name="cont" type="hidden" default="0" />
 	</fieldset>
-	<fieldset name="video">
+	<!-- fieldset name="video">
 		<field id="video_url" name="video_url" type="url" label="" description="" />
 		<field id="user" name="user" type="hidden" default="0" />
 		<field id="cont" name="cont" type="hidden" default="0" />
-	</fieldset>
+	</fieldset -->
 </form>
