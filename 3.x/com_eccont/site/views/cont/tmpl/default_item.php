@@ -5,11 +5,3 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-$nameKey = $this->nameKey;
-$optionCom = $this->optionCom;
-$item = $this->item;
-
-
-
-if(!empty($item))
-	require_once JPATH_COMPONENT.'/views/'.$nameKey.'/tmpl/default_item.php';
