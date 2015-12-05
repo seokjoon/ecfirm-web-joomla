@@ -10,10 +10,10 @@ jimport('joomla.filesystem.file');
 
 class EcFile {
 
-	public static function delete($paths) {
+	public static function delete($paths) { //EcDebug::log($paths);
 		if(!(is_array($paths))) $paths = array($paths);
-		foreach ($paths as &$path) {
-			$path = JPATH_SITE.$path;
+		foreach ($paths as &$path) { 
+			$path = JPATH_SITE.'/'.$path; //EcDebug::log($path, 'loop');
 			$bool = JFile::exists($path);
 			if(!$bool) return false; 
 		}

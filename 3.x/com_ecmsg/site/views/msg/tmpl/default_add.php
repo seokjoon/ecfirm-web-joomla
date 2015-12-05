@@ -20,18 +20,18 @@ echo '<div id="'.$this->nameKey.'_0"><fieldset>';
 	echo '<ul class="nav nav-tabs">';
 		echo '<li class="active"><a href="#'.$this->nameKey
 			.'_0_body" data-toggle="tab">'.JText::_('COM_ECMSG_MSG').'</a></li>';
-		echo '<li><a href="#'.$this->nameKey.'_0_img" data-toggle="tab">'
+		/* echo '<li><a href="#'.$this->nameKey.'_0_img" data-toggle="tab">'
 			.JText::_('COM_ECMSG_MSG_IMG').'</a></li>';
 		echo '<li><a href="#'.$this->nameKey.'_0_video" data-toggle="tab">'
-			.JText::_('COM_ECMSG_MSG_VIDEO').'</a></li>';
+			.JText::_('COM_ECMSG_MSG_VIDEO').'</a></li>'; */
 	echo '</ul>';
 	
 		
 	
 	echo '<div class="tab-content">';
 		require_once 'default_edit.php';
-		require_once 'default_editImg.php';
-		require_once 'default_editVideo.php';
+		//require_once 'default_editImg.php';
+		//require_once 'default_editVideo.php';
 	echo '</div>';
 
 	

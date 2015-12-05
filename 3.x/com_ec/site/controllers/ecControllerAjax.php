@@ -65,8 +65,4 @@ class EcControllerAjax extends EcControllerLegacy {
 		$valueKey = $this->input->post->get($nameKey, 0, 'uint');
 		$view->save($valueKey);
 	}
-
-	public function saveImg() { 
-		
-	}
 }
