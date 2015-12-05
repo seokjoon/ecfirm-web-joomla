@@ -6,7 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 class EcmsgControllerMsg extends EcControllerAjax {
-
+	
 	public function delete() {
 		$this->deleteFileImg();
 		parent::delete();

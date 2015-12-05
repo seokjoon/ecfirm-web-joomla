@@ -32,7 +32,7 @@ echo '<div id="'.$this->nameKey.'_'.$valueKey.'_body" class="tab-pane active">';
 				$params['task'] = 'addPre'; 
 				$params['idPostfix'] = null;
 				echo EcWidget::submitBtn($params); }
-			$params['nameCols'] = array('body', 'user', 'msg');
+			$params['nameCols'] = array('body', 'user', 'msg', 'img');//('body', 'user', 'msg');
 			$params['task'] = 'save';
 			$params['idPostfix'] = 'body_form';
 			$params['validate'] = true;

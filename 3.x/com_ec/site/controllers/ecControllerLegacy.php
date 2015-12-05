@@ -99,14 +99,6 @@ class EcControllerLegacy extends JControllerLegacy {
 		return true;
 	}
 
-	protected function deleteFileImg() {
-		$valueKey = $this->input->get($this->nameKey, 0, 'uint');
-		if($valueKey == 0) return false;
-		$item = $this->getModel()->getItem($valueKey);
-		$imgs = json_decode($item->imgs, true); //EcDebug::log($imgs);
-		if((is_array($imgs)) && (isset($imgs['img']))) EcFile::delete($imgs);
-	}
-
 	/**
 	 * Method to edit an existing record.
 	 * @param   string  $nameKey     The name of the primary key of the URL variable.
@@ -255,17 +247,6 @@ class EcControllerLegacy extends JControllerLegacy {
 		$this->setMessage(JText::_($msg));
 		$this->setUserState('edit', 'data', null);
 		return true;
-	}
-	
-	protected function saveFileImg() {
-		$files = $this->input->files->get('jform'); //EcDebug::lp($files); jexit();
-		if($files['img']['error'] != 0) return false;
-		$this->deleteFileImg();
-		$jform = $this->input->post->get('jform', array(), 'array');
-		//$imgs = EcFileImg::setFileImgShop($jform, $files['img'], $this->nameKey);
-		$imgs = EcFileImg::setFileImgByUser($files['img'], $this->nameKey);
-		$jform['imgs'] = json_encode($imgs, JSON_UNESCAPED_SLASHES);
-		$this->input->post->set('jform', $jform);
 	}
 	
 	protected function setRedirectParams($params = array()) {
