@@ -48,10 +48,6 @@ class EcControllerAjax extends EcControllerLegacy {
 		jexit();
 	}
 	
-	public function deleteFileImg() { //TODO
-		
-	}
-	
 	public function edit($nameKey = null, $urlVar = null) {
 		$nameKey = (empty($nameKey)) ? $this->nameKey : $nameKey;
 		if(!(parent::edit($nameKey, $urlVar))) jexit('false');
