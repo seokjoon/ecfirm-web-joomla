@@ -24,7 +24,7 @@ class EccontModelContlikes extends EcModelList	{
 	protected function getListQuery() {
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('cl.contlike, cl.objtype, cl.objcat, cl.obj, cl.modified, 
+		$query->select('cl.contlike, cl.modified, cl.objtype, cl.objcat, cl.obj, 
 			cl.cont, cl.user')
 			->from('#__ec_contlike as cl');
 		$obj = $this->getState('get.obj');

@@ -24,7 +24,7 @@ class EccontModelContcmts extends EcModelList	{
 	protected function getListQuery() { 
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('cc.contcmt, cc.objtype, cc.objcat, cc.obj, cc.modified, 
+		$query->select('cc.contcmt, cc.modified, cc.objtype, cc.objcat, cc.obj, 
 			cc.cont, cc.user, cc.options, cc.body')
 			->from('#__ec_contcmt as cc');
 		if($this->getState('joinUser'))
