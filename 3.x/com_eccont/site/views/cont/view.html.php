@@ -26,5 +26,4 @@ class EccontViewCont extends EcViewForm {
 		$model->setState('joinUser', true);
 		return parent::getItem($valueKey);
 	}
-	
 }
