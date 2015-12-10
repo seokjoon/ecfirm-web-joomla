@@ -5,13 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EccontTableContObserver extends JTableObserver {
-	protected $typeAliasPattern;
+class EccontTableContObserver extends EcTableObserver {
 	
-	public static function createObserver
-		(JObservableInterface $observableObject, $parmas = array()) {
-		$observer = new self($observableObject);
-		$observer->typeAliasPattern = $parmas['typeAlias'];
-		return $observer;
-	}
 }

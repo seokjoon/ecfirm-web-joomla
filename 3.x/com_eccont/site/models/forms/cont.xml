@@ -18,19 +18,18 @@
 			filter="safehtml" buttons="false" required="true" 
 			label="COM_ECCONT_CONT_BODY_LABEL" 
 			description="COM_ECCONT_CONT_BODY_DESC" />
-		<field id="user" name="user" type="hidden" default="0" />
-		<field id="cont" name="cont" type="hidden" default="0" />
-	</fieldset>
-	<fieldset name="img">
 		<field id="img" name="img" type="file" label="label" description="desc" 
 			accept="image/*" onchange="cont_saveImg" />
-		<field id="img_url" name="img_url" type="url" label="" description="" />
+		<field id="file" name="file" type="file" label="label" description="desc" 
+			accept="" onchange="cont_saveFile" />
+		<field id="enable" name="enable" type="radio"  default="1" 
+			class="btn-group btn-group-yesno" 
+			label="COM_ECCONT_CONT_ENABLE_LABEL" 
+			description="COM_ECCONT_CONT_ENABLE_DESC">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
 		<field id="user" name="user" type="hidden" default="0" />
 		<field id="cont" name="cont" type="hidden" default="0" />
 	</fieldset>
-	<!-- fieldset name="video">
-		<field id="video_url" name="video_url" type="url" label="" description="" />
-		<field id="user" name="user" type="hidden" default="0" />
-		<field id="cont" name="cont" type="hidden" default="0" />
-	</fieldset -->
 </form>

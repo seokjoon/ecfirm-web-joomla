@@ -28,6 +28,7 @@ class EccontController extends EcControllerLegacy {
 			$this->setRedirectParams(array('view' => 'conts', 'task' => 'conts.display'));
 		else {
 			parent::display($cachable, $urlparams);
-			return $this; }
+			return $this; 
+		}
 	}
 }
