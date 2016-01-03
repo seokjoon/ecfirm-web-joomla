@@ -5,6 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcuserTableUserObserver extends EcTableObserver {
-
+class EcuserControllerUsers extends EcControllerList {
+	
 }
