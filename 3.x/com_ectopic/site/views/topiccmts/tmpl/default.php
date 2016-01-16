@@ -1,0 +1,18 @@
+<?php /** @package ecfirm.net
+* @copyright	Copyright (C) kilmeny.net. All rights reserved.
+* @license GNU General Public License version 2 or later. */
+defined('_JEXEC') or die('Restricted access');
+
+
+
+$imgUser = 'media/com_ec/images/img_user_48.png';
+$optionCom = $this->optionCom;
+
+
+
+echo '<div id="'.$nameCol.'_'.$valueCol.'_'.$this->getName().'_list">';
+	require JPATH_COMPONENT.'/views/'.$nameKey.'/tmpl/default_add.php';
+	if(!empty($this->items))
+		foreach($this->items as $item)
+			require JPATH_COMPONENT.'/views/'.$nameKey.'/tmpl/default.php';
+echo '</div>';
