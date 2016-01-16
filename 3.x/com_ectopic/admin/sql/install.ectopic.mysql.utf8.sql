@@ -25,12 +25,12 @@ CREATE TABLE IF NOT EXISTS `#__ec_topiccmt` (
 	`topic` INT(11) UNSIGNED NOT NULL DEFAULT 0,
 	`user` INT(11) UNSIGNED NOT NULL DEFAULT 0,
 	`options` VARCHAR(5120) NOT NULL DEFAULT '',
-	`body` TEXT,
+	`body` TEXT NOT NULL,
 	PRIMARY KEY (`topiccmt`),
 	KEY `idx_modified` (`modified`),
 	KEY `idx_topic` (`topic`),
 	KEY `idx_user` (`user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS `#__ec_topiclike` (
