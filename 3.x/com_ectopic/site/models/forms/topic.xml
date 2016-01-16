@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fieldset name="topic" 
+	<fieldset name="topicObj"
 		addfieldpath="/administrator/components/com_ec/models/fields">
+		<field name="objcat" type="objcat" required="true" 
+			label="COM_ECTOPIC_TOPIC_OBJCAT_LABEL"
+			description="COM_ECTOPIC_TOPIC_OBJCAT_DESC" />
+	</fieldset>
+	<fieldset name="topic">
+		<field id="title" name="title" type="text" class="inputbox input-xlarge"
+			required="true" label="COM_ECTOPIC_TOPIC_TITLE_LABEL" 
+			description="COM_ECTOPIC_TOPIC_TITLE_DESC" 
+			hint="COM_ECTOPIC_TOPIC_TITLE_DESC" />
 		<field id="title" name="title" type="text" class="inputbox input-xlarge"
 			required="true" label="COM_ECTOPIC_TOPIC_TITLE_LABEL" 
 			description="COM_ECTOPIC_TOPIC_TITLE_DESC" 
@@ -14,7 +23,7 @@
 		<field id="img" name="img" type="file" accept="image/*" onchange="" 
 			label="COM_ECTOPIC_TOPIC_IMG_LABEL" 
 			description="COM_ECTOPIC_TOPIC_IMG_DESC" />
-		<field id="file" name="file" type="file" accept=".*" onchange=""
+		<field id="file" name="file" type="file" accept="" onchange=""
 			label="COM_ECTOPIC_TOPIC_FILE_LABEL"
 			description="COM_ECTOPIC_TOPIC_FILE_DESC" />
 		<field id="enable" name="enable" type="radio"  default="1" 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="topiccmt">
+		<field id="body" name="body" type="textarea" class="inputbox required"
+			filter="safehtml" label="COM_ECTOPIC_TOPIC_BODY_LABEL"  
+			description="COM_ECTOPIC_TOPIC_BODY_DESC" rows="4" />
+		<field id="user" name="user" type="hidden" default="0" />
+		<field id="topic" name="topic" type="hidden" default="0" />
+		<field id="topiccmt" name="topic" type="hidden" default="0" />
+	</fieldset>
+</form>
