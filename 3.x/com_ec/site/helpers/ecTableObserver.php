@@ -18,13 +18,16 @@ class EcTableObserver extends JTableObserver {
 	}
 
 	private function deleteFileImg() {
-		$reg = new Registry;
-		$reg->loadString($this->table->imgs);
-		if(count($reg) > 0) EcFile::delete($reg->toArray());
+		if(property_exists($this->table, 'imgs')) {
+			$reg = new Registry;
+			$reg->loadString($this->table->imgs);
+			if(count($reg) > 0) EcFile::delete($reg->toArray()); 
+		}
 	}
 	
 	public function onAfterLoad(&$result, $row) {
-		$this->imgsLoad = $this->table->imgs; //EcDebug::log($this->imgsLoad, __method__);
+		if(property_exists($this->table, 'imgs'))
+			$this->imgsLoad = $this->table->imgs; //EcDebug::log($this->imgsLoad, __method__);
 	}
 	
 	public function onAfterStore(&$result) { //EcDebug::log($this->table->imgs);
