@@ -18,7 +18,8 @@ $itemLink = '?option='.$optionCom.'&view='.$nameKey.'&'.$nameKey.'='.$valueKey;
 $title = ($this->plural) ? '<a href="'.$itemLink.'">'.$item->title.'</a>' : $item->title;
 
 $imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
-$imgThumb = (count($imgs) > 1) ? JUri::base().$imgs['thumb'] : EctopicConst::IC_TOPIC;
+$imgThumb = (count($imgs) > 1) 
+	? JUri::base().$imgs['thumb'] : EctopicConst::IC_TOPIC_ABSTRACT;
 
 
 
@@ -37,7 +38,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			echo '<div class="media-body">';
 				echo '<div>'.$title.'</div>';
 				echo '<div>'.$item->modified.'</div>';
-				echo '<div>'.$body.'</div>';
+				//echo '<div>'.$body.'</div>';
 			echo '</div>';
 		echo '</div>';	
 	
