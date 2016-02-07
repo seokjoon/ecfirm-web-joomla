@@ -2,7 +2,7 @@
 <form>
 	<fieldset name="topicObj"
 		addfieldpath="/administrator/components/com_ec/models/fields">
-		<field name="objcat" type="objcat" required="true" 
+		<field name="objcat" type="objcat" required="" 
 			label="COM_ECTOPIC_TOPIC_OBJCAT_LABEL"
 			description="COM_ECTOPIC_TOPIC_OBJCAT_DESC" />
 	</fieldset>

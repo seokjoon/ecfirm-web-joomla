@@ -25,7 +25,7 @@ class EctopicModelTopics extends EcModelList	{
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 		$query->select('t.topic, t.modified, t.objcat, t.user, t.title, t.attr, t.topiccmt, 
-			t.topiclike, t.options, t.imgs, t.files')
+			t.topiclike, t.options, t.body, t.imgs, t.files')
 			->from('#__ec_topic as t');
 		if($this->getState('joinUser')) 
 			$query->select('ju.name as ju_name')
