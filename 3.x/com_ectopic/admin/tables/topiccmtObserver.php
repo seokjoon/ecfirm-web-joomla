@@ -2,11 +2,20 @@
 * @copyright	Copyright (C) ecfirm.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
+use Joomla\Registry\Registry;
 
 
 
-class EctopicTableTopiccmtObserver extends EcTableObserver {
+class EctopicTableTopiccmtObserver extends JTableObserver {
+	private $typeAliasPattern;
 	private $valueCol;
+	
+	public static function createObserver
+		(JObservableInterface $observableObject, $parmas = array()) {
+		$observer = new self($observableObject);
+		$observer->typeAliasPattern = $parmas['typeAlias'];
+		return $observer;
+	}
 	
 	/**
 	 * Post-processor for $table->delete($pk)
@@ -14,8 +23,7 @@ class EctopicTableTopiccmtObserver extends EcTableObserver {
 	 * @return  void
 	 * @since   3.1.2 */
 	public function onAfterDelete($pk) {
-		$nameKey = $this->getKeyName();	
-		EcDml::updateColumnCount($nameKey, 'topic', $this->table->topic, $nameKey, -1);
+		EcDml::updateColumnCount('ectopic', 'topic', $this->table->topic, 'topiccmt', -1);
 	}
 
 	/**
@@ -25,7 +33,7 @@ class EctopicTableTopiccmtObserver extends EcTableObserver {
 	 * @return  void
 	 * @since   3.1.2 */
 	public function onAfterLoad(&$result, $row) {
-		$this->valueCol = $this->table->topic;
+		$this->valueCol = $this->table->topic; 
 	}
 	
 	/**
@@ -34,8 +42,11 @@ class EctopicTableTopiccmtObserver extends EcTableObserver {
 	 * @return  void
 	 * @since   3.1.2 */
 	public function onAfterStore(&$result) {
-		$nameKey = $this->getKeyName(); EcDebug::log($nameKey);
 		if($this->valueCol != $this->table->topic)
-			EcDml::updateColumnCount($nameKey, 'topic', $this->table->topic, $nameKey, 1);
+			EcDml::updateColumnCount('ectopic', 'topic', $this->table->topic, 'topiccmt', 1);
+	}
+	
+	public function onBeforeStore($updateNulls, $tableKey) {
+		$this->table->modified = date('Y-m-d H:i:s');
 	}
 }
