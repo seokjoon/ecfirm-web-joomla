@@ -5,7 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-$imgUser = 'media/com_ec/images/img_user_48.png';
 $optionCom = $this->optionCom;
 
 
