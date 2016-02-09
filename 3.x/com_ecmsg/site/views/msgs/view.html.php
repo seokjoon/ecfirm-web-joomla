@@ -22,7 +22,6 @@ class EcmsgViewMsgs extends EcViewList {
 	
 	protected function getItems() {
 		$model = $this->getModel($this->getName());
-		if(($model->getState('list.limit', 0)) != 10) $model->setState('list.limit', 10);
 		$model->setState('order', 'msg DESC');
 		$model->setState('enabledPlugin', true);
 		$model->setState('joinUser', true);

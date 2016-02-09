@@ -9,7 +9,7 @@ $valueKey = (is_object($item)) ? $item->$nameKey : 0; //EcDebug::lp($item);
 $availableEdit = (1) ? true : false;
 $availableDelete = (1) ? true : false;
 $modified = EcDatetime::interval($item->modified);
-$body = JHtml::_('string.truncateComplex', $item->body, 45); //nl2br
+//$body = JHtml::_('string.truncateComplex', $item->body, 45); //nl2br
 $itemLink = '?option='.$optionCom.'&view='.$nameKey.'&'.$nameKey.'='.$valueKey;
 $title = '<a href="'.$itemLink.'">'.$item->title.'</a>';
 $imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
@@ -19,7 +19,8 @@ $imgUser = EctopicConst::IC_TOPIC_ABSTRACT_USER;
 
 
 
-echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
+echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small" '
+	.'style="padding-bottom:0px; margin-bottom:4px;">';
 	if(isset($item->event->beforeDisplay)) echo $item->event->beforeDisplay;
 	
 	echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
@@ -36,8 +37,11 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			echo '</div>';	
 			echo '<div class="media-body">';
 				echo '<div>'.$title.'</div>';
-				echo '<div>'.$modified.'</div>';
-				echo '<div>'.$body.'</div>';
+				echo '<div>';
+					echo $item->ju_name.'&#160;'.$modified;
+					if(isset($item->event->afterDisplay)) echo $item->event->afterDisplay;
+				echo '</div>';
+				//echo '<div>'.$body.'</div>';
 			echo '</div>';
 		echo '</div>';	
 	
@@ -69,5 +73,5 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 
 	
 	
-	if(isset($item->event->afterDisplay)) echo $item->event->afterDisplay;
+	//if(isset($item->event->afterDisplay)) echo $item->event->afterDisplay;
 echo '</div>';

@@ -41,7 +41,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			echo '</div>';
 			echo '<div class="media-body">';
 				echo '<div>'.$title.'</div>';
-				echo '<div>'.$modified.'</div>';
+				echo '<div>'.$item->ju_name.'&#160;'.$modified.'</div>';
 				echo '<div>'.$body.'</div>';
 			echo '</div>';
 		echo '</div>';	

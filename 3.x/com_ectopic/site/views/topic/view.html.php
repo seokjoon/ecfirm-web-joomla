@@ -23,7 +23,7 @@ class EctopicViewTopic extends EcViewItemForm {
 	protected function getItem($valueKey) {
 		$model = $this->getModel($this->getName());
 		$model->setState('enabledPlugin', true);
-		//$model->setState('joinUser', true);
+		$model->setState('joinUser', true);
 		return parent::getItem($valueKey);
 	}
 }
