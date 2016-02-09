@@ -16,7 +16,7 @@
 			description="COM_ECTOPIC_TOPIC_TITLE_DESC" 
 			hint="COM_ECTOPIC_TOPIC_TITLE_DESC" />
 		<field id="body" name="body" type="textarea" 
-			class="inputbox required" filter="safehtml" rows="2" 
+			class="inputbox required" filter="safehtml" rows="6" 
 			label="COM_ECTOPIC_TOPIC_BODY_LABEL"  
 			description="COM_ECTOPIC_TOPIC_BODY_DESC" 
 			hint="COM_ECTOPIC_TOPIC_BODY_DESC" />

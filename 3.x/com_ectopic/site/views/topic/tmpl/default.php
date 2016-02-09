@@ -1,5 +1,5 @@
 <?php /** @package ecfirm.net
-* @copyright	Copyright (C) kilmeny.net. All rights reserved.
+* @copyright	Copyright (C) ecfirm.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -11,21 +11,16 @@ $item = $this->item;
 
 
 
-//if(!empty($item)) require_once JPATH_COMPONENT.'/views/'.$nameKey.'/tmpl/default_item.php';
 $valueKey = (is_object($item)) ? $item->$nameKey : 0; //EcDebug::lp($item);
 $availableEdit = (1) ? true : false;
 $availableDelete = (1) ? true : false;
-$intro = nl2br(JHtml::_('string.truncateComplex', $item->body, 80));
-$sizeIntro = JString::strlen($intro);
-$sizeBody = JString::strlen($item->body); //EcDebug::lp($sizeIntro); EcDebug::lp($sizeBody);
-$body = ($sizeIntro < $sizeBody) ?
-$intro.EcWidget::readmoreSpan($item->body) : $intro;
 $modified = EcDatetime::interval($item->modified);
-$itemLink = '?option='.$optionCom.'&view='.$nameKey.'&'.$nameKey.'='.$valueKey;
-$title = ($this->plural) ? '<a href="'.$itemLink.'">'.$item->title.'</a>' : $item->title;
-
+$body = nl2br($item->body);
+$title = $item->title;
 $imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
-$imgThumb = (count($imgs) > 1) ? JUri::base().$imgs['thumb'] : EctopicConst::IC_TOPIC;
+$imgThumb = (count($imgs) > 1) ? 
+	JUri::base().$imgs['thumb'] : EctopicConst::IC_TOPIC_ABSTRACT;
+$imgUser = EctopicConst::IC_TOPIC_USER;
 
 
 
@@ -35,20 +30,23 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 	echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
 		.$nameKey.'_'.$valueKey.'_form" class="form-validate form-vertical">';
 
-		echo '<div class="pull-left" style="width:80%" align="left">';
+		echo '<div class="pull-left" style="width:96%" align="left">';
 			echo '<div class="pull-left media" style="margin-right:10px;">';
 				//echo '<a href="">';
-					echo '<img class="media-object thumbnail" src="'.$imgThumb.'" alt="">';
+				echo '<img class="media-object thumbnail" src="'.$imgUser.'" alt="">';
 				//echo '</a>';
+			echo '</div>';
+			echo '<div class="pull-left media" style="margin-right:10px;">';
+				echo '<img class="media-object thumbnail" src="'.$imgThumb.'" alt="">';
 			echo '</div>';
 			echo '<div class="media-body">';
 				echo '<div>'.$title.'</div>';
-				echo '<div>'.$item->modified.'</div>';
+				echo '<div>'.$modified.'</div>';
 				echo '<div>'.$body.'</div>';
 			echo '</div>';
 		echo '</div>';	
 	
-		echo '<div class="pull-right" style="width:20%" align="right">';
+		echo '<div class="pull-right" style="width:4%" align="right">';
 			echo '<div class="btn-group">';
 				echo EcWidget::caretBtn(false);
 				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
