@@ -33,6 +33,7 @@
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
 		</field>
+		<field id="user" name="user" type="hidden" default="0" />
 		<field id="topic" name="topic" type="hidden" default="0" />
 	</fieldset>
 	
