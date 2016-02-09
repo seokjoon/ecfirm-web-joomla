@@ -20,6 +20,7 @@ $title = ($this->plural) ? '<a href="'.$itemLink.'">'.$item->title.'</a>' : $ite
 $imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
 $imgThumb = (count($imgs) > 1) 
 	? JUri::base().$imgs['thumb'] : EctopicConst::IC_TOPIC_ABSTRACT;
+$imgUser = EctopicConst::IC_TOPIC_USER;
 
 
 
@@ -35,6 +36,11 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 					echo '<img class="media-object thumbnail" src="'.$imgThumb.'" alt="">';
 				//echo '</a>';
 			echo '</div>';
+			echo '<div class="pull-left media" style="margin-right:10px;">';
+				//echo '<a href="">';
+					echo '<img class="media-object thumbnail" src="'.$imgUser.'" alt="">';
+				//echo '</a>';
+			echo '</div>';	
 			echo '<div class="media-body">';
 				echo '<div>'.$title.'</div>';
 				echo '<div>'.$item->modified.'</div>';
@@ -67,6 +73,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 		echo '<input type="hidden" name="task" value="" />';
 		echo JHtml::_('form.token');
 	echo '</form><div class="clearfix"></div>';
+
 	
 	
 	if(isset($item->event->afterDisplay)) echo $item->event->afterDisplay;

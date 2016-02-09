@@ -18,6 +18,6 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 
-class EctopicViewTopiccmt extends EcViewItem {
+class EctopicViewTopiccmt extends EcViewItemAjax {
 
 }
