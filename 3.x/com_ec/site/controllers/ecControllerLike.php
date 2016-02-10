@@ -8,21 +8,30 @@ defined('_JEXEC') or die('Restricted access');
 class EcControllerLike extends EcControllerAjax {
 
 	public function add() {
-		if(!($this->allowAdd())) jexit('false');
+		//if(!($this->allowAdd())) jexit('false');
+		$allowAdd = $this->allowAdd();
 		$nameKey = $this->nameKey;
 		$nameCol = str_replace('like', '', $nameKey);
-		$data = $this->input->post->get('jform', array(), 'array');
-		$data[$nameKey] = 0;
-		$data['user'] = JFactory::getUser()->id;
-		$valueCol = $data[$nameCol];
-		$params['where'] = array($nameCol => $valueCol, 'user' => $data['user']);
-		if(EcDml::selectByParams($params, $nameKey) == 0) {
-			if(!($this->allowSave($data, $nameKey))) jexit('false');
-			if(!($this->getModel()->save($data))) jexit('false'); 
+		if($allowAdd) {
+			$data = $this->input->post->get('jform', array(), 'array');
+			$data[$nameKey] = 0;
+			$data['user'] = JFactory::getUser()->id;
+			$valueCol = $data[$nameCol];
+			$params['where'] = array($nameCol => $valueCol, 'user' => $data['user']);
+			if(EcDml::selectByParams($params, $nameKey) == 0) {
+				if(!($this->allowSave($data, $nameKey))) jexit('false');
+				if(!($this->getModel()->save($data))) jexit('false'); 
+			}
 		}
 		$view = $this->getView($this->default_view, JFactory::getDocument()->getType());
 		$view->setModel($this->getModel($nameCol));
-		$view->save($valueCol);
+		if($allowAdd) $view->save($valueCol); else $view->addCancel();
+	}
+	
+	public function addCancel() {
+		$return = $this->getRedirectLogin(); EcDebug::log($return, __method__);
+		$this->setRedirect($return);
+		$this->redirect(); jexit();
 	}
 	
 	public function delete() { //EcDebug::log($this->input->post->get('jform', array(), 'array'));

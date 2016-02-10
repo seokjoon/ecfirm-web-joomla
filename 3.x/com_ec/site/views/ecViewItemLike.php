@@ -7,6 +7,15 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcViewItemLike extends EcViewItemAjax {
 	
+	public function addCancel() {
+		$params['optionCom'] = $this->optionCom;
+		$params['nameKey'] = $this->nameKey;
+		$params['valueKey'] = 0;
+		$params['task'] = 'addCancel';
+		echo EcWidget::confirmModal($params);
+		jexit();
+	}
+	
 	public function delete($valueCol) {
 		$nameKey = $this->nameKey;
 		$nameCol = str_replace('like', '', $nameKey);
@@ -24,7 +33,7 @@ class EcViewItemLike extends EcViewItemAjax {
 		jexit();
 	}
 	
-	public function save($valueCol) {
+	public function save($valueCol) { 
 		$nameKey = $this->nameKey;
 		$nameCol = str_replace('like', '', $nameKey);
 		$model = $this->getModel($nameCol);
