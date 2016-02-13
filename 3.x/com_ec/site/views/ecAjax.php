@@ -13,7 +13,7 @@ class EcAjax {
 	
 	public static function popoverStrip($id, $title, $content) {
 		return 'jQuery("#'.$id.'").popover({
-			content: "content", placement: "top", title: "title",
+			content: "'.$content.'", placement: "top", title: "'.$title.'",
 		});';
 	}
 	
@@ -70,7 +70,7 @@ class EcAjax {
 				else { 
 					jQuery("#system-message-container").replaceWith
 						("<div id=system-message-container style=height:0px;>&nbsp;</div>");
-					'.self::popoverStrip($id, "title", "content").' }
+					'.self::popoverStrip($id, "title 1", "content 1").' }
 			};</script>';
 	}
 }

@@ -7,13 +7,13 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcViewItemLike extends EcViewItemAjax {
 	
-	public function addCancel() {
+	public function addFail($valueCol) {
 		$params['optionCom'] = $this->optionCom;
 		$params['nameKey'] = $this->nameKey;
 		$params['valueKey'] = 0;
-		$params['task'] = 'addCancel';
+		$params['task'] = 'addFail';
 		echo EcWidget::confirmModal($params);
-		jexit();
+		$this->delete($valueCol);
 	}
 	
 	public function delete($valueCol) {

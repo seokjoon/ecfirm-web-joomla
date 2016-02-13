@@ -7,16 +7,15 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcControllerLike extends EcControllerAjax {
 
-	public function add() {
-		//if(!($this->allowAdd())) jexit('false');
+	public function add() { //if(!($this->allowAdd())) jexit('false');
 		$allowAdd = $this->allowAdd();
 		$nameKey = $this->nameKey;
 		$nameCol = str_replace('like', '', $nameKey);
+		$data = $this->input->post->get('jform', array(), 'array');
+		$valueCol = $data[$nameCol];
 		if($allowAdd) {
-			$data = $this->input->post->get('jform', array(), 'array');
 			$data[$nameKey] = 0;
 			$data['user'] = JFactory::getUser()->id;
-			$valueCol = $data[$nameCol];
 			$params['where'] = array($nameCol => $valueCol, 'user' => $data['user']);
 			if(EcDml::selectByParams($params, $nameKey) == 0) {
 				if(!($this->allowSave($data, $nameKey))) jexit('false');
@@ -25,14 +24,16 @@ class EcControllerLike extends EcControllerAjax {
 		}
 		$view = $this->getView($this->default_view, JFactory::getDocument()->getType());
 		$view->setModel($this->getModel($nameCol));
-		if($allowAdd) $view->save($valueCol); else $view->addCancel();
+		if($allowAdd) $view->save($valueCol); else $view->addFail($valueCol);
 	}
 	
-	public function addCancel() {
-		$return = $this->getRedirectLogin(); EcDebug::log($return, __method__);
-		$this->setRedirect($return);
-		$this->redirect(); jexit();
+	public function addFail() {
+		$return = $this->getRedirectLogin(); 
+		echo '<script>window.location.href="'.$return.'"</script>';
+		jexit();
 	}
+	
+	public function cancel($nameKey = null) { jexit(); }
 	
 	public function delete() { //EcDebug::log($this->input->post->get('jform', array(), 'array'));
 		//$nameKey = $this->nameKey;

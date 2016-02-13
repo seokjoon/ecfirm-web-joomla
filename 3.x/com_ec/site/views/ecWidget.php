@@ -90,7 +90,7 @@ class EcWidget {
 		$input = '<input type="hidden" id="jform_'.$nameCol.'" value="'.$valueCol.'" />';
 		$click = ' onClick="'.$id.'_'.$task.'()" ';
 		$out .= '<a href="javascript:;"'.$click.' style="text-decoration: none;">'
-			.$icon.$text.$input.'</a>&#160;</span>';
+			.$icon.$text.$input.'</a>&#160;</span>'; 
 		return $out;
 	}
 	
