@@ -47,19 +47,12 @@ class EcControllerCmt extends EcControllerAjax {
 		$valueCol = $data[$nameCol];
 		$this->input->set($nameCol, $valueCol);
 	
-		//TODO
-		if(!(EcControllerLegacy::save($nameKey, $urlVar))) { //jexit('false');
-			$view = $this->getView($this->default_view, JFactory::getDocument()->getType());
-			$view->addFail($valueCol);
-		}
-		
-		else {
-			$view = $this->getView($this->default_view.'s', JFactory::getDocument()->getType());
-			$view->setModel($this->getModel($nameKey.'form'));
-			$view->setModel($this->getModel($nameKey.'s'));
-			$view->setModel($this->getModel($nameCol));
-			$view->show($valueCol);
-		}
+		$view = $this->getView($this->default_view.'s', JFactory::getDocument()->getType());
+		$view->setModel($this->getModel($nameKey.'form'));
+		$view->setModel($this->getModel($nameKey.'s'));
+		$view->setModel($this->getModel($nameCol));
+		if(EcControllerLegacy::save($nameKey, $urlVar)) $view->show($valueCol);
+		else $view->addFail($valueCol);
 	}
 	
 	/**

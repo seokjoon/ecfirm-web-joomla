@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcViewLike extends EcViewItemAjax {
+class EcViewLike extends EcViewAjax {
 	
 	public function addFail($valueCol) {
 		$params['optionCom'] = $this->optionCom;

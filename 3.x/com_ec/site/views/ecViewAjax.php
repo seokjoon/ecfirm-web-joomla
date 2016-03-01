@@ -19,15 +19,6 @@ class EcViewAjax extends EcViewItem {
 		echo EcAjax::focus($this->nameKey.'_0 #jform_body');
 		jexit();
 	}
-	
-	public function addFail($valueCol) { 
-		$params['optionCom'] = $this->optionCom;
-		$params['nameKey'] = $this->nameKey;
-		$params['valueKey'] = 0;
-		$params['task'] = 'addFail';
-		echo EcWidget::confirmModal($params);
-		jexit();
-	}
 
 	/**
 	 * @todo: move to child */

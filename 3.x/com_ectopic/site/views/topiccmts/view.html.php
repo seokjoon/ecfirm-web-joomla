@@ -1,5 +1,5 @@
 <?php /** @package ecfirm.net
-* @copyright	Copyright (C) kilmeny.net. All rights reserved.
+* @copyright	Copyright (C) ecfirm.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -19,6 +19,15 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 class EctopicViewTopiccmts extends EcViewList {
+	
+	public function addFail($valueCol) {
+		$params['optionCom'] = $this->optionCom;
+		$params['nameKey'] = $this->nameKey;
+		$params['valueKey'] = 0;
+		$params['task'] = __function__;
+		echo EcWidget::confirmModal($params);
+		$this->show($valueCol);
+	}
 	
 	public function hide($valueCol) {
 		$countCol = $this->getModel('topic')->getItem($valueCol)->topiccmt;
