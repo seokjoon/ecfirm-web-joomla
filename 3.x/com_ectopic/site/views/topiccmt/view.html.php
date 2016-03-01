@@ -20,4 +20,5 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 class EctopicViewTopiccmt extends EcViewAjax {
 
+	public function cancel($valueKey) { jexit(); }
 }

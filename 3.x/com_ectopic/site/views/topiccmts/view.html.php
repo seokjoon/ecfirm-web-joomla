@@ -20,11 +20,11 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 class EctopicViewTopiccmts extends EcViewList {
 	
-	public function addFail($valueCol) {
+	public function addFail($valueCol) { 
 		$params['optionCom'] = $this->optionCom;
 		$params['nameKey'] = $this->nameKey;
 		$params['valueKey'] = 0;
-		$params['task'] = __function__;
+		$params['task'] = __function__; 
 		echo EcWidget::confirmModal($params);
 		$this->show($valueCol);
 	}
@@ -42,8 +42,8 @@ class EctopicViewTopiccmts extends EcViewList {
 		jexit();
 	}
 	
-	public function show($valueCol) {
-		$this->items = $this->getItems();
+	public function show($valueCol) { 
+		$this->items = $this->getItems(); 
 		$nameKey = $this->nameKey;
 		$this->form = $this->get('Form', ($nameKey.'form'));
 		$nameCol = 'topic';
