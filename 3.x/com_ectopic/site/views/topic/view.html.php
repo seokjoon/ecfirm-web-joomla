@@ -1,5 +1,5 @@
 <?php /** @package ecfirm.net
-* @copyright	Copyright (C) kilmeny.net. All rights reserved.
+* @copyright	Copyright (C) ecfirm.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -18,7 +18,7 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 
-class EctopicViewTopic extends EcViewItemForm {
+class EctopicViewTopic extends EcViewForm {
 	
 	protected function getItem($valueKey) {
 		$model = $this->getModel($this->getName());

@@ -19,6 +19,14 @@ class EcControllerAjax extends EcControllerLegacy {
 		$view->add();
 	}
 
+	public function addFail() {
+		$return = $this->getRedirectLogin();
+		echo '<script>window.location.href="'.$return.'"</script>';
+		jexit();
+	}
+	
+	/**
+	 * @todo: move to child */
 	public function addPre() {
 		$view = $this->getView($this->default_view, JFactory::getDocument()->getType());
 		$view->addPre(true);
@@ -64,9 +72,5 @@ class EcControllerAjax extends EcControllerLegacy {
 		$view->setModel($this->getModel());
 		$valueKey = $this->input->post->get($nameKey, 0, 'uint');
 		$view->save($valueKey);
-	}
-	
-	public function saveFileImg() { //TODO
-		
 	}
 }

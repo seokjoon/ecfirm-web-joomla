@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcViewItemAjax extends EcViewItem {
+class EcViewAjax extends EcViewItem {
 	
 	public function __construct($config = array()) {
 		parent::__construct($config);
