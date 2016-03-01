@@ -1,5 +1,5 @@
 <?php /** @package ecfirm.net
-* @copyright	Copyright (C) ecfirm.net. All rights reserved.
+* @copyright	Copyright (C) kilmeny.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -12,11 +12,20 @@ class EcViewItemAjax extends EcViewItem {
 		$this->nameKey = $this->getName();
 	}
 	
-	public function add() {
+	public function add() { 
 		$this->form = $this->get('Form', $this->nameKey.'form');
 		$task = __function__;
 		require_once JPATH_COMPONENT.'/views/'.$this->nameKey.'/tmpl/default_add.php';
 		echo EcAjax::focus($this->nameKey.'_0 #jform_body');
+		jexit();
+	}
+	
+	public function addFail($valueCol) { 
+		$params['optionCom'] = $this->optionCom;
+		$params['nameKey'] = $this->nameKey;
+		$params['valueKey'] = 0;
+		$params['task'] = 'addFail';
+		echo EcWidget::confirmModal($params);
 		jexit();
 	}
 	
