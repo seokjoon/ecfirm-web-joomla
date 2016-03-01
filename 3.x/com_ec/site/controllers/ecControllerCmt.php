@@ -8,6 +8,8 @@ defined('_JEXEC') or die('Restricted access');
 class EcControllerCmt extends EcControllerAjax {
 	protected $cmtType = '';
 	
+	/**
+	 * singular */
 	public function delete() {
 		$data = $this->input->post->get('jform', array(), 'array');//EcDebug::log($data);
 		$nameKey = $this->nameKey;
@@ -24,7 +26,20 @@ class EcControllerCmt extends EcControllerAjax {
 		$view->setModel($this->getModel($nameCol));
 		$view->show($valueCol);
 	}
+	
+	/**
+	 * plural */
+	public function hide() {
+		$nameCol = $this->cmtType;
+		$data = $this->input->post->get('jform', array(), 'array');
+		$view = $this->getView($this->default_view, JFactory::getDocument()->getType());
+		$view->setModel($this->getModel($this->entity));
+		$view->setModel($this->getModel($nameCol));
+		$view->hide($data[$nameCol]);
+	}
 
+	/**
+	 * singular */
 	public function save($nameKey = null, $urlVar = null) {
 		$nameKey = (empty($nameKey)) ? $this->nameKey : $nameKey;
 		$data = $this->input->post->get('jform', array(), 'array');
@@ -45,5 +60,18 @@ class EcControllerCmt extends EcControllerAjax {
 			$view->setModel($this->getModel($nameCol));
 			$view->show($valueCol);
 		}
+	}
+	
+	/**
+	 * plural */
+	public function show() {
+		$nameCol = $this->cmtType;
+		$data = $this->input->post->get('jform', array(), 'array');
+		$this->input->set($nameCol, $data[$nameCol]);
+		$view = $this->getView($this->default_view, JFactory::getDocument()->getType());
+		$view->setModel($this->getModel($this->nameKey.'form'));
+		$view->setModel($this->getModel($this->entity));
+		$view->setModel($this->getModel($nameCol));
+		$view->show($data[$nameCol]);
 	}
 }
