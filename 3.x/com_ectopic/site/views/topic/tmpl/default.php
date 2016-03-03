@@ -45,12 +45,12 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			echo '<div class="media-body">';
 				echo '<div>'.$title.'</div>';
 				echo '<div>'.$item->ju_name.'&#160;'.$modified.'</div>';
-				echo '<div>'.$body.'</div>';
-				if($boolImgs) echo '<div><a href="'.JUri::base().$imgs['img']
-					.'"><img class="media-object thumbnail" src="'
+				echo '<div style="padding-top: 8px;">'.$body.'</div>';
+				if($boolImgs) echo '<div align="center" style="padding-top: 8px;"><a href="'
+					.JUri::base().$imgs['img'].'"><img class="media-object thumbnail" src="'
 					.JUri::base().$imgs['thumb'].'" alt=""></a></div>';
-				if($boolFiles) echo '<div><a href="'.JUri::base().$files['file']
-					.'">'.basename($files['file']).'</a></div>';
+				if($boolFiles) echo '<div><a href="'
+					.JUri::base().$files['file'].'">'.basename($files['file']).'</a></div>';
 			echo '</div>';
 		echo '</div>';	
 	
