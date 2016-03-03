@@ -11,15 +11,15 @@ $item = $this->item;
 
 
 
-$valueKey = (is_object($item)) ? $item->$nameKey : 0; EcDebug::lp($item->files);
+$valueKey = (is_object($item)) ? $item->$nameKey : 0; //EcDebug::lp($item);
 $availableEdit = (1) ? true : false;
 $availableDelete = (1) ? true : false;
 $modified = EcDatetime::interval($item->modified);
 $body = nl2br($item->body);
 $title = $item->title;
 $imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
-$imgThumb = (count($imgs) > 1) ?
-	//JUri::base().$imgs['thumb'] : EctopicConst::IC_TOPIC_ABSTRACT;
+$boolImgs = (count($imgs) > 1) ? true : false;
+$imgThumb = ($boolImgs) ? //JUri::base().$imgs['thumb'] :
 	EctopicConst::IC_TOPIC_ABSTRACT_IMG : EctopicConst::IC_TOPIC_ABSTRACT;
 $imgUser = EctopicConst::IC_TOPIC_USER;
 
@@ -44,7 +44,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 				echo '<div>'.$title.'</div>';
 				echo '<div>'.$item->ju_name.'&#160;'.$modified.'</div>';
 				echo '<div>'.$body.'</div>';
-				echo '<div><img class="media-object thumbnail" src="'
+				if($boolImgs) echo '<div><img class="media-object thumbnail" src="'
 					.JUri::base().$imgs['thumb'].'" alt=""></div>';
 			echo '</div>';
 		echo '</div>';	
