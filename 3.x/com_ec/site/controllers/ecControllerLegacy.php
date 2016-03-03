@@ -1,5 +1,5 @@
 <?php /** @package ecfirm.net
-* @copyright	Copyright (C) ecfirm.net. All rights reserved.
+* @copyright	Copyright (C) kilmeny.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -152,7 +152,8 @@ class EcControllerLegacy extends JControllerLegacy {
 	}
 	
 	protected function getRedirectRequest() {
-		$request = $_SERVER['REQUEST_URI'];
+		//$request = $_SERVER['REQUEST_URI'];
+		$request = JUri::getInstance()->toString();
 		if(empty($request) || !JUri::isInternal($request)) return $this->getRedirectReturn();
 		else return $request;
 	}

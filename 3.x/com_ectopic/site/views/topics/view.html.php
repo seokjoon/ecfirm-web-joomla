@@ -22,7 +22,7 @@ class EctopicViewTopics extends EcViewList {
 	
 	protected function getItems() {
 		$model = $this->getModel($this->getName());
-		$model->setState('order', 'modified DESC');
+		$model->setState('order', $this->nameKey.' DESC');//('order', 'modified DESC');
 		$model->setState('enabledPlugin', true);
 		$model->setState('joinUser', true);
 		$limit = $model->getState();

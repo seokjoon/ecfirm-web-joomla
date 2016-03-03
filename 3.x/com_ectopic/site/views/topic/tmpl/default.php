@@ -32,12 +32,12 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 
 		echo '<div class="pull-left" style="width:96%" align="left">';
 			echo '<div class="pull-left media" style="margin-right:10px;">';
+				echo '<img class="media-object thumbnail" src="'.$imgThumb.'" alt="">';
+			echo '</div>';
+			echo '<div class="pull-left media" style="margin-right:10px;">';
 				//echo '<a href="">';
 				echo '<img class="media-object thumbnail" src="'.$imgUser.'" alt="">';
 				//echo '</a>';
-			echo '</div>';
-			echo '<div class="pull-left media" style="margin-right:10px;">';
-				echo '<img class="media-object thumbnail" src="'.$imgThumb.'" alt="">';
 			echo '</div>';
 			echo '<div class="media-body">';
 				echo '<div>'.$title.'</div>';

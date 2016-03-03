@@ -1,5 +1,5 @@
 <?php /** @package ecfirm.net
-* @copyright	Copyright (C) ecfirm.net. All rights reserved.
+* @copyright	Copyright (C) kilmeny.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -44,6 +44,35 @@ class EcWidget {
 		$out .= '</div>';
 		return $out;
 	}//<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	
+	/**
+	 * @param array $params: optionCom, nameKey, valueKey, task */
+	public static function confirmModalSingle($params) {
+		extract($params);
+		$id = $nameKey.'_'.$valueKey;
+		$out = '<div id="'.$id.'">';
+		$id .= '_confirm';
+		$paramsCancel = $params;
+		$paramsCancel['task'] = 'cancel';
+		$out .= '<script>jQuery("#'.$id.'").modal({ backdrop: false, keyboard: false });</script>';
+		$out .= '<div id="'.$id.'" class="modal hide fade" tabindex="-1" role="dialog" 
+			style="position: static; margin-left: 0; width: 100%;" 
+			aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog"><div class="modal-content">
+				<div class="modal-header">
+					<h3 id="modalLabel" class="modal-title">'
+						.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</h3>
+				</div>
+				<div class="modal-body"><div>
+					<div id="test" class="pull-left">&#160;'.'&#160;</div>
+				</div></div>
+				<div class="modal-footer">'
+					.self::submitBtn($paramsCancel)
+				.'</div>
+			</div></div></div>';
+		$out .= '</div>';
+		return $out;
+	}
 	
 	public static function getIcon($task) {
 		switch ($task) {

@@ -1,5 +1,5 @@
 <?php /** @package ecfirm.net
-* @copyright	Copyright (C) ecfirm.net. All rights reserved.
+* @copyright	Copyright (C) kilmeny.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -23,6 +23,11 @@ class EcControllerForm extends EcControllerLegacy {
 			if(!(empty($layout))) $params['layout'] = $layout;
 			$params['view'] = $this->nameKey;
 			$params['task'] = $this->nameKey.'.editForm'; 
+		}
+		else {
+			$this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_ADD_FAILURE'));
+			$this->turnbackPush();
+			$this->turnbackPop();
 		}
 		$this->setRedirectParams($params);
 	}
@@ -78,6 +83,11 @@ class EcControllerForm extends EcControllerLegacy {
 			$params['view'] = $nameKey;
 			$params['task'] = $nameKey.'.editForm'; //EcDebug::log($params, __method__);
 			$this->setRedirectParams($params); 
+		} 
+		else { //$this->setRedirect(JRoute::_($this->getRedirectRequest()));
+			$this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_EDIT_FAILURE'));
+			$this->turnbackPush();
+			$this->turnbackPop();
 		}
 	}
 	
