@@ -14,7 +14,8 @@ $itemLink = '?option='.$optionCom.'&view='.$nameKey.'&'.$nameKey.'='.$valueKey;
 $title = '<a href="'.$itemLink.'">'.$item->title.'</a>';
 $imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
 $imgThumb = (count($imgs) > 1) ? 
-	JUri::base().$imgs['thumb'] : EctopicConst::IC_TOPIC_ABSTRACT;
+	//JUri::base().$imgs['thumb'] : EctopicConst::IC_TOPIC_ABSTRACT;
+	EctopicConst::IC_TOPIC_ABSTRACT_IMG : EctopicConst::IC_TOPIC_ABSTRACT;
 $imgUser = EctopicConst::IC_TOPIC_ABSTRACT_USER;
 
 

@@ -1,5 +1,5 @@
 <?php /** @package ecfirm.net
-* @copyright	Copyright (C) ecfirm.net. All rights reserved.
+* @copyright	Copyright (C) kilmeny.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 jimport('joomla.filesystem.folder');
@@ -64,5 +64,13 @@ class EcFile {
 		$dest = $_FILES['file']['name'];
 		$path = JPATH_SITE.'/upload/'.$path.'/'; //$path = JFactory::getConfig()->get('tmp_path').'/';
 		return JFile::upload($src, $path.$dest);
+	}
+	
+	public static function setFileByUser($params, $nameKey) {
+		$pathRelative = 'upload/user.'.JFactory::getUser()->id.'/'.$nameKey.'/';
+		$path = JPATH_SITE.'/'.$pathRelative;
+		$nameFile = $params['name'];
+		JFile::upload($params['tmp_name'], $path.$nameFile);
+		return $paths['file'] = $pathRelative.$nameFile;
 	}
 }

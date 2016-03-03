@@ -1,5 +1,5 @@
 <?php /** @package ecfirm.net
-* @copyright	Copyright (C) ecfirm.net. All rights reserved.
+* @copyright	Copyright (C) kilmeny.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 jimport('joomla.image.image');
@@ -39,7 +39,7 @@ class EcFileImg extends EcFile {
 	//public static function setFileImgShop($jform, $params, $nameKey) { //EcDebug::log($params, __method__); 
 	public static function setFileImgByUser($params, $nameKey) { //EcDebug::log($params, __method__); 
 		//$pathRelative = 'upload/shop.'.$jform['shop'].'/'.$nameKey.'/'; //EcDebug::log($path);
-		$pathRelative = 'upload/user.'.JFactory::getUser()->id.'/'.$nameKey.'/'; //EcDebug::log($path);
+		$pathRelative = 'upload/user.'.JFactory::getUser()->id.'/'.$nameKey.'/img/'; //EcDebug::log($path);
 		$path = JPATH_SITE.'/'.$pathRelative;
 		////JFile::upload($params['tmp_name'], $path.$params['name']);
 		//$nameFile = $jform[$nameKey].'.'.(self::getType($params['type']));

@@ -8,6 +8,7 @@ defined('_JEXEC') or die('Restricted access');
 class EctopicControllerTopic extends EcControllerForm {
 	
 	public function save($nameKey = null, $urlVar = null) {
+		$this->saveFile();
 		$this->saveFileImg(); //EcDebug::log($this->input->post->get('jform', array(), 'array')); //jexit();
 		parent::save($nameKey, $urlVar);
 	}

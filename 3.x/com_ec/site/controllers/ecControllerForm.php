@@ -114,6 +114,15 @@ class EcControllerForm extends EcControllerLegacy {
 		$this->turnbackPop('edit'); 
 	}
 	
+	protected function saveFile() {
+		$files = $this->input->files->get('jform');
+		if($files['file']['error'] != 0) return false;
+		$jform = $this->input->post->get('jform', array(), 'array');
+		$files = EcFile::setFileByUser($files['file'], $this->nameKey);
+		$jform['files'] = json_encode($files, JSON_UNESCAPED_SLASHES);
+		$this->input->post->set('jform', $jform);
+	}
+	
 	protected function saveFileImg() {
 		$files = $this->input->files->get('jform'); //EcDebug::lp($files); jexit();
 		if($files['img']['error'] != 0) return false;
