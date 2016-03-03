@@ -71,6 +71,7 @@ class EcFile {
 		$path = JPATH_SITE.'/'.$pathRelative;
 		$nameFile = $params['name'];
 		JFile::upload($params['tmp_name'], $path.$nameFile);
-		return $paths['file'] = $pathRelative.$nameFile;
+		$paths['file'] = $pathRelative.$nameFile;
+		return $paths;
 	}
 }

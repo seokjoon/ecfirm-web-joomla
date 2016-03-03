@@ -35,24 +35,24 @@ class EctopicTableTopicObserver extends JTableObserver {
 	}
 	
 	public function onAfterLoad(&$result, $row) {
-		if(property_exists($this->table, 'imgs'))
-			$this->imgsLoad = $this->table->imgs; //EcDebug::log($this->imgsLoad, __method__);
 		if(property_exists($this->table, 'files'))
 			$this->filesLoad = $this->table->files;
+		if(property_exists($this->table, 'imgs'))
+			$this->imgsLoad = $this->table->imgs; //EcDebug::log($this->imgsLoad, __method__);
 	}
 	
 	public function onAfterStore(&$result) { //EcDebug::log($this->table->imgs);
-		if((!(empty($this->imgsLoad))) && ($this->imgsLoad != $this->table->imgs)) {
-			$reg = new Registry;
-			$reg->loadString($this->imgsLoad);
-			if(count($reg) > 0) EcFile::delete($reg->toArray());
-			$this->imgsLoad = null;
-		}
 		if((!(empty($this->filesLoad))) && ($this->filesLoad != $this->table->files)) {
 			$reg = new Registry;
 			$reg->loadString($this->filesLoad);
 			if(count($reg) > 0) EcFile::delete($reg->toArray());
 			$this->filesLoad = null;
+		}
+		if((!(empty($this->imgsLoad))) && ($this->imgsLoad != $this->table->imgs)) {
+			$reg = new Registry;
+			$reg->loadString($this->imgsLoad);
+			if(count($reg) > 0) EcFile::delete($reg->toArray());
+			$this->imgsLoad = null;
 		}
 	}
 	

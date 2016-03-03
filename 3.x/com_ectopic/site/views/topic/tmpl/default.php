@@ -22,6 +22,8 @@ $boolImgs = (count($imgs) > 1) ? true : false;
 $imgThumb = ($boolImgs) ? //JUri::base().$imgs['thumb'] :
 	EctopicConst::IC_TOPIC_ABSTRACT_IMG : EctopicConst::IC_TOPIC_ABSTRACT;
 $imgUser = EctopicConst::IC_TOPIC_USER;
+$files = json_decode($item->files, true);
+$boolFiles = (count($files) > 0) ? true : false;
 
 
 
@@ -31,7 +33,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 	echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
 		.$nameKey.'_'.$valueKey.'_form" class="form-validate form-vertical">';
 
-		echo '<div class="pull-left" style="width:96%" align="left">';
+		echo '<div class="pull-left" style="width:94%" align="left">';
 			echo '<div class="pull-left media" style="margin-right:10px;">';
 				echo '<img class="media-object thumbnail" src="'.$imgThumb.'" alt="">';
 			echo '</div>';
@@ -44,12 +46,15 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 				echo '<div>'.$title.'</div>';
 				echo '<div>'.$item->ju_name.'&#160;'.$modified.'</div>';
 				echo '<div>'.$body.'</div>';
-				if($boolImgs) echo '<div><img class="media-object thumbnail" src="'
-					.JUri::base().$imgs['thumb'].'" alt=""></div>';
+				if($boolImgs) echo '<div><a href="'.JUri::base().$imgs['img']
+					.'"><img class="media-object thumbnail" src="'
+					.JUri::base().$imgs['thumb'].'" alt=""></a></div>';
+				if($boolFiles) echo '<div><a href="'.JUri::base().$files['file']
+					.'">'.basename($files['file']).'</a></div>';
 			echo '</div>';
 		echo '</div>';	
 	
-		echo '<div class="pull-right" style="width:4%" align="right">';
+		echo '<div class="pull-right" style="width:6%" align="right">';
 			echo '<div class="btn-group">';
 				echo EcWidget::caretBtn(false);
 				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
@@ -57,10 +62,10 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 					$params['optionCom'] = $optionCom;
 					$params['nameKey'] = $nameKey;
 					$params['valueKey'] = $valueKey;
-					$params['task'] = 'touch';
+					//$params['task'] = 'touch';
 					$params['idPostfix'] = 'form';
 					$params['post'] = true;
-					if($availableEdit) echo EcWidget::submitBtnLi($params);
+					//if($availableEdit) echo EcWidget::submitBtnLi($params);
 					$params['task'] = 'edit';
 					if($availableEdit) echo EcWidget::submitBtnLi($params);
 					echo '<li class="divider"></li>';

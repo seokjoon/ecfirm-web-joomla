@@ -11,7 +11,7 @@ $availableDelete = (1) ? true : false;
 $modified = EcDatetime::interval($item->modified);
 //$body = JHtml::_('string.truncateComplex', $item->body, 45); //nl2br
 $itemLink = '?option='.$optionCom.'&view='.$nameKey.'&'.$nameKey.'='.$valueKey;
-$title = '<a href="'.$itemLink.'">'.$item->title.'</a>';
+$title = '<a href="'.$itemLink.'">'.JHtml::_('string.truncateComplex', $item->title, 30).'</a>';
 $imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
 $boolImgs = (count($imgs) > 1) ? true : false;
 $imgThumb = ($boolImgs) ? //JUri::base().$imgs['thumb'] :
@@ -27,7 +27,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small" '
 	echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
 		.$nameKey.'_'.$valueKey.'_form" class="form-validate form-vertical">';
 
-		echo '<div class="pull-left" style="width:96%" align="left">';
+		echo '<div class="pull-left" style="width:94%" align="left">';
 			echo '<div class="pull-left media" style="margin-right:10px;">';
 					echo '<img class="media-object thumbnail" src="'.$imgThumb.'" alt="">';
 			echo '</div>';
@@ -46,7 +46,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small" '
 			echo '</div>';
 		echo '</div>';	
 	
-		echo '<div class="pull-right" style="width:4%" align="right">';
+		echo '<div class="pull-right" style="width:6%" align="right">';
 			echo '<div class="btn-group">';
 				echo EcWidget::caretBtn(false);
 				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
@@ -54,10 +54,10 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small" '
 					$params['optionCom'] = $optionCom;
 					$params['nameKey'] = $nameKey;
 					$params['valueKey'] = $valueKey;
-					$params['task'] = 'touch';
+					//$params['task'] = 'touch';
 					$params['idPostfix'] = 'form';
 					$params['post'] = true;
-					if($availableEdit) echo EcWidget::submitBtnLi($params);
+					//if($availableEdit) echo EcWidget::submitBtnLi($params);
 					$params['task'] = 'edit';
 					if($availableEdit) echo EcWidget::submitBtnLi($params);
 					echo '<li class="divider"></li>';
