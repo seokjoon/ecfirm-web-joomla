@@ -10,7 +10,8 @@ $availableEdit = (1) ? true : false;
 $availableDelete = (1) ? true : false;
 $modified = EcDatetime::interval($item->modified);
 //$body = JHtml::_('string.truncateComplex', $item->body, 45); //nl2br
-$itemLink = JRoute::_('?option='.$optionCom.'&view='.$nameKey.'&'.$nameKey.'='.$valueKey);
+$itemLink = JRoute::_('?option='.$optionCom.'&view='.$nameKey.'&'.$nameKey
+	.'='.$valueKey.'&objcat='.EcUrl::getObjcat().'&Itemid='.EcUrl::getItemId());
 $title = '<a href="'.$itemLink.'">'.JHtml::_('string.truncateComplex', $item->title, 30).'</a>';
 $imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
 $boolImgs = (count($imgs) > 1) ? true : false;

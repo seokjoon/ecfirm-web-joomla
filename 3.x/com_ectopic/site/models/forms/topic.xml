@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fieldset name="topicObj"
+	<!--fieldset name="topicObj"
 		addfieldpath="/administrator/components/com_ec/models/fields">
 		<field name="objcat" type="objcat" required="" 
 			label="COM_ECTOPIC_TOPIC_OBJCAT_LABEL"
 			description="COM_ECTOPIC_TOPIC_OBJCAT_DESC" />
-	</fieldset>
+	</fieldset-->
 	<fieldset name="topic">
 		<field id="title" name="title" type="text" class="inputbox input-xlarge"
 			required="true" label="COM_ECTOPIC_TOPIC_TITLE_LABEL" 
@@ -35,6 +35,7 @@
 		</field>
 		<field id="user" name="user" type="hidden" default="0" />
 		<field id="topic" name="topic" type="hidden" default="0" />
+		<field id="objcat" name="objcat" type="hidden" default="0" />
 	</fieldset>
 	
 	<fieldset name="columns">

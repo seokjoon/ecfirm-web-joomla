@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `#__ec_objcat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `#__ec_objcat` (`objcat`, `objtype`, `name`) VALUES 
-	(1, 1, 'User Default'), (2, 2, 'Page Default'), (3, 3, 'Product Default');
+	(1, 1, 'User Default'), (2, 2, 'Topic Default');
 	
 	
 	
@@ -23,4 +23,4 @@ CREATE TABLE IF NOT EXISTS `#__ec_objtype` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `#__ec_objtype` (`objtype`, `name`) VALUES 
-	(1, 'User'), (2, 'Page'), (3, 'Product');
+	(1, 'User'), (2, 'Topic');

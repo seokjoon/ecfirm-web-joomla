@@ -21,7 +21,8 @@ $imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
 $boolImgs = (count($imgs) > 1) ? true : false;
 $thumbTopic = ($boolImgs) ? //JUri::base().$imgs['thumb'] :
 	EctopicConst::IC_TOPIC_ABSTRACT_IMG : EctopicConst::IC_TOPIC_ABSTRACT;
-$thumbTopicLink = JRoute::_('?option='.$optionCom.'&view='.$nameKey.'s&task='.$nameKey.'s.display');
+$thumbTopicLink = JRoute::_('?option='.$optionCom.'&view='.$nameKey
+	.'s&task='.$nameKey.'s.display&objcat='.EcUrl::getObjcat().'&Itemid='.EcUrl::getItemId());
 $imgUser = EctopicConst::IC_TOPIC_USER;
 $files = json_decode($item->files, true);
 $boolFiles = (count($files) > 0) ? true : false;

@@ -10,11 +10,11 @@
 	
 	<fields name="request">
 		<fieldset name="request"
-			addfieldpath="/administrator/components/com_ectopic/models/fields"> 
+			addfieldpath="/administrator/components/com_ec/models/fields"> 
 			<field name="objcat" type="objcat"
 				label="COM_ECTOPIC_TOPICS_VIEW_DEFAULT_OBJCAT_LABEL"
 				edit="true" clear="false"
-				description="COM_ECTOPIC_ECTOPICS_VIEW_DEFAULT_OBJCAT_DESC" />
+				description="COM_ECTOPIC_TOPICS_VIEW_DEFAULT_OBJCAT_DESC" />
 		</fieldset>
 	</fields>
 	

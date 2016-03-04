@@ -14,7 +14,7 @@ class EctopicModelTopics extends EcModelList	{
 	public function __construct($config = array()) {
 		parent::__construct($config);
 		if(empty($this->keywords))
-			$this->keywords = array('modified', 'search');
+			$this->keywords = array('objcat', 'modified', 'search');
 	}
 	
 	/**
@@ -32,10 +32,12 @@ class EctopicModelTopics extends EcModelList	{
 				->join('INNER', '#__users as ju ON ju.id =t.user');
 		$order = $this->getState('order', false);
 		if($order != false) $query->order($order);
+		$objcat = $this->getState('get.objcat');
 		$modified = $this->getState('get.modified');
-		if(empty($obj)) $obj = $this->getState('filter.obj');
+		if(empty($objcat)) $objcat = $this->getState('filter.objcat');
 		if(empty($modified)) $modified = $this->getState('filter.modified');
 		$search = $this->getState('filter.search');
+		if(!empty($objcat)) $query->where('t.objcat = "'.$objcat.'"');
 		if(!empty($modified)) { //$query->order('t.topic DESC');
 			if(is_numeric($modified)) $modified = date('Y-m-d H:i:s', $modified);
 			$query->where('t.modified >= "'.$modified.'"'); 

@@ -36,6 +36,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 			echo EcWidget::submitBtn($params);
 		echo '</div></span>';
 	
+		echo '<input type="hidden" name="jform[objcat]" value="'.EcUrl::getObjcat().'" />';
 		//echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'" />';
 		echo '<input type="hidden" name="task" value="" />';
 		echo JHtml::_('form.token');

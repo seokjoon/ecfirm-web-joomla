@@ -23,13 +23,13 @@ class EcControllerForm extends EcControllerLegacy {
 			if(!(empty($layout))) $params['layout'] = $layout;
 			$params['view'] = $this->nameKey;
 			$params['task'] = $this->nameKey.'.editForm'; 
+			$this->setRedirectParams($params);
 		}
 		else {
 			$this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_ADD_FAILURE'));
 			$this->turnbackPush();
 			$this->turnbackPop();
 		}
-		$this->setRedirectParams($params);
 	}
 	
 	/**
@@ -136,7 +136,7 @@ class EcControllerForm extends EcControllerLegacy {
 	
 	protected function turnbackPop($task = null) { //EcDebug::log($task, __function__);
 		if(empty($task)) $task = $this->task;
-		$turnback = $this->getUserState($task, 'turnback', null);
+		$turnback = $this->getUserState($task, 'turnback', null); 
 		$this->setUserState($task, 'turnback', null);
 		if(!(empty($turnback))) $this->setRedirect($turnback);
 	}

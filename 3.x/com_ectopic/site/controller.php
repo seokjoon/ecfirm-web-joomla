@@ -12,8 +12,8 @@ class EctopicController extends EcControllerLegacy {
 	 * @param   boolean  $cachable   If true, the view output will be cached.
 	 * @param   boolean  $urlparams  An array of safe url parameters and their variable types, for valid values see {@link JFilterInput::clean()}.
 	 * @return  JController  This object to support chaining. */
-	public function display($cachable = false, $urlparams = false) {
-		/* $viewName = $this->input->getCmd('view', 'topics');
+	//public function display($cachable = false, $urlparams = false) {
+		/** $viewName = $this->input->getCmd('view', 'topics');
 		//$this->input->set('view', $viewName);
 		$this->default_view = $viewName;
 		$topic = $this->input->get('topic', 0, 'uint');
@@ -23,12 +23,12 @@ class EctopicController extends EcControllerLegacy {
 			return JError::raiseError
 				(403, JText::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
 		$this->default_view = 'topics'; */
-		if((($this->input->getCmd('view', 'topics', 'string')) == 'topics') 
+		/* if((($this->input->getCmd('view', 'topics', 'string')) == 'topics') 
 			&& (empty($this->input->get('task', null, 'string'))))
 			$this->setRedirectParams(array('view' => 'topics', 'task' => 'topics.display'));
 		else {
 			parent::display($cachable, $urlparams);
 			return $this; 
 		}
-	}
+	} */
 }
