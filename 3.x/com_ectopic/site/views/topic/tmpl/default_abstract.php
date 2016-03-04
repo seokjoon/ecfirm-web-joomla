@@ -10,11 +10,11 @@ $availableEdit = (1) ? true : false;
 $availableDelete = (1) ? true : false;
 $modified = EcDatetime::interval($item->modified);
 //$body = JHtml::_('string.truncateComplex', $item->body, 45); //nl2br
-$itemLink = '?option='.$optionCom.'&view='.$nameKey.'&'.$nameKey.'='.$valueKey;
+$itemLink = JRoute::_('?option='.$optionCom.'&view='.$nameKey.'&'.$nameKey.'='.$valueKey);
 $title = '<a href="'.$itemLink.'">'.JHtml::_('string.truncateComplex', $item->title, 30).'</a>';
 $imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
 $boolImgs = (count($imgs) > 1) ? true : false;
-$imgThumb = ($boolImgs) ? //JUri::base().$imgs['thumb'] :
+$thumbTopic = ($boolImgs) ? //JUri::base().$imgs['thumb'] :
 	EctopicConst::IC_TOPIC_ABSTRACT_IMG : EctopicConst::IC_TOPIC_ABSTRACT;
 $imgUser = EctopicConst::IC_TOPIC_ABSTRACT_USER;
 
@@ -29,7 +29,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small" '
 
 		echo '<div class="pull-left" style="width:94%" align="left">';
 			echo '<div class="pull-left media" style="margin-right:10px;">';
-					echo '<img class="media-object thumbnail" src="'.$imgThumb.'" alt="">';
+					echo '<img class="media-object thumbnail" src="'.$thumbTopic.'" alt="">';
 			echo '</div>';
 			echo '<div class="pull-left media" style="margin-right:10px;">';
 				//echo '<a href="">';

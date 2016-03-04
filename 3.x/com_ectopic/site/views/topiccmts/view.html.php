@@ -20,7 +20,7 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 class EctopicViewTopiccmts extends EcViewList {
 	
-	public function addFail($valueCol) { 
+	public function writeFail($valueCol) { 
 		$params['optionCom'] = $this->optionCom;
 		$params['nameKey'] = $this->nameKey;
 		$params['valueKey'] = 0;

@@ -17,14 +17,16 @@ class EcControllerCmt extends EcControllerAjax {
 		$nameCol = $this->cmtType;
 		$valueCol = $data[$nameCol];
 		$asset = $this->option.'.'.$nameKey.'.'.$valueKey;
-		if(!(JFactory::getUser()->authorise('core.delete', $asset))) jexit('false');
+		//if(!(JFactory::getUser()->authorise('core.delete', $asset))) jexit('false');
 		$this->input->set($nameCol, $valueCol);
-		if(!(EcControllerLegacy::delete())) jexit('false');
+		//if(!(EcControllerLegacy::delete())) jexit('false');
 		$view = $this->getView($this->default_view.'s', JFactory::getDocument()->getType());
 		$view->setModel($this->getModel($nameKey.'form'));
 		$view->setModel($this->getModel($nameKey.'s'));
 		$view->setModel($this->getModel($nameCol));
-		$view->show($valueCol);
+		//$view->show($valueCol);
+		if(EcControllerLegacy::delete()) $view->show($valueCol);
+		else $view->writeFail($valueCol);
 	}
 	
 	/**
@@ -46,13 +48,12 @@ class EcControllerCmt extends EcControllerAjax {
 		$nameCol = $this->cmtType;
 		$valueCol = $data[$nameCol];
 		$this->input->set($nameCol, $valueCol);
-	
 		$view = $this->getView($this->default_view.'s', JFactory::getDocument()->getType());
 		$view->setModel($this->getModel($nameKey.'form'));
 		$view->setModel($this->getModel($nameKey.'s'));
 		$view->setModel($this->getModel($nameCol));
 		if(EcControllerLegacy::save($nameKey, $urlVar)) $view->show($valueCol);
-		else $view->addFail($valueCol);
+		else $view->writeFail($valueCol);
 	}
 	
 	/**

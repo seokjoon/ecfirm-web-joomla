@@ -18,12 +18,6 @@ class EcControllerAjax extends EcControllerLegacy {
 		$view->setModel($this->getModel($this->nameKey.'form'));
 		$view->add();
 	}
-
-	public function addFail() {
-		$return = $this->getRedirectLogin();
-		echo '<script>window.location.href="'.$return.'"</script>';
-		jexit();
-	}
 	
 	/**
 	 * @todo: move to child */
@@ -72,5 +66,11 @@ class EcControllerAjax extends EcControllerLegacy {
 		$view->setModel($this->getModel());
 		$valueKey = $this->input->post->get($nameKey, 0, 'uint');
 		$view->save($valueKey);
+	}
+	
+	public function writeFail() {
+		$return = $this->getRedirectLogin();
+		echo '<script>window.location.href="'.$return.'"</script>';
+		jexit();
 	}
 }

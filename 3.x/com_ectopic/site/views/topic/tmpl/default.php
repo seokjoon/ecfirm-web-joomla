@@ -19,8 +19,9 @@ $body = nl2br($item->body);
 $title = $item->title;
 $imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
 $boolImgs = (count($imgs) > 1) ? true : false;
-$imgThumb = ($boolImgs) ? //JUri::base().$imgs['thumb'] :
+$thumbTopic = ($boolImgs) ? //JUri::base().$imgs['thumb'] :
 	EctopicConst::IC_TOPIC_ABSTRACT_IMG : EctopicConst::IC_TOPIC_ABSTRACT;
+$thumbTopicLink = JRoute::_('?option='.$optionCom.'&view='.$nameKey.'s&task='.$nameKey.'s.display');
 $imgUser = EctopicConst::IC_TOPIC_USER;
 $files = json_decode($item->files, true);
 $boolFiles = (count($files) > 0) ? true : false;
@@ -35,7 +36,9 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
 
 		echo '<div class="pull-left" style="width:94%" align="left">';
 			echo '<div class="pull-left media" style="margin-right:10px;">';
-				echo '<img class="media-object thumbnail" src="'.$imgThumb.'" alt="">';
+				echo '<a href="'.$thumbTopicLink.'">';
+					echo '<img class="media-object thumbnail" src="'.$thumbTopic.'" alt="">';
+				echo '</a>';
 			echo '</div>';
 			echo '<div class="pull-left media" style="margin-right:10px;">';
 				//echo '<a href="">';

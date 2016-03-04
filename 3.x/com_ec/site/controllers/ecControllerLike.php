@@ -24,13 +24,7 @@ class EcControllerLike extends EcControllerAjax {
 		}
 		$view = $this->getView($this->default_view, JFactory::getDocument()->getType());
 		$view->setModel($this->getModel($nameCol));
-		if($allowAdd) $view->save($valueCol); else $view->addFail($valueCol);
-	}
-	
-	public function addFail() {
-		$return = $this->getRedirectLogin(); 
-		echo '<script>window.location.href="'.$return.'"</script>';
-		jexit();
+		if($allowAdd) $view->save($valueCol); else $view->writeFail($valueCol);
 	}
 	
 	public function cancel($nameKey = null) { jexit(); }

@@ -7,15 +7,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcViewLike extends EcViewAjax {
 	
-	public function addFail($valueCol) {
-		$params['optionCom'] = $this->optionCom;
-		$params['nameKey'] = $this->nameKey;
-		$params['valueKey'] = 0;
-		$params['task'] = 'addFail';
-		echo EcWidget::confirmModal($params);
-		$this->delete($valueCol);
-	}
-	
 	public function delete($valueCol) {
 		$nameKey = $this->nameKey;
 		$nameCol = str_replace('like', '', $nameKey);
@@ -50,5 +41,14 @@ class EcViewLike extends EcViewAjax {
 		$params['countKey'] = $countKey;
 		echo EcWidget::likeSpan($params);
 		jexit();
+	}
+	
+	public function writeFail($valueCol) {
+		$params['optionCom'] = $this->optionCom;
+		$params['nameKey'] = $this->nameKey;
+		$params['valueKey'] = 0;
+		$params['task'] = 'writeFail';
+		echo EcWidget::confirmModal($params);
+		$this->delete($valueCol);
 	}
 }
