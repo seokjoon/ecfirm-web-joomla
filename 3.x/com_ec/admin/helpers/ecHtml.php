@@ -6,6 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 class EcHtml {
+
 	/** * Build an array of block/unblock user states to be used by jgrid.state,
 	 * State options will be different for any user
 	 * and for currently logged in user

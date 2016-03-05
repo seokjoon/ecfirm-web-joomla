@@ -6,6 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 class EcHelper extends JHelperContent {	
+
 	public static function getActionsEc($id = null, $section = 'component')	{
 		$user = JFactory::getUser();
 		$result = new JObject;

@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS `#__ec_objcat` (
 	`objcat` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
 	`objtype` INT(11) UNSIGNED NOT NULL DEFAULT 0, 
 	`modified` DATETIME NOT NULL DEFAULT '2015-01-01 00:00:00',
+	`asset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
 	`name` VARCHAR(255) NOT NULL DEFAULT '',
 	`options` VARCHAR(5120) NOT NULL DEFAULT '',
 	PRIMARY KEY (`objcat`),
@@ -9,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `#__ec_objcat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `#__ec_objcat` (`objcat`, `objtype`, `name`) VALUES 
-	(1, 1, 'User Default'), (2, 2, 'Topic Default');
+	(1, 1, 'Default User'), (2, 2, 'Default Topic');
 	
 	
 	
