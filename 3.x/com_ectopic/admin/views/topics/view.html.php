@@ -10,8 +10,9 @@ class EctopicViewTopics extends EcViewList {
 	/** * Add the page title and toolbar.
 	 * @since   1.6 */
 	protected function addToolbar() {
+		parent::addToolbar();
 		$user = JFactory::getUser();
-		$canDo = $this->canDo;
+		$canDo = $this->canDo; //EcDebug::lp($canDo); jexit();
 		if ($canDo->get('core.create'))	JToolbarHelper::addNew('topic.add');
 		if (($canDo->get('core.edit')) || ($canDo->get('core.edit.own')))	{
 			JToolbarHelper::editList('topic.edit');
@@ -22,6 +23,5 @@ class EctopicViewTopics extends EcViewList {
 		}
 		if ($canDo->get('core.delete'))
 			JToolbarHelper::deleteList('', 'topics.delete', 'COM_ECTOPIC_DELETE');
-		parent::addToolbar();
 	}
 }

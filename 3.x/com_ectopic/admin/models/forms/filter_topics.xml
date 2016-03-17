@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="filter"
+		addfieldpath="/administrator/components/com_ec/models/fields">
+		<field name="search" type="text" hint="COM_ECTOPIC_TOPIC_FILTER_SEARCH_HINT" />
+		<field name="topiccat" type="topiccat" onchange="this.form.submit();"> 
+			<option value="">COM_ECTOPIC_TOPIC_FILTER_TOPICCAT_SELECT</option>
+		</field>
+		<field name="username" type="username" onchange="this.form.submit();">
+			<option value="">COM_ECTOPIC_TOPIC_FILTER_USERNAME_SELECT</option>
+		</field>
+		<field name="display" type="list" class="chzn-color"
+			onchange="this.form.submit();">
+			<option value="">COM_ECTOPIC_TOPIC_FILTER_DISPLAY_SELECT</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+	</fields>
+	
+	
+	
+	<fields name="list">
+		<field name="limit" type="limitbox" class="inputbox input-mini"
+			default="20" onchange="this.form.submit();" />
+	</fields>
+</form>
