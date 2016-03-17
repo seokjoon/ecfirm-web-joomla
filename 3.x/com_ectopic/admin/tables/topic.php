@@ -6,7 +6,8 @@ require_once 'topicObserver.php';
 
 
 
-class EctopicTableTopic extends JTable	{
+class EctopicTableTopic extends EcTableAsset	{
+	
 	/** * @param   JDatabaseDriver  A database connector object */
 	public function __construct(&$_db)	{
 		parent::__construct('#__ec_topic', 'topic', $_db);

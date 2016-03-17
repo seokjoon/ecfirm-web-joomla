@@ -36,7 +36,9 @@ class EcViewList extends EcViewLegacy {
 		$this->canDo = EcHelper::getActionsEc($this->option);
 		JToolbarHelper::title
 			(JText::_(JString::strtoupper($this->option)), 'stack article');
-		if($this->canDo->get('core.admin')) 
+		if($this->canDo->get('core.admin')) {
+			JToolbarHelper::divider();
 			JToolbarHelper::preferences($this->option);
+		}
 	}
 }
