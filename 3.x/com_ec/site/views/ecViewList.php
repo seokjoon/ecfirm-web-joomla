@@ -33,7 +33,7 @@ class EcViewList extends EcViewLegacy {
 		$items = $this->get('Items', $this->getName());
 		$state = $this->get('State', $this->getName());
 		if((isset($state->enabledPlugin)) && ($state->enabledPlugin)) {
-			JPluginHelper::importPlugin('ec');
+			JPluginHelper::importPlugin(EcConst::getPrefix());//('ec');
 			$dispatcher = JEventDispatcher::getInstance();
 			foreach ($items as $item) $this->eventPlugin($dispatcher, $item); 
 		}

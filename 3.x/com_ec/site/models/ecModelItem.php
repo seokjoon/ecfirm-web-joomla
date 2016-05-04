@@ -37,7 +37,7 @@ class EcModelItem extends JModelItem {
 	public function delete(&$valueKeys) {
 		if($this->getState('enabledPlugin', false)) {
 			$dispatcher = JEventDispatcher::getInstance();
-			JPluginHelper::importPlugin('ec'); 
+			JPluginHelper::importPlugin(EcConst::getPrefix());//('ec'); 
 		}
 		$valueKeys = (array)$valueKeys;
 		$table = $this->getTable();
@@ -124,7 +124,7 @@ class EcModelItem extends JModelItem {
 		}
 		if($this->getState('enabledPlugin', false)) {
 			$dispatcher = JEventDispatcher::getInstance();
-			JPluginHelper::importPlugin('ec'); 
+			JPluginHelper::importPlugin(EcConst::getPrefix());//('ec'); 
 		}
 		$table = $this->getTable();
 		$nameKey = $table->getKeyName();

@@ -92,7 +92,7 @@ class EcModelForm extends JModelForm {
 	protected function preprocessData($context, &$data) {
 		if(!($this->getState('enabledPlugin', false))) return;
 		$dispatcher = JEventDispatcher::getInstance();
-		JPluginHelper::importPlugin('ec');
+		JPluginHelper::importPlugin(EcConst::getPrefix());//('ec');
 		$results = $dispatcher->trigger
 			('on'.$this->nameKey.'PrepareData', array($context, $data));
 		if (count($results) > 0 && in_array(false, $results, true))
@@ -110,7 +110,7 @@ class EcModelForm extends JModelForm {
 	 * @throws  Exception if there is an error in the form event. */
 	protected function preprocessForm(JForm $form, $data, $group = '') {
 		if(!($this->getState('enabledPlugin', false))) return;
-		if(empty($group)) $i = 'ec';
+		if(empty($group)) $group = EcConst::getPrefix();//'ec';
 		JPluginHelper::importPlugin($group);
 		$dispatcher = JEventDispatcher::getInstance();
 		$results = $dispatcher->trigger
