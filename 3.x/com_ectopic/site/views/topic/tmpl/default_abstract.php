@@ -75,5 +75,4 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small" '
 
 	
 	
-	//if(isset($item->event->afterDisplay)) echo $item->event->afterDisplay;
 echo '</div>';
