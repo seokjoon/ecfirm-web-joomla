@@ -1,5 +1,5 @@
 <?php /** @package ecfirm.net
-* @copyright	Copyright (C) kilmeny.net. All rights reserved.
+* @copyright	Copyright (C) ecfirm.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -26,14 +26,14 @@ class EcAjax {
 		$validate = ($validate) ? 'true' : 'false';
 		
 		switch($nameKey) { //@TODO
-			case 'msg' : case 'topic' :
+			case 'msg' : case 'topic' : case 'notice' :
 				switch($task) {
 					case 'cancel' :
 					case 'save' : $out = $nameKey.'_'.(int)$valueKey; break;
 					default : $out = $id; break; 
 				} 
 				break;
-			case 'msgcmt' : case 'topiccmt' :
+			case 'msgcmt' : case 'topiccmt' : case 'noticecmt' :
 				switch($task) {
 					case 'delete' : 
 						$extra .= 'jQuery("#'.$nameCol.'_'.$valueCol.'_'.$nameKey.'s").replaceWith("");';
