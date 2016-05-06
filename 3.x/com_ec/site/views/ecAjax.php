@@ -26,14 +26,14 @@ class EcAjax {
 		$validate = ($validate) ? 'true' : 'false';
 		
 		switch($nameKey) { //@TODO
-			case 'msg' : case 'topic' : case 'notice' :
+			case 'msg' : case 'topic' : case 'notice' : case 'faq' :
 				switch($task) {
 					case 'cancel' :
 					case 'save' : $out = $nameKey.'_'.(int)$valueKey; break;
 					default : $out = $id; break; 
 				} 
 				break;
-			case 'msgcmt' : case 'topiccmt' : case 'noticecmt' :
+			case 'msgcmt' : case 'topiccmt' : case 'noticecmt' : case 'faqcmt' :
 				switch($task) {
 					case 'delete' : 
 						$extra .= 'jQuery("#'.$nameCol.'_'.$valueCol.'_'.$nameKey.'s").replaceWith("");';
