@@ -31,13 +31,13 @@ class EcControllerList extends JControllerAdmin	{
 	public function bool($attr = 'enable')	{
 		JSession::checkToken() or die(JText::_('JINVALID_TOKEN'));
 		$user = JFactory::getUser();
-		$ids = $this->input->get('cid', array(), 'array');
+		$ids = $this->input->get('cid', array(), 'array'); 
 		$values = array('off'.$attr => 0, 'on'.$attr => 1);
 		$task = $this->getTask();
 		$value = JArrayHelper::getValue($values, $task, 0, 'int');
 		foreach ($ids as $i => $id)	{
 			if(!$user->authorise('core.edit.state', 
-				'com_'.EcConst::getPrefix.$this->nameKey.'.'.$this->nameKey.'.'.(int)$id)) {
+				'com_'.EcConst::getPrefix().$this->nameKey.'.'.$this->nameKey.'.'.(int)$id)) {
 				unset($ids[$i]);
 				JError::raiseNotice(403, 
 					JText::_('JLIB_APPLICATION_ERROR_EDITSTATE_NOT_PERMITTED')); 

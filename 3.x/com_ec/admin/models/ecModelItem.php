@@ -18,8 +18,8 @@ class EcModelItem extends JModelAdmin	{
 		if(empty($pks))	{
 			$this->setError(JText::_('COM_BM_NO_ITEM_SELECTED'));
 			return false; 
-		}
-		$table = $this->getTable(); //EcDebug::lp($table);
+		} //EcDebug::log($pks, __method__); //EcDebug::log($value.':'.$attr, __method__);
+		$table = $this->getTable(); //EcDebug::log($table, __method__);
 		$user = JFactory::getUser();
 		foreach ($pks as $pk)	{
 			if (!$user->authorise('core.edit', 
