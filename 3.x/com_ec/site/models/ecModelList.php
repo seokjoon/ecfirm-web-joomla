@@ -8,6 +8,13 @@ defined('_JEXEC') or die('Restricted access');
 class EcModelList extends JModelList	{
 	protected $keywords = array();
 	
+	/** * Function to get the active filters
+	 * @return  array  Associative array in the format: array('filter_published' => 0)
+	 * @since   3.2 */
+	public function getActiveFilters() {
+		return array('filter_published' => 0); //return parent::getActiveFilters();
+	}
+	
 	/** * Method to get a store id based on the model configuration state.
 	 * This is necessary because the model is used by the component and
 	 * different modules that might need different sets of data or different
