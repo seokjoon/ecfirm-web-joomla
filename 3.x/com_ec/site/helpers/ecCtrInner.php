@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-abstract class EcControllerInner {
+abstract class EcCtrInner {
 	protected static $instance = null;
 	protected static $nameKey;
 	protected static $nameCom; 
@@ -24,7 +24,7 @@ abstract class EcControllerInner {
 		if(($nameCom == self::$nameCom) && ($nameKey == self::$nameKey) 
 			&& (is_object(self::$instance))) 
 			return self::$instance;
-		$class = ucfirst($nameCom).'ControllerInner'.ucfirst($nameKey);
+		$class = ucfirst($nameCom).'CtrInner'.ucfirst($nameKey);
 		if(class_exists($class)) self::$instance = new $class($nameCom, $nameKey);
 		return self::$instance;
 	}

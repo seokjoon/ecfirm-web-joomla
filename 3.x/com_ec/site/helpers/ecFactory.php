@@ -6,11 +6,11 @@ defined('_JEXEC') or die('Restricted access');
 
 
 abstract class EcFactory {
-	public static $controllerInnerProd = null;
+	/* public static $ctrInnerTest = null;
 	
-	public static function getControllerInnerDml() {
-		if(!self::$controllerInnerProd) self::$controllerInnerProd =
-			EcControllerInnerDml::getInstance('prod');
-		return self::$controllerInnerProd;
-	}
+	public static function getCtrInnerTest() {
+		if(!self::$ctrInnerTest) self::$ctrInnerTest =
+			EcCtrInnerTest::getInstance('test');
+		return self::$ctrInnerTest;
+	} */
 }
