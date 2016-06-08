@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-abstract class EcCtrInner {
+abstract class EcCtrInner { 
 	protected static $instance = null;
 	protected static $nameKey;
 	protected static $nameCom; 
