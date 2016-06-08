@@ -17,7 +17,8 @@ abstract class EcCtrInner {
 	
 	protected function getControllerLegacy($nameCom) {
 		$nameCom = (empty($nameCom)) ? self::$nameCom : $nameCom;
-		return EcControllerLegacy::getInstance($nameCom);
+		try { return EcControllerLegacy::getInstance($nameCom); }
+		catch(Exception $e) { EcDebug::log($e->getMessage()); }
 	}
 	
 	public static function getInstance($nameCom, $nameKey) {
@@ -30,9 +31,9 @@ abstract class EcCtrInner {
 	}
 	
 	public function getModel($nameKey = null) {
-		if(empty($nameKey)) $nameKey = self::$nameKey; 
+		if(empty($nameKey)) $nameKey = self::$nameKey;
 		try{ return $this->getControllerLegacy(self::$nameCom)->getModel($nameKey); }
-		catch(Exception $e) { EcDebug::lop($e->getMessage()); }
+		catch(Exception $e) { EcDebug::log($e->getMessage()); }
 	}
 	
 	public function test() {
