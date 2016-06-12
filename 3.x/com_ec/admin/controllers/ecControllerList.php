@@ -32,9 +32,9 @@ class EcControllerList extends JControllerAdmin	{
 		JSession::checkToken() or die(JText::_('JINVALID_TOKEN'));
 		$user = JFactory::getUser();
 		$ids = $this->input->get('cid', array(), 'array'); 
-		$values = array('off'.$attr => 0, 'on'.$attr => 1);
+		$values = array('off'.$attr => 2, 'on'.$attr => 1);
 		$task = $this->getTask();
-		$value = JArrayHelper::getValue($values, $task, 0, 'int');
+		$value = JArrayHelper::getValue($values, $task, 2, 'int');
 		foreach ($ids as $i => $id)	{
 			if(!$user->authorise('core.edit.state', 
 				'com_'.EcConst::getPrefix().$this->nameKey.'.'.$this->nameKey.'.'.(int)$id)) {
@@ -53,7 +53,7 @@ class EcControllerList extends JControllerAdmin	{
 				if($value == 1) $this->setMessage
 					(JText::plural(JString::strtoupper($this->option)
 						.'_ON_'.$attr.'_N', count($ids)));
-				elseif($value == 0) $this->setMessage
+				elseif($value == 2) $this->setMessage
 					(JText::plural(JString::strtoupper($this->option)
 						.'_OFF_'.$attr.'_N', count($ids))); 
 			} 
