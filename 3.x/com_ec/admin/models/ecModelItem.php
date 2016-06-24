@@ -72,7 +72,7 @@ class EcModelItem extends JModelAdmin	{
 	 * @param   array     Configuration array for model. Optional.
 	 * @return  JTable    A database object */
 	public function getTable($type = null, $prefix = null, $config = array()) {
-		if(empty($prefix)) $prefix = 'Ec'.$this->name.'Table';
+		if(empty($prefix)) $prefix = EcConst::getPrefix().$this->name.'Table';
 		if(empty($type)) $type = $this->name; //EcDebug::lp($prefix.':'.$type);
 		return JTable::getInstance($type, $prefix, $config);
 	}
