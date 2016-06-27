@@ -25,7 +25,7 @@ class EcControllerForm extends EcControllerLegacy {
 			$params['task'] = $this->nameKey.'.editForm'; 
 			$this->setRedirectParams($params);
 		}
-		else {
+		else { 
 			$this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_ADD_FAILURE'));
 			$this->turnbackPush();
 			$this->turnbackPop();
@@ -138,6 +138,7 @@ class EcControllerForm extends EcControllerLegacy {
 		if(empty($task)) $task = $this->task;
 		$turnback = $this->getUserState($task, 'turnback', null); 
 		$this->setUserState($task, 'turnback', null);
+		if($turnback == JUri::getInstance()->toString()) $turnback = JUri::base();//avoid inifite loop
 		if(!(empty($turnback))) $this->setRedirect($turnback);
 	}
 	
