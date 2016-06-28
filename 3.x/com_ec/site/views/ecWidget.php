@@ -77,7 +77,6 @@ class EcWidget {
 	public static function getIcon($task) {
 		switch (TRUE) {
 			case preg_match('/^add/', $task): $icon = 'icon-edit'; break;
-			case preg_match('/^addPre/', $task): $icon = 'icon-trash'; break;
 			case preg_match('/^cancel/', $task): $icon = 'icon-trash'; break;
 			case preg_match('/^comment/', $task): $icon = 'icon-comment'; break;
 			case preg_match('/^delete/', $task): $icon = 'icon-trash'; break;
@@ -85,9 +84,8 @@ class EcWidget {
 			case preg_match('/^like/', $task): $icon = 'icon-thumbs-up'; break;
 			case preg_match('/^option/', $task): $icon = 'icon-cog'; break;
 			case preg_match('/^save/', $task): $icon = 'icon-edit'; break;
-			case preg_match('/^saveImg', $task): $icon = 'icon-edit'; break;
-			case preg_match('/^share', $task): $icon = 'icon-share'; break;
-			case preg_match('/^touch', $task): $icon = 'icon-chevron-up'; break;
+			case preg_match('/^share/', $task): $icon = 'icon-share'; break;
+			case preg_match('/^touch/', $task): $icon = 'icon-chevron-up'; break;
 			default: $icon = ''; break; 
 		}
 		return $icon;

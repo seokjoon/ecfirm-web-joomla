@@ -90,11 +90,13 @@ class EcControllerForm extends EcControllerLegacy {
 			$this->turnbackPop();
 		}
 	}
-	
+
+	/**
+	 * @deprecated: use form() */
 	public function editForm() {
 		//TODO internal redirect check
-		$view = $this->getView($this->default_view, 
-			JFactory::getDocument()->getType(), '', array('layout' => 'edit'));
+		$view = $this->getView($this->default_view,
+				JFactory::getDocument()->getType(), '', array('layout' => 'edit'));
 		$view->setModel($this->getModel($this->nameKey));
 		$view->setModel($this->getModel($this->nameKey.'form'));
 		$view->editForm();
@@ -145,5 +147,14 @@ class EcControllerForm extends EcControllerLegacy {
 	protected function turnbackPush($task = null) { //EcDebug::log($task, __function__);
 		if(empty($task)) $task = $this->task;
 		$this->setUserState($task, 'turnback', JUri::getInstance()->toString());
+	}
+
+	protected function useForm($layout = null) {
+		//TODO internal redirect check
+		if(empty($layout)) $layout = $this->nameKey;
+		$view = $this->getView($layout, JFactory::getDocument()->getType(), '', array('layout' => $layout.'form'));
+		$view->setModel($this->getModel($this->nameKey));
+		$view->setModel($this->getModel($layout.'form')); //EcDebug::lp($view);
+		$view->useForm($layout.'form');
 	}
 }
