@@ -82,6 +82,7 @@ class EcWidget {
 			case preg_match('/^delete/', $task): $icon = 'icon-trash'; break;
 			case preg_match('/^edit/', $task): $icon = 'icon-edit'; break;
 			case preg_match('/^like/', $task): $icon = 'icon-thumbs-up'; break;
+			case preg_match('/^log/', $task): $icon = 'icon-chevron-right'; break;
 			case preg_match('/^option/', $task): $icon = 'icon-cog'; break;
 			case preg_match('/^save/', $task): $icon = 'icon-edit'; break;
 			case preg_match('/^share/', $task): $icon = 'icon-share'; break;

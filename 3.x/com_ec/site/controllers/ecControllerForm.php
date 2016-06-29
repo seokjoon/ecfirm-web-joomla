@@ -26,9 +26,8 @@ class EcControllerForm extends EcControllerLegacy {
 			$this->setRedirectParams($params);
 		}
 		else { 
-			$this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_ADD_FAILURE'));
-			$this->turnbackPush();
-			$this->turnbackPop();
+			$this->setRedirect($this->getRedirectRequest());
+			$this->redirect();
 		}
 	}
 	
@@ -51,9 +50,16 @@ class EcControllerForm extends EcControllerLegacy {
 			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_DELETE_SUCCESS'); 
 			$this->setRedirectParams($params); 
 		} else {
+			$this->setRedirect($this->getRedirectRequest()); 
+			$this->redirect();
+			/* $params['url'] = $this->getRedirectRequest();
+			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_DELETE_FAILURE');
+			$params['type'] = 'ERROR';
+			$this->setRedirectParams($params); */
+			/* @legacy
 			$this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_DELETE_FAILURE'));
 			$this->turnbackPush();
-			$this->turnbackPop(); 
+			$this->turnbackPop(); */
 		}
 	}
 
@@ -84,10 +90,9 @@ class EcControllerForm extends EcControllerLegacy {
 			$params['task'] = $nameKey.'.editForm'; //EcDebug::log($params, __method__);
 			$this->setRedirectParams($params); 
 		} 
-		else { //$this->setRedirect(JRoute::_($this->getRedirectRequest()));
-			$this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_EDIT_FAILURE'));
-			$this->turnbackPush();
-			$this->turnbackPop();
+		else { 
+			$this->setRedirect($this->getRedirectRequest());
+			$this->redirect();
 		}
 	}
 
@@ -96,7 +101,7 @@ class EcControllerForm extends EcControllerLegacy {
 	public function editForm() {
 		//TODO internal redirect check
 		$view = $this->getView($this->default_view,
-				JFactory::getDocument()->getType(), '', array('layout' => 'edit'));
+			JFactory::getDocument()->getType(), '', array('layout' => 'edit'));
 		$view->setModel($this->getModel($this->nameKey));
 		$view->setModel($this->getModel($this->nameKey.'form'));
 		$view->editForm();
@@ -153,7 +158,7 @@ class EcControllerForm extends EcControllerLegacy {
 		//TODO internal redirect check
 		if(empty($layout)) $layout = $this->nameKey;
 		$view = $this->getView($layout, JFactory::getDocument()->getType(), '', array('layout' => $layout.'form'));
-		$view->setModel($this->getModel($this->nameKey));
+		//$view->setModel($this->getModel($this->nameKey));
 		$view->setModel($this->getModel($layout.'form')); //EcDebug::lp($view);
 		$view->useForm($layout.'form');
 	}
