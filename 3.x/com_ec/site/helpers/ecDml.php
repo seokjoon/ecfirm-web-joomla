@@ -9,7 +9,7 @@ class EcDml {
 	
 	public static function deleteByColumn($nameCol, $valueCol, $nameKey)	{
 		$db = JFactory::getDbo();
-		$query = $db->getQuery(true);
+		$query = $db->getQuery(TRUE);
 		$query->delete('#__'.self::getPrefix().'_'.$nameKey);
 		$query->where($nameCol.' = '.$valueCol);
 		$db->setQuery($query);
@@ -20,7 +20,7 @@ class EcDml {
 
 	public static function insertRecord($params, $nameKey) {
 		$db = JFactory::getDbo();
-		$query = $db->getQuery(true);
+		$query = $db->getQuery(TRUE);
 		$record = JArrayHelper::toObject($params);
 		return $db->insertObject('#__'.self::getPrefix().'_'.$nameKey, $record);
 	}
@@ -32,7 +32,7 @@ class EcDml {
 		try { $table->load($valueKey); return $table; /* ->$nameCol; */ }
 		catch (Exception $e) { //$this->setError($e->getMessage());
 			EcDebug::lp($e->getMessage());
-			return false; 
+			return FALSE; 
 		}
 	}
 
@@ -54,7 +54,7 @@ class EcDml {
 		}
 		//EcDebug::log('===='); EcDebug::log($where); EcDebug::log('====');
 		$db = JFactory::getDbo();
-		$query = $db->getQuery(true);
+		$query = $db->getQuery(TRUE);
 		$query->select($params['columns'])
 			->from($params['table'])
 			->where($where);
@@ -78,7 +78,7 @@ class EcDml {
 		if(!(is_array($valuesKey))) $valuesKey = array($valuesKey);
 		$table = JTable::getInstance($nameKey, ucfirst($nameCom).'Table');
 		foreach ($valuesKey as $valueKey) {
-			if(!$table->load($valueKey)) return false;
+			if(!$table->load($valueKey)) return FALSE;
 			$item[$nameKey] = $valueKey;
 			$item[$nameCol] = $valueCol;
 			$bool = $table->save($item);
@@ -94,7 +94,7 @@ class EcDml {
 		if(!(is_array($valuesKey))) $valuesKey = array($valuesKey);
 		$table = JTable::getInstance($nameKey, ucfirst($nameCom).'Table');
 		foreach ($valuesKey as $valueKey) {
-			if(!$table->load($valueKey)) return false;
+			if(!$table->load($valueKey)) return FALSE;
 			$item[$nameKey] = $valueKey;
 			$item[$nameCol] = (int)$table->$nameCol + (int)$valueCol;
 			$bool = $table->save($item);

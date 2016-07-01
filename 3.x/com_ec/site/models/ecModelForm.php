@@ -39,7 +39,6 @@ class EcModelForm extends JModelForm {
 	 * @return  mixed  Content item data object on success, false on failure.
 	 * @since 12.2 JModelAdmin */
 	public function getItem($valueKey = 0)	{
-		if($valueKey == 0) $valueKey = $this->getState($this->nameKey, 0);
 		if($valueKey == 0) $valueKey =
 			JFactory::getApplication()->input->get($this->nameKey, 0, 'uint');
 		if($valueKey == 0) return false;
