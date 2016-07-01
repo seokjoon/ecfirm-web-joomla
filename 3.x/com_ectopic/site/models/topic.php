@@ -11,8 +11,8 @@ class EctopicModelTopic extends EcModelItem	{
 	 * @param   integer  $itemId  The id of the article.
 	 * @return  mixed  Content item data object on success, false on failure.
 	 * @since 12.2 JModelAdmin */
-	public function getItem($keyValue = null)	{
-		$item = parent::getItem($keyValue);
+	public function getItem($valueKey = null)	{
+		$item = parent::getItem($valueKey);
 		if(empty($item)) return $item;
 		if(($this->getState('joinUser')) && ($item->user > 0)) {
 			$table = $this->getTable('User', 'JTable');
