@@ -212,7 +212,7 @@ class EcControllerLegacy extends JControllerLegacy {
 		}
 		////////
 		if(($nameKey != 'user') && (isset($data['user']))) 
-			$data['user'] = JFactory::getUser()->id;
+			$data['user'] = JFactory::getUser()->id; //FIXME
 		////////
 		////////
 		$layout = $app->input->get('layout', null, 'string');

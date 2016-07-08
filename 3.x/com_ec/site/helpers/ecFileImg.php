@@ -37,9 +37,9 @@ class EcFileImg extends EcFile {
 	}
 	
 	//public static function setFileImgShop($jform, $params, $nameKey) { //EcDebug::log($params, __method__); 
-	public static function setFileImgByUser($params, $nameKey) { //EcDebug::log($params, __method__); 
+	public static function setFileImgByUser($params, $nameKey, $nameCol = 'img') { //EcDebug::log($params, __method__); 
 		//$pathRelative = 'upload/shop.'.$jform['shop'].'/'.$nameKey.'/'; //EcDebug::log($path);
-		$pathRelative = 'upload/user.'.JFactory::getUser()->id.'/'.$nameKey.'/img/'; //EcDebug::log($path);
+		$pathRelative = 'upload/user.'.JFactory::getUser()->id.'/'.$nameKey.'/'.$nameCol.'/'; //EcDebug::log($path);
 		$path = JPATH_SITE.'/'.$pathRelative;
 		////JFile::upload($params['tmp_name'], $path.$params['name']);
 		//$nameFile = $jform[$nameKey].'.'.(self::getType($params['type']));
@@ -53,7 +53,7 @@ class EcFileImg extends EcFile {
 		$src = basename($thumbs[0]->getPath()); //EcDebug::log($src, __method__);
 		$pathThumbs = $path.'/thumbs/'; //EcDebug::log($src.':'.$nameFile, __method__);
 		if(JFile::move($src, $nameFile, $pathThumbs)) {
-			$paths['img'] = $pathRelative.$nameFile;
+			$paths[$nameCol] = $pathRelative.$nameFile;
 			$paths['thumb'] = $pathRelative.'thumbs/'.$nameFile;
 			return $paths; 
 		} else return false;

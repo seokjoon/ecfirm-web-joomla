@@ -130,15 +130,15 @@ class EcControllerForm extends EcControllerLegacy {
 		$this->input->post->set('jform', $jform);
 	}
 	
-	protected function saveFileImg() {
+	protected function saveFileImg($nameCol = 'img') {
 		$files = $this->input->files->get('jform'); //EcDebug::lp($files); jexit();
-		if($files['img']['error'] != 0) return false;
+		if($files[$nameCol]['error'] != 0) return false;
 		//$this->deleteFileImg(); //DO NOT USE
 		$jform = $this->input->post->get('jform', array(), 'array');
-		//$imgs = EcFileImg::setFileImgShop($jform, $files['img'], $this->nameKey);
-		$imgs = EcFileImg::setFileImgByUser($files['img'], $this->nameKey);
+		//$imgs = EcFileImg::setFileImgShop($jform, $files[$nameCol], $this->nameKey);
+		$imgs = EcFileImg::setFileImgByUser($files[$nameCol], $this->nameKey, $nameCol); //EcDebug::lp($imgs); jexit(); 
 		$jform['imgs'] = json_encode($imgs, JSON_UNESCAPED_SLASHES);
-		$this->input->post->set('jform', $jform);
+		$this->input->post->set('jform', $jform); 
 	}
 	
 	protected function turnbackPop($task = null) { //EcDebug::log($task, __function__);
