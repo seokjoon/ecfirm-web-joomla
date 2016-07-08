@@ -154,7 +154,7 @@ class EcControllerForm extends EcControllerLegacy {
 		$this->setUserState($task, 'turnback', JUri::getInstance()->toString());
 	}
 
-	protected function useForm($layout = null) {
+	public function useForm($layout = null) { 
 		//TODO internal redirect check
 		if(empty($layout)) $layout = $this->nameKey;
 		$view = $this->getView($layout, JFactory::getDocument()->getType(), '', array('layout' => $layout.'form'));
