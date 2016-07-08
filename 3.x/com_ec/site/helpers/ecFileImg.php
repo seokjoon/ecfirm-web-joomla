@@ -54,7 +54,7 @@ class EcFileImg extends EcFile {
 		$pathThumbs = $path.'/thumbs/'; //EcDebug::log($src.':'.$nameFile, __method__);
 		if(JFile::move($src, $nameFile, $pathThumbs)) {
 			$paths[$nameCol] = $pathRelative.$nameFile;
-			$paths['thumb'] = $pathRelative.'thumbs/'.$nameFile;
+			$paths[$nameCol.'thumb'] = $pathRelative.'thumbs/'.$nameFile;
 			return $paths; 
 		} else return false;
 	}
