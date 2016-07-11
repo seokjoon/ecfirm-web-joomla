@@ -23,7 +23,7 @@ class EcFileImg extends EcFile {
 		if(!(parent::setFile($path))) return false;
 		$fileName = $_FILES['file']['name'];
 		if(!$thumbs) return true;
-		EcDebug::log(JPATH_SITE.'/upload/'.$path.'/'.$fileName);
+		//EcDebug::log(JPATH_SITE.'/upload/'.$path.'/'.$fileName);
 		$jImg = new JImage(JPATH_SITE.'/upload/'.$path.'/'.$fileName);
 		//EcDebug::log($jImg->getHeight());
 		$thumbs = $jImg->createThumbs('470x470', 3);

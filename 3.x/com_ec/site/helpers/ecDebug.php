@@ -20,9 +20,10 @@ class EcDebug {
 		else JLog::add($items, JLog::DEBUG, $key);
 	}
 	
-	public static function lp($value = null, $call = null)	{
+	public static function lp($value = null, $exit = false, $call = null)	{
 		if(!empty($call)) echo '<br />'.$call;//__method__;
-		if(empty($value)) $value = $GLOBALS;
+		if(empty($value)) $value = '<br />lp: empty<br />';//$GLOBALS;
 		echo '<pre>'.print_r($value, 1).'</pre>';
+		if($exit) jexit();
 	}
 }

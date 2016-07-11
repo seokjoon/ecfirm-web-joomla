@@ -134,10 +134,14 @@ class EcControllerForm extends EcControllerLegacy {
 		$files = $this->input->files->get('jform'); //EcDebug::lp($files); jexit();
 		if($files[$nameCol]['error'] != 0) return false;
 		//$this->deleteFileImg(); //DO NOT USE
-		$jform = $this->input->post->get('jform', array(), 'array');
+		$jform = $this->input->post->get('jform', array(), 'array'); 
 		//$imgs = EcFileImg::setFileImgShop($jform, $files[$nameCol], $this->nameKey);
-		$imgs = EcFileImg::setFileImgByUser($files[$nameCol], $this->nameKey, $nameCol); //EcDebug::lp($imgs); jexit(); 
-		$jform['imgs'] = json_encode($imgs, JSON_UNESCAPED_SLASHES);
+		$imgs = (array)EcFileImg::setFileImgByUser($files[$nameCol], $this->nameKey, $nameCol); //EcDebug::lp($imgs); jexit(); 
+		//$jform['imgs'] = json_encode($imgsArray, JSON_UNESCAPED_SLASHES);
+		$reg = new JRegistry;
+		if(!empty($jform['imgs'])) $reg->loadString($jform['imgs']);
+		$reg->loadArray($imgs);
+		$jform['imgs'] = stripslashes($reg->toString()); //EcDebug::log($jform);
 		$this->input->post->set('jform', $jform); 
 	}
 	

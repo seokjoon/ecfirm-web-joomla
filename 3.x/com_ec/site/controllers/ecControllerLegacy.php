@@ -197,11 +197,11 @@ class EcControllerLegacy extends JControllerLegacy {
 	 * @param   string  $urlVar  The name of the URL variable if different from the primary key (sometimes required to avoid router collisions).
 	 * @return  boolean  True if successful, false otherwise.
 	 * @since   12.2 JControllerForm */
-	protected function save($nameKey = null, $urlVar = null) {
+	protected function save($nameKey = null, $urlVar = null) { 
 		if(empty($nameKey)) $nameKey = $this->nameKey;
 		$app = JFactory::getApplication();
 		$lang  = JFactory::getLanguage();
-		$model = $this->getModel();
+		$model = $this->getModel(); 
 		$data = $this->input->post->get('jform', array(), 'array'); //EcDebug::log($data);
 		//$data[$nameKey] = ((!(isset($data[$nameKey]))) || (empty($data[$nameKey]))) ? 
 			//$this->input->get($nameKey, 0, 'uint') : 0;
