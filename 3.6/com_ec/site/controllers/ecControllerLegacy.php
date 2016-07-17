@@ -250,8 +250,6 @@ class EcControllerLegacy extends JControllerLegacy {
 		return true;
 	}
 
-	/**
-	 * @deprecated */
 	protected function setRedirectParams($params = array()) {
 		$prefix = 'index.php';
 		$option = (isset($params['option'])) ? '?option=com_'.$params['option'] : 

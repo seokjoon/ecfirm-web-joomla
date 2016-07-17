@@ -22,7 +22,7 @@ class EcControllerForm extends EcControllerLegacy {
 			$layout = $this->input->get('layout', null, 'string');
 			if(!(empty($layout))) $params['layout'] = $layout;
 			$params['view'] = $this->nameKey;
-			$params['task'] = $this->nameKey.'.editForm'; 
+			$params['task'] = $this->nameKey.'.editForm';
 			$this->setRedirectParams($params);
 		}
 		else { 
@@ -103,7 +103,7 @@ class EcControllerForm extends EcControllerLegacy {
 		$view = $this->getView($this->default_view,
 			JFactory::getDocument()->getType(), '', array('layout' => 'edit'));
 		$view->setModel($this->getModel($this->nameKey));
-		$view->setModel($this->getModel($this->nameKey.'form'));
+		$view->setModel($this->getModel($this->nameKey.'Form'));
 		$view->editForm();
 	}
 
@@ -161,9 +161,9 @@ class EcControllerForm extends EcControllerLegacy {
 	public function useForm($layout = null) { 
 		//TODO internal redirect check
 		if(empty($layout)) $layout = $this->nameKey;
-		$view = $this->getView($layout, JFactory::getDocument()->getType(), '', array('layout' => $layout.'form'));
+		$view = $this->getView($layout, JFactory::getDocument()->getType(), '', array('layout' => $layout.'Form'));
 		//$view->setModel($this->getModel($this->nameKey));
-		$view->setModel($this->getModel($layout.'form')); //EcDebug::lp($view);
-		$view->useForm($layout.'form');
+		$view->setModel($this->getModel($layout.'Form')); //EcDebug::lp($view);
+		$view->useForm($layout.'Form');
 	}
 }
