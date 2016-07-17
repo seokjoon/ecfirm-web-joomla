@@ -9,9 +9,9 @@ class Com_EcInstallerScript {
 	
 	public function install($parent) { }
 
-	public function uninstall($parent) { }
-	
 	public function preflight($type, $parent) { }
 	
 	public function postflight($type, $parent) { }
+
+	public function uninstall($parent) { }
 }
