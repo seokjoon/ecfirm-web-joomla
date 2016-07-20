@@ -9,6 +9,11 @@ class EcViewItem extends EcViewLegacy {
 	protected $form;
 	protected $item;
 	
+	public function __construct($config = array()) {
+		parent::__construct($config);
+		$this->plural = false;
+	}
+	
 	public function display($tpl = null) {
 		$this->form = $this->get('Form');
 		$this->item = $this->get('Item');

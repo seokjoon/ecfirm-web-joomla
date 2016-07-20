@@ -9,6 +9,11 @@ class EcViewList extends EcViewLegacy {
 	protected $items;
 	protected $pagiantion;
 	protected $option;
+	
+	public function __construct($config = array()) {
+		parent::__construct($config);
+		$this->plural = true;
+	}
 
 	public function display($tpl = null) {
 		if($this->getLayout() !== 'modal') {

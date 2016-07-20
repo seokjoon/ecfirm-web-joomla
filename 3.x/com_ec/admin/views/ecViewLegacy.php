@@ -6,8 +6,9 @@ defined('_JEXEC') or die('Restricted access');
 
 
 abstract class EcViewLegacy extends JViewLegacy {
-	protected $state;
 	protected $canDo;//@var JObject Object containing permissions for the item
+	protected $plural;
+	protected $state;
 	
 	public function display($tpl = null) {
 		$this->state = $this->get('State');
