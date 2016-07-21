@@ -37,6 +37,17 @@ class EcDml {
 	}
 
 	/**
+	 * @XX */
+	public static function select($nameKey, $format = 'assocList') {
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(TRUE);
+		$query->select('*') ->from('#__'.self::getPrefix().'_'.$nameKey);
+		$db->setQuery($query);
+		$out = 'load'.ucfirst($format); 
+		return $db->$out();
+	}
+
+	/**
 	 * @param array $params: columns, format, limit, limitstart, order, table, where
 	 * @param string $nameKey
 	 * @return result, row, assoc, object, column, , rowList, assocList, objectList */
