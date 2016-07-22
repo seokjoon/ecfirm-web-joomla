@@ -27,11 +27,11 @@ class EcDml {
 
 	/**
 	 * @see JTable은 model, table에서 사용가능 */
-	public static function loadTable($nameCol, $valueKey, $nameKey, $nameCom) {
+	public static function loadTable($valueKey, $nameKey, $nameCom) {
 		$table = JTable::getInstance($nameKey, ucfirst($nameCom).'Table');
-		try { $table->load($valueKey); return $table; /* ->$nameCol; */ }
-		catch (Exception $e) { //$this->setError($e->getMessage());
-			EcDebug::lp($e->getMessage());
+		try { $table->load($valueKey); return $table; }
+		catch (Exception $e) { 
+			EcDebug::lp($e->getMessage()); //$this->setError($e->getMessage());
 			return FALSE; 
 		}
 	}
