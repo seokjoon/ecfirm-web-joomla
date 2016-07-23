@@ -1,17 +1,17 @@
 <?php /** @package ecfirm.net
-* @copyright	Copyright (C) ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+ * @copyright	Copyright (C) ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
 
 
 class EcControllerForm extends EcControllerLegacy {
-	
+
 	public function __construct($config = array()) {
 		parent::__construct($config);
 		if(!isset($config['default_view'])) $this->default_view = $this->entity;
 	}
-	
+
 	/**
 	 * Method to add a new record.
 	 * @return  mixed  True if the record can be added, a error object if not.
@@ -25,21 +25,21 @@ class EcControllerForm extends EcControllerLegacy {
 			$params['task'] = $this->nameKey.'.editForm';
 			$this->setRedirectParams($params);
 		}
-		else { 
+		else {
 			$this->setRedirect($this->getRedirectRequest());
 			$this->redirect();
 		}
 	}
-	
+
 	/**
 	 * Method to cancel an edit.
 	 * @param   string  $nameKey  The name of the primary key of the URL variable.
 	 * @return  boolean  True if access level checks pass, false otherwise.
 	 * @since   12.2 JControllerForm */
 	public function cancel($nameKey = null) {
-		if(parent::cancel()) $this->turnbackPop('edit'); 
+		if(parent::cancel()) $this->turnbackPop('edit');
 	}
-	
+
 	/** * Removes an item.
 	 * @return  boolean
 	 * @since   12.2 JControllerAdmin */
@@ -47,10 +47,10 @@ class EcControllerForm extends EcControllerLegacy {
 		JSession::checkToken() or die(JText::_('JINVALID_TOKEN')); //XXX
 		if(parent::delete()) {
 			$params['view'] = $this->nameKey.'s';
-			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_DELETE_SUCCESS'); 
-			$this->setRedirectParams($params); 
+			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_DELETE_SUCCESS');
+			$this->setRedirectParams($params);
 		} else {
-			$this->setRedirect($this->getRedirectRequest()); 
+			$this->setRedirect($this->getRedirectRequest());
 			$this->redirect();
 			/* $params['url'] = $this->getRedirectRequest();
 			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_DELETE_FAILURE');
@@ -71,7 +71,7 @@ class EcControllerForm extends EcControllerLegacy {
 		$imgs = json_decode($item->imgs, true); //EcDebug::log($imgs);
 		if((is_array($imgs)) && (isset($imgs['img']))) EcFile::delete($imgs);
 	} */
-	
+
 	/**
 	 * Method to edit an existing record.
 	 * @param   string  $nameKey     The name of the primary key of the URL variable.
@@ -88,9 +88,9 @@ class EcControllerForm extends EcControllerLegacy {
 			$params['valueKey'] = $valueKey;
 			$params['view'] = $nameKey;
 			$params['task'] = $nameKey.'.editForm'; //EcDebug::log($params, __method__);
-			$this->setRedirectParams($params); 
-		} 
-		else { 
+			$this->setRedirectParams($params);
+		}
+		else {
 			$this->setRedirect($this->getRedirectRequest());
 			$this->redirect();
 		}
@@ -103,7 +103,7 @@ class EcControllerForm extends EcControllerLegacy {
 		$view = $this->getView($this->default_view,
 			JFactory::getDocument()->getType(), '', array('layout' => 'edit'));
 		$view->setModel($this->getModel($this->nameKey));
-		$view->setModel($this->getModel($this->nameKey.'Form'));
+		$view->setModel($this->getModel($this->nameKey.'form'));
 		$view->editForm();
 	}
 
@@ -115,12 +115,12 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @since   12.2 JControllerForm */
 	public function save($nameKey = null, $urlVar = null) {
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-		if(parent::save($nameKey, $urlVar)) 
-			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_SAVE_SUCCESS'); 
+		if(parent::save($nameKey, $urlVar))
+			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_SAVE_SUCCESS');
 		else $this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_SAVE_FAILURE'));
-		$this->turnbackPop('edit'); 
+		$this->turnbackPop('edit');
 	}
-	
+
 	protected function saveFile() {
 		$files = $this->input->files->get('jform');
 		if($files['file']['error'] != 0) return false;
@@ -129,41 +129,41 @@ class EcControllerForm extends EcControllerLegacy {
 		$jform['files'] = json_encode($files, JSON_UNESCAPED_SLASHES);
 		$this->input->post->set('jform', $jform);
 	}
-	
+
 	protected function saveFileImg($nameCol = 'img') {
 		$files = $this->input->files->get('jform'); //EcDebug::lp($files); jexit();
 		if($files[$nameCol]['error'] != 0) return false;
 		//$this->deleteFileImg(); //DO NOT USE
-		$jform = $this->input->post->get('jform', array(), 'array'); 
+		$jform = $this->input->post->get('jform', array(), 'array');
 		//$imgs = EcFileImg::setFileImgShop($jform, $files[$nameCol], $this->nameKey);
-		$imgs = (array)EcFileImg::setFileImgByUser($files[$nameCol], $this->nameKey, $nameCol); //EcDebug::lp($imgs); jexit(); 
+		$imgs = (array)EcFileImg::setFileImgByUser($files[$nameCol], $this->nameKey, $nameCol); //EcDebug::lp($imgs); jexit();
 		//$jform['imgs'] = json_encode($imgsArray, JSON_UNESCAPED_SLASHES);
 		$reg = new JRegistry;
 		if(!empty($jform['imgs'])) $reg->loadString($jform['imgs']);
 		$reg->loadArray($imgs);
 		$jform['imgs'] = stripslashes($reg->toString()); //EcDebug::log($jform);
-		$this->input->post->set('jform', $jform); 
+		$this->input->post->set('jform', $jform);
 	}
-	
+
 	protected function turnbackPop($task = null) { //EcDebug::log($task, __function__);
 		if(empty($task)) $task = $this->task;
-		$turnback = $this->getUserState($task, 'turnback', null); 
+		$turnback = $this->getUserState($task, 'turnback', null);
 		$this->setUserState($task, 'turnback', null);
 		if($turnback == JUri::getInstance()->toString()) $turnback = JUri::base();//avoid inifite loop
 		if(!(empty($turnback))) $this->setRedirect($turnback);
 	}
-	
+
 	protected function turnbackPush($task = null) { //EcDebug::log($task, __function__);
 		if(empty($task)) $task = $this->task;
 		$this->setUserState($task, 'turnback', JUri::getInstance()->toString());
 	}
 
-	public function useForm($layout = null) { 
+	public function useForm($layout = null) {
 		//TODO internal redirect check
 		if(empty($layout)) $layout = $this->nameKey;
-		$view = $this->getView($layout, JFactory::getDocument()->getType(), '', array('layout' => $layout.'Form'));
+		$view = $this->getView($layout, JFactory::getDocument()->getType(), '', array('layout' => $layout.'form'));
 		//$view->setModel($this->getModel($this->nameKey));
-		$view->setModel($this->getModel($layout.'Form')); //EcDebug::lp($view);
-		$view->useForm($layout.'Form');
+		$view->setModel($this->getModel($layout.'form')); //EcDebug::lp($view);
+		$view->useForm($layout.'form');
 	}
 }

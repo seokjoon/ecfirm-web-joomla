@@ -27,13 +27,24 @@ class EcDml {
 
 	/**
 	 * @see JTable은 model, table에서 사용가능 */
-	public static function loadTable($nameCol, $valueKey, $nameKey, $nameCom) {
+	public static function loadTable($valueKey, $nameKey, $nameCom) {
 		$table = JTable::getInstance($nameKey, ucfirst($nameCom).'Table');
-		try { $table->load($valueKey); return $table; /* ->$nameCol; */ }
-		catch (Exception $e) { //$this->setError($e->getMessage());
-			EcDebug::lp($e->getMessage());
+		try { $table->load($valueKey); return $table; }
+		catch (Exception $e) { 
+			EcDebug::lp($e->getMessage()); //$this->setError($e->getMessage());
 			return FALSE; 
 		}
+	}
+
+	/**
+	 * @XX */
+	public static function select($nameKey, $format = 'assocList') {
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(TRUE);
+		$query->select('*') ->from('#__'.self::getPrefix().'_'.$nameKey);
+		$db->setQuery($query);
+		$out = 'load'.ucfirst($format); 
+		return $db->$out();
 	}
 
 	/**
@@ -51,7 +62,8 @@ class EcDml {
 			$where .= $key.'="'.$value.'"';
 			unset($params['where'][$key]);
 			if(count($params['where']) > 0) $where .= ' AND '; 
-		} //EcDebug::log('===='); EcDebug::log($where); EcDebug::log('====');
+		}
+		//EcDebug::log('===='); EcDebug::log($where); EcDebug::log('====');
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(TRUE);
 		$query->select($params['columns'])
@@ -64,7 +76,8 @@ class EcDml {
 		else $db->setQuery($query);
 		$params['format'] = ((isset($params['format']) && (!empty($params['format']))))
 			? $params['format'] : 'result';
-		$out = 'load'.ucfirst($params['format']); //EcDebug::log($out); //EcDebug::log($db->$out());
+		$out = 'load'.ucfirst($params['format']);
+		//EcDebug::log($out); //EcDebug::log($db->$out());
 		return $db->$out();
 	}
 

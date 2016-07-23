@@ -21,9 +21,8 @@ class EcDebug {
 	}
 	
 	public static function lp($value = null, $exit = false, $call = null)	{
-		$call = (empty($call)) ? __method__ : $call;
-		echo '<br />'.$call;
-		$value = (empty($value)) ? $call : $value; //$GLOBALS;
+		if(!empty($call)) echo '<br />'.$call;//__method__;
+		if(empty($value)) $value = '<br />lp: empty<br />';//$GLOBALS;
 		echo '<pre>'.print_r($value, 1).'</pre>';
 		if($exit) jexit();
 	}

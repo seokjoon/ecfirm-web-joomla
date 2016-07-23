@@ -1,12 +1,12 @@
 <?php /** @package ecfirm.net
-* @copyright Copyright (C) ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+ * @copyright Copyright (C) ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcControllerItem extends JControllerForm {
-	
+class EcControllerItemAdmin extends JControllerForm {
+
 	/**
 	 * Constructor.
 	 * @param   array  $config  An optional associative array of configuration settings.

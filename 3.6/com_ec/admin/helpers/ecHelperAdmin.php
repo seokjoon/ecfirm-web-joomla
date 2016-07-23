@@ -1,11 +1,11 @@
 <?php /** @package ecfirm.net
-* @copyright Copyright (C) ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+ * @copyright Copyright (C) ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcHelper extends JHelperContent {	
+class EcHelperAdmin extends JHelperContent {
 
 	public static function getActionsEc($id = null, $section = 'component')	{
 		$user = JFactory::getUser();
@@ -15,7 +15,7 @@ class EcHelper extends JHelperContent {
 		else $assetName = $id.'.'.$section;
 		if(isset($id) && !empty($id)) $assetName .= '.'.$id;
 		$actions = JAccess::getActionsFromFile
-			($path, "/access/section[@name='".$section."']/");
+		($path, "/access/section[@name='".$section."']/");
 		foreach ($actions as $action)
 			$result->set($action->name, $user->authorise($action->name, $assetName));
 		return $result;
