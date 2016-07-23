@@ -5,6 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EctopicController extends EcControllerLegacyAdmin	{
+class EctopicControllerTopics extends EcControllerForm {
 	
 }
