@@ -6,3 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 require_once ECPATH.'/models/ecModelList.php';
+
+
+
+public class EcModelListAdmin extends EcModelList { }
