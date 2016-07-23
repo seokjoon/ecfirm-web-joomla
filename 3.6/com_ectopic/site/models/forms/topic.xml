@@ -9,11 +9,11 @@
 		   label="COM_ECTOPIC_TOPIC_BODY_LABEL" description="COM_ECTOPIC_TOPIC_BODY_DESC"
 		   hint="COM_ECTOPIC_TOPIC_BODY_DESC" filter="JComponentHelper::filterText" />
 		<field name="img1" id="img1" type="file" accept="image/*" onchange=""
-			   label="COM_ECTOPIC_TOPIC_IMG_LABEL"
-			   description="COM_ECTOPIC_TOPIC_IMG_DESC" />
+		   label="COM_ECTOPIC_TOPIC_IMG_LABEL"
+		   description="COM_ECTOPIC_TOPIC_IMG_DESC" />
 		<field name="file1" id="file1" type="file" accept="" onchange=""
-			   label="COM_ECTOPIC_TOPIC_FILE_LABEL"
-			   description="COM_ECTOPIC_TOPIC_FILE_DESC" />
+		   label="COM_ECTOPIC_TOPIC_FILE_LABEL"
+		   description="COM_ECTOPIC_TOPIC_FILE_DESC" />
 	</fieldset>
 
 	<fieldset name="hidden">
