@@ -5,6 +5,8 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
+/**
+ * @deprecated */
 class EcViewAjax extends EcViewItem {
 	
 	public function __construct($config = array()) {

@@ -4,7 +4,8 @@
 defined('_JEXEC') or die('Restricted access');
 
 
-
+/**
+ * @deprecated */
 class EcControllerCmt extends EcControllerAjax {
 	protected $cmtType = '';
 	

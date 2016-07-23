@@ -5,6 +5,8 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
+/**
+ * @deprecated */
 class EcAjax {
 	
 	public static function focus($id) {

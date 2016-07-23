@@ -9,4 +9,4 @@ require_once ECPATH.'/models/ecModelList.php';
 
 
 
-public class EcModelListAdmin extends EcModelList { }
+class EcModelListAdmin extends EcModelList { }

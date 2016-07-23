@@ -5,6 +5,8 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
+/**
+ * @deprecated */
 class EcControllerLike extends EcControllerAjax {
 
 	public function add() { //if(!($this->allowAdd())) jexit('false');

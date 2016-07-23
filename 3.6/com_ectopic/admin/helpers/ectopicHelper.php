@@ -5,6 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EctopicHelper extends EcHelper {	
+class EctopicHelper extends EcHelperAdmin {
 	
 }

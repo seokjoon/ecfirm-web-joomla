@@ -1,5 +1,5 @@
 <?php /** @package ecfirm.net
-* @copyright	Copyright (C) kilmeny.net. All rights reserved.
+* @copyright	Copyright (C) ecfirm.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -11,16 +11,13 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_ec')) {
 
 
 
-define('ECPATH', JPATH_SITE.'/components/com_ec');
-define('ECPATH_ADMINISTRATOR', JPATH_ADMINISTRATOR.'/components/com_ec');
-try { 
-	//JLoader::discover('', ECPATH.'/helpers');
-	JLoader::discover('', ECPATH_ADMINISTRATOR.'/controllers');
-	//JLoader::discover('', ECPATH_ADMINISTRATOR.'/helpers');
-	JLoader::discover('', ECPATH_ADMINISTRATOR.'/models');
-	JLoader::discover('', ECPATH_ADMINISTRATOR.'/views');
+try {
 	JLoader::discover('', JPATH_COMPONENT.'/helpers');
-	JLoader::discover('', JPATH_COMPONENT_ADMINISTRATOR.'/helpers'); }
+	JLoader::discover('', JPATH_COMPONENT_ADMINISTRATOR.'/controllers');
+	JLoader::discover('', JPATH_COMPONENT_ADMINISTRATOR.'/helpers');
+	JLoader::discover('', JPATH_COMPONENT_ADMINISTRATOR.'/models');
+	JLoader::discover('', JPATH_COMPONENT_ADMINISTRATOR.'/views');
+}
 catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 	
 

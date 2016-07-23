@@ -5,6 +5,8 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
+/**
+ * @deprecated */
 class EcViewLike extends EcViewAjax {
 	
 	public function delete($valueCol) {

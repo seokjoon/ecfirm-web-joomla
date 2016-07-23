@@ -5,6 +5,8 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
+/**
+ * @deprecated */
 class EcWidget {
 	
 	public static function caretBtn($link = false) {

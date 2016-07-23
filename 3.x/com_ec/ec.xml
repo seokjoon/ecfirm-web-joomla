@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="3.4">
+<extension type="component" version="3.6">
 	<name>COM_EC</name>
-	<creationDate>2015/06/27</creationDate>
+	<creationDate>2016/07/23</creationDate>
 	<author>Seok Joon Lee</author>
 	<authorEmail>seokjoon@kilmeny.net</authorEmail>
 	<authorUrl>http://ecfirm.net/</authorUrl>
 	<copyright>Copyright (C) ecfirm.net. All rights reserved.</copyright>
 	<license>License GNU General Public License version 2 or later</license>
-	<version>3.5</version>
+	<version>3.6</version>
 	<scriptfile>script.php</scriptfile>
-	<install><sql>
+	<!--install><sql>
 		<file driver="mysql" charset="utf8">sql/install.ec.mysql.utf8.sql</file>
 	</sql></install>
 	<uninstall><sql>
 		<file driver="mysql" charset="utf8">sql/uninstall.ec.mysql.utf8.sql</file>
-	</sql></uninstall>
+	</sql></uninstall-->
 	<files folder="site">
 		<filename>controller.php</filename>
 		<filename>ec.php</filename>
@@ -25,10 +25,10 @@
 		<folder>models</folder>
 		<folder>views</folder>
 	</files>
-	<languages folder="site">
+	<!--languages folder="site">
 		<language tag="en-GB">language/en-GB/en-GB.com_ec.ini</language>
 		<language tag="ko-KR">language/ko-KR/ko-KR.com_ec.ini</language>
-	</languages>
+	</languages-->
 	<media destination="com_ec" folder="media">
 		<filename>index.html</filename>
 		<folder>images</folder>
@@ -51,15 +51,15 @@
 			<folder>controllers</folder>
 			<folder>helpers</folder>
 			<folder>models</folder>
-			<folder>sql</folder>
-			<folder>tables</folder>
+			<!--folder>sql</folder>
+			<folder>tables</folder-->
 			<folder>views</folder>
 		</files>
-		<languages folder="admin">
+		<!--languages folder="admin">
 			<language tag="en-GB">language/en-GB/en-GB.com_ec.ini</language>
 			<language tag="en-GB">language/en-GB/en-GB.com_ec.sys.ini</language>
 			<language tag="ko-KR">language/ko-KR/ko-KR.com_ec.ini</language>
 			<language tag="ko-KR">language/ko-KR/ko-KR.com_ec.sys.ini</language>
-		</languages>
+		</languages-->
 	</administration>
 </extension>

@@ -4,7 +4,8 @@
 defined('_JEXEC') or die('Restricted access');
 
 
-
+/**
+ * @deprecated */
 class EcControllerAjax extends EcControllerLegacy {
 	
 	public function __construct($config = array()) {
