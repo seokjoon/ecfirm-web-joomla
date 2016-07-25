@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcViewItemAdmin extends EcViewLegacy {
+class EcViewItemAdmin extends EcViewLegacyAdmin {
 	protected $form;
 	protected $item;
 
@@ -17,7 +17,7 @@ class EcViewItemAdmin extends EcViewLegacy {
 	public function display($tpl = null) {
 		$this->form = $this->get('Form');
 		$this->item = $this->get('Item');
-		$this->canDo = EcHelper::getActionsEc($this->getName());
+		$this->canDo = EcHelperAdmin::getActionsEc($this->getName());
 		if (count($errors = $this->get('Errors'))) {
 			JError::raiseError(500, implode("\n", $errors)); /* return false; */
 		}

@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcViewListAdmin extends EcViewLegacy {
+class EcViewListAdmin extends EcViewLegacyAdmin {
 	protected $items;
 	protected $option;
 	protected $pagiantion;
@@ -38,7 +38,7 @@ class EcViewListAdmin extends EcViewLegacy {
 	protected function addToolbar() {
 		$app = JFactory::getApplication();
 		$this->option = $app->input->get('option', 'com_'.EcConst::getPrefix());
-		$this->canDo = EcHelper::getActionsEc($this->option);
+		$this->canDo = EcHelperAdmin::getActionsEc($this->option);
 		JToolbarHelper::title
 		(JText::_(JString::strtoupper($this->option)), 'stack article');
 		if($this->canDo->get('core.admin')) {
