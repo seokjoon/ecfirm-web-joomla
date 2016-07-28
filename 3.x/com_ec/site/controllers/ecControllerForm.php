@@ -128,10 +128,11 @@ class EcControllerForm extends EcControllerLegacy {
 		$files = EcFile::setFileByUser($files['file'], $this->nameKey);
 		$jform['files'] = json_encode($files, JSON_UNESCAPED_SLASHES);
 		$this->input->post->set('jform', $jform);
+		return true;
 	}
 	
 	protected function saveFileImg($nameCol = 'img') {
-		$files = $this->input->files->get('jform'); //EcDebug::lp($files); jexit();
+		$files = $this->input->files->get('jform'); //EcDebug::lp($files, true);
 		if($files[$nameCol]['error'] != 0) return false;
 		//$this->deleteFileImg(); //DO NOT USE
 		$jform = $this->input->post->get('jform', array(), 'array'); 
@@ -143,6 +144,7 @@ class EcControllerForm extends EcControllerLegacy {
 		$reg->loadArray($imgs);
 		$jform['imgs'] = stripslashes($reg->toString()); //EcDebug::log($jform);
 		$this->input->post->set('jform', $jform); 
+		return true;
 	}
 	
 	protected function turnbackPop($task = null) { //EcDebug::log($task, __function__);
