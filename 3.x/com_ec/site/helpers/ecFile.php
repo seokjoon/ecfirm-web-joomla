@@ -20,8 +20,8 @@ class EcFile {
 		return JFile::delete($paths);
 	}
 	
-	public static function deleteDir($path) {
-		return JFolder::delete($path);
+	public static function deleteDir($path) { 
+		return JFolder::delete(JPATH_SITE.'/'.$path);
 	}
 
 	/**
