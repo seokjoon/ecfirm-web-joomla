@@ -52,15 +52,26 @@ echo '<form action="'.JRoute::_('index.php?option=com_psprop&view=props')
 		} else {
 			echo '<table class="table table-striped" id="articleList">';
 				echo '<thead><tr>';
-					echo '<th class="center">';
-						echo JText::_('COM_ECTOPIC_TOPIC_TOPIC_HEADER');
+					echo '<th class="has-context">';
+						echo JText::_('COM_ECTOPIC_TOPIC_TITLE_HEADER');
+					echo '</th>';
+					echo '<th class="center hidden-phone">';
+						echo JText::_('COM_ECTOPIC_TOPIC_USERNAME_HEADER');
 					echo '</th>';
 				echo '</tr></thead>';
 				echo '<tbody>';
 				foreach($this->items as $i => $item)	{
 					echo '<tr class="row'.($i % 2).'" sortable-group-id="'.$item->prop.'">';
-						echo '<td class="span1">';
-							echo $item->topic;
+						echo '<td class="">';
+
+								echo $item->title;
+
+						echo '</td>';
+
+						echo '</td>';
+
+							echo $item->username;
+
 						echo '</td>';
 					echo '</tr>';
 				}

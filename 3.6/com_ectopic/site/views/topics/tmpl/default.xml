@@ -10,7 +10,7 @@
 
 	<fields name="request">
 		<fieldset name="request"
-				  addfieldpath="/administrator/components/com_ectopic/models/fields">
+			  addfieldpath="/administrator/components/com_ectopic/models/fields">
 			<field name="topiccat" type="topiccat"
 				   label="COM_ECTOPIC_TOPICS_VIEW_DEFAULT_TOPICCAT_LABEL"
 				   edit="true" clear="false"
