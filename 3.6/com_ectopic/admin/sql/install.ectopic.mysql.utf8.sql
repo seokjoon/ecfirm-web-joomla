@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `#__ec_topic` (
 	`files` VARCHAR(5120) NOT NULL DEFAULT '',
 	PRIMARY KEY (`topic`),
 	KEY `idx_modified` (`modified`),
-	KEY `idx_topiccat` (`topiccat`)
+	KEY `idx_topiccat` (`topiccat`),
 	KEY `idx_user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `#__ec_topiccat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `#__ec_topiccat` (`topiccat`, `title`) VALUES
-	(1, 'Default Topic')
+	(1, 'Default Topic');
 
 
 
