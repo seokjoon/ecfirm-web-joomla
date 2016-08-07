@@ -33,7 +33,7 @@ JHtml::_('formbehavior.chosen', 'select');
 
 
 
-echo '<form action="'.JRoute::_('index.php?option=com_psprop&view=props')
+echo '<form action="'.JRoute::_('index.php?option=com_ectopic&view=topics')
 	.'" method="post" name="adminForm" id="adminForm">';
 	echo '<div id="j-main-container">';
 		//echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
@@ -53,7 +53,7 @@ echo '<form action="'.JRoute::_('index.php?option=com_psprop&view=props')
 				echo '</tr></thead>';
 				echo '<tbody>';
 				foreach($this->items as $i => $item)	{
-					echo '<tr class="row'.($i % 2).'" sortable-group-id="'.$item->prop.'">';
+					echo '<tr class="row'.($i % 2).'" sortable-group-id="'.$item->topic.'">';
 						echo '<td class="">';
 
 								echo $item->title;
