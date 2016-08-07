@@ -16,8 +16,8 @@
 		<file driver="mysql" charset="utf8">sql/uninstall.ec.mysql.utf8.sql</file>
 	</sql></uninstall-->
 	<files folder="site">
-		<filename>controller.php</filename>
-		<filename>ec.php</filename>
+		<!--filename>controller.php</filename>
+		<filename>ec.php</filename-->
 		<filename>index.html</filename>
 		<filename>metadata.xml</filename>
 		<folder>controllers</folder>

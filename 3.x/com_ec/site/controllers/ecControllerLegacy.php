@@ -6,9 +6,9 @@ defined('_JEXEC') or die('Restricted access');
 
 
 class EcControllerLegacy extends JControllerLegacy {
-	protected $entity;
-	protected $option;
-	protected $nameKey;
+	protected $entity; //ex) examples or example(plural or singular)
+	protected $option; //ex) com_ecexample
+	protected $nameKey; //ex) example
 	
 	public function __construct($config = array()) {
 		parent::__construct($config);

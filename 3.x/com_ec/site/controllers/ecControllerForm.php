@@ -9,7 +9,7 @@ class EcControllerForm extends EcControllerLegacy {
 	
 	public function __construct($config = array()) {
 		parent::__construct($config);
-		if(!isset($config['default_view'])) $this->default_view = $this->entity;
+		if(!isset($config['default_view'])) $this->default_view = $this->entity; //ex) examples or example(plural or singular)
 	}
 	
 	/**
