@@ -33,14 +33,6 @@ JHtml::_('formbehavior.chosen', 'select');
 
 
 
-echo '<div id="'.$nameKey.'_list">';
-if(!empty($this->items))
-	foreach ($this->items as $item)
-		require JPATH_COMPONENT.'/views/'.$nameKey.'/tmpl/default_abstract.php';
-echo '</div>';
-
-
-
 echo '<form action="'.JRoute::_('index.php?option=com_psprop&view=props')
 	.'" method="post" name="adminForm" id="adminForm">';
 	echo '<div id="j-main-container">';

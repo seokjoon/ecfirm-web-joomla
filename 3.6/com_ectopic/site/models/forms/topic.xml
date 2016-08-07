@@ -2,36 +2,40 @@
 <form>
 
 	<fieldset name="topic">
-		<field name="title" id="title" type="text" class="inputbox input-xlarge" required="true"
-		   label="COM_ECTOPIC_TOPIC_TITLE_LABEL" description="COM_ECTOPIC_TOPIC_TITLE_DESC"
-		   hint="COM_ECTOPIC_TOPIC_TITLE_DESC" />
-		<field name="body" id="body" type="editor" buttons="false" class="" required="true"
-		   label="COM_ECTOPIC_TOPIC_BODY_LABEL" description="COM_ECTOPIC_TOPIC_BODY_DESC"
-		   hint="COM_ECTOPIC_TOPIC_BODY_DESC" filter="JComponentHelper::filterText" />
-		<field name="img1" id="img1" type="file" accept="image/*" onchange=""
-		   label="COM_ECTOPIC_TOPIC_IMG_LABEL"
-		   description="COM_ECTOPIC_TOPIC_IMG_DESC" />
-		<field name="file1" id="file1" type="file" accept="" onchange=""
-		   label="COM_ECTOPIC_TOPIC_FILE_LABEL"
-		   description="COM_ECTOPIC_TOPIC_FILE_DESC" />
-	</fieldset>
-
-	<fieldset name="hidden">
 		<field name="topic" type="hidden" value="" />
 		<field name="modified" type="hidden" value="" />
 		<field name="topiccat" type="hidden" value="" />
 		<field name="user" type="hidden" value="" />
 		<field name="state" type="hidden" value="" />
+		<field name="title" id="title" type="text" class="inputbox input-xlarge" required="true"
+		   label="COM_ECTOPIC_TOPIC_TITLE_LABEL" 
+		   description="COM_ECTOPIC_TOPIC_TITLE_DESC"
+		   hint="COM_ECTOPIC_TOPIC_TITLE_DESC" />
 		<field name="hits" type="hidden" value="" />
+		<field name="topiccmt" type="hidden" value="" />
+		<field name="topiclike" type="hidden" value="" />
 	</fieldset>
-
-	<fieldset name="options">
+	
+	<fieldset name="body">
+		<field name="body" id="body" type="editor" buttons="false" class="" required="true"
+		   label="COM_ECTOPIC_TOPIC_BODY_LABEL" 
+		   description="COM_ECTOPIC_TOPIC_BODY_DESC"
+		   hint="COM_ECTOPIC_TOPIC_BODY_DESC" filter="JComponentHelper::filterText" />
 	</fieldset>
-
+	
+	<fieldset name="file">
+		<field name="img" id="img1" type="file" accept="image/*" onchange=""
+		   label="COM_ECTOPIC_TOPIC_IMG_LABEL"
+		   description="COM_ECTOPIC_TOPIC_IMG_DESC" />
+		<field name="file" id="file1" type="file" accept="" onchange=""
+		   label="COM_ECTOPIC_TOPIC_FILE_LABEL"
+		   description="COM_ECTOPIC_TOPIC_FILE_DESC" />
+	</fieldset>
+	
 	<fieldset name="columns">
+		<field name="options" type="text" />
 		<field name="imgs" type="text" />
 		<field name="files" type="text" />
-		<field name="options" type="text" />
 	</fieldset>
 
 </form>
