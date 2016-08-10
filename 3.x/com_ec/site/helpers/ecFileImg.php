@@ -11,7 +11,7 @@ class EcFileImg extends EcFile {
 	/**
 	 * @throws
 	 * @see http://php.net/manual/en/function.image-type-to-mime-type.php */
-	private static function getType($type) {
+	public static function getType($type) {
 		$ext = str_replace('image/', '', $type);
 		return ($ext == 'jpeg') ? 'jpg' : $ext;
 	}
