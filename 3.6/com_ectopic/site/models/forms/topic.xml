@@ -7,16 +7,13 @@
 		<field name="topiccat" type="hidden" value="" />
 		<field name="user" type="hidden" value="" />
 		<field name="state" type="hidden" value="" />
-		<field name="title" id="title" type="text" class="inputbox input-xlarge" required="true"
+		<field name="title" id="title" type="text" class="inputbox input-xxlarge" required="true"
 		   label="COM_ECTOPIC_TOPIC_TITLE_LABEL" 
 		   description="COM_ECTOPIC_TOPIC_TITLE_DESC"
 		   hint="COM_ECTOPIC_TOPIC_TITLE_DESC" />
 		<field name="hits" type="hidden" value="" />
 		<field name="topiccmt" type="hidden" value="" />
 		<field name="topiclike" type="hidden" value="" />
-	</fieldset>
-	
-	<fieldset name="body">
 		<field name="body" id="body" type="editor" buttons="false" class="" required="true"
 		   label="COM_ECTOPIC_TOPIC_BODY_LABEL" 
 		   description="COM_ECTOPIC_TOPIC_BODY_DESC"
@@ -24,10 +21,10 @@
 	</fieldset>
 	
 	<fieldset name="file">
-		<field name="img" id="img1" type="file" accept="image/*" onchange=""
+		<field name="img" id="img" type="file" accept="image/*" onchange=""
 		   label="COM_ECTOPIC_TOPIC_IMG_LABEL"
 		   description="COM_ECTOPIC_TOPIC_IMG_DESC" />
-		<field name="file" id="file1" type="file" accept="" onchange=""
+		<field name="file" id="file" type="file" accept="" onchange=""
 		   label="COM_ECTOPIC_TOPIC_FILE_LABEL"
 		   description="COM_ECTOPIC_TOPIC_FILE_DESC" />
 	</fieldset>
@@ -37,5 +34,5 @@
 		<field name="imgs" type="text" />
 		<field name="files" type="text" />
 	</fieldset>
-
+	
 </form>

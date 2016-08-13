@@ -17,7 +17,12 @@ class EctopicModelTopic extends EcModelItem	{
 		if($item->user > 0) {
 			$table = $this->getTable('User', 'JTable');
 			$table->load($item->user);
-			$item->ju_name = $table->name;
+			$item->username = $table->name;
+		}
+		if($item->topiccat > 0) {
+			$table = $this->getTable('Topiccat', 'EctopicTable');
+			$table->load($item->topiccat);
+			$item->topiccatTitle = $table->title;
 		}
 		return $item;
 	}

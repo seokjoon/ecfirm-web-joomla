@@ -19,8 +19,13 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 class EctopicViewTopics extends EcViewList {
+	
+	protected function getItems() { 
 
-	protected function getItems() {
+		$model = $this->getModel('topiccat');
+		$itemTopiccat = $model->getItem(EctopicUrl::getTopiccat());
+		$this->topiccatTitle = $itemTopiccat->title;
+		
 		$model = $this->getModel($this->getName());
 		$model->setState('enabledPlugin', true);
 		return parent::getItems();

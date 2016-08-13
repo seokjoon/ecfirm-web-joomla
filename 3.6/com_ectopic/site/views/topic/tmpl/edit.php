@@ -24,16 +24,9 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small form-horizonta
 			foreach(($this->form->getFieldset('topic')) as $field) {
 				array_push($params['nameCols'], $field->name);
 				if(!($field->hidden)) {
-					echo '<div class="control-group">';
-						echo '<div class="control-label">'.$field->label.'</div>';
-						echo '<div class="controls">'.$field->input.'</div>';
-					echo '</div>';
-				}
-			}
-			foreach(($this->form->getFieldset('body')) as $field) {
-				array_push($params['nameCols'], $field->name);
 					echo $field->label;
-					echo '<div>'.$field->input.'</div>';//echo str_replace('<textarea', '<textarea style="width:97%;"', $field->input);
+					echo $field->input;//echo str_replace('<textarea', '<textarea style="width:97%;"', $field->input);
+				}
 			}
 			foreach(($this->form->getFieldset('file')) as $field) {
 				array_push($params['nameCols'], $field->name);
@@ -63,7 +56,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small form-horizonta
 			$params['task'] = 'save';
 			$params['validate'] = true;
 			echo EcWidget::submitBtn($params);
-		echo '</div></span>';
+		echo '</div></span><div>&nbsp;</div>';
 	
 		echo '<input type="hidden" name="jform[topiccat]" value="'.EctopicUrl::getTopiccat().'" />';
 		//echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'" />';

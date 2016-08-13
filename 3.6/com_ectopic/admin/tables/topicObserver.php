@@ -39,6 +39,7 @@ class EctopicTableTopicObserver extends JTableObserver {
 			$this->filesLoad = $this->table->files;
 		if(property_exists($this->table, 'imgs'))
 			$this->imgsLoad = $this->table->imgs; 
+		$this->table->hit();
 	}
 	
 	public function onAfterStore(&$result) { }

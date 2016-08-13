@@ -7,4 +7,12 @@ defined('_JEXEC') or die('Restricted access');
 
 class EctopicController extends EcControllerLegacy {
 	
+	public function display($cachable = false, $urlparams = array()) {
+		
+		if($this->input->get('view') == 'topics') {
+			$view = $this->getView('topics', JFactory::getDocument()->getType());
+			$view->setModel($this->getModel('topiccat'));
+		}
+		return parent::display($cachable, $urlparams);
+	}
 }
