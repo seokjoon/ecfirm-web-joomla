@@ -18,27 +18,23 @@ class EctopicTableTopicObserver extends JTableObserver {
 		return $observer;
 	}
 	
-	private function deleteFile() {
-		if(property_exists($this->table, 'files')) {
+	private function deleteFile($name = 'files') {
+		if(property_exists($this->table, $name)) {
 			$reg = new Registry;
-			$reg->loadString($this->table->files);
+			$reg->loadString($this->table->$name);
 			if(count($reg) > 0) EcFile::delete($reg->toArray());
 		}
 	}
 	
-	private function deleteFileImg() {
-		if(property_exists($this->table, 'imgs')) {
-			$reg = new Registry;
-			$reg->loadString($this->table->imgs);
-			if(count($reg) > 0) EcFile::delete($reg->toArray());
-		}
+	private function loadFile($name = 'files') {
+		$nameLoad = $name.'Load';
+		if(property_exists($this->table, $name))
+			$this->$nameLoad = $this->table->$name;
 	}
 	
 	public function onAfterLoad(&$result, $row) {
-		if(property_exists($this->table, 'files'))
-			$this->filesLoad = $this->table->files;
-		if(property_exists($this->table, 'imgs'))
-			$this->imgsLoad = $this->table->imgs; 
+		$this->loadFile();
+		$this->loadFile('imgs');
 		$this->table->hit();
 	}
 	
@@ -46,34 +42,31 @@ class EctopicTableTopicObserver extends JTableObserver {
 	
 	public function onBeforeDelete($pk) { 
 		$this->deleteFile();
-		$this->deleteFileImg();
+		$this->deleteFile('imgs');
 	}
 	
 	public function onBeforeLoad($keys, $reset) { }
 	
-	public function onBeforeStore($updateNulls, $tableKey) {
+	public function onBeforeStore($updateNulls, $tableKey) { 
 		$this->table->modified = date('Y-m-d H:i:s');
 		$this->updateFile();
-		$this->updateFileImg();
+		$this->updateFile('imgs');
 	}
 	
-	private function updateFile() {
-		
-	}
-	
-	private function updateFileImg() {
-		if((!empty($this->table->imgs)) && ($this->imgsLoad != $this->table->imgs)) { //EcDebug::lp($this->imgsLoad);; EcDebug::lp($this->table->imgs); jexit();
+	private function updateFile($name = 'files') {
+		$nameLoad = $name.'Load';
+		if((!empty($this->table->$name)) && ($this->$nameLoad != $this->table->$name)) { //EcDebug::lp($this->$nameLoad);; EcDebug::lp($this->table->$name, true);
 			$reg = new JRegistry;
-			if(!empty($this->imgsLoad)) $reg->loadString($this->imgsLoad);
-			$this->table->imgs = (empty($this->table->imgs)) 
-				? array() : json_decode($this->table->imgs, true);
-			foreach ($this->table->imgs as $imgName => $imgValue)
-				if(!empty($imgValue)) {
-					EcFile::delete(array($reg->get($imgName))); //EcDebug::lp(array($reg->get($imgName)), true);
-					$reg->set($imgName, $imgValue); //EcDebug::lp($reg, true);
+			if(!empty($this->$nameLoad)) $reg->loadString($this->$nameLoad);
+			$this->table->$name = (empty($this->table->$name)) 
+				? array() : json_decode($this->table->$name, true);
+			foreach ($this->table->$name as $fileName => $fileValue)
+				if(!empty($fileValue)) {
+					EcFile::delete(array($reg->get($fileName))); //EcDebug::lp(array($reg->get($fileName)), true);
+					$reg->set($fileName, $fileValue); //EcDebug::lp($reg, true);
 			}
-			$this->table->imgs = stripslashes($reg->toString());
+			$this->table->$name = stripslashes($reg->toString());
 		}
-		$this->imgsLoad = null;
+		$this->$nameLoad = null;
 	}
 }

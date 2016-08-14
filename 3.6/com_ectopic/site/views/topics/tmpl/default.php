@@ -5,72 +5,106 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-$item = $this->item; //EcDebug::lp($item);
-$optionCom = $this->optionCom; 
-$nameKey = $this->nameKey; 
-$valueKey = (is_object($item)) ? $item->$nameKey : 0; 
+JHtml::_('bootstrap.tooltip');
+JHtml::_('behavior.multiselect');
+JHtml::_('formbehavior.chosen', 'select');
 
+
+
+$nameKey = $this->nameKey;
+$optionCom = $this->optionCom;
 $topiccat = EctopicUrl::getTopiccat();
 $itemId = EcUrl::getItemId();
-$urlPlural = JRoute::_('?option='.$optionCom.'&view='.$nameKey.'s&task='
-	.$nameKey.'s.display&topiccat='.$topiccat.'&Itemid='.$itemId);
-
-$modified = EcDatetime::interval($item->modified);
-$title = $item->title;
-$imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
-$existImg =  ((count($imgs)) && (array_key_exists('img', $imgs)) && (!empty($imgs['img'])));
-$username = '<a href="'.JRoute::_('?option=com_ecuser&view=user&user='
-	.$item->user).'">'.$item->username.'</a>';
-$hits = JText::sprintf('COM_ECTOPIC_TOPICS_HITS', $item->hits);
-$topiccmt = JText::sprintf('COM_ECTOPIC_TOPICS_TOPICCMT', $item->topiccmt);
-$topiclike = JText::sprintf('COM_ECTOPIC_TOPICS_TOPICLIKE', $item->topiclike);
-$topiccatTitle = JHtml::_('string.truncateComplex', $item->topiccatTitle, 15);
-
+$topiccatTitle = JHtml::_('string.truncateComplex', $this->topiccatTitle, 30);
 $seperator = '&nbsp;&middot;&nbsp;';
 
-$availableEdit = (1) ? true : false;
-$availableDelete = (1) ? true : false;
 
 
-
-echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
-	.$nameKey.'_'.$valueKey.'_form" class="form-validate">';
-	echo '<div class="pull-right" align="right">';
-		echo '<div class="btn-group">';
-			echo '<a class="btn btn-default" href="'.$urlPlural.'">'.JText::_('COM_ECTOPIC_TOPICS').'</a>';
-			echo EcWidget::caretBtn(true);
-			echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
-				$params['nameCols'] = array('', 'user');
-				$params['optionCom'] = $optionCom;
-				$params['nameKey'] = $nameKey;
-				$params['valueKey'] = $valueKey;
-				$params['idPostfix'] = 'form';
-				$params['post'] = true;
-				$params['task'] = 'edit';
-				if($availableEdit) echo EcWidget::submitBtnLi($params);
-				echo '<li class="divider"></li>';
-				$params['task'] = 'delete';
-				if($availableDelete) echo EcWidget::submitBtnLi($params);
-			echo '</ul>';
-		echo '</div>';
-	echo '</div>'; //EcDebug::lp($params);
-	echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'">';
+echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" '
+	.'id="'.$nameKey.'_0_item" class="form-validate">';
+	echo '<div class="pull-right">';
+		$params['nameCols'] = array();
+		$params['optionCom'] = $optionCom;
+		$params['nameKey'] = $nameKey;
+		$params['valueKey'] = 0;
+		$params['task'] = 'add';
+		$params['idPostfix'] = 'item';
+		$params['post'] = true;
+		echo EcWidget::submitBtn($params);
+	echo '</div><div class="clearfix"></div>';
 	echo '<input type="hidden" name="task" value="" />';
-	echo JHtml::_('form.token');
-	echo '</form><div class="clearfix"></div>';
+echo '</form>';
 
-	
-	
-if(isset($item->event->beforeDisplay)) echo $item->event->beforeDisplay;
 
-echo '<fieldset><legend>'.$title.'</legend>';
-		echo '<div class="pull-left span5">';
-			echo '<div class="center">'.$modified.$seperator.$hits.$seperator.$topiccmt.$seperator.$topiclike.'</div>';
-		echo '</div>';
-		echo '<div class="pull-right span5">';
-			echo '<div class="center">'.$topiccatTitle.$seperator.$username.'</div>';
-		echo '</div><div class="clearfix"></div>';
-	echo '<div style="border: solid 1px #dddddd; padding: 10px;">'.nl2br($item->body).'</div>';
-echo '</fieldset>';
 
-if(isset($item->event->afterDisplay)) echo $item->event->afterDisplay;
+echo '<fieldset><legend>'.$topiccatTitle.'</legend></fieldset>';
+
+
+
+echo '<form action="'.JRoute::_('index.php?option=com_ectopic&view=topics')
+	.'" method="post" name="adminForm" id="adminForm">';
+	echo '<div id="j-main-container">';
+		//echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
+		if(empty($this->items)) {
+			echo '<div class="alert alert-no-items">';
+				echo JText::_('COM_ECTOPIC_NO_MATCHING_RESULTS');
+			echo '</div>';
+		} else {
+			echo '<table class="table table-striped" id="articleList">';
+				echo '<thead><tr>';
+					echo '<th class="center span6">';
+						echo JText::_('COM_ECTOPIC_TOPICS_TITLE_HEADER');
+					echo '</th>';
+					echo '<th class="center hidden-phone span4">';
+						echo JText::_('COM_ECTOPIC_TOPICS_USERNAME_HEADER');
+					echo '</th>';
+				echo '</tr></thead>';
+				echo '<tbody>';
+				foreach($this->items as $i => $item)	{ //EcDebug::lp($item);
+					$title = JHtml::_('string.truncateComplex', $item->title, 40);
+					$title = '<a href="'.JRoute::_('?option='.$optionCom.'&view=' .$nameKey
+						.'&'.$nameKey.'='.$item->topic.'&topiccat='.$topiccat.'&Itemid='.$itemId).'">'.$title.'</a>';
+					$modified = EcDatetime::interval($item->modified);
+					$username = '<a href="'.JRoute::_('?option=com_ecuser&view=user&user='
+						.$item->user).'">'.$item->username.'</a>';
+					$hits = JText::sprintf('COM_ECTOPIC_TOPIC_HITS_NUMBER', $item->hits);
+					$topiccmt = ($item->topiccmt > 0) ? $seperator.JText::sprintf('COM_ECTOPIC_TOPIC_TOPICCMT_NUMBER', $item->topiccmt) : null;
+					$topiclike = ($item->topiclike) ? $seperator.JText::sprintf('COM_ECTOPIC_TOPIC_TOPICLIKE_NUMBER', $item->topiclike) : null;
+					$files = json_decode($item->files, true); //EcDebug::lp(count($files));
+					$imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
+					$countFile = count($files);
+					$countImg = (count($imgs))/2;
+					$existFile =  (($countFile > 0) && (array_key_exists('file', $files)) && (!empty($files['file'])));
+					$existImg =  (($countImg > 0) && (array_key_exists('img', $imgs)) && (!empty($imgs['img'])));
+					$numberFile = ($existFile) ? $seperator.JText::sprintf('COM_ECTOPIC_TOPIC_FILE_NUMBER', $countFile) : null;
+					$numberImg = ($existImg) ? $seperator.JText::sprintf('COM_ECTOPIC_TOPIC_IMG_NUMBER', $countImg) : null;
+
+					echo '<tr class="row'.($i % 2).'" sortable-group-id="'.$item->topic.'">';
+						echo '<td class="has-context">';
+							echo '<div>'.$title.'</div>';
+							echo '<div><small>'.$modified.$seperator.$hits.$topiccmt.$topiclike.$numberFile.$numberImg.'</small></div>';
+						echo '</td>';
+						echo '<td class="center hidden-phone">';
+							echo '<div>'.$username.'</div>';
+							echo '<div><small>'.'</small></div>';
+						echo '</td>';
+					echo '</tr>';
+				}
+				echo '</tbody>';
+			echo '</table>';
+		}
+		//echo $this->pagination->getListFooter();
+		echo '<input type="hidden" name="task" value="" />';
+		echo '<input type="hidden" name="boxchecked" value="0" />';
+		echo JHtml::_('form.token');
+	echo '</div>';
+echo '</form>';
+
+
+
+if ($this->pagination->pagesTotal > 1)	{
+	echo '<div class="pagination">';
+		echo '<p class="counter pull-right">'.$this->pagination->getPagesCounter().'</p>';
+		echo $this->pagination->getPagesLinks();
+	echo '</div>';
+}

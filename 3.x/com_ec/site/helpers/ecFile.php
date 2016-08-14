@@ -65,6 +65,15 @@ class EcFile {
 		$path = JPATH_SITE.'/upload/'.$path.'/'; //$path = JFactory::getConfig()->get('tmp_path').'/';
 		return JFile::upload($src, $path.$dest);
 	}
+
+	public static function setFileByName($params, $nameKey) {
+		$pathRelative = 'upload/'.$nameKey.'/';
+		$path = JPATH_SITE.'/'.$pathRelative;
+		$nameFile = time().'-'.rand().'.'.$params['name'];
+		JFile::upload($params['tmp_name'], $path.$nameFile);
+		$paths['file'] = $pathRelative.$nameFile;
+		return $paths;
+	}
 	
 	public static function setFileByUser($params, $nameKey) {
 		$pathRelative = 'upload/user.'.JFactory::getUser()->id.'/'.$nameKey.'/';

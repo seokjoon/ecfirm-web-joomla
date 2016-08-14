@@ -21,6 +21,12 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 class EctopicViewTopic extends EcViewForm {
 	
 	protected function getItem($valueKey) {
+		
+		//$modelCmt = $this->getModel('topiccmt');
+		$modelCmtform = $this->getModel('topiccmtform');
+		$modelCmts = $this->getModel('topiccmts');
+		$this->formCmt = $this->get('Form', 'topiccmtform');
+		
 		$model = $this->getModel($this->getName());
 		$model->setState('enabledPlugin', true);
 		return parent::getItem($valueKey);
