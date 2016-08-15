@@ -45,7 +45,8 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @since   12.2 JControllerAdmin */
 	public function delete() {
 		JSession::checkToken() or die(JText::_('JINVALID_TOKEN')); //XXX
-		if(parent::delete()) {
+		$bool = parent::delete();
+		if($bool) {
 			$params['view'] = $this->nameKey.'s';
 			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_DELETE_SUCCESS'); 
 			$this->setRedirectParams($params); 
@@ -61,6 +62,7 @@ class EcControllerForm extends EcControllerLegacy {
 			$this->turnbackPush();
 			$this->turnbackPop(); */
 		}
+		return $bool;
 	}
 
 	/* DO NOT USE
@@ -115,10 +117,11 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @since   12.2 JControllerForm */
 	public function save($nameKey = null, $urlVar = null) {
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-		if(parent::save($nameKey, $urlVar)) 
-			$params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_SAVE_SUCCESS'); 
+		$bool = parent::save($nameKey, $urlVar);
+		if($bool) $params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_SAVE_SUCCESS'); 
 		else $this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_SAVE_FAILURE'));
 		$this->turnbackPop('edit'); 
+		return $bool;
 	}
 	
 	protected function saveFile() {

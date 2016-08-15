@@ -86,10 +86,14 @@ class EcControllerLegacy extends JControllerLegacy {
 	/** * Removes an item.
 	 * @return  boolean
 	 * @since   12.2 JControllerAdmin */
-	protected function delete() {
+	protected function delete() { 
 		$valueKeys = $this->input->get($this->nameKey, array(), 'array');
+		if(empty($valueKeys)) {
+			$jform = $this->input->post->get('jform', array(), 'array');
+			$valueKeys = array($jform[$this->nameKey]);
+		}
 		if(!(is_array($valueKeys)) || count($valueKeys) < 1) return false;
-		$model = $this->getModel(); //EcDebug::lp($model); jexit();
+		$model = $this->getModel(); //EcDebug::lp($model, true);
 		jimport('joomla.utilities.arrayhelper');
 		JArrayHelper::toInteger($valueKeys);
 		if($model->delete($valueKeys)) $this->setMessage(JText::plural
