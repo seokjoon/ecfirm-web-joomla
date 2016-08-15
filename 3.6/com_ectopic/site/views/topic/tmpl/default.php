@@ -33,8 +33,12 @@ $existImg =  (($countImg > 0) && (array_key_exists('img', $imgs)) && (!empty($im
 $numberFile = ($existFile) ? $seperator.JText::sprintf('COM_ECTOPIC_TOPIC_FILE_NUMBER', $countFile) : null;
 $numberImg = ($existImg) ? $seperator.JText::sprintf('COM_ECTOPIC_TOPIC_IMG_NUMBER', $countImg) : null;
 
+$user = JFactory::getUser();
+$availableAdd = (1) ? true : false;
 $availableEdit = (1) ? true : false;
 $availableDelete = (1) ? true : false;
+$availableAddCmt = (1) ? true : false;
+$availableAddDelete = (1) ? true : false;
 
 
 
@@ -62,25 +66,20 @@ echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
 	echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'">';
 	echo '<input type="hidden" name="task" value="" />';
 	echo JHtml::_('form.token');
-	echo '</form><div class="clearfix"></div>';
+echo '</form><div class="clearfix"></div>';
 
 	
 	
-if(isset($item->event->beforeDisplay)) echo $item->event->beforeDisplay;
-
-echo '<fieldset><legend>'.$title.'</legend>';
-		echo '<div class="pull-left span5">';
-			echo '<div class="center">'.$modified.$seperator.$hits.$topiccmt.$topiclike.$numberFile.$numberImg.'</div>';
-		echo '</div>';
-		echo '<div class="pull-right span5">';
-			echo '<div class="center">'.$topiccatTitle.$seperator.$username.'</div>';
-		echo '</div><div class="clearfix"></div>';
-	echo '<div style="border: solid 1px #dddddd; padding: 10px;">'.nl2br($item->body).'</div>';
-echo '</fieldset>';
-
-if(isset($item->event->afterDisplay)) echo $item->event->afterDisplay;
-
-
-
-require_once 'edit_topiccmt.php';
-require_once 'default_topiccmts.php';
+echo '<div class="form-horizontal">';
+	echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active'=>'topic'));
+		echo JHtml::_('bootstrap.addTab', 'myTab', 'loan', JText::_('COM_ECTOPIC_TOPIC_DISPLAY_TOPIC', true));
+			if(isset($item->event->beforeDisplay)) echo $item->event->beforeDisplay;
+				require_once 'default_topic.php';
+			if(isset($item->event->afterDisplay)) echo $item->event->afterDisplay;
+		echo JHtml::_('bootstrap.endTab');
+		echo JHtml::_('bootstrap.addTab', 'myTab', 'com', JText::_('COM_ECTOPIC_TOPIC_DISPLAY_TOPICCMT', true));
+			require_once JPATH_COMPONENT.'/views/topiccmt/tmpl/edit.php';
+			require_once JPATH_COMPONENT.'/views/topiccmts/tmpl/default.php';
+		echo JHtml::_('bootstrap.endTab');
+	echo JHtml::_('bootstrap.endTabSet');
+echo '</div>';

@@ -8,7 +8,6 @@ defined('_JEXEC') or die('Restricted access');
 class EctopicController extends EcControllerLegacy {
 	
 	public function display($cachable = false, $urlparams = array()) {
-		
 		$nameView = $this->input->get('view');
 		switch ($nameView) {
 			case 'topic' :
@@ -22,7 +21,6 @@ class EctopicController extends EcControllerLegacy {
 				$view->setModel($this->getModel('topiccat'));
 				break;
 		}
-		
 		return parent::display($cachable, $urlparams);
 	}
 }

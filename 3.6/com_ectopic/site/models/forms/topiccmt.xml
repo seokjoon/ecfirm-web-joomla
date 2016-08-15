@@ -6,10 +6,10 @@
 		<field name="modified" type="hidden" value="" />
 		<field name="topic" type="hidden" value="" />
 		<field name="user" type="hidden" value="" />
-		<field name="body" id="body" type="textarea" class="" required="true"
+		<field name="body" id="body" type="textarea" readonly="true" required="true"
 		   label="COM_ECTOPIC_TOPICCMT_BODY_LABEL" 
 		   description="COM_ECTOPIC_TOPICCMT_BODY_DESC"
-		   hint="COM_ECTOPIC_TOPIC_BODYCMT_DESC" filter="safehtml" />
+		   hint="COM_ECTOPIC_TOPICCMT_BODY_DESC" filter="safehtml" />
 	</fieldset>
 	
 	
