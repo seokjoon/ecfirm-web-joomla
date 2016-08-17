@@ -1,14 +1,14 @@
 <?php /** @package ecfirm.net
- * @copyright	Copyright (C) ecfirm.net. All rights reserved.
- * @license GNU General Public License version 2 or later. */
+* @copyright	Copyright (C) ecfirm.net. All rights reserved.
+* @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
 
 
 class EcControllerLegacy extends JControllerLegacy {
-	protected $entity;
-	protected $option;
-	protected $nameKey;
+	protected $entity; //ex) examples or example(plural or singular)
+	protected $option; //ex) com_ecexample
+	protected $nameKey; //ex) example
 
 	public function __construct($config = array()) {
 		parent::__construct($config);
@@ -26,7 +26,7 @@ class EcControllerLegacy extends JControllerLegacy {
 	protected function add() {
 		if(!($this->allowAdd())) {
 			$this->setError(JText::_
-			('JLIB_APPLICATION_ERROR_CREATE_RECORD_NOT_PERMITTED'));
+				('JLIB_APPLICATION_ERROR_CREATE_RECORD_NOT_PERMITTED'));
 			$this->setMessage($this->getError(), 'error');
 			return false;
 		}
@@ -88,12 +88,16 @@ class EcControllerLegacy extends JControllerLegacy {
 	 * @since   12.2 JControllerAdmin */
 	protected function delete() {
 		$valueKeys = $this->input->get($this->nameKey, array(), 'array');
+		if(empty($valueKeys)) {
+			$jform = $this->input->post->get('jform', array(), 'array');
+			$valueKeys = array($jform[$this->nameKey]);
+		}
 		if(!(is_array($valueKeys)) || count($valueKeys) < 1) return false;
-		$model = $this->getModel(); //EcDebug::lp($model); jexit();
+		$model = $this->getModel(); //EcDebug::lp($model, true);
 		jimport('joomla.utilities.arrayhelper');
 		JArrayHelper::toInteger($valueKeys);
 		if($model->delete($valueKeys)) $this->setMessage(JText::plural
-		($this->option.'_'.$this->entity.'_N_ITEMS_DELETED', count($valueKeys)));
+			($this->option.'_'.$this->entity.'_N_ITEMS_DELETED', count($valueKeys)));
 		else { $this->setMessage($model->getError(), 'error'); return false; }
 		$this->postDeleteHook($model, $valueKeys);
 		return true;
@@ -204,7 +208,7 @@ class EcControllerLegacy extends JControllerLegacy {
 		$model = $this->getModel();
 		$data = $this->input->post->get('jform', array(), 'array'); //EcDebug::log($data);
 		//$data[$nameKey] = ((!(isset($data[$nameKey]))) || (empty($data[$nameKey]))) ?
-		//$this->input->get($nameKey, 0, 'uint') : 0;
+			//$this->input->get($nameKey, 0, 'uint') : 0;
 		if(!($this->allowSave($data, $nameKey))) {
 			$this->setError(JText::_('JLIB_APPLICATION_ERROR_SAVE_NOT_PERMITTED'));
 			$this->setMessage($this->getError(), 'error');
@@ -238,7 +242,7 @@ class EcControllerLegacy extends JControllerLegacy {
 		if(!($model->save($validData))) {
 			$this->setUserState('edit', 'data', $validData);
 			$this->setError(JText::sprintf
-			('JLIB_APPLICATION_ERROR_SAVE_FAILED', $model->getError()));
+				('JLIB_APPLICATION_ERROR_SAVE_FAILED', $model->getError()));
 			$this->setMessage($this->getError(), 'error');
 			return false;
 		}
@@ -260,7 +264,7 @@ class EcControllerLegacy extends JControllerLegacy {
 		$key = ((isset($params['nameKey'])) && (isset($params['valueKey'])))
 			? '&'.$params['nameKey'].'='.$params['valueKey'] : '';
 		$format = (isset($params['format'])) ? '&format='.$params['format'] : '';
-		'&format='.($this->input->get('format', 'html', 'string'));
+			'&format='.($this->input->get('format', 'html', 'string'));
 		$layout = (isset($params['layout'])) ? $params['layout'] :
 			$this->input->get('layout', null, 'string');
 		$layout = (empty($layout)) ? '' : '&layout='.$layout;
