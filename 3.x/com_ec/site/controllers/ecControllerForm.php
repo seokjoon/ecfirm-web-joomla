@@ -101,7 +101,11 @@ class EcControllerForm extends EcControllerLegacy {
 	/**
 	 * @deprecated: use form() */
 	public function editForm() {
-		//TODO internal redirect check
+		////////internal redirect check
+		$prev = $this->getUserState('edit', 'turnback', null); //EcDebug::lp($prev, true);
+		if((empty($prev)) || !JUri::isInternal($prev))
+			jexit(JText::_('JLIB_APPLICATION_ERROR_UNHELD_ID'));
+		////////
 		$view = $this->getView($this->default_view,
 			JFactory::getDocument()->getType(), '', array('layout' => 'edit'));
 		$view->setModel($this->getModel($this->nameKey));
