@@ -45,7 +45,7 @@ echo '<fieldset><legend>'.$topiccatTitle.'</legend><small>'.$topiccatBody.'</sma
 echo '<form action="'.JRoute::_('index.php?option=com_ectopic&view=topics')
 	.'" method="post" name="adminForm" id="adminForm">';
 	echo '<div id="j-main-container">';
-		//echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
+		echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
 		if(empty($this->items)) {
 			echo '<div class="alert alert-no-items">';
 				echo JText::_('COM_ECTOPIC_NO_MATCHING_RESULTS');

@@ -14,6 +14,8 @@ class EcHelperTopiccat extends EcHelperAdmin {
 	public static function addSubmenu($vName) {
 		JHtmlSidebar::addEntry(JText::_('COM_ECTOPIC_SUBMENU_TOPICCATS'),
 			'index.php?option=com_ectopic&view=topiccats', $vName == 'topiccats');
+		JHtmlSidebar::addEntry(JText::_('COM_ECTOPIC_SUBMENU_TOPICS'),
+			'index.php?option=com_ectopic&view=topics', $vName == 'topics');
 	}
 
 	public static function getStateValues() {
