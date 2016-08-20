@@ -19,8 +19,8 @@ class EctopicViewTopiccat extends EcViewItemAdmin {
 			JToolbarHelper::save('topiccat.save');
 		}
 		elseif($canDo->get('core.edit') || ($canDo->get('core.edit.own')))	{
-			JToolbarHelper::apply('topiccat..apply');
-			JToolbarHelper::save('topiccat..save');
+			JToolbarHelper::apply('topiccat.apply');
+			JToolbarHelper::save('topiccat.save');
 		}
 		parent::addToolbar();
 	}

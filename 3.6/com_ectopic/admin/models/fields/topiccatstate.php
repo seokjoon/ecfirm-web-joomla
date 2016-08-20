@@ -17,7 +17,7 @@ class JFormFieldTopiccatstate extends JFormFieldList {
 	 * @return  array  The field option objects.
 	 * @since   1.6 */
 	protected function getOptions() {
-		$options = EctopicHelper::getTopiccatstateValues();
+		$options = EcHelperTopiccat::getStateValues();
 		//$options = array_merge(parent::getOptions(), $options);
 		return $options;
 	}

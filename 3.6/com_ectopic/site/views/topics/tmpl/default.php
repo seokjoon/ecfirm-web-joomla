@@ -16,6 +16,7 @@ $optionCom = $this->optionCom;
 $topiccat = EctopicUrl::getTopiccat();
 $itemId = EcUrl::getItemId();
 $topiccatTitle = JHtml::_('string.truncateComplex', $this->topiccatTitle, 30);
+$topiccatBody = nl2br($this->topiccatBody);
 $seperator = '&nbsp;&middot;&nbsp;';
 
 
@@ -37,7 +38,7 @@ echo '</form>';
 
 
 
-echo '<fieldset><legend>'.$topiccatTitle.'</legend></fieldset>';
+echo '<fieldset><legend>'.$topiccatTitle.'</legend><small>'.$topiccatBody.'</small></fieldset>';
 
 
 

@@ -38,8 +38,11 @@
 		<submenu>
 			<!-- Note that all & must be escaped to &amp; for the file to be valid
 				XML and be parsed by the installer -->
-			<menu link="option=com_ectopic&amp;view=ectopics" view="ectopics">
+			<menu link="option=com_ectopic&amp;view=topics" view="topics">
 				COM_ECTOPIC
+			</menu>
+			<menu link="option=com_ectopic&amp;view=topiccats" view="topiccats">
+				COM_ECTOPICCAT
 			</menu>
 		</submenu>
 		<files folder="admin">

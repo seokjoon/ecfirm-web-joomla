@@ -6,5 +6,8 @@ defined('_JEXEC') or die('Restricted access');
 
 
 class EctopicModelTopiccat extends EcModelItemAdmin {
-
+	
+	public function getTable($type = 'Topiccat', $prefix = 'EctopicTable', $config = array()) {
+		return JTable::getInstance($type, $prefix, $config);
+	}
 }

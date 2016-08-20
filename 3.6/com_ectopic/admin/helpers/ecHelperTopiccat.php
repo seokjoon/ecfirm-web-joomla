@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EctopicHelper extends EcHelperAdmin {
+class EcHelperTopiccat extends EcHelperAdmin {
 
 	/** * Configure the Linkbar.
 	 * @param   string  $vName  The name of the active view.
@@ -16,7 +16,7 @@ class EctopicHelper extends EcHelperAdmin {
 			'index.php?option=com_ectopic&view=topiccats', $vName == 'topiccats');
 	}
 
-	public static function getTopiccatstateValues() {
+	public static function getStateValues() {
 		return array(
 			'' => JText::_('COM_ECTOPIC_TOCPICAT_STATE_VALUE_SELECT'),
 			'2' => JText::_('COM_ECTOPIC_TOCPICAT_STATE_VALUE_S2'),

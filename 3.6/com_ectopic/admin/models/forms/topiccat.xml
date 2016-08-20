@@ -5,7 +5,12 @@
 		<field name="topiccat" type="text" readonly="true"
 			label="COM_ECTOPIC_TOPICCAT_TOPICCAT_LABEL"
 			description="COM_ECTOPIC_TOPICCAT_TOPICCAT_DESC" />
-		<field name="state" type="topiccatstate"
+        <field name="modified" type="calendar" format="%Y-%m-%d %H:%M:%S" default="now" 
+        	label="COM_ECTOPIC_TOPICCAT_MODIFIED_LABEL" 
+        	description="COM_ECTOPIC_TOPICCAT_MODIFIED_DESC" />
+		<field name="parent" type="hidden" value="" />
+		<field name="asset_id" type="hidden" value="" />
+		<field name="state" type="topiccatstate" default="1"
 			label="COM_ECTOPIC_TOPICCAT_STATE_LABEL"
 			description="COM_ECTOPIC_TOPICCAT_STATE_DESC" />
 		<field name="title" id="title" type="text" class="inputbox input-xxlarge" required="true"

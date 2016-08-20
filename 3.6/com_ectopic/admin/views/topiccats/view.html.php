@@ -15,8 +15,6 @@ class EctopicViewTopiccats extends EcViewListAdmin {
 		if($canDo->get('core.create')) JToolbarHelper::addNew('topiccat.add');
 		if(($canDo->get('core.edit')) || ($canDo->get('core.edit.own'))) {
 			JToolbarHelper::editList('topiccat.edit');
-			JToolbarHelper::custom('topiccats.onenable', 'publish.png', '', 'COM_ECTOPIC_TOPICCAT_ENABLE_ON');
-			JToolbarHelper::custom('topiccats.offenable', 'checkin.png', '', 'COM_ECTOPIC_TOPICCAT_ENABLE_OFF');
 		}
 		if($canDo->get('core.delete'))
 			JToolbarHelper::deleteList('', 'topiccats.delete', 'COM_ECTOPIC_DELETE');

@@ -25,6 +25,7 @@ class EctopicViewTopics extends EcViewList {
 		$model = $this->getModel('topiccat');
 		$itemTopiccat = $model->getItem(EctopicUrl::getTopiccat());
 		$this->topiccatTitle = $itemTopiccat->title;
+		$this->topiccatBody = $itemTopiccat->body;
 		
 		$model = $this->getModel($this->getName());
 		$model->setState('enabledPlugin', true);
