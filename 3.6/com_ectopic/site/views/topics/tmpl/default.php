@@ -21,14 +21,12 @@ $seperator = '&nbsp;&middot;&nbsp;';
 
 
 
-echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" '
+echo '<form action="'.JRoute::_(JUri::getInstance()).'" method="post" '
 	.'id="'.$nameKey.'_0" class="form-validate">';
 	echo '<div class="pull-right">';
-		
 		$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
 			'task' => 'add', 'disable' => !($this->getAllow()['add']));
 		echo EcBtn::submit($params);
-
 	echo '</div><div class="clearfix"></div>';
 	echo '<input type="hidden" name="task" value="" />';
 echo '</form>';
@@ -39,7 +37,7 @@ echo '<fieldset><legend>'.$topiccatTitle.'</legend><small>'.$topiccatBody.'</sma
 
 
 
-echo '<form action="'.JRoute::_('index.php?option=com_ectopic&view=topics')
+echo '<form action="'.JRoute::_(JUri::getInstance())
 	.'" method="post" name="adminForm" id="adminForm">';
 	echo '<div id="j-main-container">';
 		echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));

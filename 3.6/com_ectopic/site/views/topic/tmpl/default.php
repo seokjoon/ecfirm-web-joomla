@@ -34,32 +34,27 @@ $numberFile = ($existFile) ? $seperator.JText::sprintf('COM_ECTOPIC_TOPIC_FILE_N
 $numberImg = ($existImg) ? $seperator.JText::sprintf('COM_ECTOPIC_TOPIC_IMG_NUMBER', $countImg) : null;
 
 $user = JFactory::getUser();
-$availableAdd = (1) ? true : false;
-$availableEdit = (1) ? true : false;
 $availableDelete = (1) ? true : false;
 $availableAddCmt = (1) ? true : false;
-$availableAddDelete = (1) ? true : false;
+$availableAddDelete = (1) ? true : false; 
 
 
 
 echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
-	.$nameKey.'_'.$valueKey.'_form" class="form-validate">';
+	.$nameKey.'_'.$valueKey.'" class="form-validate">';
 	echo '<div class="pull-right" align="right">';
 		echo '<div class="btn-group">';
 			echo '<a class="btn btn-default" href="'.$urlPlural.'">'.JText::_('COM_ECTOPIC_TOPICS').'</a>';
 			echo EcWidget::caretBtn(true);
 			echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
-				$params['nameCols'] = array('', 'user');
-				$params['optionCom'] = $optionCom;
-				$params['nameKey'] = $nameKey;
+				$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey);
 				$params['valueKey'] = $valueKey;
-				$params['idPostfix'] = 'form';
-				$params['post'] = true;
 				$params['task'] = 'edit';
-				if($availableEdit) echo EcWidget::submitBtnLi($params);
+				$params['disable'] = !($this->getAllow()['edit']);
+				echo EcBtn::submitLi($params);
 				echo '<li class="divider"></li>';
 				$params['task'] = 'delete';
-				if($availableDelete) echo EcWidget::submitBtnLi($params);
+				echo EcBtn::submitLi($params);
 			echo '</ul>';
 		echo '</div>';
 	echo '</div>'; //EcDebug::lp($params);
