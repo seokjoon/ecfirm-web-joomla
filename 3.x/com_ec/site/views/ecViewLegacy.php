@@ -6,6 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 abstract class EcViewLegacy extends JViewLegacy {
+	protected $allow = array();
 	protected $context;
 	protected $item;
 	protected $optionCom;
@@ -38,5 +39,12 @@ abstract class EcViewLegacy extends JViewLegacy {
 			array($this->context, &$item));
 		$item->event->afterDisplay = trim(implode($results));
 		return $item;
+	}
+	
+	public function getAllow() { return $this->allow; }
+	
+	public function setAllow($params = array()) {
+		$this->allow['add'] = $params['add'];
+		$this->allow['edit'] = $params['edit'];
 	}
 }

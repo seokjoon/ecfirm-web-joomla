@@ -10,7 +10,7 @@ class EcBtn {
 	public static function caret($link = false) {
 		$class = ($link) ? ' btn-default ' : ' btn-link ';
 		return '<button type="button" class="btn'.$class.'dropdown-toggle" '
-		.'data-toggle="dropdown"><span class="caret"></span></button>';
+			.'data-toggle="dropdown"><span class="caret"></span></button>';
 	}
 
 	private static function icon($task) {
@@ -35,7 +35,7 @@ class EcBtn {
 		return '<script type="text/javascript">
 			Joomla.submitbutton = function(task) {
 				if(document.formvalidator.isValid(document.id("'.$id.'"))){'
-		.'Joomla.submitform(task, document.getElementById("'.$id.'")); } } 
+				.'Joomla.submitform(task, document.getElementById("'.$id.'")); } } 
 			</script>';
 	}
 

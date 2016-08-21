@@ -22,16 +22,13 @@ $seperator = '&nbsp;&middot;&nbsp;';
 
 
 echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" '
-	.'id="'.$nameKey.'_0_item" class="form-validate">';
+	.'id="'.$nameKey.'_0" class="form-validate">';
 	echo '<div class="pull-right">';
-		$params['nameCols'] = array();
-		$params['optionCom'] = $optionCom;
-		$params['nameKey'] = $nameKey;
-		$params['valueKey'] = 0;
-		$params['task'] = 'add';
-		$params['idPostfix'] = 'item';
-		$params['post'] = true;
-		echo EcWidget::submitBtn($params);
+		
+		$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
+			'task' => 'add', 'disable' => !$this->allowAdd);
+		echo EcBtn::submit($params);
+
 	echo '</div><div class="clearfix"></div>';
 	echo '<input type="hidden" name="task" value="" />';
 echo '</form>';
