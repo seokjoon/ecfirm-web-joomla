@@ -35,8 +35,8 @@ class EcBtn {
 		return '<script type="text/javascript">
 			Joomla.submitbutton = function(task) {
 				if(document.formvalidator.isValid(document.id("'.$id.'"))){'
-				.'Joomla.submitform(task, document.getElementById("'.$id.'")); } } 
-			</script>';
+					.'Joomla.submitform(task, document.getElementById("'.$id.'")); } } 
+		</script>';
 	}
 
 	public static function link($params = array()) {

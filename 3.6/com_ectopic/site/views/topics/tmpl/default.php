@@ -7,7 +7,7 @@ defined('_JEXEC') or die('Restricted access');
 
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
-JHtml::_('formbehavior.chosen', 'select');
+JHtml::_('formbehavior.chosen', 'select'); 
 
 
 
@@ -26,7 +26,7 @@ echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" '
 	echo '<div class="pull-right">';
 		
 		$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
-			'task' => 'add', 'disable' => !$this->allowAdd);
+			'task' => 'add', 'disable' => !($this->getAllow()['add']));
 		echo EcBtn::submit($params);
 
 	echo '</div><div class="clearfix"></div>';
