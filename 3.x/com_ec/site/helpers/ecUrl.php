@@ -8,7 +8,7 @@ defined('_JEXEC') or die('Restricted access');
 class EcUrl {
 	
 	public static function getItemId() {
-		$itemId = JFactory::getApplication()->getMenu()->getActive()->id;
+		$itemId = @JFactory::getApplication()->getMenu()->getActive()->id;
 		return (is_numeric($itemId)) ? $itemId : 0;
 	}
 	

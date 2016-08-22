@@ -23,6 +23,7 @@ class EcBtn {
 			case preg_match('/^like/', $task): $icon = 'icon-thumbs-up'; break;
 			case preg_match('/^log/', $task): $icon = 'icon-chevron-right'; break;
 			case preg_match('/^option/', $task): $icon = 'icon-cog'; break;
+			case preg_match('/^regist/', $task): $icon = 'icon-edit'; break;
 			case preg_match('/^save/', $task): $icon = 'icon-edit'; break;
 			case preg_match('/^share/', $task): $icon = 'icon-share'; break;
 			case preg_match('/^touch/', $task): $icon = 'icon-chevron-up'; break;
@@ -47,7 +48,7 @@ class EcBtn {
 	 * @param array $params
 	 * - essential: optionCom, nameKey, task
 	 * - optional: valueKey, nameCol, valueCol, nameCols, idPostfix, ajax, validate, li, class, disable */
-	public static function submit($params = array()) {
+	public static function submit($params = array()) { //EcDebug::lp($params); 
 		extract($params);
 		$icon = self::icon($task);
 		if(!isset($valueKey)) $valueKey = 0;
@@ -60,18 +61,21 @@ class EcBtn {
 		if(!(isset($class))) $class = 'default';
 		$class = ' btn-'.$class;
 		$class .= ($validate) ? ' validate' : null;
+		$classLi = ((isset($disable)) && ($disable)) ? 'disabled' : null;
 		$disable = ((isset($disable)) && ($disable)) ? ' disabled="disabled"' : null;
 		$submitbutton = ($validate) ? 'submitbutton' : 'submitform';
-		$click = ($ajax) ? ' onClick="'.$id.'_'.$task.'()" ' : ' onClick="Joomla.'.$submitbutton.'(\''.$nameKey.'.'.$task.'\', document.getElementById(\''.$id.'\'))" ';
+		$click = ($ajax) ? ' onClick="'.$id.'_'.$task.'()" ' 
+			: ' onClick="Joomla.'.$submitbutton.'(\''.$nameKey.'.'.$task.'\', document.getElementById(\''.$id.'\'))" ';
+		$click = ($disable) ? null : $click;
 		$out = ($ajax) ? EcAjax::submit($params) : self::joomlaSubmit($id);
-		if($li) $out .= '<li><a href="javascript:;"'.$click.'><span class="'.$icon.'">&#160;'
-			.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</span></a></li>';
+		if($li) $out .= '<li class="'.$classLi.'"><a href="javascript:;"'.$click.'><span class="'
+			.$icon.'">&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</span></a></li>';
 		else $out .= '<button type="button" class="btn'.$class.'" '.$click.$disable.'><span class="'
 			.$icon.'"></span>&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</button>';
 		return $out;
 	}
 
-	public static function submitLi($params = array()) {
+	public static function submitLi($params = array()) { 
 		$params['li'] = true;
 		return self::submit($params);
 	}
