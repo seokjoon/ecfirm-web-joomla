@@ -272,11 +272,14 @@ class EcControllerLegacy extends JControllerLegacy {
 		return true;
 	}
 	
-	protected function setViewModel($model = null) {
-		$viewType = JFactory::getDocument()->getType();
+	protected function setViewModel($nameModel = null, $nameView = null) {
+		/* $viewType = JFactory::getDocument()->getType();
 		$viewName = $this->input->get('view', $this->default_view);
 		$viewLayout = $this->input->get('layout', 'default', 'string');
-		$view = $this->getView($viewName, $viewType, '', array('base_path' => $this->basePath, 'layout' => $viewLayout));
+		$view = $this->getView($viewName, $viewType, '', array('base_path' => $this->basePath, 'layout' => $viewLayout)); */
+		$model = $this->getModel($nameModel);
+		if(empty($nameView)) $nameView = $this->input->get('view');
+		$view = $this->getView($nameView, JFactory::getDocument()->getType());
 		return $view->setModel($model);
 	}
 

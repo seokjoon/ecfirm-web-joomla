@@ -11,13 +11,11 @@ class EctopicController extends EcControllerLegacy {
 		$nameView = $this->input->get('view');
 		switch ($nameView) {
 			case 'topic' :
-				$view = $this->getView($nameView, JFactory::getDocument()->getType());
-				$view->setModel($this->getModel('topiccmtform'));
-				$view->setModel($this->getModel('topiccmts'));
+				$this->setViewModel('topiccmtform', $nameView);
+				$this->setViewModel('topiccmts', $nameView);
 				break;
 			case 'topics' : 
-				$view = $this->getView($nameView, JFactory::getDocument()->getType());
-				$view->setModel($this->getModel('topiccat'));
+				$this->setViewModel('topiccat');
 				break;
 		}
 		return parent::display($cachable, $urlparams);
