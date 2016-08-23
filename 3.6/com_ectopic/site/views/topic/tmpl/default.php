@@ -45,13 +45,13 @@ $availableAddDelete = (1) ? true : false;
 
 
 
-echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
+echo '<form action="'.JRoute::_(JUri::getInstance()).'" method="post" id="'
 	.$nameKey.'_'.$valueKey.'" class="form-validate">';
 	echo '<div class="pull-right" align="right">';
 		echo '<div class="btn-group">';
 			echo '<a class="btn btn-default" href="'.$urlPlural.'">'
 				.JText::_('COM_ECTOPIC_TOPICS').'</a>';
-			echo EcWidget::caretBtn(true);
+			echo EcBtn::caretBtn(true);
 			echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
 				$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey);
 				$params['valueKey'] = $valueKey;
