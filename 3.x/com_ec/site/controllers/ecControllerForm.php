@@ -122,9 +122,9 @@ class EcControllerForm extends EcControllerLegacy {
 	public function save($nameKey = null, $urlVar = null) {
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 		$bool = parent::save($nameKey, $urlVar);
-		if($bool) $params['msg'] = JText::_($this->option.'_'.$this->nameKey.'_SAVE_SUCCESS'); 
-		else $this->setMessage(JText::_($this->option.'_'.$this->nameKey.'_SAVE_FAILURE'));
-		$this->turnbackPop('edit'); 
+		$msgPostfix = ($bool) ? 'SUCCESS' : 'FAILURE';
+		$this->setMessage(strtoupper(JText::_($this->option.'_'.$this->nameKey.'_SAVE_'.$msgPostfix)));
+		$this->turnbackPop('edit');
 		return $bool;
 	}
 	
