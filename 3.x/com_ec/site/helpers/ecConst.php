@@ -6,6 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 class EcConst {
+	const USER_GROUP_AUTHOR = 3;
 	const USER_GROUP_EDITOR = 4;
 	const USER_GROUP_GUEST = 9;
 	const USER_GROUP_NOT_DEFINED = -1;
