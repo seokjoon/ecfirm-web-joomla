@@ -17,4 +17,12 @@ class EcHelperTopic extends EcHelperAdmin {
 		JHtmlSidebar::addEntry(JText::_('COM_ECTOPIC_SUBMENU_TOPICS'),
 			'index.php?option=com_ectopic&view=topics', $vName == 'topics');
 	}
+	
+	public static function getStateValues() {
+		return array(
+			'' => JText::_('COM_ECTOPIC_TOPICCAT_STATE_VALUE_SELECT'),
+			'2' => JText::_('COM_ECTOPIC_TOPICCAT_STATE_VALUE_S2'),
+			'1' => JText::_('COM_ECTOPIC_TOPICCAT_STATE_VALUE_S1')
+		);
+	}
 }
