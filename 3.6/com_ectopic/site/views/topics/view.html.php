@@ -31,7 +31,7 @@ class EctopicViewTopics extends EcViewList {
 		$items = parent::getItems();
 		
 		$this->filterForm = $this->get('FilterForm'); //@IMPORTANT: filter call sequence
-		$this->activeFilters = $this->get('ActiveFilters'); 
+		//$this->activeFilters = $this->get('ActiveFilters'); 
 		return $items;
 	}
 }

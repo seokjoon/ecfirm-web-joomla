@@ -34,8 +34,10 @@ CREATE TABLE IF NOT EXISTS `#__ec_topiccat` (
 	KEY `idx_parent` (`parent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `#__ec_topiccat` (`topiccat`, `title`) VALUES
-	(1, 'Default Topic');
+INSERT INTO `#__ec_topiccat` (`topiccat`, `title`) 
+	SELECT 1, 'Default Topic'
+	WHERE NOT EXISTS(SELECT 1 FROM `#__ec_topiccat` 
+		WHERE `topiccat` = 1 AND `title` = 'Default Topic');
 
 
 
