@@ -26,7 +26,7 @@ class EctopicModelTopics extends EcModelListAdmin	{
 		$query = $db->getQuery(true);
 		$query->select('t.topic, t.modified, t.topiccat, t.user, t.state, t.title, t.hits, t.topiccmt, t.topiclike, t.options, t.body, t.imgs, t.files')
 			->from('#__ec_topic as t');
-		$query->select('ju.name as username')
+		$query->select('ju.username as username')
 			->join('INNER', '#__users as ju ON ju.id =t.user');
 		////////
 		$app = JFactory::getApplication();

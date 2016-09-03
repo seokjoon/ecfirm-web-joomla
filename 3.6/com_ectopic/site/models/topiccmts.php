@@ -27,7 +27,7 @@ class EctopicModelTopiccmts extends EcModelList	{
 		$query->select('tc.topiccmt, tc.modified, tc.topic, tc.user, tc.options, tc.body')
 			->from('#__ec_topiccmt as tc')
 			->order('tc.topiccmt DESC');
-		$query->select('ju.name as username')
+		$query->select('ju.username as username')
 			->join('INNER', '#__users as ju ON ju.id =tc.user');
 		////////
 		$topic = $this->getState('get.topic');

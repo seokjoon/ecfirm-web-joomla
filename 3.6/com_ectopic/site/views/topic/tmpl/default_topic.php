@@ -12,7 +12,8 @@ echo '<fieldset><legend>'.$title.'</legend>';
 	echo '<div class="pull-right span5">';
 		echo '<div class="center">'.$topiccatTitle.$seperator.$username.'</div>';
 	echo '</div><div class="clearfix"></div>';
-	echo '<div style="border: solid 1px #dddddd; padding: 10px;">'.nl2br($item->body).'</div>';
+	echo '<div style="border: solid 1px #dddddd; padding: 20px 10px 20px 10px;">'
+			.nl2br($item->body).'</div>';
 echo '</fieldset>';
 
 
