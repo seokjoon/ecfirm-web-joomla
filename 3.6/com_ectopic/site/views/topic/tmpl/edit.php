@@ -9,7 +9,6 @@ $nameKey = $this->nameKey;
 $optionCom = $this->optionCom;
 $item = $this->item;
 $valueKey = (is_object($item)) ? $item->$nameKey : 0;
-$availableTask = (1) ? true : false; //TODO
 
 
 
@@ -51,11 +50,11 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small form-horizonta
 			$params['valueKey'] = $valueKey;
 			$params['task'] = 'cancel';
 			$params['idPostfix'] = 'form';
-			$params['post'] = true;
-			echo EcWidget::submitBtn($params);
+			echo EcBtn::submit($params);
 			$params['task'] = 'save';
 			$params['validate'] = true;
-			echo EcWidget::submitBtn($params);
+			$params['class'] = 'primary';
+			echo EcBtn::submit($params);
 		echo '</div></span><div>&nbsp;</div>';
 	
 		echo '<input type="hidden" name="jform[topiccat]" value="'.EctopicUrl::getTopiccat().'" />';

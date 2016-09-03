@@ -15,29 +15,29 @@ $nameKey = $this->nameKey;
 $optionCom = $this->optionCom;
 $topiccat = EctopicUrl::getTopiccat();
 $itemId = EcUrl::getItemId();
-$topiccatTitle = JHtml::_('string.truncateComplex', $this->topiccatTitle, 30);
+$topiccatTitle = JHtml::_('string.truncateComplex', $this->topiccatTitle, 80);
 $topiccatBody = nl2br($this->topiccatBody);
 $seperator = '&nbsp;&middot;&nbsp;';
 
 
-
-echo '<form action="'.JRoute::_(JUri::getInstance()).'" method="post" '
-	.'id="'.$nameKey.'_0" class="form-validate">';
+echo '<div>';
+	echo '<div class="pull-left">';
+		echo '<fieldset><legend>'.$topiccatTitle.'</legend>'.'<small>'.$topiccatBody.'</small></fieldset>';
+	echo '</div>';
 	echo '<div class="pull-right">';
-		$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
-			'task' => 'add', 'disable' => !($this->getAllow()['add']));
-		echo EcBtn::submit($params);
+		echo '<form action="'.JRoute::_(JUri::getInstance()).'" method="post" '
+			.'id="'.$nameKey.'_0" class="form-validate">';
+			$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
+				'task' => 'add', 'disable' => !($this->getAllow()['add']));
+			echo EcBtn::submit($params);
+			echo '<input type="hidden" name="task" value="" />';
+		echo '</form>';
 	echo '</div><div class="clearfix"></div>';
-	echo '<input type="hidden" name="task" value="" />';
-echo '</form>';
+echo '</div>';
 
 
 
-echo '<fieldset><legend>'.$topiccatTitle.'</legend><small>'.$topiccatBody.'</small></fieldset>';
-
-
-
-echo '<form action="'.JRoute::_(JUri::getInstance())
+echo '<div><form action="'.JRoute::_(JUri::getInstance())
 	.'" method="post" name="adminForm" id="adminForm">';
 	echo '<div id="j-main-container">';
 		echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
@@ -57,7 +57,7 @@ echo '<form action="'.JRoute::_(JUri::getInstance())
 				echo '</tr></thead>';
 				echo '<tbody>';
 				foreach($this->items as $i => $item)	{ //EcDebug::lp($item);
-					$title = JHtml::_('string.truncateComplex', $item->title, 40);
+					$title = JHtml::_('string.truncateComplex', $item->title, 80);
 					$title = '<a href="'.JRoute::_('?option='.$optionCom.'&view=' .$nameKey
 						.'&'.$nameKey.'='.$item->topic.'&topiccat='.$topiccat.'&Itemid='.$itemId).'">'.$title.'</a>';
 					$modified = EcDatetime::interval($item->modified);
@@ -94,7 +94,7 @@ echo '<form action="'.JRoute::_(JUri::getInstance())
 		echo '<input type="hidden" name="boxchecked" value="0" />';
 		echo JHtml::_('form.token');
 	echo '</div>';
-echo '</form>';
+echo '</form></div>';
 
 
 

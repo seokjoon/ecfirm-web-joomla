@@ -19,7 +19,7 @@ echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
 		foreach ($this->topiccmtForm->getFieldset('topiccmt') as $field) {
 			//array_push($params['nameCols'], $field->name); //only EcAjax
 			if($field->name == 'jform[body]') {
-				$body = ($availableAddCmt) ? str_replace('readonly ', '', $field->input) : $field->input;
+				$body = ($this->getAllow()['add']) ? str_replace('readonly ', '', $field->input) : $field->input;
 				echo str_replace('<textarea', '<textarea style="width: 98%;"', $body);
 			} else echo $field->input;
 		}

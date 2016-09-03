@@ -23,22 +23,19 @@ echo '<div style="margin: 10px 0px 10px 0px;">';
 	
 	echo '<div class="pull-right" style="width:5%" align="right">';
 		echo '<div class="btn-group">';
-			echo EcWidget::caretBtn(false);
+			echo EcBtn::caret(false);
 			echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
-				if($availableDelete) {
-					$params = array();// ('nameCols' => array()); //only EcAjax
-					$params['optionCom'] = $optionCom; 
-					$params['nameKey'] = $nameKey;
-					$params['valueKey'] = $valueKey;
-					$params['nameCol'] = $nameCol;
-					$params['valueCol'] = $valueCol;
-					//$params['nameCols'] = array($nameKey, $nameCol, 'user');  //only EcAjax
-					$params['task'] = 'delete';
-					$params['idPostfix'] = 'form';
-					$params['post'] = true;
-					$params['validate'] = false;
-					echo EcWidget::submitBtnLi($params);
-				}
+				$params = array();
+				$params['optionCom'] = $optionCom; 
+				$params['nameKey'] = $nameKey;
+				$params['valueKey'] = $valueKey;
+				$params['nameCol'] = $nameCol;
+				$params['valueCol'] = $valueCol;
+				$params['task'] = 'delete';
+				$params['idPostfix'] = 'form';
+				$params['validate'] = false;
+				$params['disable'] = !($this->getAllow()['edit']);
+				echo EcBtn::submitLi($params);
 			echo '</ul>';
 		echo '</div>';
 	echo '</div>';
