@@ -6,6 +6,9 @@
         <field name="modified" type="calendar" format="%Y-%m-%d %H:%M:%S" size="22" class=""
         	label="COM_ECTOPIC_TOPIC_MODIFIED_LABEL"
             description="COM_ECTOPIC_TOPIC_MODIFIED_DESC" />
+        <field name="created" type="calendar" format="%Y-%m-%d %H:%M:%S" size="22" class=""
+        	label="COM_ECTOPIC_TOPIC_CREATED_LABEL"
+            description="COM_ECTOPIC_TOPIC_CREATED_DESC" />
 		<field name="topiccat" type="topiccat" value="0" />
 		<field name="user" type="user" value="0" />
 		<field name="state" type="topicstate" value="" />
