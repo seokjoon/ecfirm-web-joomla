@@ -70,13 +70,13 @@ echo '</form><div class="clearfix"></div>';
 	
 echo '<div class="form-horizontal">';
 	echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active'=>'topic'));
-		echo JHtml::_('bootstrap.addTab', 'myTab', 'loan', 
+		echo JHtml::_('bootstrap.addTab', 'myTab', 'topic', 
 			JText::_('COM_ECTOPIC_TOPIC_DISPLAY_TOPIC'));
 			if(isset($item->event->beforeDisplay)) echo $item->event->beforeDisplay;
 				require_once 'default_topic.php';
 			if(isset($item->event->afterDisplay)) echo $item->event->afterDisplay;
 		echo JHtml::_('bootstrap.endTab');
-		echo JHtml::_('bootstrap.addTab', 'myTab', 'com', 
+		echo JHtml::_('bootstrap.addTab', 'myTab', 'topiccmt', 
 			JText::_('COM_ECTOPIC_TOPIC_DISPLAY_TOPICCMT').'('.$item->topiccmt.')');
 			require_once 'edit_topiccmt.php';
 			require_once 'default_topiccmts.php';
