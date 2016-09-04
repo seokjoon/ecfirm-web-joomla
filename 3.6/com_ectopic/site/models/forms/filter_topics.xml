@@ -9,8 +9,6 @@
 			<option value="">COM_ECTOPIC_TOCPI_ORDER_VALUE_SELECT</option>
 			<option value="modified desc">COM_ECTOPIC_TOCPI_ORDER_VALUE_MODIFIED_DESC</option>
 			<option value="modified">COM_ECTOPIC_TOCPI_ORDER_VALUE_MODIFIED_ASC</option>
-			<option value="created desc">COM_ECTOPIC_TOCPI_ORDER_VALUE_CREATED_DESC</option>
-			<option value="created">COM_ECTOPIC_TOCPI_ORDER_VALUE_CREATED_ASC</option>
 			<option value="hits desc">COM_ECTOPIC_TOCPI_ORDER_VALUE_HITS_DESC</option>
 			<option value="hits">COM_ECTOPIC_TOCPI_ORDER_VALUE_HITS_ASC</option>
 		</field>

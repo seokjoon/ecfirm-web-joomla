@@ -54,7 +54,8 @@ class EctopicModelTopics extends EcModelList	{
 		}
 		////////
 		$search = $this->getState('filter.search');
-		if(!empty($search)) $query->where('t.body LIKE '.$db->quote('%'.$search.'%'));
+		if(!empty($search)) $query->where('t.title LIKE '.$db->quote('%'.$search.'%')
+			.' OR t.body LIKE '.$db->quote('%'.$search.'%'));
 		////////
 		//$this->setError($query);
 		return $query;

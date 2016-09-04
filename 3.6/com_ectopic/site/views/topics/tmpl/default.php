@@ -15,7 +15,7 @@ $nameKey = $this->nameKey;
 $optionCom = $this->optionCom;
 $topiccat = EctopicUrl::getTopiccat();
 $itemId = EcUrl::getItemId();
-$topiccatTitle = JHtml::_('string.truncateComplex', $this->topiccatTitle, 80);
+$topiccatTitle = JHtml::_('string.truncateComplex', $this->topiccatTitle, 70);
 $topiccatBody = nl2br($this->topiccatBody);
 $seperator = '&nbsp;&middot;&nbsp;';
 
@@ -48,7 +48,7 @@ echo '<div><form action="'.JRoute::_(JUri::getInstance())
 		} else {
 			echo '<table class="table table-striped" id="articleList">';
 				echo '<thead><tr>';
-					echo '<th class="center span6">';
+					echo '<th class="center span8">';
 						echo JText::_('COM_ECTOPIC_TOPICS_TITLE_HEADER');
 					echo '</th>';
 					echo '<th class="center hidden-phone span4">';
@@ -57,23 +57,27 @@ echo '<div><form action="'.JRoute::_(JUri::getInstance())
 				echo '</tr></thead>';
 				echo '<tbody>';
 				foreach($this->items as $i => $item)	{ //EcDebug::lp($item);
-					$title = JHtml::_('string.truncateComplex', $item->title, 80);
+					$title = JHtml::_('string.truncateComplex', $item->title, 70);
 					$title = '<a href="'.JRoute::_('?option='.$optionCom.'&view=' .$nameKey
 						.'&'.$nameKey.'='.$item->topic.'&topiccat='.$topiccat.'&Itemid='.$itemId).'">'.$title.'</a>';
 					$modified = EcDatetime::interval($item->modified);
 					$username = '<a href="'.JRoute::_('?option=com_ecuser&view=user&user='
 						.$item->user).'">'.$item->username.'</a>';
 					$hits = JText::sprintf('COM_ECTOPIC_TOPIC_HITS_NUMBER', $item->hits);
-					$topiccmt = ($item->topiccmt > 0) ? $seperator.JText::sprintf('COM_ECTOPIC_TOPIC_TOPICCMT_NUMBER', $item->topiccmt) : null;
-					$topiclike = ($item->topiclike) ? $seperator.JText::sprintf('COM_ECTOPIC_TOPIC_TOPICLIKE_NUMBER', $item->topiclike) : null;
+					$topiccmt = ($item->topiccmt > 0) ? $seperator.JText::sprintf
+						('COM_ECTOPIC_TOPIC_TOPICCMT_NUMBER', $item->topiccmt) : null;
+					$topiclike = ($item->topiclike) ? $seperator.JText::sprintf
+						('COM_ECTOPIC_TOPIC_TOPICLIKE_NUMBER', $item->topiclike) : null;
 					$files = json_decode($item->files, true); //EcDebug::lp(count($files));
 					$imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
 					$countFile = count($files);
 					$countImg = (count($imgs))/2;
 					$existFile =  (($countFile > 0) && (array_key_exists('file', $files)) && (!empty($files['file'])));
 					$existImg =  (($countImg > 0) && (array_key_exists('img', $imgs)) && (!empty($imgs['img'])));
-					$numberFile = ($existFile) ? $seperator.JText::sprintf('COM_ECTOPIC_TOPIC_FILE_NUMBER', $countFile) : null;
-					$numberImg = ($existImg) ? $seperator.JText::sprintf('COM_ECTOPIC_TOPIC_IMG_NUMBER', $countImg) : null;
+					$numberFile = ($existFile) ? 
+						$seperator.JText::sprintf('COM_ECTOPIC_TOPIC_FILE_NUMBER', $countFile) : null;
+					$numberImg = ($existImg) ? 
+						$seperator.JText::sprintf('COM_ECTOPIC_TOPIC_IMG_NUMBER', $countImg) : null;
 
 					echo '<tr class="row'.($i % 2).'" sortable-group-id="'.$item->topic.'">';
 						echo '<td class="has-context">';

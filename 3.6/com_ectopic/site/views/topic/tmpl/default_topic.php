@@ -13,12 +13,12 @@ echo '<fieldset><legend>'.$title.'</legend>';
 		echo '<div class="center">'.$topiccatTitle.$seperator.$username.'</div>';
 	echo '</div><div class="clearfix"></div>';
 	echo '<div style="border: solid 1px #dddddd; padding: 20px 10px 20px 10px;">'
-			.nl2br($item->body).'</div>';
+			.($item->body).'</div>';
 echo '</fieldset>';
 
 
 
 if($existImg) echo '<div align="center" style="margin: 10px;"><a href="'
-	.JUri::base().$imgs['img'].'"><img class="media-object thumbnail" src="'
+	.JUri::base().$imgs['img'].'" target="_new"><img class="media-object thumbnail" src="'
 	.JUri::base().$imgs['imgthumb'].'" alt=""></a></div>';
 if($existFile) echo '<div><a href="'.JUri::base().$files['file'].'">'.basename($files['file']).'</a></div>';
