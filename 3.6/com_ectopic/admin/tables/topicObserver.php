@@ -48,6 +48,7 @@ class EctopicTableTopicObserver extends JTableObserver {
 	
 	public function onBeforeStore($updateNulls, $tableKey) { 
 		if(JFactory::getApplication()->isSite()) $this->table->modified = date('Y-m-d H:i:s');
+		if(empty($this->table->topic)) $this->table->created = $this->table->modified;
 		$this->updateFile();
 		$this->updateFile('imgs');
 	}

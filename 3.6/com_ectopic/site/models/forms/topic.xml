@@ -4,7 +4,7 @@
 	<fieldset name="topic">
 		<field name="topic" type="hidden" value="" />
 		<field name="modified" type="hidden" value="" />
-		<field name="created" type="hidden" value="now" />
+		<field name="created" type="hidden" value=""  />
 		<field name="topiccat" type="hidden" value="" />
 		<field name="user" type="hidden" value="" />
 		<field name="state" type="hidden" value="" />
