@@ -59,7 +59,7 @@
         			description="MOD_ECGITHUB_EVENTS_FIELD_CACHE_TIME_LOCAL_DESC" />
             	<field name="length_list" type="text" default="10"
             		label="" description="" />
-            	<field name="length_item" type="text" default="30"
+            	<field name="length_item" type="text" default="50"
             		label="" description="" />
             </fieldset>
         </fields>
