@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.6" type="module" client="site" method="upgrade">
+    <name>ECFIRM GitHub Module</name>
+    <author>Seok Joon Lee</author>
+    <authorEmail>seokjoon@kilmeny.net</authorEmail>
+    <authorUrl>http://ecfirm.net/</authorUrl>
+    <copyright>Copyright (C) ecfirm.net. All rights reserved.</copyright>
+    <license>License GNU General Public License version 2 or later</license>
+    <version>3.6.2</version>
+    <description>MOD_ECGITHUB_XML_DESCRIPTION</description>
+
+
+
+    <files>
+        <folder>tmpl</folder>
+        <filename module="mod_ecgithub">mod_ecgithub.php</filename>
+        <filename>helper.php</filename>
+        <filename>mod_ecgithub.xml</filename>
+        <filename>index.html</filename>
+    </files>
+
+
+
+    <languages>
+        <language tag="ko-KR">ko-KR.mod_ecgithub.ini</language>
+        <language tag="ko-KR">ko-KR.mod_ecgithub.sys.ini</language>
+    </languages>
+
+
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="layout" type="modulelayout"
+                       label="JFIELD_ALT_LAYOUT_LABEL"
+                       description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+                <field name="cache_time" type="text" default="900"
+                       labe="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+                       description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+                <field name="cachemode" type="hidden" default="static">
+                    <option value="static"></option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+
+</extension>
