@@ -58,10 +58,10 @@ echo '<div><form action="'.JRoute::_(JUri::getInstance())
 				echo '<tbody>';
 				foreach($this->items as $i => $item)	{ //EcDebug::lp($item);
 					$title = JHtml::_('string.truncateComplex', $item->title, 70);
-					$title = '<a href="'.JRoute::_('?option='.$optionCom.'&view=' .$nameKey
+					$title = '<a href="'.JRoute::_('index.php?option='.$optionCom.'&view=' .$nameKey
 						.'&'.$nameKey.'='.$item->topic.'&topiccat='.$topiccat.'&Itemid='.$itemId).'">'.$title.'</a>';
 					$modified = EcDatetime::interval($item->modified);
-					$username = '<a href="'.JRoute::_('?option=com_ecuser&view=user&user='
+					$username = '<a href="'.JRoute::_('index.php?option=com_ecuser&view=user&user='
 						.$item->user).'">'.$item->username.'</a>';
 					$hits = JText::sprintf('COM_ECTOPIC_TOPIC_HITS_NUMBER', $item->hits);
 					$topiccmt = ($item->topiccmt > 0) ? $seperator.JText::sprintf
