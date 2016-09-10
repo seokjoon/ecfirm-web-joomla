@@ -10,6 +10,7 @@ $repository = 'https://github.com/'.$repository.'/commit/';
 $lengthList = $params->get('length_list');
 $lengthItem = $params->get('length_item');
 $widthItem = $params->get('width_item');
+$seperator = '&nbsp;&middot;&nbsp;';
 
 
 
@@ -28,8 +29,8 @@ echo '<div class="clearfix">';
 				echo '<img src="'.$avatar.'" width="30px;" height="30px;" />';
 			echo '</div>';
 			echo '<div class="pull-left">';
-				echo '<div>['.$date.']&nbsp;'.$actorName.'</div>';
 				echo '<div><a href="'.$url.'" target="_new">'.$msg.'</a></div>';
+				echo '<div>'.$date.$seperator.$actorName.'</div>';
 			echo '</div>';
 		echo '</div>';
 	}

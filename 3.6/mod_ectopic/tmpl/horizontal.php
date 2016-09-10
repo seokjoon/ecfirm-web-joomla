@@ -18,7 +18,7 @@ echo '<div class="clearfix">';
 		
 		$url = JRoute::_('index.php?option=com_ectopic&view=topic&topiccat='
 			.$topic->topiccat.'&topic='.$topic->topic.'&Itemid='.$itemId);
-		$modified = date('Y/m/d', strtotime($topic->modified));
+		$date = date('Y/m/d', strtotime($topic->created));
 		$title = JHtml::_('string.truncateComplex', $topic->title, $lengthItem);
 		$hits = JText::sprintf('MOD_ECTOPIC_TOPICS_HITS_POSTFIX', $topic->hits);
 		$topiccmt = ($topic->topiccmt > 0) ? $seperator.JText::sprintf
@@ -32,7 +32,7 @@ echo '<div class="clearfix">';
 			echo '</div>';
 			echo '<div class="pull-left">';
 				echo '<div><a href="'.$url.'">'.$title.'</a></div>';
-				echo '<div>'.$modified.$seperator.$hits.$topiccmt.$topiclike.'</div>';
+				echo '<div>'.$date.$seperator.$hits.$topiccmt.$topiclike.'</div>';
 			echo '</div>';
 		echo '</div>';
 	}
