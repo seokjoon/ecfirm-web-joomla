@@ -12,14 +12,14 @@ $valueKey = (is_object($item)) ? $item->$nameKey : 0;
 
 $topiccat = EctopicUrl::getTopiccat();
 $itemId = EcUrl::getItemId();
-$urlPlural = JRoute::_('?option='.$optionCom.'&view='.$nameKey.'s&&topiccat='
+$urlPlural = JRoute::_('index.php?option='.$optionCom.'&view='.$nameKey.'s&&topiccat='
 	.$topiccat.'&Itemid='.$itemId);
 
 $seperator = '&nbsp;&middot;&nbsp;';
 
 $modified = EcDatetime::interval($item->modified);
 $title = $item->title;
-$username = '<a href="'.JRoute::_('?option=com_ecuser&view=user&user='
+$username = '<a href="'.JRoute::_('index.php?option=com_ecuser&view=user&user='
 	.$item->user).'">'.$item->username.'</a>';
 $hits = JText::sprintf('COM_ECTOPIC_TOPIC_HITS_NUMBER', $item->hits);
 $topiccmt = ($item->topiccmt > 0) ? $seperator.JText::sprintf

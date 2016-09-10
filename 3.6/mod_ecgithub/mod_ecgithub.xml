@@ -63,7 +63,7 @@
         		<field name="cache_time_local" type="text" default="14400" 
         			label="MOD_ECGITHUB_FIELD_CACHE_TIME_LOCAL_LABEL" 
         			description="MOD_ECGITHUB_FIELD_CACHE_TIME_LOCAL_DESC" />
-            	<field name="length_list" type="text" default="9"
+            	<field name="length_list" type="text" default="6"
             		label="MOD_ECGITHUB_FIELD_LENGTH_LIST_LABEL" 
             		description="MOD_ECGITHUB_FIELD_LENGTH_LIST_DESC" />
             	<field name="length_item" type="text" default="40"
