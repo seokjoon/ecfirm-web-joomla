@@ -15,14 +15,14 @@ $seperator = '&nbsp;&middot;&nbsp;';
 
 
 echo '<div class="clearfix">';
-	foreach ($commits as $count => $commit) {
+	foreach ($events as $count => $event) {
 		if($count >= $lengthList) break;
-		$avatar = $commit->actor->avatar_url;
-		$actorName = $commit->actor->login;
-		$url = $repository.$commit->payload->head;
-		$msg = $commit->payload->commits[0]->message;
+		$avatar = $event->actor->avatar_url;
+		$actorName = $event->actor->login;
+		$url = $repository.$event->payload->head;
+		$msg = $event->payload->commits[0]->message;
 		$msg = JHtml::_('string.truncateComplex', $msg, $lengthItem);
-		$date = date('Y/m/d', strtotime($commit->created_at));
+		$date = date('Y/m/d', strtotime($event->created_at));
 	
 		echo '<div class="pull-left clearfix" style="width: '.$widthItem.'px;">';
 			echo '<div class="pull-left" style="margin-right: 5px;">';

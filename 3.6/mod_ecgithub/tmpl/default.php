@@ -5,4 +5,4 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-require_once 'horizontal.php';
+echo __file__;
