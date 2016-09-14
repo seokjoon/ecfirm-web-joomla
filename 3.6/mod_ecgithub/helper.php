@@ -28,10 +28,10 @@ class ModEcgithubHelper {
 							($params->get('username'), $params->get('repository'));
 						break;
 				}
+				@file_put_contents($cacheFile, json_encode($out, JSON_UNESCAPED_SLASHES));
 			}
 		} 
-		if((!isset($out)) || (empty($out))) $out = json_decode(file_get_contents($cacheFile));
-		else @file_put_contents($cacheFile, json_encode($out, JSON_UNESCAPED_SLASHES));
+		if((!isset($out)) || (empty($out))) $out = json_decode(@file_get_contents($cacheFile));
 		return $out;
 	}
 	
