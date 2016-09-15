@@ -16,8 +16,10 @@ $seperator = '&nbsp;&middot;&nbsp;';
 echo '<div class="clearfix">';
 	if(empty($events)) echo JText::_('MOD_ECHITHUB_NO_MATCHING_RESULTS');
 	else {
-		foreach ($events as $count => $event) {
+		$count = 0;
+		foreach ($events as $event) { //foreach ($events as $count => $event) {
 			if($count >= $lengthList) break;
+			$count++;
 			$avatar = $event->actor->avatar_url;
 			$actorName = $event->actor->login;
 			if(isset($event->milestone)) {

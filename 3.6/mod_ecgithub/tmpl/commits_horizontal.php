@@ -15,8 +15,10 @@ $seperator = '&nbsp;&middot;&nbsp;'; //echo '<pre>'.print_r($events, 1).'</pre>'
 
 
 echo '<div class="clearfix">';
-	foreach ($events as $count => $event) {
+	$count = 0;
+	foreach ($events as $event) { //foreach ($events as $count => $event) {
 		if($count >= $lengthList) break;
+		$count++;
 		$avatar = $event->actor->avatar_url;
 		$actorName = $event->actor->login;
 		$url = $repository.$event->payload->head;
