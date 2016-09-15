@@ -16,6 +16,7 @@ class ModEcgithubHelper {
 			case 'default' :
 				$out = $git->activity->events->getRepository
 					($params->get('username'), $params->get('repository'));
+				foreach ($out as $key => $o) if($o->type != 'PushEvent') unset($out[$key]);
 				break;
 			case 'issues':
 				$out = $git->activity->events->getIssue

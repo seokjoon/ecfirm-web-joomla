@@ -10,12 +10,9 @@ $repository = 'https://github.com/'.$repository.'/commit/';
 $lengthList = $params->get('length_list');
 $lengthItem = $params->get('length_item');
 $widthItem = $params->get('width_item');
-$seperator = '&nbsp;&middot;&nbsp;';
+$seperator = '&nbsp;&middot;&nbsp;'; //echo '<pre>'.print_r($events, 1).'</pre>';
 
 
-
-echo JText::_('MOD_ECGITHUB_TIME_CACHE_LABEL')
-	.': <span class="label label-default" style="margin-bottom: 5px;">'.$timeCache.'</span>';
 
 echo '<div class="clearfix">';
 	foreach ($events as $count => $event) {
@@ -38,3 +35,6 @@ echo '<div class="clearfix">';
 		echo '</div>';
 	}
 echo '</div>'; 
+
+echo '<span class="label label-default">'.$timeCache.' '
+	.JText::_('MOD_ECGITHUB_TIME_CACHE_LABEL').'</span>';
