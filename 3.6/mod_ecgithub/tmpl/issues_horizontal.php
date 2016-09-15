@@ -13,6 +13,9 @@ $seperator = '&nbsp;&middot;&nbsp;';
 
 
 
+echo JText::_('MOD_ECGITHUB_TIME_CACHE_LABEL')
+	.': <span class="label label-default" style="margin-bottom: 5px;">'.$timeCache.'</span>';
+
 echo '<div class="clearfix">';
 	if(empty($events)) echo JText::_('MOD_ECHITHUB_NO_MATCHING_RESULTS');
 	else {
