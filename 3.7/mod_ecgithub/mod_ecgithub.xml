@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.6" type="module" client="site" method="upgrade">
+<extension version="3.7" type="module" client="site" method="upgrade">
     <name>ECFIRM GitHub Module</name>
     <author>Seok Joon Lee</author>
     <authorEmail>seokjoon@kilmeny.net</authorEmail>
     <authorUrl>http://ecfirm.net/</authorUrl>
     <copyright>Copyright (C) ecfirm.net. All rights reserved.</copyright>
     <license>License GNU General Public License version 2 or later</license>
-    <version>3.6.2</version>
+    <version>3.7.0</version>
     <description>MOD_ECGITHUB_XML_DESCRIPTION</description>
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="3.6">
+<extension type="component" version="3.7">
 	<name>COM_ECTOPIC</name>
 	<creationDate>2016/07/16</creationDate>
 	<author>Seok Joon Lee</author>
@@ -7,7 +7,7 @@
 	<authorUrl>http://ecfirm.net/</authorUrl>
 	<copyright>Copyright (C) ecfirm.net. All rights reserved.</copyright>
 	<license>License GNU General Public License version 2 or later</license>
-	<version>3.6</version>
+	<version>3.7</version>
 	<scriptfile>script.php</scriptfile>
 	<install><sql>
 		<file driver="mysql" charset="utf8">sql/install.ectopic.mysql.utf8.sql</file>
