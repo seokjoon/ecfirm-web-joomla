@@ -9,26 +9,19 @@ $repository = 'https://github.com/'.$params->get('username').'/'.$params->get('r
 $lengthList = $params->get('length_list');
 $lengthItem = $params->get('length_item');
 $widthItem = $params->get('width_item');
-$seperator = '&nbsp;&middot;&nbsp;';
+$seperator = '&nbsp;&middot;&nbsp;'; //echo '<pre>'.print_r($events, 1).'</pre>';
 
 
 
 echo '<div class="clearfix">';
 	if(empty($events)) echo JText::_('MOD_ECHITHUB_NO_MATCHING_RESULTS');
 	else {
-		$count = 0;
-		foreach ($events as $event) { //foreach ($events as $count => $event) {
+		foreach ($events as $count => $event) {
 			if($count >= $lengthList) break;
-			$count++;
 			$avatar = $event->actor->avatar_url;
 			$actorName = $event->actor->login;
-			if(isset($event->milestone)) {
-				$url = $repository.'/milestone/'.$event->issue->number;
-				$title = $event->	milestone->title;
-			} else {
-				$url = $repository.'/issues/'.$event->issue->number;
-				$title = $event->issue->title;
-			}
+			$url = $repository.'/issues/'.$event->issue->number;
+			$title = $event->issue->title;
 			$title = JHtml::_('string.truncateComplex', $title, $lengthItem);
 			$date = date('Y/m/d', strtotime($event->created_at));
 	

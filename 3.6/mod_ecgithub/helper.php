@@ -10,17 +10,24 @@ use Joomla\Registry\Registry;
 class ModEcgithubHelper {
 	
 	private static function _getActivityEvent($params, $type) {
+		$out = array();
 		$git = self::getGithub($params);
 		switch ($type) {
 			case 'commits' :
 			case 'default' :
-				$out = $git->activity->events->getRepository
+				$src = $git->activity->events->getRepository
 					($params->get('username'), $params->get('repository'));
-				foreach ($out as $key => $o) if($o->type != 'PushEvent') unset($out[$key]);
+				foreach ($src as $s) if($s->type == 'PushEvent') array_push($out, $s);
 				break;
 			case 'issues':
-				$out = $git->activity->events->getIssue
+				$src = $git->activity->events->getIssue
 					($params->get('username'), $params->get('repository'));
+				$mapNumber = array();
+				foreach ($src as $s) {
+					if(in_array($s->issue->number, $mapNumber)) continue;
+					array_push($mapNumber, $s->issue->number);
+					array_push($out, $s);
+				}
 				break;
 		}
 		return $out;
