@@ -60,7 +60,9 @@ echo '<div><form action="'.JRoute::_(JUri::getInstance())
 					$title = JHtml::_('string.truncateComplex', $item->title, 70);
 					$title = '<a href="'.JRoute::_('index.php?option='.$optionCom.'&view=' .$nameKey
 						.'&'.$nameKey.'='.$item->topic.'&topiccat='.$topiccat.'&Itemid='.$itemId).'">'.$title.'</a>';
-					$modified = EcDatetime::interval($item->modified);
+					$datetime = EcDatetime::interval($item->created); 
+					if($item->created < $item->modified) 
+						$datetime = $datetime.$seperator.EcDatetime::interval($item->modified);
 					$username = '<a href="'.JRoute::_('index.php?option=com_ecuser&view=user&user='
 						.$item->user).'">'.$item->username.'</a>';
 					$hits = JText::sprintf('COM_ECTOPIC_TOPIC_HITS_NUMBER', $item->hits);
@@ -82,7 +84,7 @@ echo '<div><form action="'.JRoute::_(JUri::getInstance())
 					echo '<tr class="row'.($i % 2).'" sortable-group-id="'.$item->topic.'">';
 						echo '<td class="has-context">';
 							echo '<div>'.$title.'</div>';
-							echo '<div><small>'.$modified.$seperator.$hits.$topiccmt.$topiclike.$numberFile.$numberImg.'</small></div>';
+							echo '<div><small>'.$datetime.$seperator.$hits.$topiccmt.$topiclike.$numberFile.$numberImg.'</small></div>';
 						echo '</td>';
 						echo '<td class="center hidden-phone">';
 							echo '<div>'.$username.'</div>';

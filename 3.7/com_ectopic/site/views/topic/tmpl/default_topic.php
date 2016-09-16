@@ -7,7 +7,7 @@ defined('_JEXEC') or die('Restricted access');
 
 echo '<fieldset><legend>'.$title.'</legend>';
 	echo '<div class="pull-left span5">';
-		echo '<div class="center">'.$modified.$seperator.$hits.$topiccmt.$topiclike.$numberFile.$numberImg.'</div>';
+		echo '<div class="center">'.$datetime.$seperator.$hits.$topiccmt.$topiclike.$numberFile.$numberImg.'</div>';
 	echo '</div>';
 	echo '<div class="pull-right span5">';
 		echo '<div class="center">'.$topiccatTitle.$seperator.$username.'</div>';

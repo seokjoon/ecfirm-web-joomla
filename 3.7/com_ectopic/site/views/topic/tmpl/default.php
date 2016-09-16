@@ -16,8 +16,9 @@ $urlPlural = JRoute::_('index.php?option='.$optionCom.'&view='.$nameKey.'s&&topi
 	.$topiccat.'&Itemid='.$itemId);
 
 $seperator = '&nbsp;&middot;&nbsp;';
-
-$modified = EcDatetime::interval($item->modified);
+$datetime = EcDatetime::interval($item->created);
+if($item->created < $item->modified)
+	$datetime = $datetime.$seperator.EcDatetime::interval($item->modified);
 $title = $item->title;
 $username = '<a href="'.JRoute::_('index.php?option=com_ecuser&view=user&user='
 	.$item->user).'">'.$item->username.'</a>';
