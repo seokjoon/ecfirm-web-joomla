@@ -1,0 +1,25 @@
+CREATE TABLE IF NOT EXISTS `#__ec_term` (
+	`term` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
+	`modified` DATETIME NOT NULL DEFAULT '2016-01-01 00:00:00',
+	`user` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+	`sn` VARCHAR(255) NOT NULL DEFAULT '',
+	`gcmregid` VARCHAR(255) NOT NULL DEFAULT '',
+	`options` VARCHAR(2048) NOT NULL DEFAULT '',
+	PRIMARY KEY (`term`),
+	KEY `idx_modified` (`modified`),
+	KEY `idx_user` (`user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE IF NOT EXISTS `#__ec_user` (
+	`user` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, 
+	`modified` DATETIME NOT NULL DEFAULT '2016-01-01 00:00:00',
+	`term` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+	`profiles` VARCHAR(2048) NOT NULL DEFAULT '',
+	`options` VARCHAR(2048) NOT NULL DEFAULT '',
+	`imgs` TEXT NOT NULL,
+	PRIMARY KEY (`user`),
+	KEY `idx_modified` (`modified`),
+	KEY `idx_term` (`term`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
