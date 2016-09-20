@@ -58,6 +58,7 @@ class EcBtn {
 		if(!(isset($ajax))) $ajax = false; //!ajax == post
 		if(!(isset($validate))) $validate = false;
 		if(!(isset($li))) $li = false;
+		if(!(isset($btnType))) $btnType = 'button';
 		if(!(isset($class))) $class = 'default';
 		$class = ' btn-'.$class;
 		$class .= ($validate) ? ' validate' : null;
@@ -70,7 +71,7 @@ class EcBtn {
 		$out = ($ajax) ? EcAjax::submit($params) : self::joomlaSubmit($id);
 		if($li) $out .= '<li class="'.$classLi.'"><a href="javascript:;"'.$click.'><span class="'
 			.$icon.'">&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</span></a></li>';
-		else $out .= '<button type="button" class="btn'.$class.'" '.$click.$disable.'><span class="'
+		else $out .= '<button type="'.$btnType.'" class="btn'.$class.'" '.$click.$disable.'><span class="'
 			.$icon.'"></span>&#160;'.JText::_($optionCom.'_'.$nameKey.'_'.$task).'</button>';
 		return $out;
 	}

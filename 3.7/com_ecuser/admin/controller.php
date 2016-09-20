@@ -5,6 +5,6 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcuserController extends JControllerLegacyAdmin {
+class EcuserController extends EcControllerLegacyAdmin {
 	
 }

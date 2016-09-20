@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_ECUSER_LOGIN_VIEW_LOGINFORM_TITLE" 
+		option="COM_ECUSER_LOGIN_VIEW_DEFAULT_OPTION">
+		<help key = "JHELP_MENUS_MENU_ITEM_USER_LOGIN" />
+		<message>
+			<![CDATA[COM_ECUSER_LOGIN_VIEW_LOGINFORM_DESC]]>
+		</message>
+	</layout>
+
+	<fields name="params">
+
+	</fields>
+</metadata>
