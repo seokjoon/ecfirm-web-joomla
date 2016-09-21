@@ -6,48 +6,48 @@ defined('_JEXEC') or die('Restricted access');
 
 
 JHtml::_('behavior.keepalive');
-JHtml::_('behavior.formvalidator');
+JHtml::_('behavior.formvalidator'); 
 
 $item = $this->item; 
 $nameKey = $this->nameKey;
 $optionCom = $this->optionCom;
 $valueKey = (is_object($item)) ? $item->$nameKey : 0;
-$userConf = JComponentHelper::getParams('com_users');
-$availableRegistration = ($userConf->get('allowUserRegistration')) ? true : false;
+$app = JFactory::getApplication(); //EcDebug::lp($app->get('captcha'));
+$availableCaptcha = (empty($app->get('captcha'))) ? false : true;
 
 
 
 echo '<div id="'.$nameKey.'" class="well">';
 	echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
-		.$nameKey.'_'.$valueKey.'" class="form-validate form-horizontal">';
-	
+		.$nameKey.'_'.$valueKey.'" class="form-validate form-horizontal" '
+		.'enctype="multipart/form-data">';
+		
 		if(is_object($this->form)) { //EcDebug::lp($this->form);
-			foreach($this->form->getFieldset('login') as $field) {
+			foreach($this->form->getFieldset('registration') as $field) {
+				if($field->hidden) echo $field->input;
+				else {
+					echo '<div class="control-group">';
+						echo '<div class="control-label">'.$field->label.'</div>';
+						echo '<div class="controls">'.$field->input.'</div>';
+					echo '</div>';
+				}
+			} 
+			if($availableCaptcha) foreach($this->form->getFieldset('captcha') as $field) {
 				echo '<div class="control-group">';
 					echo '<div class="control-label">'.$field->label.'</div>';
 					echo '<div class="controls">'.$field->input.'</div>';
 				echo '</div>';
-			} 
+			}
 		}
 		
-		/* if(JPluginHelper::isEnabled('system', 'remember')) {
-			echo '<div class="control-group">';
-				echo '<div class="control-label"><label>'
-					.JText::_('COM_ECUSER_LOGIN_REMEMBER_ME').'</label></div>'; 
-				echo '<div class="controls"><input id="remember" type="checkbox" '
-					.'name="remember" class="inputbox" value="yes" /></div>';
-			echo '</div>';
-		} */
-		
-		echo '<div class="pull-right clearfix" align="right">';
+		echo '<div class="pull-right clearfix" align="right" >';
 			echo '<div class="btn-group">';
 				$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
-					'valueKey' => $valueKey, 'task' => 'login', 'class' => 'primary', 'btnType' => 'submit');
+					'valueKey' => $valueKey, 'task' => 'register', 'class' => 'primary', 'btnType' => 'submit');
 				echo EcBtn::submit($params);
 				$params['buttonType'] = 'button';
 				$params['class'] = 'default';
-				$params['task'] = 'registration';
-				if(!$availableRegistration) $params['disable'] = true;
+				$params['task'] = 'login';
 				echo EcBtn::submit($params);
 				echo EcBtn::caret(true);
 				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';

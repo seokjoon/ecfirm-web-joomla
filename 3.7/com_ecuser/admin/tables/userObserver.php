@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-class EcuserTableUserObserver extends EcTableObserver {
+class EcuserTableUserObserver extends JTableObserver {
 	private $imgsLoad;
 	private $typeAliasPattern;
 	
@@ -44,7 +44,6 @@ class EcuserTableUserObserver extends EcTableObserver {
 	
 	public function onBeforeStore($updateNulls, $tableKey) {
 		if(JFactory::getApplication()->isSite()) $this->table->modified = date('Y-m-d H:i:s');
-		if(empty($this->table->user)) $this->table->created = $this->table->modified;
 		$this->updateFile('imgs');
 	}
 	

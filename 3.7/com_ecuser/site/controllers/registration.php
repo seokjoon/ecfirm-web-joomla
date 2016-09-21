@@ -23,7 +23,7 @@ class EcuserControllerRegistration extends EcControllerForm {
 		$model = $this->getModel('Registrationform'); //EcDebug::lp($model, true);
 		$form = $model->getForm(); //EcDebug::lp($form, true);
 		if (!$form) { JError::raiseError(500, $model->getError()); return false; }	
-		$return = $model->validate($form, $jform);
+		$return = $model->validate($form, $jform); 
 		if($return === false) {
 			$errors = $model->getErrors();
 			for ($i = 0, $n = count($errors); $i < $n && $i < 3; $i++) {
@@ -37,9 +37,12 @@ class EcuserControllerRegistration extends EcControllerForm {
 			return false;
 		}
 		$modelUser = $this->getModel('User'); 
+		if(empty($jform['name'])) $jform['name'] = $jform['username'];
+		//unset($jform['password2']);
 		$return = $modelUser->save($jform);
 		if($return === false) {
-			$msg = JText::sprintf('COM_USERS_REGISTRATION_SAVE_FAILED', $modelUser->getError());
+			$msg = JText::sprintf
+				('COM_USERS_REGISTRATION_SAVE_FAILED', $modelUser->getError());
 			$app->enqueueMessage($msg, 'error');
 			$this->useForm();
 		}

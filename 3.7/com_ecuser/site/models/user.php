@@ -28,8 +28,8 @@ class EcuserModelUser extends EcModelItem	{
 	 * @param   integer  $itemId  The id of the article.
 	 * @return  mixed  Content item data object on success, false on failure.
 	 * @since 12.2 JModelAdmin */
-	public function getItem($keyValue = null)	{ 
-		$item = parent::getItem($keyValue); 
+	public function getItem($valueKey = null)	{ 
+		$item = parent::getItem($valueKey); 
 		if(empty($item)) return $item;
 		if($item->user > 0) {
 			$table = $this->getTable('User', 'JTable');
@@ -43,7 +43,8 @@ class EcuserModelUser extends EcModelItem	{
 	}
 	
 	public function save($data) {
-		if($data['user'] == 0) return false;
+		$task = JFactory::getApplication()->input->get('task');	
+		if(($data['user'] == 0) && ($task != 'register')) return false;
 		foreach($data as $key => $value) {
 			if($key == $this->name) continue;
 			else if(((is_numeric($value)) && ($value == 0)) 
@@ -51,8 +52,13 @@ class EcuserModelUser extends EcModelItem	{
 				unset($data[$key]); 
 		}
 		$ju = JUser::getInstance($data['user']);//if user is zero then return new JUser
-		if(!($ju->bind($data))) { $this->setError('bind', $ju->getError()); return false; }
-		if(!($ju->save())) { $this->setError('save', $ju->getError()); return false; }
+		if(!($ju->bind($data))) { $this->setError('bind: '.$ju->getError()); return false; }
+		if(!($ju->save())) { $this->setError('save: '.$ju->getError()); return false; }
+		if($data['user'] == 0) {
+			JUserHelper::addUserToGroup($ju->id, EcConst::USER_GROUP_REGISTERED);
+			EcDml::insertRecord(array($this->name => $ju->id), $this->name);
+			$data['user'] = $ju->id;
+		}
 		return parent::save($data);
 	}
 }

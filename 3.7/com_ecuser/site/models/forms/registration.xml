@@ -4,15 +4,14 @@
 	<fieldset name="registration">
 		<field name="username" type="text" class="validate-username"
 			filter="username" required="true" size="30" validate="username" 
-			label="COM_ECUSER_REGISTER_USERNAME_LABEL"
-			description="COM_ECUSER_REGISTER_USERNAME_DESC" 
-			hint="COM_ECUSER_REGISTER_USERNAME_DESC" 
-			message="COM_ECUSER_REGISTER_USERNAME_MESSAGE" /> 
+			label="COM_ECUSER_USER_USERNAME_LABEL"
+			description="COM_ECUSER_USER_USERNAME_DESC" 
+			hint="COM_ECUSER_USER_USERNAME_DESC" /> 
 		<field name="password" type="password" autocomplete="off" size="30" required="true"
 			class="validate-password" filter="raw" validate="password" 
-			label="COM_ECUSER_REGISTER_PASSWORD_LABEL" 
-			description="COM_ECUSER_REGISTER_PASSWORD_DESC"
-			hint="COM_ECUSER_REGISTER_PASSWORD_DESC" />
+			label="COM_ECUSER_USER_PASSWORD_LABEL" 
+			description="COM_ECUSER_USER_PASSWORD_DESC"
+			hint="COM_ECUSER_USER_PASSWORD_DESC" />
 		<field name="password2" type="password" autocomplete="off" size="30" required="true"
 			class="validate-password" filter="raw" validate="equals" field="password" 
 			label="COM_ECUSER_USER_PASSWORD2_LABEL"  
@@ -20,14 +19,17 @@
 			hint="COM_ECUSER_USER_PASSWORD2_DESC" 
 			message="COM_ECUSER_USER_PASSWORD2_MESSAGE" />
 		<field name="email" type="email" class="inputbox" size="40" required="true" 
-			filter="string" unique="true" validate="email" autocomplete="email"
-			label="COM_ECUSER_REGISTER_EMAIL_LABEL" 
-			description="COM_ECUSER_REGISTER_EMAIL_DESC"
-			hint="COM_ECUSER_REGISTER_EMAIL_DESC" />
-		<field name="captcha" type="captcha" validate="captcha" 
-			label="COM_ECUSER_REGISTER_CAPTCHA_LABEL"
-			description="COM_ECUSER_REGISTER_CAPTCHA_DESC" />
+			filter="string" unique="false" validate="email" autocomplete="email"
+			label="COM_ECUSER_USER_EMAIL_LABEL" 
+			description="COM_ECUSER_USER_EMAIL_DESC"
+			hint="COM_ECUSER_USER_EMAIL_DESC" />
 		<field id="user" name="user" type="hidden" default="0" />	
+	</fieldset>
+	
+	<fieldset name="captcha">
+		<field name="captcha" type="captcha" validate="captcha" 
+			label="COM_ECUSER_REGISTRATION_CAPTCHA_LABEL"
+			description="COM_ECUSER_REGISTRATION_CAPTCHA_DESC" />
 	</fieldset>
 
 </form>
