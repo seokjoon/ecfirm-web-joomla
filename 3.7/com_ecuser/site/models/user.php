@@ -34,9 +34,12 @@ class EcuserModelUser extends EcModelItem	{
 		if($item->user > 0) {
 			$table = $this->getTable('User', 'JTable');
 			$table->load($item->user); //EcDebug::log($table);
-			$item->username = $table->username;
 			$item->name = $table->name;
+			$item->username = $table->username;
 			$item->email = $table->email; 
+			$item->registerDate = $table->registerDate;
+			$item->lastvisitDate = $table->lastvisitDate;
+			$item->activation = $table->activation;
 			$item->groups = JUserHelper::getUserGroups($item->user);
 		} //EcDebug::lp($item);
 		return $item;

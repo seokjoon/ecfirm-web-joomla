@@ -8,6 +8,7 @@ defined('_JEXEC') or die('Restricted access');
 class EcuserControllerUser extends EcControllerForm {
 	
 	protected function allowEdit($data = array(), $nameKey = null) {
+		if(empty($data)) $data['user'] = $this->input->get('user', 0, 'uint');
 		if($data['user'] == (JFactory::getUser()->id)) return true;
 		else return parent::allowEdit($data, $nameKey);
 	}

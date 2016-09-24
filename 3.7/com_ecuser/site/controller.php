@@ -27,12 +27,18 @@ class EcuserController extends EcControllerLegacy {
 					(array('view' => '', 'task' => 'registration.useForm', 'layout' => 'registration'));
 				else $this->displayUser($user->id);
 				break;
+			case 'user':
+				if($user->guest) $this->setRedirectParams
+					(array('view' => '', 'task' => 'login.useForm', 'layout' => 'login'));
+				else $this->displayUser($user->id);
+				break;
 		}
 		return parent::display($cachable, $urlparams);
 	}
 	
 	private function displayUser($id) {
-		$this->setRedirectParams(array('view' => 'user', 'layout' => 'dafault', 'etc' => 'user='.$id));
+		//$this->setRedirectParams(array('view' => 'user', 'layout' => 'dafault', 'etc' => 'user='.$id));
+		$this->setRedirectParams(array('view' => 'user', 'task' => 'user.display', 'etc' => 'user='.$id));
 		$this->redirect();
 	}
 }
