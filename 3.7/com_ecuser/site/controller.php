@@ -19,17 +19,17 @@ class EcuserController extends EcControllerLegacy {
 		switch ($nameView) {
 			case 'login':
 				if($user->guest) $this->setRedirectParams
-					(array('view' => '', 'task' => 'login.useForm', 'layout' => 'login'));
+					(array('view' => 'user', 'task' => 'login.useForm', 'layout' => 'login'));
 				else $this->displayUser($user->id);
 				break;
 			case 'registration':
 				if($user->guest) $this->setRedirectParams
-					(array('view' => '', 'task' => 'registration.useForm', 'layout' => 'registration'));
+					(array('view' => 'user', 'task' => 'registration.useForm', 'layout' => 'registration'));
 				else $this->displayUser($user->id);
 				break;
 			case 'user':
 				if($user->guest) $this->setRedirectParams
-					(array('view' => '', 'task' => 'login.useForm', 'layout' => 'login'));
+					(array('view' => 'user', 'task' => 'login.useForm', 'layout' => 'login'));
 				else $this->displayUser($user->id);
 				break;
 		}

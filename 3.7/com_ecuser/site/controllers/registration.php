@@ -45,7 +45,10 @@ class EcuserControllerRegistration extends EcControllerForm {
 				('COM_USERS_REGISTRATION_SAVE_FAILED', $modelUser->getError());
 			$app->enqueueMessage($msg, 'error');
 			$this->useForm();
+			return false;
 		}
+		$app->enqueueMessage(JText::_('COM_ECUSER_REGISTRATION_SUCCESS'));
+		$this->login();
 		return true;
 	}
 	

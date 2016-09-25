@@ -7,11 +7,9 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcuserModelUser extends EcModelItem	{
 	
-	/**
-	 * @todo test */
 	protected function canDelete($record) { //JTable object
 		$canDelete = ((JFactory::getUser()->id) == ($record->user)) ? true : false;
-		if($canDelete) $canDelete = parent::canDelete($record);
+		//if(!$canDelete) $canDelete = parent::canDelete($record);
 		return $canDelete;
 	}
 	
