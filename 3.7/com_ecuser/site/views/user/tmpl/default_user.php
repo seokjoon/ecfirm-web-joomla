@@ -17,6 +17,10 @@ foreach ($item->groups as $group)
 	$groupTitle .= (empty($groupTitle)) ? $groups[$group] : $seperator.$groups[$group];
 $registerDate = date('Y-m-d H:i:s', strtotime($item->registerDate));
 $lastvisitDate = date('Y-m-d H:i:s', strtotime($item->lastvisitDate));
+$avatarSize = 200;
+$avatarHash = md5(strtolower(trim($item->email)));
+$avatarUrl  = '//www.gravatar.com/avatar/'.$avatarHash.'.jpg?s='.$avatarSize;
+$avatar = '<img src="'.$avatarUrl.'" alt="" />';
 
 
 
@@ -27,9 +31,8 @@ echo '<div class="container-fluid">';
 	echo '<div class="pull-left span6">';
 		echo '<table class="category table table-bordered table-hover">';
 			echo '<tbody>';
-				echo '<tr><td>';
-				
-				
+				echo '<tr><td class="center">';
+					echo $avatar;
 				echo '</td></tr>';
 			echo '</tbody>';
 		echo '</table>';

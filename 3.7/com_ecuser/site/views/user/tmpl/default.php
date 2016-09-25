@@ -30,10 +30,12 @@ echo '<div class="pull-right">';
 				$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey,
 					'valueKey' => $valueKey, 'idPostfix' => 'form');
 				$params['disable'] = !($this->getAllow()['edit']); 
-				$params['task'] = 'edit';
+				$params['task'] = 'editProfile';
 				echo EcBtn::submit($params);			
 				echo EcBtn::caret(true);
 				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
+					$params['task'] = 'editAccount';
+					echo EcBtn::submitLi($params);
 					$params['task'] = 'logout';
 					echo EcBtn::submitLi($params);
 					echo '<li class="divider"></li>';

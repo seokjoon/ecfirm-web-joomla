@@ -7,9 +7,16 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcViewForm extends EcViewItem {
 	
-	/**
-	 * @deprecated: use form() */
 	public function editForm() {
+		$layout = JFactory::getApplication()->input->get('layout', null, 'string');
+		$nameModelForm = (empty($layout)) ? $this->nameKey.'form' : $layout.'form';
+		$this->form = $this->get('Form', $nameModelForm);
+		parent::display(null);
+	}
+
+	/**
+	 * @DELETE ME */
+	public function editFormLegacy() {
 		$this->form = $this->get('Form', $this->nameKey.'form');
 		parent::display(null);
 	}

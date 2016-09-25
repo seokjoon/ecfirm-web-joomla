@@ -98,8 +98,6 @@ class EcControllerForm extends EcControllerLegacy {
 		}
 	}
 
-	/**
-	 * @deprecated: use form() */
 	public function editForm() {
 		////////internal redirect check
 		$prev = $this->getUserState('edit', 'turnback', null); //EcDebug::lp($prev, true);

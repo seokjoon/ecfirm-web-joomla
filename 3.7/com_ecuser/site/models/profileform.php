@@ -7,13 +7,10 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcuserModelProfileform extends EcModelForm	{
 	
-	public function getItem($keyValue = null)	{
+	public function getItem($valueKey = null)	{
 		$valueKey = JFactory::getApplication()->input->get('user', 0, 'uint');
 		$this->setState($this->nameKey, $valueKey);
-		$item = parent::getItem($keyValue);
-		
-		//TODO check line 12, 13
-		
+		$item = parent::getItem($valueKey); //EcDebug::lp($item); //TODO check line 12, 13
 		if(empty($item)) return $item;
 		if((JFactory::getUser()->id) != ($item->user)) return false;
 		if($item->user > 0) {
@@ -24,8 +21,6 @@ class EcuserModelProfileform extends EcModelForm	{
 		return $item;
 	}
 
-	//TODO check getTable()
-	
 	public function getTable($type = 'User', $prefix = 'EcuserTable', $config = array()) {
 		return JTable::getInstance($type, $prefix, $config);
 	}
