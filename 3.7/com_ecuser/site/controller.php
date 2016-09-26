@@ -27,18 +27,23 @@ class EcuserController extends EcControllerLegacy {
 					(array('view' => 'user', 'task' => 'registration.useForm', 'layout' => 'registration'));
 				else $this->displayUser($user->id);
 				break;
-			case 'user':
-				if($user->guest) $this->setRedirectParams
+			case 'user': //EcDebug::log(__method__);
+				$valueUser = $this->input->getCmd('user', $user->id);
+				if(($user->guest) && ($valueUser == 0)) $this->setRedirectParams
 					(array('view' => 'user', 'task' => 'login.useForm', 'layout' => 'login'));
-				else $this->displayUser($user->id);
+				else $this->displayUser($valueUser);
 				break;
 		}
 		return parent::display($cachable, $urlparams);
 	}
 	
-	private function displayUser($id) {
+	private function displayUser($id) { //EcDebug::log(__method__);
 		//$this->setRedirectParams(array('view' => 'user', 'layout' => 'dafault', 'etc' => 'user='.$id));
-		$this->setRedirectParams(array('view' => 'user', 'task' => 'user.display', 'etc' => 'user='.$id));
+		//$this->setRedirectParams(array('view' => 'user', 'task' => 'user.display', 'etc' => 'user='.$id));
+		$itemId = $this->input->getCmd('Itemid');
+		$itemId = ($itemId) ? null : '&Itemid='.EcUrl::getItemIdCom($this->option);
+		$this->setRedirectParams
+			(array('view' => 'user', 'task' => 'user.display', 'etc' => 'user='.$id.$itemId));
 		$this->redirect();
 	}
 }
