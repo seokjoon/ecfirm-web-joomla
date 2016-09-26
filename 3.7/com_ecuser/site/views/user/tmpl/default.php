@@ -29,7 +29,7 @@ echo '<div class="pull-right">';
 			echo '<div class="btn-group">';
 				$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey,
 					'valueKey' => $valueKey, 'idPostfix' => 'form');
-				$params['disable'] = !($this->getAllow()['edit']); 
+				$params['disable'] = !(EcPermit::allowEdit($item));
 				$params['task'] = 'editProfile';
 				echo EcBtn::submit($params);			
 				echo EcBtn::caret(true);

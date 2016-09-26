@@ -54,7 +54,7 @@ echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
 				$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey);
 				$params['valueKey'] = $valueKey;
 				$params['task'] = 'edit';
-				$params['disable'] = !($this->getAllow()['edit']);
+				$params['disable'] = !(EcPermit::allowEdit($item));
 				echo EcBtn::submitLi($params);
 				echo '<li class="divider"></li>';
 				$params['task'] = 'delete';

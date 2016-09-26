@@ -7,15 +7,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcuserController extends EcControllerLegacy {
 	
-	protected function allowEdit($data = array(), $nameKey = null) { //plural&singular display
-		if(empty($nameKey)) $nameKey = $this->input->getCmd('view', 'user', 'string');
-		$valueKey = (empty($data)) ? $this->input->get($nameKey, 0, 'uint') : $data[$nameKey];
-		if((empty($nameKey)) || ($valueKey == 0)) return false; //plural display
-		$model = $this->getModel($nameKey);
-		$item = $model->getItem($valueKey);
-		return EcPermit::allowEdit($item); //singular display
-	}
-	
 	/**
 	 * Method to display a view.
 	 * @param   boolean  $cachable   If true, the view output will be cached.

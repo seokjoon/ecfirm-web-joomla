@@ -34,7 +34,7 @@ echo '<div style="margin: 10px 0px 10px 0px;">';
 				$params['task'] = 'delete';
 				$params['idPostfix'] = 'form';
 				$params['validate'] = false;
-				$params['disable'] = !(EcPermit::allowEdit($topiccmt));//($this->getAllow()['edit']);
+				$params['disable'] = !(EcPermit::allowEdit($topiccmt));
 				echo EcBtn::submitLi($params);
 			echo '</ul>';
 		echo '</div>';

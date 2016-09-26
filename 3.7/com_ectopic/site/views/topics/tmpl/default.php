@@ -28,7 +28,7 @@ echo '<div>';
 		echo '<form action="'.JRoute::_(JUri::getInstance()).'" method="post" '
 			.'id="'.$nameKey.'_0" class="form-validate">';
 			$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
-				'task' => 'add', 'disable' => !($this->getAllow()['add']));
+				'task' => 'add', 'disable' => !(EcPermit::allowAdd()));
 			echo EcBtn::submit($params);
 			echo '<input type="hidden" name="task" value="" />';
 		echo '</form>';

@@ -104,24 +104,6 @@ class EcControllerLegacy extends JControllerLegacy {
 	}
 	
 	/**
-	 * Typical view method for MVC based architecture
-	 * This function is provide as a default implementation, in most cases
-	 * you will need to override it in your own controllers.
-	 * @param   boolean  $cachable   If true, the view output will be cached
-	 * @param   array    $urlparams  An array of safe url parameters and their variable types, for valid values see {@link JFilterInput::clean()}.
-	 * @return  JControllerLegacy  A JControllerLegacy object to support chaining.
-	 * @since   12.2 */
-	public function display($cachable = false, $urlparams = array()) {
-		$viewType = JFactory::getDocument()->getType();
-		$viewName = $this->input->get('view', $this->default_view);
-		$viewLayout = $this->input->get('layout', 'default', 'string');
-		$view = $this->getView($viewName, $viewType, '', array('base_path' => $this->basePath, 'layout' => $viewLayout));
-		$params = array('add' => $this->allowAdd(), 'edit' => $this->allowEdit());
-		$view->setAllow($params);
-		return parent::display($cachable, $urlparams);
-	}
-
-	/**
 	 * Method to edit an existing record.
 	 * @param   string  $nameKey     The name of the primary key of the URL variable.
 	 * @param   string  $urlVar  The name of the URL variable if different from the primary key
