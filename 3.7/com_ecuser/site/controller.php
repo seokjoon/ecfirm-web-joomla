@@ -7,6 +7,15 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcuserController extends EcControllerLegacy {
 	
+	protected function allowEdit($data = array(), $nameKey = null) { //plural&singular display
+		if(empty($nameKey)) $nameKey = $this->input->getCmd('view', 'user', 'string');
+		$valueKey = (empty($data)) ? $this->input->get($nameKey, 0, 'uint') : $data[$nameKey];
+		if((empty($nameKey)) || ($valueKey == 0)) return false; //plural display
+		$model = $this->getModel($nameKey);
+		$item = $model->getItem($valueKey);
+		return EcPermit::allowEdit($item); //singular display
+	}
+	
 	/**
 	 * Method to display a view.
 	 * @param   boolean  $cachable   If true, the view output will be cached.
@@ -14,36 +23,25 @@ class EcuserController extends EcControllerLegacy {
 	 * @return  JController  This object to support chaining. */
 	public function display($cachable = false, $urlparams = false) {
 		$user = JFactory::getUser();
-		$nameView = $this->input->getCmd('view', 'login');
+		$nameView = $this->input->getCmd('view', 'user');
 		
 		switch ($nameView) {
-			case 'login':
-				if($user->guest) $this->setRedirectParams
-					(array('view' => 'user', 'task' => 'login.useForm', 'layout' => 'login'));
-				else $this->displayUser($user->id);
-				break;
-			case 'registration':
-				if($user->guest) $this->setRedirectParams
-					(array('view' => 'user', 'task' => 'registration.useForm', 'layout' => 'registration'));
-				else $this->displayUser($user->id);
-				break;
+			case 'login': break;
+			case 'registration': break;
 			case 'user': //EcDebug::log(__method__);
 				$valueUser = $this->input->getCmd('user', $user->id);
 				if(($user->guest) && ($valueUser == 0)) $this->setRedirectParams
 					(array('view' => 'user', 'task' => 'login.useForm', 'layout' => 'login'));
-				else $this->displayUser($valueUser);
+				else $this->input->set('user', $valueUser);
 				break;
 		}
 		return parent::display($cachable, $urlparams);
 	}
-	
-	private function displayUser($id) { //EcDebug::log(__method__);
-		//$this->setRedirectParams(array('view' => 'user', 'layout' => 'dafault', 'etc' => 'user='.$id));
-		//$this->setRedirectParams(array('view' => 'user', 'task' => 'user.display', 'etc' => 'user='.$id));
+
+	/**
+	 * @not use */
+	private function getItemId() {
 		$itemId = $this->input->getCmd('Itemid');
-		$itemId = ($itemId) ? null : '&Itemid='.EcUrl::getItemIdCom($this->option);
-		$this->setRedirectParams
-			(array('view' => 'user', 'task' => 'user.display', 'etc' => 'user='.$id.$itemId));
-		$this->redirect();
+		return ($itemId) ? null : '&Itemid='.EcUrl::getItemIdCom($this->option);
 	}
 }

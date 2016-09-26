@@ -13,7 +13,7 @@ abstract class EcViewLegacy extends JViewLegacy {
 	protected $nameKey;
 	protected $params;
 	protected $plural;
-	protected $user;
+	//protected $user; DELETE ME
 	
 	public function __construct($config = array()) {
 		parent::__construct($config);
@@ -24,7 +24,7 @@ abstract class EcViewLegacy extends JViewLegacy {
 		$classNameArray = explode('View', get_called_class());
 		$this->context = 'com_'.strtolower($classNameArray[0]).'.'.$this->nameKey;
 		$this->params = JFactory::getApplication()->getParams();//$this->get('State')->get('params);
-		$this->user = JFactory::getUser();
+		//$this->user = JFactory::getUser(); //DELETE ME
 		parent::display($tpl);
 	}
 	

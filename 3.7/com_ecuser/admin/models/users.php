@@ -24,7 +24,7 @@ class EcuserModelUsers extends EcModelListAdmin	{
 	protected function getListQuery() {
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('u.user, u.modified, u.term, u.profiles, u.options, u.imgs')
+		$query->select('u.user, u.modified, u.term, u.options, u.profiles, u.imgs, u.urls')
 			->from('#__ec_user as u');
 		$query->select('ju.username as username, ju.name as name,
 			ju.email as email, ju.block as block, ju.sendEmail as sendEmail, 

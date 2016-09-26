@@ -33,6 +33,7 @@ class EcuserTableUserObserver extends JTableObserver {
 	
 	public function onAfterLoad(&$result, $row) {
 		$this->loadFile('imgs');
+		$this->table->hit();
 	}
 	
 	public function onAfterStore(&$result) { }
