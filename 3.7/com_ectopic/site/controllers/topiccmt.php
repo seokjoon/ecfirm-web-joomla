@@ -7,6 +7,10 @@ defined('_JEXEC') or die('Restricted access');
 
 class EctopicControllerTopiccmt extends EcControllerForm {
 	
+	protected function allowAdd($data = array()) {
+		return EcPermit::allowAdd();
+	}
+	
 	public function delete() {
 		//$jform = $this->input->post->get('jform', array(), 'array'); EcDebug::lp($jform, true, __method__);
 		$bool = parent::delete(); 

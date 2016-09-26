@@ -48,12 +48,13 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small form-horizonta
 			$params['optionCom'] = $optionCom;
 			$params['nameKey'] = $nameKey;
 			$params['valueKey'] = $valueKey;
-			$params['task'] = 'cancel';
 			$params['idPostfix'] = 'form';
-			echo EcBtn::submit($params);
 			$params['task'] = 'save';
 			$params['validate'] = true;
 			$params['class'] = 'primary';
+			echo EcBtn::submit($params);
+			$params['task'] = 'cancel';
+			$params['class'] = 'default';
 			echo EcBtn::submit($params);
 		echo '</div></span><div>&nbsp;</div>';
 	

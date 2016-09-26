@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-$valueKey = $topiccmt->$nameKey;
+$valueKey = $topiccmt->$nameKey; //EcDebug::lp($topiccmt);
 $topiccmtUsername = $topiccmt->username;
 $topiccmtBody = nl2br($topiccmt->body);
 $topiccmtModified = $topiccmt->modified;
@@ -34,7 +34,7 @@ echo '<div style="margin: 10px 0px 10px 0px;">';
 				$params['task'] = 'delete';
 				$params['idPostfix'] = 'form';
 				$params['validate'] = false;
-				$params['disable'] = !($this->getAllow()['edit']);
+				$params['disable'] = !(EcPermit::allowEdit($topiccmt));//($this->getAllow()['edit']);
 				echo EcBtn::submitLi($params);
 			echo '</ul>';
 		echo '</div>';
