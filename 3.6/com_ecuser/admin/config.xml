@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>	
+	<fieldset name="COM_ECUSER_CONF_GENERAL" 
+		label="COM_ECUSER_CONF_GENERAL_LABEL" 
+		description="COM_ECUSER_CONF_GENERAL_DESC">
+		<field name="default_view" type="list" default="users" 
+			label="COM_ECUSER_CONF_DEFAULT_VIEW_LABEL" 
+			desc="COM_ECUSER_CONF_DEFAULT_VIEW_DESC" >
+			<option value="users">COM_ECUSER_USERS</option>
+		</field>
+		<field type="spacer" />
+	</fieldset>
+	
+	
+	
+	<fieldset name="params" label="COM_ECUSER_CONF_PARAMS_LABEL" 
+		description="COM_ECUSER_CONF_PARAMS_DESC">
+		<field name="access-edit" type="radio" default="0"
+			class="btn-group btn-group-yesno"
+			label="COM_ECUSER_CONF_PARAMS_ACCESS_EDIT_LABEL"
+			desc="COM_ECUSER_CONF_PARAMS_ACCESS_EDIT_DESC">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+	</fieldset>
+	
+	
+	
+	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC"> 
+		<field name="rules" type="rules" label="JCONFIG_PERMISSIONS_LABEL"
+			class="inputbox" validate="rules" filter="rules"
+			component="com_ecuser" section="component" />
+	</fieldset>
+</config>

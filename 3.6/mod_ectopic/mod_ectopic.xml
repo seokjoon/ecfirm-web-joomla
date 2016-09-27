@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.7" type="module" client="site" method="upgrade">
+    <name>ECFIRM Topic Module</name>
+    <author>Seok Joon Lee</author>
+    <authorEmail>seokjoon@kilmeny.net</authorEmail>
+    <authorUrl>http://joomla.ecfirm.net/</authorUrl>
+    <copyright>Copyright (C) joomla.ecfirm.net. All rights reserved.</copyright>
+    <license>License GNU General Public License version 2 or later</license>
+    <version>3.7.0</version>
+    <description>MOD_ECTOPIC_XML_DESCRIPTION</description>
+
+
+
+    <files>
+        <folder>language</folder>
+        <folder>tmpl</folder>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <filename module="mod_ectopic">mod_ectopic.php</filename>
+        <filename>mod_ectopic.xml</filename>
+    </files>
+
+
+
+    <languages folder="site">
+        <language tag="ko-KR">language/ko-KR/ko-KR.mod_ectopic.ini</language>
+    </languages>
+    
+    
+    
+    <administration>
+	    <languages folder="admin">
+        	<language tag="ko-KR">admin/language/ko-KR/ko-KR.mod_ectopic.ini</language>
+        	<language tag="ko-KR">admin/language/ko-KR/ko-KR.mod_ectopic.sys.ini</language>
+   		</languages>
+    </administration>
+
+
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="layout" type="modulelayout" 
+                	label="JFIELD_ALT_LAYOUT_LABEL" 
+                	description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+        		<field name="cache" type="list" default="1" 
+        			label="COM_MODULES_FIELD_CACHING_LABEL" 
+        			description="COM_MODULES_FIELD_CACHING_DESC"> 
+		        	<option value="1">JGLOBAL_USE_GLOBAL</option>
+        			<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+        		</field>
+        		<field name="cache_time" type="text" default="900" 
+        			label="COM_MODULES_FIELD_CACHE_TIME_LABEL" 
+        			description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+            </fieldset>
+            <fieldset name="topic"
+            	addfieldpath="/administrator/components/com_ectopic/models/fields">
+            	<field name="topiccat" type="topiccat" 
+            		label="MOD_ECTOPIC_TOPICCAT_LABEL" 
+            		description="MOD_ECTOPIC_TOPICCAT_DESC" />
+            	<field name="length_list" type="text" default="6"
+            		label="MOD_ECTOPIC_FIELD_LENGTH_LIST_LABEL" 
+            		description="MOD_ECTOPIC_FIELD_LENGTH_LIST_DESC" />
+            	<field name="length_item" type="text" default="40"
+            		label="MOD_ECTOPIC_FIELD_LEGNTH_ITEM_LABEL" 
+            		description="MOD_ECTOPIC_FIELD_LENGTH_ITEM_DESC" />
+            	<field name="width_item" type="text" default="290"
+            		label="MOD_ECTOPIC_FIELD_WIDTH_ITEM_LABEL" 
+            		description="MOD_ECTOPIC_FIELD_WIDTH_ITEM_DESC" />
+            </fieldset>
+        </fields>
+    </config>
+
+</extension>
