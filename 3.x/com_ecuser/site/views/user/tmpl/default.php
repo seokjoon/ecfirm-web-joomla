@@ -56,7 +56,7 @@ echo '</div>';
 echo '<div class="form-horizontal">';
 	echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active'=>'user'));
 		echo JHtml::_('bootstrap.addTab', 'myTab', 'user', JText::_('COM_ECUSER_USER_TAB_USER'));
-			require_once '../../3.7/com_ecuser/site/views/user/tmpl/default_user.php';
+			require_once 'default_user.php';
 		echo JHtml::_('bootstrap.endTab');
 	echo JHtml::_('bootstrap.endTabSet');
 echo '</div>';

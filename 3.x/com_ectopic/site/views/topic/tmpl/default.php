@@ -74,13 +74,13 @@ echo '<div class="form-horizontal">';
 		echo JHtml::_('bootstrap.addTab', 'myTab', 'topic', 
 			JText::_('COM_ECTOPIC_TOPIC_DISPLAY_TOPIC'));
 			if(isset($item->event->beforeDisplay)) echo $item->event->beforeDisplay;
-				require_once '../../3.7/com_ectopic/site/views/topic/tmpl/default_topic.php';
+				require_once 'default_topic.php';
 			if(isset($item->event->afterDisplay)) echo $item->event->afterDisplay;
 		echo JHtml::_('bootstrap.endTab');
 		echo JHtml::_('bootstrap.addTab', 'myTab', 'topiccmt', 
 			JText::_('COM_ECTOPIC_TOPIC_DISPLAY_TOPICCMT').'('.$item->topiccmt.')');
-			require_once '../../3.7/com_ectopic/site/views/topic/tmpl/edit_topiccmt.php';
-			require_once '../../3.7/com_ectopic/site/views/topic/tmpl/default_topiccmts.php';
+			require_once 'edit_topiccmt.php';
+			require_once 'default_topiccmts.php';
 		echo JHtml::_('bootstrap.endTab');
 	echo JHtml::_('bootstrap.endTabSet');
 echo '</div>';

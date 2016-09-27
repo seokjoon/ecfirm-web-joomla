@@ -11,7 +11,7 @@ echo '<div style="margin-top: 50px;">';
 		echo '<div class="alert alert-no-items">';
 			echo JText::_('COM_ECTOPIC_NO_MATCHING_RESULTS');
 		echo '</div>';
-	} else foreach ($this->topiccmts as $topiccmt) require '../../3.7/com_ectopic/site/views/topic/tmpl/default_topiccmt.php';
+	} else foreach ($this->topiccmts as $topiccmt) require 'default_topiccmt.php';
 echo '</div>';
 //echo $this->pagination->getListFooter();
 
