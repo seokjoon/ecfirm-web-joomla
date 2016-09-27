@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
 
-	<fieldset name="credentials" label="COM_USERS_LOGIN_DEFAULT_LABEL"	>
+	<!-- fieldset name="credentials" label="COM_USERS_LOGIN_DEFAULT_LABEL" -->
+	<fieldset name="login" label="COM_USERS_LOGIN_DEFAULT_LABEL"	>
 		<field name="username" type="text" class="validate-username"
 			filter="username" size="25" required="true" validate="username" 
-			label="COM_USERS_LOGIN_USERNAME_LABEL" />
+			label="COM_ECUSER_USER_USERNAME_LABEL"
+			description="COM_ECUSER_USER_USERNAME_DESC"
+			hint="COM_ECUSER_USER_USERNAME_DESC" />
 		<field name="password" type="password" class="validate-password"
-			required="true" filter="raw" label="JGLOBAL_PASSWORD" size="25" />
-		<field name="secretkey" type="text" class="" required="false"
-			filter="int" label="JGLOBAL_SECRETKEY" size="25" />
-		<field name="return" type="hidden" />
+			required="true" filter="raw" size="25"
+			label="COM_ECUSER_USER_PASSWORD_LABEL"
+			description="COM_ECUSER_USER_PASSWORD_DESC" 
+			hint="COM_ECUSER_USER_PASSWORD_DESC" />
+		<!-- field name="secretkey" type="text" class="" required="false"
+			filter="int" label="JGLOBAL_SECRETKEY" size="25" /-->
+		<!-- field name="return" type="hidden" /-->
 	</fieldset>
 
 </form>

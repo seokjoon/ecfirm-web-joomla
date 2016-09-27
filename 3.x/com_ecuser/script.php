@@ -14,5 +14,4 @@ class Com_EcuserInstallerScript {
 	public function preflight($type, $parent) { }
 	
 	public function postflight($type, $parent) { }
-	
 }

@@ -1,5 +1,5 @@
-<?php /** @package ecfirm.net
-* @copyright	Copyright (C) kilmeny.net. All rights reserved.
+<?php /** @package joomla.ecfirm.net
+* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -7,15 +7,17 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcuserModelProfileform extends EcModelForm	{
 	
-	public function getItem($keyValue = null)	{ //EcDebug::log(__method__);
+	public function getItem($valueKey = null)	{
 		$valueKey = JFactory::getApplication()->input->get('user', 0, 'uint');
 		$this->setState($this->nameKey, $valueKey);
-		$item = parent::getItem($keyValue);
+		$item = parent::getItem($valueKey); //EcDebug::lp($item); //TODO check line 12, 13
 		if(empty($item)) return $item;
-		if(($this->getState('joinUser')) && ($item->user > 0)) {
+		if((JFactory::getUser()->id) != ($item->user)) return false;
+		if($item->user > 0) {
 			$table = $this->getTable('User', 'JTable');
 			$table->load($item->user); //EcDebug::log($table);
-			$item->name = $table->name; } //EcDebug::lp($item);
+			$item->name = $table->name; 
+		} //EcDebug::lp($item);
 		return $item;
 	}
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+
+	<fieldset name="profile">
+		<field name="name" type="text" class="inputbox" 
+			label="COM_ECUSER_USER_NAME_LABEL" filter="string"
+			description="COM_ECUSER_USER_NAME_DESC" />
+		<field id="img" name="img" type="file" 
+			label="COM_ECUSER_USER_IMG_LABEL" 
+			description="COM_ECUSER_USER_IMG_DESC" 
+			accept="image/*" onchange="user_saveImg" />
+		<field name="imgList" type="imagelist" directory="/images" hide_none="1" 
+			label="COM_ECUSER_USER_IMGLIST_LABEL"
+			description="COM_ECUSER_USER_IMGLIST_DESC" />
+		<field name="imgBg" type="media" directory="" 
+			label="COM_ECUSER_USER_BG_LABEL" 
+			description="COM_ECUSER_USER_BG_DESC" />
+		<field id="user" name="user" type="hidden" default="0" />
+	</fieldset>
+
+</form>

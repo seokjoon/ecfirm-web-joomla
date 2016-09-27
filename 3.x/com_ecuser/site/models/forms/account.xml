@@ -2,23 +2,26 @@
 <form>
 
 	<fieldset name="account">
-		<field name="username" type="text" class="inputbox" required="true"
+		<field name="username" type="text" class="inputbox" required="true" readonly="true"
 			label="COM_ECUSER_USER_USERNAME_LABEL" 
-			description="COM_ECUSER_USER_USERNAME_DESC" />
+			description="COM_ECUSER_USER_USERNAME_DESC"
+			hint="COM_ECUSER_USER_USERNAME_DESC" />
 		<field name="password" type="password" autocomplete="off" size="30"
-			class="validate-password" filter="raw" validate="password"
-			label="COM_ECUSER_USER_PASSWORD_LABEL" required="true" 
-			description="COM_ECUSER_USER_PASSWORD_DESC" />
+			class="validate-password" filter="raw" validate="password" required="true" 
+			label="COM_ECUSER_USER_PASSWORD_LABEL" 
+			description="COM_ECUSER_USER_PASSWORD_DESC" 
+			hint="COM_ECUSER_USER_PASSWORD_DESC" />
 		<field name="password2" type="password" autocomplete="off" size="30"
-			class="validate-password" filter="raw" validate="equals" field="password" 
-			label="COM_ECUSER_USER_PASSWORD2_LABEL"  required="true"
+			class="validate-password" filter="raw" validate="equals" field="password" required="true"
+			label="COM_ECUSER_USER_PASSWORD2_LABEL"  
 			description="COM_ECUSER_USER_PASSWORD2_DESC" 
+			hint="COM_ECUSER_USER_PASSWORD2_DESC" 
 			message="COM_ECUSER_USER_PASSWORD2_MESSAGE" />
-		<field name="email" type="email" class="inputbox" size="40" 
+		<field name="email" type="email" class="inputbox" size="40" readonly="true"
+			required="true" filter="string" unique="true"
 			label="COM_ECUSER_USER_EMAIL_LABEL" 
-			description="COM_ECUSER_USER_EMAIL_DESC"
-			required="true" filter="string" validate="email" />
-			<!-- required="true" filter="string" unique="true" validate="email" /-->
+			hint="COM_ECUSER_USER_EMAIL_DESC"
+			description="COM_ECUSER_USER_EMAIL_DESC" />
 		<field id="user" name="user" type="hidden" default="0" />	
 	</fieldset>
 

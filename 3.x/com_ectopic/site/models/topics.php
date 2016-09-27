@@ -1,5 +1,5 @@
-<?php /** @package ecfirm.net
-* @copyright	Copyright (C) kilmeny.net. All rights reserved.
+<?php /** @package joomla.ecfirm.net
+* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -14,7 +14,7 @@ class EctopicModelTopics extends EcModelList	{
 	public function __construct($config = array()) {
 		parent::__construct($config);
 		if(empty($this->keywords))
-			$this->keywords = array('objcat', 'modified', 'search');
+			$this->keywords = array('topiccat', 'order', 'modified', 'search');
 	}
 	
 	/**
@@ -24,26 +24,39 @@ class EctopicModelTopics extends EcModelList	{
 	protected function getListQuery() {
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('t.topic, t.modified, t.objcat, t.user, t.title, t.attr, t.topiccmt, 
-			t.topiclike, t.options, t.body, t.imgs, t.files')
+		$query->select('t.topic, t.modified, t.created, t.topiccat, t.user, t.state, t.title, t.hits, t.topiccmt, t.topiclike, t.options, t.body, t.imgs, t.files')
 			->from('#__ec_topic as t');
-		if($this->getState('joinUser')) 
-			$query->select('ju.name as ju_name')
-				->join('INNER', '#__users as ju ON ju.id =t.user');
-		$order = $this->getState('order', false);
-		if($order != false) $query->order($order);
-		$objcat = $this->getState('get.objcat');
-		$modified = $this->getState('get.modified');
-		if(empty($objcat)) $objcat = $this->getState('filter.objcat');
-		if(empty($modified)) $modified = $this->getState('filter.modified');
-		$search = $this->getState('filter.search');
-		if(!empty($objcat)) $query->where('t.objcat = "'.$objcat.'"');
-		if(!empty($modified)) { //$query->order('t.topic DESC');
-			if(is_numeric($modified)) $modified = date('Y-m-d H:i:s', $modified);
-			$query->where('t.modified >= "'.$modified.'"'); 
+		$query->select('ju.username as username')
+			->join('INNER', '#__users as ju ON ju.id =t.user');
+		////////
+		$app = JFactory::getApplication();
+		$input = $app->input;
+		////////
+		$order = $this->getState('get.order');
+		if(empty($order)) $order = $this->getState('filter.order');
+		if(!empty($order)) {
+			$query->order($order);
+			$app->setUserState('com_ectopic.topics.order', $order);
+		} else $query->order('t.topic DESC');
+		////////
+		$topiccat = $this->getState('get.topiccat');
+		if(empty($topiccat)) $topiccat = $this->getState('filter.topiccat');
+		if(!empty($topiccat)) {
+			$query->where('t.topiccat = "'.$topiccat.'"');
+			$app->setUserState('com_ectopic.topics.topiccat', $topiccat);
 		}
-		if(!empty($search))
-			$query->where('t.body LIKE '.$db->quote('%'.$search.'%'));
+		////////
+		$modified = $this->getState('get.modified');
+		if(empty($modified)) $modified = $this->getState('filter.modified');
+		if(!empty($modified)) {
+			if(is_numeric($modified)) $modified = date('Y-m-d H:i:s', $modified);
+			$query->where('t.modified >= "'.$modified.'"');
+		}
+		////////
+		$search = $this->getState('filter.search');
+		if(!empty($search)) $query->where('t.title LIKE '.$db->quote('%'.$search.'%')
+			.' OR t.body LIKE '.$db->quote('%'.$search.'%'));
+		////////
 		//$this->setError($query);
 		return $query;
 	}

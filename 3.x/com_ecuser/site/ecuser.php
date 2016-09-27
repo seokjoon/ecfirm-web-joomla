@@ -1,5 +1,5 @@
-<?php /** @package ecfirm.net
-* @copyright	Copyright (C) ecfirm.net. All rights reserved.
+<?php /** @package joomla.ecfirm.net
+* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -15,8 +15,8 @@ try {
 	JLoader::discover('', ECPATH.'/models');
 	JLoader::discover('', ECPATH.'/controllers');
 	//JLoader::discover('', ECPATH.'/views');
-	JLoader::discover('', JPATH_COMPONENT.'/helpers'); }
-catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
+	JLoader::discover('', JPATH_COMPONENT.'/helpers'); 
+} catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 
 
 

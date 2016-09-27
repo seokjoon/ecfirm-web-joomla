@@ -1,89 +1,86 @@
-<?php /** @package ecfirm.net
-* @copyright	Copyright (C) ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+<?php /** @package joomla.ecfirm.net
+ * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
 
 
-$nameKey = $this->nameKey;
-$optionCom = $this->optionCom;
-$item = $this->item;
+$item = $this->item; //EcDebug::lp($item);
+$optionCom = $this->optionCom; 
+$nameKey = $this->nameKey; 
+$valueKey = (is_object($item)) ? $item->$nameKey : 0; 
 
+$topiccat = EctopicUrl::getTopiccat();
+$itemId = EcUrl::getItemId();
+$urlPlural = JRoute::_('index.php?option='.$optionCom.'&view='.$nameKey.'s&&topiccat='
+	.$topiccat.'&Itemid='.$itemId);
 
-
-$valueKey = (is_object($item)) ? $item->$nameKey : 0; //EcDebug::lp($item);
-$availableEdit = (1) ? true : false;
-$availableDelete = (1) ? true : false;
-$modified = EcDatetime::interval($item->modified);
-$body = nl2br($item->body);
+$seperator = '&nbsp;&middot;&nbsp;';
+$datetime = EcDatetime::interval($item->created);
+if($item->created < $item->modified)
+	$datetime = $datetime.$seperator.EcDatetime::interval($item->modified);
 $title = $item->title;
+$username = '<a href="'.JRoute::_('index.php?option=com_ecuser&view=user&user='
+	.$item->user).'">'.$item->username.'</a>';
+$hits = JText::sprintf('COM_ECTOPIC_TOPIC_HITS_NUMBER', $item->hits);
+$topiccmt = ($item->topiccmt > 0) ? $seperator.JText::sprintf
+	('COM_ECTOPIC_TOPIC_TOPICCMT_NUMBER', $item->topiccmt) : null;
+$topiclike = ($item->topiclike) ? $seperator.JText::sprintf
+	('COM_ECTOPIC_TOPIC_TOPICLIKE_NUMBER', $item->topiclike) : null;
+$topiccatTitle = JHtml::_('string.truncateComplex', $item->topiccatTitle, 15);
+$files = json_decode($item->files, true); //EcDebug::lp(count($files));
 $imgs = json_decode($item->imgs, true); //EcDebug::lp(count($imgs));
-$boolImgs = (count($imgs) > 1) ? true : false;
-$thumbTopic = ($boolImgs) ? //JUri::base().$imgs['thumb'] :
-	EctopicConst::IC_TOPIC_ABSTRACT_IMG : EctopicConst::IC_TOPIC_ABSTRACT;
-$thumbTopicLink = JRoute::_('?option='.$optionCom.'&view='.$nameKey
-	.'s&task='.$nameKey.'s.display&objcat='.EcUrl::getObjcat().'&Itemid='.EcUrl::getItemId());
-$imgUser = EctopicConst::IC_TOPIC_USER;
-$files = json_decode($item->files, true);
-$boolFiles = (count($files) > 0) ? true : false;
+$countFile = count($files);
+$countImg = (count($imgs))/2;
+$existFile =  (($countFile > 0) && (array_key_exists('file', $files)) && (!empty($files['file'])));
+$existImg =  (($countImg > 0) && (array_key_exists('img', $imgs)) && (!empty($imgs['img'])));
+$numberFile = ($existFile) ? $seperator.JText::sprintf
+	('COM_ECTOPIC_TOPIC_FILE_NUMBER', $countFile) : null;
+$numberImg = ($existImg) ? $seperator.JText::sprintf
+	('COM_ECTOPIC_TOPIC_IMG_NUMBER', $countImg) : null;
+
+$user = JFactory::getUser();
 
 
 
-echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small">';
-	if(isset($item->event->beforeDisplay)) echo $item->event->beforeDisplay;
-	
-	echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
-		.$nameKey.'_'.$valueKey.'_form" class="form-validate form-vertical">';
+echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
+	.$nameKey.'_'.$valueKey.'" class="form-validate">';
+	echo '<div class="pull-right" align="right">';
+		echo '<div class="btn-group">';
+			echo '<a class="btn btn-default" href="'.$urlPlural.'">'
+				.JText::_('COM_ECTOPIC_TOPICS').'</a>';
+			echo EcBtn::caret(true);
+			echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
+				$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey);
+				$params['valueKey'] = $valueKey;
+				$params['task'] = 'edit';
+				$params['disable'] = !(EcPermit::allowEdit($item));
+				echo EcBtn::submitLi($params);
+				echo '<li class="divider"></li>';
+				$params['task'] = 'delete';
+				echo EcBtn::submitLi($params);
+			echo '</ul>';
+		echo '</div>';
+	echo '</div>'; //EcDebug::lp($params);
+	echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'">';
+	echo '<input type="hidden" name="task" value="" />';
+	echo JHtml::_('form.token');
+echo '</form><div class="clearfix"></div>';
 
-		echo '<div class="pull-left" style="width:94%" align="left">';
-			echo '<div class="pull-left media" style="margin-right:10px;">';
-				echo '<a href="'.$thumbTopicLink.'">';
-					echo '<img class="media-object thumbnail" src="'.$thumbTopic.'" alt="">';
-				echo '</a>';
-			echo '</div>';
-			echo '<div class="pull-left media" style="margin-right:10px;">';
-				//echo '<a href="">';
-				echo '<img class="media-object thumbnail" src="'.$imgUser.'" alt="">';
-				//echo '</a>';
-			echo '</div>';
-			echo '<div class="media-body">';
-				echo '<div>'.$title.'</div>';
-				echo '<div>'.$item->ju_name.'&#160;'.$modified.'</div>';
-				echo '<div style="padding-top: 8px;">'.$body.'</div>';
-				if($boolImgs) echo '<div align="center" style="padding-top: 8px;"><a href="'
-					.JUri::base().$imgs['img'].'"><img class="media-object thumbnail" src="'
-					.JUri::base().$imgs['thumb'].'" alt=""></a></div>';
-				if($boolFiles) echo '<div><a href="'
-					.JUri::base().$files['file'].'">'.basename($files['file']).'</a></div>';
-			echo '</div>';
-		echo '</div>';	
-	
-		echo '<div class="pull-right" style="width:6%" align="right">';
-			echo '<div class="btn-group">';
-				echo EcWidget::caretBtn(false);
-				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
-					$params['nameCols'] = array('topic', 'user');
-					$params['optionCom'] = $optionCom;
-					$params['nameKey'] = $nameKey;
-					$params['valueKey'] = $valueKey;
-					//$params['task'] = 'touch';
-					$params['idPostfix'] = 'form';
-					$params['post'] = true;
-					//if($availableEdit) echo EcWidget::submitBtnLi($params);
-					$params['task'] = 'edit';
-					if($availableEdit) echo EcWidget::submitBtnLi($params);
-					echo '<li class="divider"></li>';
-					$params['task'] = 'delete';
-					if($availableDelete) echo EcWidget::submitBtnLi($params);
-				echo '</ul>';
-			echo '</div>';
-		echo '</div>'; //EcDebug::lp($params);
-
-		echo '<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'">';
-		echo '<input type="hidden" name="task" value="" />';
-		echo JHtml::_('form.token');
-	echo '</form><div class="clearfix"></div>';
 	
 	
-	if(isset($item->event->afterDisplay)) echo $item->event->afterDisplay;
+echo '<div class="form-horizontal">';
+	echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active'=>'topic'));
+		echo JHtml::_('bootstrap.addTab', 'myTab', 'topic', 
+			JText::_('COM_ECTOPIC_TOPIC_DISPLAY_TOPIC'));
+			if(isset($item->event->beforeDisplay)) echo $item->event->beforeDisplay;
+				require_once '../../3.7/com_ectopic/site/views/topic/tmpl/default_topic.php';
+			if(isset($item->event->afterDisplay)) echo $item->event->afterDisplay;
+		echo JHtml::_('bootstrap.endTab');
+		echo JHtml::_('bootstrap.addTab', 'myTab', 'topiccmt', 
+			JText::_('COM_ECTOPIC_TOPIC_DISPLAY_TOPICCMT').'('.$item->topiccmt.')');
+			require_once '../../3.7/com_ectopic/site/views/topic/tmpl/edit_topiccmt.php';
+			require_once '../../3.7/com_ectopic/site/views/topic/tmpl/default_topiccmts.php';
+		echo JHtml::_('bootstrap.endTab');
+	echo JHtml::_('bootstrap.endTabSet');
 echo '</div>';

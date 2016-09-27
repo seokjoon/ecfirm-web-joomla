@@ -1,8 +1,8 @@
-<?php /** @package ecfirm.net
-* @copyright	Copyright (C) ecfirm.net. All rights reserved.
+<?php /** @package joomla.ecfirm.net
+* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
-require_once 'topiccmtObserver.php';
+require_once '../../3.7/com_ectopic/admin/tables/topiccmtObserver.php';
 
 
 

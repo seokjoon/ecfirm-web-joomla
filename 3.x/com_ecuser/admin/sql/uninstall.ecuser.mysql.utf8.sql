@@ -1,3 +1,2 @@
-DROP TABLE IF EXISTS #__ec_user;
-DROP TABLE IF EXISTS #__ec_usercat;
-DROP TABLE IF EXISTS #__ec_userlike;
+-- DROP TABLE IF EXISTS #__ec_term;
+-- DROP TABLE IF EXISTS #__ec_user;

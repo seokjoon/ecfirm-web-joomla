@@ -1,5 +1,5 @@
-<?php /** @package ecfirm.net
-* @copyright	Copyright (C) ecfirm.net. All rights reserved.
+<?php /** @package joomla.ecfirm.net
+* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
 
@@ -21,9 +21,16 @@ catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 class EctopicViewTopic extends EcViewForm {
 	
 	protected function getItem($valueKey) {
+		if(empty(JFactory::getApplication()->input->get('task'))) { //default task
+			//$modelCmt = $this->getModel('topiccmt');
+			$modelTopiccmtForm = $this->getModel('topiccmtform');
+			$this->topiccmtForm = $this->get('Form', 'topiccmtform');
+			$modelTopiccmts = $this->getModel('topiccmts');
+			$this->topiccmts = $this->get('Items', 'topiccmts');
+			$this->topiccmtsPagination = $this->get('Pagination', 'topiccmts');
+		}
 		$model = $this->getModel($this->getName());
 		$model->setState('enabledPlugin', true);
-		$model->setState('joinUser', true);
 		return parent::getItem($valueKey);
 	}
 }
