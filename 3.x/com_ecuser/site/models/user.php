@@ -2,6 +2,7 @@
 * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
 * @license GNU General Public License version 2 or later. */
 defined('_JEXEC') or die('Restricted access');
+use Joomla\Registry\Registry;
 
 
 
@@ -60,6 +61,18 @@ class EcuserModelUser extends EcModelItem	{
 			EcDml::insertRecord(array($this->name => $ju->id), $this->name);
 			$data['user'] = $ju->id;
 		}
+		
+		if((isset($data['urlDefault'])) && (!empty($data['urlDefault']))) { //EcDebug::lp($data, true);
+			if((strpos($data['urlDefault'], 'https://') !== false) 
+				|| (strpos($data['urlDefault'], 'http://') !== false)) $urlPrefix = true;
+			if(!$urlPrefix) $data['urlDefault'] = 'http://'.$data['urlDefault'];
+		}
+		$item = $this->getItem($data['user']);
+		$reg = new Registry;
+		$reg->loadString($item->urls);
+		$reg->set('default', $data['urlDefault']);
+		$data['urls'] = $reg->toString();
+		
 		return parent::save($data);
 	}
 }

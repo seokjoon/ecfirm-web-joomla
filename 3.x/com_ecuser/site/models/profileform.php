@@ -10,14 +10,19 @@ class EcuserModelProfileform extends EcModelForm	{
 	public function getItem($valueKey = null)	{
 		$valueKey = JFactory::getApplication()->input->get('user', 0, 'uint');
 		$this->setState($this->nameKey, $valueKey);
-		$item = parent::getItem($valueKey); //EcDebug::lp($item); //TODO check line 12, 13
+		$item = parent::getItem($valueKey); //EcDebug::lp($item);
 		if(empty($item)) return $item;
+		
 		if((JFactory::getUser()->id) != ($item->user)) return false;
 		if($item->user > 0) {
 			$table = $this->getTable('User', 'JTable');
-			$table->load($item->user); //EcDebug::log($table);
-			$item->name = $table->name; 
+			$table->load($item->user);
+			$item->name = $table->name;
 		} //EcDebug::lp($item);
+		
+		$urls = json_decode($item->urls, true); //EcDebug::lp($urls);
+		$item->urlDefault = ((isset($urls['default'])) && (!empty($urls['default']))) ? $urls['default'] : null;
+		
 		return $item;
 	}
 

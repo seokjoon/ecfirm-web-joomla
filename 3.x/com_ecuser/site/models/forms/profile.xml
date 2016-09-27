@@ -15,6 +15,9 @@
 		<field id="imgAvatar" name="imgAvatar" type="file" accept="image/*" onchange="" 
 			label="COM_ECUSER_USER_IMG_LABEL" 
 			description="COM_ECUSER_USER_IMG_DESC" /-->
+		<field id="urlDefault" name="urlDefault" type="url" class="input input-xlarge"
+			label="COM_ECUSER_USER_URL_DEFAULT_LABEL"
+			description="COM_ECUSER_USER_URL_DEFAULT_DESC" />
 		<field id="user" name="user" type="hidden" default="0" />
 	</fieldset>
 

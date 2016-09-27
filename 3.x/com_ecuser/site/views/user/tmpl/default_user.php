@@ -5,22 +5,26 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
+$avatarSize = 200;
+$avatarHash = md5(strtolower(trim($item->email)));
+$avatarUrl  = '//www.gravatar.com/avatar/'.$avatarHash.'.jpg?s='.$avatarSize;
+$avatar = '<img src="'.$avatarUrl.'" alt="" />';
+
 $email = str_replace('@', ' (at) ', $item->email);
 $email = JHtml::_('string.truncate', $email, 30);
 $name = JHtml::_('string.truncate', $item->name, 30);
-$activation = (empty($item->activation)) 
-	? JText::_('COM_ECUSER_USER_ACTIVATION_ENABLE') 
-	: JText::_('COM_ECUSER_USER_ACTIVATION_DISABLE');
 $groupTitle = null;
 $groups = EcuserHelper::getUsergroupTitle();
 foreach ($item->groups as $group) 
 	$groupTitle .= (empty($groupTitle)) ? $groups[$group] : $seperator.$groups[$group];
 $registerDate = date('Y-m-d H:i:s', strtotime($item->registerDate));
 $lastvisitDate = date('Y-m-d H:i:s', strtotime($item->lastvisitDate));
-$avatarSize = 200;
-$avatarHash = md5(strtolower(trim($item->email)));
-$avatarUrl  = '//www.gravatar.com/avatar/'.$avatarHash.'.jpg?s='.$avatarSize;
-$avatar = '<img src="'.$avatarUrl.'" alt="" />';
+$urls = json_decode($item->urls, true); //EcDebug::lp($urls);
+$urlDefault = ((isset($urls['default'])) && (!empty($urls['default']))) ? $urls['default'] : null;
+if(!empty($urlDefault)) 
+	$urlDefault = '<a href="'.$urlDefault.'" target="_new" style="color: white">'.$urlDefault.'</a>';
+$hits = number_format($item->hits);
+
 
 
 
@@ -46,14 +50,9 @@ echo '<div class="container-fluid">';
 				echo '<tr><td>';
 					echo JText::_('COM_ECUSER_USER_NAME_LABEL');
 					echo '<span class="label pull-right">'.$name.'</span>';
-				echo '</td></tr>';
 				echo '<tr><td>';
 					echo JText::_('COM_ECUSER_USER_EMAIL_LABEL');
 					echo '<span class="label pull-right">'.$email.'</span>';
-				echo '</td></tr>';
-				echo '<tr><td>';
-					echo JText::_('COM_ECUSER_USER_ACTIVATION_LABEL');
-					echo '<span class="label pull-right">'.$activation.'</span>';
 				echo '</td></tr>';
 				echo '<tr><td>';
 					echo JText::_('COM_ECUSER_USER_GROUPS_LABEL');
@@ -66,6 +65,14 @@ echo '<div class="container-fluid">';
 				echo '<tr><td>';
 					echo JText::_('COM_ECUSER_USER_LASTVISIT_DATE_LABEL');
 					echo '<span class="label pull-right">'.$lastvisitDate.'</span>';
+				echo '</td></tr>';
+				echo '<tr><td>';
+					echo JText::_('COM_ECUSER_USER_URL_DEFAULT_LABEL');
+					echo '<span class="label pull-right">'.$urlDefault.'</span>';
+				echo '</td></tr>';
+				echo '<tr><td>';
+					echo JText::_('COM_ECUSER_USER_HITS_LABEL');
+					echo '<span class="label pull-right">'.$hits.'</span>';
 				echo '</td></tr>';
 			echo '</tbody>';
 		echo '</table>';
