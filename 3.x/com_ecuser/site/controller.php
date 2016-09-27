@@ -23,7 +23,11 @@ class EcuserController extends EcControllerLegacy {
 				$valueUser = $this->input->getCmd('user', $user->id);
 				if(($user->guest) && ($valueUser == 0)) $this->setRedirectParams
 					(array('view' => 'user', 'task' => 'login.useForm', 'layout' => 'login'));
-				else $this->input->set('user', $valueUser);
+				else {
+					$this->input->set('user', $valueUser);
+					$itemId = $this->getItemId();
+					if(!empty($itemId)) $this->input->set('Itemid', $itemId);
+				}
 				break;
 		}
 		return parent::display($cachable, $urlparams);
