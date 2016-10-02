@@ -9,16 +9,13 @@ class EcuserControllerLogin extends EcControllerForm {
 	
 	public function login() {
 		JSession::checkToken('post') or jexit(JText::_('JINVALID_TOKEN'));
-		$app = JFactory::getApplication();
-		$input = $app->input; //EcDebug::lp($input);
 		$method = $this->input->getMethod();
-		/* $jform = $this->input->$method->get('jform', array(), 'array');
-		$this->input->$method->set('username', $jform['username']);
-		$this->input->$method->set('password', $jform['password']);
-		$data['username'] = $input->$method->get('username', '', 'USERNAME');
-		$data['password'] = $input->$method->get('password', '', 'RAW'); //EcDebug::lp($data); */
 		$data = $this->input->$method->get('jform', array(), 'array'); //EcDebug::lp($data, true);
-		if(true !== $app->login($data, array()))	
+		if(empty($data)) {
+			$data['username'] = $this->input->$method->get('username', null, 'USERNAME');
+			$data['password'] = $this->input->$method->get('password', null, 'RAW');
+		}
+		if(true !== JFactory::getApplication()->login($data, array()))	
 			$this->setRedirectParams(array('task' => 'login.useForm'));
 		else $this->setRedirectParams(array('view' => 'user', 'layout' => 'default', 
 			'etc' => 'user='.JFactory::getUser()->id.'&Itemid='.EcUrl::getItemId()));
