@@ -5,4 +5,4 @@ defined('_JEXEC') or die('Restricted access');
 
 
 
-require_once '../../3.7/mod_ectopic/tmpl/horizontal.php';
+require_once 'horizontal.php';
