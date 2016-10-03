@@ -7,19 +7,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class ModEctopicHelper {
 
-	public static function getItemId($params) {
-		static $itemId;
-		if(!$itemId) {
-			$app = JFactory::getApplication('site');
-			$com = JComponentHelper::getComponent('com_ectopic');
-			$menu = $app->getMenu();
-			$items = $menu->getItems('component_id', $com->id);
-			foreach ($items as $item) 
-				if($item->query['topiccat'] == $params->get('topiccat')) $itemId = $item->id;
-		}
-		return $itemId;
-	}
-	
 	public static function getTopics($params = array()) {
 		$topiccat = $params->get('topiccat');
 		$limit = $params->get('limit');

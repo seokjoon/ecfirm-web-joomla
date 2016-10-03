@@ -17,7 +17,7 @@ JLoader::register('ModEcloginHelper', __DIR__ . '/helper.php');
 $user = JFactory::getUser();
 $type = (!$user->get('guest')) ? 'logout' : 'login';
 $return = ModEcloginHelper::getReturnUrl($params, $type);
-$layout = $params->get('layout', 'default');
+$layout = $params->get('layout', 'vertical');
 
 // Logged users must load the logout sublayout
 if (!$user->guest) $layout .= '_logout';

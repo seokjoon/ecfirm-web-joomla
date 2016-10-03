@@ -33,8 +33,6 @@ class EcuserController extends EcControllerLegacy {
 		return parent::display($cachable, $urlparams);
 	}
 
-	/**
-	 * @not use */
 	private function getItemId() {
 		$itemId = $this->input->getCmd('Itemid');
 		return ($itemId) ? null : '&Itemid='.EcUrl::getItemIdCom($this->option);

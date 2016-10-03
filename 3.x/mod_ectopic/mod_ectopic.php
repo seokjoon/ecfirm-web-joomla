@@ -6,12 +6,12 @@ defined('_JEXEC') or die('Restricted access');
 
 
 require_once dirname(__FILE__).'/helper.php';
-
+JLoader::register('EcUrl', JPATH_SITE . '/components/com_ec/helpers/ecUrl.php');
 
 
 //echo '<pre>'.print_r($params, 1).'</pre>';
 $topics = ModEctopicHelper::getTopics($params);
-$itemId = ModEctopicHelper::getItemId($params);
+$itemId = EcUrl::getItemIdCom('com_ectopic'); 
 
 
 

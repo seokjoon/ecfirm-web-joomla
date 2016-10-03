@@ -9,24 +9,31 @@ class EcuserControllerLogin extends EcControllerForm {
 	
 	public function login() {
 		JSession::checkToken('post') or jexit(JText::_('JINVALID_TOKEN'));
+		$app = JFactory::getApplication();
 		$method = $this->input->getMethod();
 		$data = $this->input->$method->get('jform', array(), 'array'); //EcDebug::lp($data, true);
 		if(empty($data)) {
 			$data['username'] = $this->input->$method->get('username', null, 'USERNAME');
 			$data['password'] = $this->input->$method->get('password', null, 'RAW');
-		}
-		if(true !== JFactory::getApplication()->login($data, array()))	
+			$data['return'] = base64_decode($this->input->post->get('return', null, 'BASE64'));
+		} 
+		if(true !== $app->login($data, array()))	
 			$this->setRedirectParams(array('task' => 'login.useForm'));
-		else $this->setRedirectParams(array('view' => 'user', 'layout' => 'default', 
-			'etc' => 'user='.JFactory::getUser()->id.'&Itemid='.EcUrl::getItemId()));
+		else if((empty($data['return'])) || (!(JUri::isInternal($data['return']))))
+			$this->setRedirectParams(array('view' => 'user', 'layout' => 'default', 
+				'etc' => 'user='.JFactory::getUser()->id));
+		else $app->redirect(JRoute::_($data['return']));
 	}
 	
 	public function logout() {
 		//JSession::checkToken('request') or jexit(JText::_('JINVALID_TOKEN'));
 		$app = JFactory::getApplication();
+		$data['return'] = base64_decode($this->input->post->get('return', null, 'BASE64'));
 		$error  = $app->logout(); 
 		if ($error instanceof Exception) $this->setRedirect($this->getRedirectRequest()); //@attention
-		else $this->setRedirectParams(array('task' => 'login.useForm'));
+		else if((empty($data['return'])) || (!(JUri::isInternal($data['return']))))
+			$this->setRedirectParams(array('task' => 'login.useForm'));
+		else $app->redirect(JRoute::_($data['return']));
 	}
 	
 	public function remind() {

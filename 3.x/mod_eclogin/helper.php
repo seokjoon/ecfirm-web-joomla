@@ -9,6 +9,7 @@ defined('_JEXEC') or die('Restricted access');
 
 
 class ModEcloginHelper {
+	
 	/**
 	 * Retrieve the url where the user should be returned after logging in
 	 * @param   \Joomla\Registry\Registry  $params  module parameters
