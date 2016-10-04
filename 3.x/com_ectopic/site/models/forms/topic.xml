@@ -18,7 +18,7 @@
 		<field name="body" id="body" type="editor" buttons="false" class="" required="true"
 		   label="COM_ECTOPIC_TOPIC_BODY_LABEL" 
 		   description="COM_ECTOPIC_TOPIC_BODY_DESC"
-		   hint="COM_ECTOPIC_TOPIC_BODY_DESC" filter="JComponentHelper::filterText" />
+		   hint="COM_ECTOPIC_TOPIC_BODY_DESC" filter="safehtml" />
 	</fieldset>
 	
 	<fieldset name="file">
