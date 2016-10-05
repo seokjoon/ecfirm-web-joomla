@@ -55,6 +55,7 @@ echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well well-small form-horizonta
 			echo EcBtn::submit($params);
 			$params['task'] = 'cancel';
 			$params['class'] = 'default';
+			$params['validate'] = false;
 			echo EcBtn::submit($params);
 		echo '</div></span><div>&nbsp;</div>';
 	

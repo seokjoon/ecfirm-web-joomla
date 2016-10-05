@@ -1,7 +1,11 @@
-<?php /** @package joomla.ecfirm.net
-* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+<?php 
+/** 
+ * @package joomla.ecfirm.net
+ * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later.
+ */
 defined('_JEXEC') or die('Restricted access');
+
 use Joomla\Registry\Registry;
 
 
@@ -43,24 +47,28 @@ class EcuserModelUser extends EcModelItem	{
 		} //EcDebug::lp($item);
 		return $item;
 	}
-	
+
 	public function save($data) {
-		$task = JFactory::getApplication()->input->get('task');	
-		if(($data['user'] == 0) && ($task != 'register')) return false;
+		//$task = JFactory::getApplication()->input->get('task');	
+		//if(($data['user'] == 0) && ($task != 'register')) return false;
+		if($data['user'] == 0) return false;
+		
 		foreach($data as $key => $value) {
 			if($key == $this->name) continue;
 			else if(((is_numeric($value)) && ($value == 0)) 
 				|| ((is_string($value)) && (($value == ''))) || ($value == null))
 				unset($data[$key]); 
 		}
+		
 		$ju = JUser::getInstance($data['user']);//if user is zero then return new JUser
 		if(!($ju->bind($data))) { $this->setError('bind: '.$ju->getError()); return false; }
 		if(!($ju->save())) { $this->setError('save: '.$ju->getError()); return false; }
-		if($data['user'] == 0) {
+		/* if($data['user'] == 0) {
 			JUserHelper::addUserToGroup($ju->id, EcConst::USER_GROUP_REGISTERED);
 			EcDml::insertRecord(array($this->name => $ju->id), $this->name);
 			$data['user'] = $ju->id;
-		}
+		} */
+		EcDml::insertRecord(array($this->name => $ju->id), $this->name);
 		
 		if((isset($data['urlDefault'])) && (!empty($data['urlDefault']))) { //EcDebug::lp($data, true);
 			if((strpos($data['urlDefault'], 'https://') !== false) 
