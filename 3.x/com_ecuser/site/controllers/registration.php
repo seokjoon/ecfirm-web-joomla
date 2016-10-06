@@ -10,11 +10,64 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcuserControllerRegistration extends EcControllerForm {
 	
+	/**
+	 * Method to activate a user.
+	 * @return  boolean  True on success, false on failure.
+	 * @since   1.6
+	 */
 	public function activate() {
-		//$this->input->set('layout', 'activate');
-		//TODO
+		$input = JFactory::getApplication()->input;
+		$token = $input->getAlnum('token');
+		$uParams = JComponentHelper::getParams('com_users');
+		$useractivation = $uParams->get('useractivation');
+		$user = JFactory::getUser();
+		$model = $this->getModel('Registrationform');
 		
+		// Check for admin activation. Don't allow non-super-admin to delete a super admin
+		if (($useractivation != 2) && ($user->get('id'))) {
+			$this->setRedirect('index.php');
+			return true;
+		}
+		// If user registration or account activation is disabled, throw a 403.
+		if (($useractivation == 0) || ($uParams->get('allowUserRegistration') == 0)) {
+			JError::raiseError(403, JText::_('JLIB_APPLICATION_ERROR_ACCESS_FORBIDDEN'));
+			return false;
+		}
+		// Check that the token is in a valid format.
+		if ($token === null || strlen($token) !== 32) {
+			JError::raiseError(403, JText::_('JINVALID_TOKEN'));
+			return false;
+		}
 		
+		// Attempt to activate the user.
+		$return = $model->activate($token); //false or user object
+		// Check for errors.
+		if ($return === false) {
+			// Redirect back to the home page.
+			$this->setMessage(JText::sprintf
+				('COM_ECUSER_REGISTRATION_SAVE_FAILED', $model->getError()), 'warning');
+			$this->setRedirect('index.php');
+			return false;
+		}
+
+		// Redirect to the login screen.
+		if ($useractivation == 0) {
+			$this->setMessage(JText::_('COM_ECUSER_REGISTRATION_SAVE_SUCCESS'));
+			$this->login();
+		} elseif ($useractivation == 1) {
+			$this->setMessage(JText::_('COM_ECUSER_REGISTRATION_ACTIVATE_SUCCESS'));
+			$this->login();
+		} elseif ($return->getParam('activate')) {
+			$params = array('view' => 'registration', 'layout' => 'complete');
+			$params['msg'] = JText::_('COM_ECUSER_REGISTRATION_VERIFY_SUCCESS');
+			$this->setRedirectParams($params);
+		} else {
+			$params = array('view' => 'registration', 'layout' => 'complete');
+			$params['msg'] = JText::_('COM_ECUSER_REGISTRATION_ADMINACTIVATE_SUCCESS');
+			$this->setRedirectParams($params);
+		}
+		
+		return true;
 	}
 	
 	public function login() {
@@ -56,28 +109,33 @@ class EcuserControllerRegistration extends EcControllerForm {
 		$return = $model->register($jform); //false or array(user, activate)
 		if($return === false) {
 			$msg = JText::sprintf
-				('COM_USERS_REGISTRATION_SAVE_FAILED', $modelUser->getError());
+				('COM_USERS_REGISTRATION_SAVE_FAILED', $model->getError());
 			$app->enqueueMessage($msg, 'error');
 			$this->useForm();
 			return false;
 		} else {
 			$jform['user'] = $return['user']->id;
 			$modelUser = $this->getModel('User'); 
-			//$returnUser = $modelUser->saveEcuser($jform);	
-			$returnUser = $modelUser->save($jform);
+			$returnUser = $modelUser->save($jform); //TODO: check
 		}
 
 		$app->setUserState('com_ecuser.registration.data', null);
-		
-		if($return['activate'] === 'useractivate') {
-			$params = array('task' => 'registration.useForm', 'layout' => 'complete');
-			$params['msg'] = JText::_('COM_ECUSER_REGISTRATION_COMPLETE_ACTIVATE');
-			$this->setRedirectParams($params);
-		} else {
-			$app->enqueueMessage(JText::_('COM_ECUSER_REGISTRATION_SUCCESS'));
-			$this->login();
+		switch ($return['activate']) {
+			case EcuserConst::ACTIVATE_TYPE_ADMIN :
+				$params = array('task' => 'registration.useForm', 'layout' => 'complete');
+				$params['msg'] = JText::_('COM_ECUSER_REGISTRATION_COMPLETE_VERIFY');
+				$this->setRedirectParams($params);
+				break;
+			case EcuserConst::ACTIVATE_TYPE_USER :
+				$params = array('task' => 'registration.useForm', 'layout' => 'complete');
+				$params['msg'] = JText::_('COM_ECUSER_REGISTRATION_COMPLETE_ACTIVATE');
+				$this->setRedirectParams($params);
+				break;
+			default :
+				$app->enqueueMessage(JText::_('COM_ECUSER_REGISTRATION_SUCCESS'));
+				$this->login();
+				break;
 		}
-
 		return true;
 	}
 	

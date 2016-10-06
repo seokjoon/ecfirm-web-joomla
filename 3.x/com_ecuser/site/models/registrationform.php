@@ -17,7 +17,156 @@ class EcuserModelRegistrationform extends EcModelForm {
 	 * @since   1.6
 	 */
 	public function activate($token) {
-		//TODO
+		$db = $this->getDbo();
+		// Get the user id based on the token.
+		$query = $db->getQuery(true);
+		$query->select($db->quoteName('id'))
+			->from($db->quoteName('#__users'))
+			->where($db->quoteName('activation') . ' = ' . $db->quote($token))
+			->where($db->quoteName('block') . ' = ' . 1)
+			->where($db->quoteName('lastvisitDate') . ' = ' . $db->quote($db->getNullDate()));
+		$db->setQuery($query);
+		try { $userId = (int) $db->loadResult(); }
+		catch (RuntimeException $e) {
+			$this->setError(JText::sprintf('COM_ECUSER_DATABASE_ERROR', $e->getMessage()), 500);
+			return false;
+		}
+		if (!$userId) {
+			$this->setError(JText::_('COM_ECUSER_ACTIVATION_TOKEN_NOT_FOUND'));
+			return false;
+		}
+		
+		$config = JFactory::getConfig();
+		$userParams = JComponentHelper::getParams('com_users');
+		// Load the users plugin group.
+		JPluginHelper::importPlugin('user');
+		// Activate the user.
+		$user = JFactory::getUser($userId);
+
+		// Admin activation is on and user is verifying their email
+		if (($userParams->get('useractivation') == 2) && !$user->getParam('activate', 0)) {
+			$user->set('activation', $data['activation']);
+			$user->setParam('activate', 1);
+			if(!($this->activateSendMailAdmin($user))) return false;
+		} 
+		// Admin activation is on and admin is activating the account
+		elseif (($userParams->get('useractivation') == 2) && $user->getParam('activate', 0)) {
+			$user->set('activation', '');
+			$user->set('block', '0');
+			$user->setParam('activate', 0);
+			if(!($this->activateSendMail($user))) return false;
+		}
+		else {
+			$user->set('activation', '');
+			$user->set('block', '0');
+		}
+		
+		// Store the user object.
+		if (!$user->save()) {
+			$this->setError(JText::sprintf
+				('COM_ECUSER_REGISTRATION_ACTIVATION_SAVE_FAILED', $user->getError()));
+			return false;
+		}
+		return $user;
+	}
+	
+	private function activateSendMail($user) {
+		$config = JFactory::getConfig();
+		
+		// Compile the user activated notification mail values.
+		$data = $user->getProperties();
+		$data['fromname'] = $config->get('fromname');
+		$data['mailfrom'] = $config->get('mailfrom');
+		$data['sitename'] = $config->get('sitename');
+		$data['siteurl'] = JUri::base();
+		$emailSubject = JText::sprintf(
+			'COM_ECUSER_EMAIL_ACTIVATED_BY_ADMIN_ACTIVATION_SUBJECT',
+			$data['name'],
+			$data['sitename']
+		);
+		$emailBody = JText::sprintf(
+			'COM_ECUSER_EMAIL_ACTIVATED_BY_ADMIN_ACTIVATION_BODY',
+			$data['name'],
+			$data['siteurl'],
+			$data['username']
+		);
+
+		$return = JFactory::getMailer()->sendMail
+			($data['mailfrom'], $data['fromname'], $data['email'], $emailSubject, $emailBody);
+		// Check for an error.
+		if ($return !== true) {
+			$this->setError(JText::_
+				('COM_ECUSER_REGISTRATION_ACTIVATION_NOTIFY_SEND_MAIL_FAILED'));
+			return false;
+		}
+		return $return;
+	}
+	
+	private function activateSendMailAdmin($user) {
+		$config = JFactory::getConfig();
+		$db = $this->getDbo();
+		$query = $db->getQuery(true);
+		
+		// Compile the admin notification mail values.
+		$data = $user->getProperties();
+		$data['activation'] = 
+			JApplicationHelper::getHash(JUserHelper::genRandomPassword());
+		$data['siteurl'] = JUri::base();
+		$base = JUri::getInstance()->toString
+			(array('scheme', 'user', 'pass', 'host', 'port'));
+		$data['activate'] = $base . JRoute::_
+			('index.php?option=com_ecuser&task=registration.activate&token=' 
+			. $data['activation'], false);
+		// Remove administrator/ from activate url in case this method is called from admin
+		if (JFactory::getApplication()->isAdmin()) {
+			$adminPos = strrpos($data['activate'], 'administrator/');
+			$data['activate'] = substr_replace($data['activate'], '', $adminPos, 14);
+		}
+		$data['fromname'] = $config->get('fromname');
+		$data['mailfrom'] = $config->get('mailfrom');
+		$data['sitename'] = $config->get('sitename');
+		$emailSubject = JText::sprintf(
+			'COM_ECUSER_EMAIL_ACTIVATE_WITH_ADMIN_ACTIVATION_SUBJECT',
+			$data['name'],
+			$data['sitename']
+		);
+		$emailBody = JText::sprintf(
+			'COM_ECUSER_EMAIL_ACTIVATE_WITH_ADMIN_ACTIVATION_BODY',
+			$data['sitename'],
+			$data['name'],
+			$data['email'],
+			$data['username'],
+			$data['activate']
+		);
+
+		// Get all admin users
+		$query->clear()
+			->select($db->quoteName(array('name', 'email', 'sendEmail', 'id')))
+			->from($db->quoteName('#__users'))
+			->where($db->quoteName('sendEmail') . ' = ' . 1);
+		$db->setQuery($query);
+		try { $rows = $db->loadObjectList(); }
+		catch (RuntimeException $e) {
+			$this->setError(JText::sprintf
+				('COM_ECUSER_DATABASE_ERROR', $e->getMessage()), 500);
+			return false;
+		}
+
+		// Send mail to all users with users creating permissions and receiving system emails
+		foreach ($rows as $row) {
+			$usercreator = JFactory::getUser($row->id);
+			if ($usercreator->authorise('core.create', 'com_users')) {
+				$return = JFactory::getMailer()->sendMail
+					($data['mailfrom'], $data['fromname'], $row->email, $emailSubject, $emailBody);
+				// Check for an error.
+				if ($return !== true) {
+					$this->setError(JText::_
+						('COM_ECUSER_REGISTRATION_ACTIVATION_NOTIFY_SEND_MAIL_FAILED'));
+					return false;
+				}
+			}
+		}
+		return $return;
 	}
 	
 	/**
@@ -25,7 +174,7 @@ class EcuserModelRegistrationform extends EcModelForm {
 	 * @return  mixed  Data object on success, false on failure.
 	 * @since   1.6
 	 */
-	public function getData() {
+	public function getData() { //TODO: test me
 		if ((!isset($this->data)) || ($this->data === null)) {
 			$this->data = new stdClass;
 			$app = JFactory::getApplication();
@@ -97,23 +246,23 @@ class EcuserModelRegistrationform extends EcModelForm {
 		$data['sitename'] = $config->get('sitename');
 		$data['siteurl'] = JUri::root();
 		
-		$bool = $this->sendMail($data, $params);
-		if($bool) $bool = $this->sendMailAdmin($data, $params);
-		$activateArray = array(1 => 'useractivate', 2 => 'adminactivate');
+		$bool = $this->registerSendMail($data, $params);
+		if($bool) $bool = $this->registerSendMailAdmin($data, $params);
+		$activateArray = EcuserConst::ACTIVATE_TYPE; //array 
 		return ($bool) 
 			? array('user' => $user, 'activate' => $activateArray[$useractivation])
 			: false;
 	}
 	
-	private function sendMail($data, $params) { 
+	private function registerSendMail($data, $params) { 
 		$useractivation = $params->get('useractivation');
 		$sendpassword = $params->get('sendpassword', 1);
 		
 		// Handle account activation/confirmation emails.
 		if($useractivation == 2) { //admin activation
 			// Set the link to confirm the user email.
-			$uri = JUri::getInstance();
-			$base = $uri->toString(array('scheme', 'user', 'pass', 'host', 'port'));
+			$base = JUri::getInstance()->toString
+				(array('scheme', 'user', 'pass', 'host', 'port'));
 			$data['activate'] = $base . JRoute::_
 				('index.php?option=com_ecuser&task=registration.activate&token='
 				. $data['activation'], false);
@@ -146,8 +295,8 @@ class EcuserModelRegistrationform extends EcModelForm {
 			}
 		} elseif ($useractivation == 1) { //user activation
 			// Set the link to activate the user account.
-			$uri = JUri::getInstance();
-			$base = $uri->toString(array('scheme', 'user', 'pass', 'host', 'port'));
+			$base = JUri::getInstance()->toString
+				(array('scheme', 'user', 'pass', 'host', 'port'));
 			$data['activate'] = $base . JRoute::_
 				('index.php?option=com_ecuser&task=registration.activate&token=' 
 				. $data['activation'], false);
@@ -211,7 +360,7 @@ class EcuserModelRegistrationform extends EcModelForm {
 			($data['mailfrom'], $data['fromname'], $data['email'], $emailSubject, $emailBody);
 	}
 	
-	private function sendMailAdmin($data, $params) {
+	private function registerSendMailAdmin($data, $params) {
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 		
