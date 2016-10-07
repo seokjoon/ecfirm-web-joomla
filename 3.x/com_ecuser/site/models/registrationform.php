@@ -42,19 +42,22 @@ class EcuserModelRegistrationform extends EcModelForm {
 		JPluginHelper::importPlugin('user');
 		// Activate the user.
 		$user = JFactory::getUser($userId);
+		$data = $user->getProperties();
 
 		// Admin activation is on and user is verifying their email
 		if (($userParams->get('useractivation') == 2) && !$user->getParam('activate', 0)) {
+			$data['activation'] = 
+				JApplicationHelper::getHash(JUserHelper::genRandomPassword());
 			$user->set('activation', $data['activation']);
 			$user->setParam('activate', 1);
-			if(!($this->activateSendMailAdmin($user))) return false;
+			if(!($this->activateSendMailAdmin($user, $data))) return false;
 		} 
 		// Admin activation is on and admin is activating the account
 		elseif (($userParams->get('useractivation') == 2) && $user->getParam('activate', 0)) {
 			$user->set('activation', '');
 			$user->set('block', '0');
 			$user->setParam('activate', 0);
-			if(!($this->activateSendMail($user))) return false;
+			if(!($this->activateSendMail($user, $data))) return false;
 		}
 		else {
 			$user->set('activation', '');
@@ -70,11 +73,10 @@ class EcuserModelRegistrationform extends EcModelForm {
 		return $user;
 	}
 	
-	private function activateSendMail($user) {
+	private function activateSendMail($user, $data) {
 		$config = JFactory::getConfig();
 		
 		// Compile the user activated notification mail values.
-		$data = $user->getProperties();
 		$data['fromname'] = $config->get('fromname');
 		$data['mailfrom'] = $config->get('mailfrom');
 		$data['sitename'] = $config->get('sitename');
@@ -102,15 +104,12 @@ class EcuserModelRegistrationform extends EcModelForm {
 		return $return;
 	}
 	
-	private function activateSendMailAdmin($user) {
+	private function activateSendMailAdmin($user, $data) {
 		$config = JFactory::getConfig();
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 		
 		// Compile the admin notification mail values.
-		$data = $user->getProperties();
-		$data['activation'] = 
-			JApplicationHelper::getHash(JUserHelper::genRandomPassword());
 		$data['siteurl'] = JUri::base();
 		$base = JUri::getInstance()->toString
 			(array('scheme', 'user', 'pass', 'host', 'port'));

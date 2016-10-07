@@ -13,18 +13,30 @@ use Joomla\Registry\Registry;
 class EcuserModelUser extends EcModelItem	{
 	
 	protected function canDelete($record) { //JTable object
-		$canDelete = ((JFactory::getUser()->id) == ($record->user)) ? true : false;
-		//if(!$canDelete) $canDelete = parent::canDelete($record);
-		return $canDelete;
+		$bool = ((JFactory::getUser()->id) == ($record->user));
+		//if(!$bool) $bool = parent::canDelete($record);
+		
+		$table = $this->getTable('User', 'JTable');
+		$table->load($record->user); //EcDebug::log($table);
+		$app = JFactory::getApplication();
+		$jform = $app->input->post->get('jform', array(), 'array');
+		if($bool) $bool = ($table->username == $jform['username']);
+		if($bool) $bool = ($table->email == $jform['email']);
+		if($bool) $bool = ($app->login($jform, array()) === true);
+
+		return $bool;
 	}
 	
 	public function delete(&$valueKeys) { 
-		$valueKeys = (array)$valueKeys;
-		foreach($valueKeys as $valueKey) {
-			$ju = JFactory::getUser($valueKey);
-			if(!($ju->delete())) { $this->setError($ju->getError()); return false; } 
+		$bool = parent::delete($valueKeys);
+		if($bool) {
+			$valueKeys = (array)$valueKeys;
+			foreach($valueKeys as $valueKey) {
+				$ju = JFactory::getUser($valueKey);
+				if(!($ju->delete())) { $this->setError($ju->getError()); return false; } 
+			}
 		}
-		return parent::delete($valueKeys);
+		return $bool;
 	}
 	
 	/** Method to get article data.

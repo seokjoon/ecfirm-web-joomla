@@ -13,6 +13,27 @@ class EcuserControllerUser extends EcControllerForm {
 		else return parent::allowEdit($data, $nameKey);
 	}
 	
+	public function delete() {
+		$this->setRedirectParams(array('task' => 'delete.confirm'));
+	}
+	
+	public function deleteComplete() {
+		JSession::checkToken() or die(JText::_('JINVALID_TOKEN'));
+		
+		$jform = $this->input->post->get('jform', array(), 'array');
+		$jform['user'] = JFactory::getUser()->id;
+		$this->input->post->set('jform', $jform);
+		
+		$bool = parent::delete(); //check from model->canDelete()
+		if($bool) {
+			$msg = JText::_('COM_ECUSER_DELETE_COMPLETE_SUCCESS');
+			$this->setRedirect(JUri::base(), $msg); //@FIXME: msg
+		} else {
+			$msg = JText::_('COM_ECUSER_DELETE_COMPLETE_FAILED');
+			$this->setRedirect($this->getRedirectRequest(), $msg);
+		}
+	}
+	
 	public function editAccount() {
 		$this->input->set('layout', 'account');
 		$this->edit();

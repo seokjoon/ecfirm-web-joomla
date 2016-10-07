@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+
+	<fieldset name="confirm" label="COM_ECUSER_DELETE_CONFIRM_LABEL">
+		<field name="username" type="text" class="inputbox" required="true"
+			label="COM_ECUSER_USER_USERNAME_LABEL" 
+			description="COM_ECUSER_USER_USERNAME_DESC"
+			hint="COM_ECUSER_USER_USERNAME_DESC" />
+		<field name="password" type="password" autocomplete="off" size="30"
+			class="validate-password" filter="raw" validate="password" required="true" 
+			label="COM_ECUSER_USER_PASSWORD_LABEL" 
+			description="COM_ECUSER_USER_PASSWORD_DESC" 
+			hint="COM_ECUSER_USER_PASSWORD_DESC" />
+		<field name="email" type="email" class="inputbox" size="40"
+			required="true" filter="string" unique="true"
+			label="COM_ECUSER_USER_EMAIL_LABEL" 
+			hint="COM_ECUSER_USER_EMAIL_DESC"
+			description="COM_ECUSER_USER_EMAIL_DESC" />
+		<field id="user" name="user" type="hidden" default="0" />
+	</fieldset>
+
+</form>
