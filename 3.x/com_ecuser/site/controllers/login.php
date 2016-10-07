@@ -1,6 +1,9 @@
-<?php /** @package joomla.ecfirm.net
-* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+<?php 
+/** 
+ * @package joomla.ecfirm.net
+ * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later.
+ */
 defined('_JEXEC') or die('Restricted access');
 
 
@@ -9,6 +12,7 @@ class EcuserControllerLogin extends EcControllerForm {
 	
 	public function login() {
 		JSession::checkToken('post') or jexit(JText::_('JINVALID_TOKEN'));
+		
 		$app = JFactory::getApplication();
 		$method = $this->input->getMethod();
 		$data = $this->input->$method->get('jform', array(), 'array'); //EcDebug::lp($data, true);
@@ -17,6 +21,7 @@ class EcuserControllerLogin extends EcControllerForm {
 			$data['password'] = $this->input->$method->get('password', null, 'RAW');
 			$data['return'] = base64_decode($this->input->post->get('return', null, 'BASE64'));
 		} 
+		
 		if(true !== $app->login($data, array()))	
 			$this->setRedirectParams(array('task' => 'login.useForm'));
 		else if((empty($data['return'])) || (!(JUri::isInternal($data['return']))))
@@ -29,6 +34,7 @@ class EcuserControllerLogin extends EcControllerForm {
 		//JSession::checkToken('request') or jexit(JText::_('JINVALID_TOKEN'));
 		$app = JFactory::getApplication();
 		$data['return'] = base64_decode($this->input->post->get('return', null, 'BASE64'));
+		
 		$error  = $app->logout(); 
 		if ($error instanceof Exception) $this->setRedirect($this->getRedirectRequest()); //@attention
 		else if((empty($data['return'])) || (!(JUri::isInternal($data['return']))))

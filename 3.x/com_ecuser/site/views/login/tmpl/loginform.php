@@ -1,6 +1,9 @@
-<?php /** @package joomla.ecfirm.net
-* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+<?php 
+/** 
+ * @package joomla.ecfirm.net
+ * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later.
+ */
 defined('_JEXEC') or die('Restricted access');
 
 
@@ -14,35 +17,46 @@ $optionCom = $this->optionCom;
 $valueKey = (is_object($item)) ? $item->$nameKey : 0;
 $userConf = JComponentHelper::getParams('com_users');
 $availableRegistration = ($userConf->get('allowUserRegistration')) ? true : false;
+$urlForm = JRoute::_(JUri::getInstance());
+$formId = $nameKey.'_'.$valueKey;
+?>
 
 
 
-echo '<div id="'.$nameKey.'" class="well">';
-	echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
-		.$nameKey.'_'.$valueKey.'" class="form-validate form-horizontal">';
+<div id="<?php echo $nameKey; ?>" class="well">
+	<form action="<?php echo $urlForm; ?>" method="post" id="<?php echo $formId; ?>" class="form-validate form-horizontal">
 	
-		if(is_object($this->form)) { //EcDebug::lp($this->form);
-			foreach($this->form->getFieldset('login') as $field) {
-				echo '<div class="control-group">';
-					echo '<div class="control-label">'.$field->label.'</div>';
-					echo '<div class="controls">'.$field->input.'</div>';
-				echo '</div>';
-			} 
-		}
+		<?php if(is_object($this->form)) : ?> 
+			<?php foreach ($this->form->getFieldset('login') as $field) : ?>
+				<?php if(!($field->hidden)) : ?>
+					<div class="control-group">		
+						<div class="control-label"><?php echo $field->label; ?></div>
+						<div class="controls"><?php echo $field->input; ?></div>
+					</div>
+				<?php else : echo $field->input; endif; ?>
+			<?php endforeach; ?>
+		<?php endif; ?>
 		
-		/* if(JPluginHelper::isEnabled('system', 'remember')) {
-			echo '<div class="control-group">';
-				echo '<div class="control-label"><label>'
-					.JText::_('COM_ECUSER_LOGIN_REMEMBER_ME').'</label></div>'; 
-				echo '<div class="controls"><input id="remember" type="checkbox" '
-					.'name="remember" class="inputbox" value="yes" /></div>';
-			echo '</div>';
-		} */
 		
-		echo '<div class="pull-right clearfix" align="right">';
-			echo '<div class="btn-group">';
-				$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
-					'valueKey' => $valueKey, 'task' => 'login', 'class' => 'primary', 'btnType' => 'submit');
+		
+		<?php if(JPluginHelper::isEnabled('system', 'remember')) : ?>	
+			<div class="control-group">
+				<div class="control-label">
+					<label><?php echo JText::_('COM_ECUSER_USER_REMEMBER_ME'); ?></label>
+				</div>
+				<div class="controls">
+					<input id="remember" type="checkbox" name="remember" class="inputbox" value="yes" />
+				</div>
+			</div>
+		<?php endif; ?>
+		
+		
+		
+		<div class="pull-right clearfix" align="right">
+			<div class="btn-group">
+				<?php $params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
+					'valueKey' => $valueKey, 'task' => 'login', 'class' => 'primary', 
+					'btnType' => 'submit');
 				echo EcBtn::submit($params);
 				$params['buttonType'] = 'button';
 				$params['class'] = 'default';
@@ -51,16 +65,16 @@ echo '<div id="'.$nameKey.'" class="well">';
 				echo EcBtn::submit($params);
 				echo EcBtn::caret(true);
 				echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';
-					$params['disable'] = true; //DELETE ME
+					$params['disable'] = true; //TODO: DELETE ME
 					$params['task'] = 'remind';
 					echo EcBtn::submitLi($params);
 					$params['task'] = 'reset';
 					echo EcBtn::submitLi($params);
-				echo '</ul>';
-			echo '</div>';
-		echo '</div><br />'; //EcDebug::lp($params);
+				echo '</ul>'; ?>
+			</div>
+		</div><br />
 		
-		echo '<input type="hidden" name="task" value="" />';
-		echo JHtml::_('form.token');
-	echo '</form>';
-echo '</div>';
+		<input type="hidden" name="task" value="" />
+		<?php echo JHtml::_('form.token'); ?>
+	</form>
+</div>

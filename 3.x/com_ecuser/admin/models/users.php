@@ -1,6 +1,9 @@
-<?php /** @package joomla.ecfirm.net
-* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+<?php 
+/** 
+ * @package joomla.ecfirm.net
+ * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later.
+ */
 defined('_JEXEC') or die('Restricted access');
 
 
@@ -13,6 +16,7 @@ class EcuserModelUsers extends EcModelListAdmin	{
 	 * @since   12.2 JModelList */
 	public function __construct($config = array()) {
 		parent::__construct($config);
+
 		if(empty($this->keywords))
 			$this->keywords = array('modified', 'search');
 	}
@@ -24,6 +28,7 @@ class EcuserModelUsers extends EcModelListAdmin	{
 	protected function getListQuery() {
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
+		
 		$query->select('u.user, u.modified, u.term, u.options, u.profiles, u.imgs, u.urls')
 			->from('#__ec_user as u');
 		$query->select('ju.username as username, ju.name as name,
@@ -32,6 +37,7 @@ class EcuserModelUsers extends EcModelListAdmin	{
 			ju.activation as activation')
 			->join('INNER', '#__users as ju ON ju.id = u.user');
 		$query->order('u.user DESC');
+		
 		$modified = $this->getState('get.modified');
 		if(empty($modified)) $modified = $this->getState('filter.modified');
 		$search = $this->getState('filter.search');
@@ -41,6 +47,7 @@ class EcuserModelUsers extends EcModelListAdmin	{
 		}
 		if(!empty($search)) $query->where('ju.username LIKE '.$db->quote('%'.$search.'%'));
 		//$this->setError($query);
+
 		return $query;
 	}
 }

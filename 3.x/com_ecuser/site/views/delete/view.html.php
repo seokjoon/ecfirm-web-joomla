@@ -14,8 +14,6 @@ JHtml::_('behavior.framework'); //bootstrap framework
 JHtml::_('behavior.formvalidator');
 JHtml::_('behavior.keepalive'); //Keep session alive(editing or creating an article)
 
-
-
 try { JLoader::discover('', ECPATH.'/views'); }
 catch(Exception $e) { throw new RuntimeException('HELPERS not loaded'); }
 

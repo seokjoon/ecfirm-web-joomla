@@ -29,6 +29,7 @@ class EcuserModelUser extends EcModelItem	{
 	
 	public function delete(&$valueKeys) { 
 		$bool = parent::delete($valueKeys);
+
 		if($bool) {
 			$valueKeys = (array)$valueKeys;
 			foreach($valueKeys as $valueKey) {
@@ -46,6 +47,7 @@ class EcuserModelUser extends EcModelItem	{
 	public function getItem($valueKey = null)	{ 
 		$item = parent::getItem($valueKey); 
 		if(empty($item)) return $item;
+
 		if($item->user > 0) {
 			$table = $this->getTable('User', 'JTable');
 			$table->load($item->user); //EcDebug::log($table);
@@ -57,6 +59,7 @@ class EcuserModelUser extends EcModelItem	{
 			$item->activation = $table->activation;
 			$item->groups = JUserHelper::getUserGroups($item->user);
 		} //EcDebug::lp($item);
+
 		return $item;
 	}
 

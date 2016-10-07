@@ -44,7 +44,7 @@ $formId = $nameKey.'_'.$valueKey;
 				echo EcBtn::submit($params);
 				$params['buttonType'] = 'button';
 				$params['class'] = 'default';
-				$params['task'] = 'cancel';
+				$params['task'] = 'deleteCancel';
 				$params['validate'] = false;
 				echo EcBtn::submit($params); ?>
 			</div>

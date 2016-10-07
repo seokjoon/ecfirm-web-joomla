@@ -1,7 +1,11 @@
-<?php /** @package joomla.ecfirm.net
-* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+<?php 
+/** 
+ * @package joomla.ecfirm.net
+ * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later.
+ */
 defined('_JEXEC') or die('Restricted access');
+
 use Joomla\Registry\Registry;
 
 
@@ -33,6 +37,7 @@ class EcuserTableUserObserver extends JTableObserver {
 	
 	public function onAfterLoad(&$result, $row) {
 		$this->loadFile('imgs');
+
 		$this->table->hit();
 	}
 	
@@ -46,6 +51,7 @@ class EcuserTableUserObserver extends JTableObserver {
 	
 	public function onBeforeStore($updateNulls, $tableKey) {
 		if(JFactory::getApplication()->isSite()) $this->table->modified = date('Y-m-d H:i:s');
+		
 		$this->updateFile('imgs');
 	}
 	

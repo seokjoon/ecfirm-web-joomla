@@ -1,6 +1,9 @@
-<?php /** @package joomla.ecfirm.net
-* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+<?php 
+/** 
+ * @package joomla.ecfirm.net
+ * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later.
+ */
 defined('_JEXEC') or die('Restricted access');
 
 
@@ -14,7 +17,21 @@ class EcuserControllerUser extends EcControllerForm {
 	}
 	
 	public function delete() {
-		$this->setRedirectParams(array('task' => 'delete.confirm'));
+		$params = array(
+			'task' => 'delete.confirm', 
+			'nameKey' => $this->nameKey,
+			'valueKey' => JFactory::getUser()->id
+		);
+		$this->setRedirectParams($params);
+	}
+	
+	public function deleteCancel($nameKey = null) {
+		$params = array(
+			'nameKey' => $this->nameKey,
+			'valueKey' => JFactory::getUser()->id
+		);
+		$this->setRedirectParams($params);
+		return true;
 	}
 	
 	public function deleteComplete() {

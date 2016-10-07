@@ -38,6 +38,8 @@ class EcControllerForm extends EcControllerLegacy {
 	 * @since   12.2 JControllerForm */
 	public function cancel($nameKey = null) {
 		if(parent::cancel()) $this->turnbackPop('edit'); 
+		else return false;
+		return true;
 	}
 	
 	/** * Removes an item.
