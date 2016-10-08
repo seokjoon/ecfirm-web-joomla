@@ -10,7 +10,7 @@ $optionCom = $this->optionCom;
 $nameKey = $this->nameKey; 
 $valueKey = (is_object($item)) ? $item->$nameKey : 0; 
 
-$topiccat = EctopicUrl::getTopiccat();
+$topiccat = $item->topiccat;//EctopicUrl::getTopiccat();
 $itemId = EcUrl::getItemId();
 $urlPlural = JRoute::_('index.php?option='.$optionCom.'&view='.$nameKey.'s&&topiccat='
 	.$topiccat.'&Itemid='.$itemId);

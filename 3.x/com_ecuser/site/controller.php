@@ -1,6 +1,9 @@
-<?php /** @package joomla.ecfirm.net
-* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+<?php 
+/** 
+ * @package joomla.ecfirm.net
+ * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later.
+ */
 defined('_JEXEC') or die('Restricted access');
 
 
@@ -35,6 +38,6 @@ class EcuserController extends EcControllerLegacy {
 
 	private function getItemId() {
 		$itemId = $this->input->getCmd('Itemid');
-		return ($itemId) ? null : '&Itemid='.EcUrl::getItemIdCom($this->option);
+		return ($itemId) ? null : '&Itemid='.EcUrl::getItemIdByCom($this->option);
 	}
 }
