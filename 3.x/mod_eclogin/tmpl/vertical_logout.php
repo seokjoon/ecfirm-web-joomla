@@ -12,7 +12,7 @@ JLoader::register('EcUrl', JPATH_SITE . '/components/com_ec/helpers/ecUrl.php');
 JHtml::_('behavior.keepalive');
 
 $user = JFactory::getUser();
-$itemId = EcUrl::getItemIdCom('com_ecuser');
+$itemId = EcUrl::getItemIdByCom('com_ecuser');
 $urlFormAction = JRoute::_(htmlspecialchars(JUri::getInstance()->toString(), 
 	ENT_COMPAT, 'UTF-8'), true, $params->get('usesecure'));
 $urlUser = JRoute::_('index.php?option=com_ecuser&view=user&user=' 

@@ -40,7 +40,7 @@ class EcUrl {
 			: $option . '.itemId';
 		$itemId = $app->getUserState($state);
 		
-		if(!$itemId) { EcDebug::log(__method__);
+		if(!$itemId) { //EcDebug::log(__method__);
 			$com = JComponentHelper::getComponent($option);
 			$menu = $app->getMenu();
 			$items = $menu->getItems('component_id', $com->id);

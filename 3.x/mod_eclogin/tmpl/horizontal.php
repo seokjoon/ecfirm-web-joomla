@@ -15,7 +15,7 @@ JHtml::_('bootstrap.tooltip');
 $config = JComponentHelper::getParams('com_users');
 $availableRegister = $config->get('allowUserRegistration'); 
 $disabledBtnRegister = ($availableRegister) ? null : ' disabled = "disabled"';
-$itemId = EcUrl::getItemIdCom('com_ecuser');
+$itemId = EcUrl::getItemIdByCom('com_ecuser');
 $lblLogin = JText::_('JLOGIN');
 $lblPassword = JText::_('JGLOBAL_PASSWORD');
 $lblRememberMe = JText::_('MOD_ECLOGIN_REMEMBER_ME');
