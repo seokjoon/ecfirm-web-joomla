@@ -23,7 +23,8 @@ $lblRegister = JText::_('MOD_ECLOGIN_REGISTER_LABEL_SHORT');
 $lblRemind = JText::_('MOD_ECLOGIN_REMIND_LABEL');
 $lblReset = JText::_('MOD_ECLOGIN_RESET_LABEL');
 $lblUsername = JText::_('MOD_ECLOGIN_USERNAME_LABEL');
-$urlFormAction = JRoute::_('index.php', true, $params->get('usesecure'));
+$urlFormAction = JRoute::_('index.php?option=com_ecuser&view=user&task=login.useForm&Itemid='
+	. $itemId, true, $params->get('usesecure'));
 $urlRegister = ($availableRegister)
 	? JRoute::_('index.php?option=com_ecuser&view=user&task=registration.useForm&Itemid=' . $itemId) 
 	: 'javascript:;';

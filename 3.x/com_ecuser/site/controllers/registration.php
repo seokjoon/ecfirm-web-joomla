@@ -122,14 +122,12 @@ class EcuserControllerRegistration extends EcControllerForm {
 		$app->setUserState('com_ecuser.registration.data', null);
 		switch ($return['activate']) {
 			case EcuserConst::ACTIVATE_TYPE_ADMIN :
-				$params = array('task' => 'registration.useForm', 'layout' => 'complete');
-				$params['msg'] = JText::_('COM_ECUSER_REGISTRATION_COMPLETE_VERIFY');
-				$this->setRedirectParams($params);
+				$this->setMessage(JText::_('COM_ECUSER_REGISTRATION_COMPLETE_VERIFY'));
+				$this->login();
 				break;
 			case EcuserConst::ACTIVATE_TYPE_USER :
-				$params = array('task' => 'registration.useForm', 'layout' => 'complete');
-				$params['msg'] = JText::_('COM_ECUSER_REGISTRATION_COMPLETE_ACTIVATE');
-				$this->setRedirectParams($params);
+				$this->setMessage(JText::_('COM_ECUSER_REGISTRATION_COMPLETE_ACTIVATE'));
+				$this->login();
 				break;
 			default :
 				$app->enqueueMessage(JText::_('COM_ECUSER_REGISTRATION_SUCCESS'));
