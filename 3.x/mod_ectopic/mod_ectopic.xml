@@ -61,7 +61,7 @@
             	<field name="length_list" type="text" default="6"
             		label="MOD_ECTOPIC_FIELD_LENGTH_LIST_LABEL" 
             		description="MOD_ECTOPIC_FIELD_LENGTH_LIST_DESC" />
-            	<field name="length_item" type="text" default="40"
+            	<field name="length_item" type="text" default="35"
             		label="MOD_ECTOPIC_FIELD_LEGNTH_ITEM_LABEL" 
             		description="MOD_ECTOPIC_FIELD_LENGTH_ITEM_DESC" />
             	<field name="width_item" type="text" default="290"
