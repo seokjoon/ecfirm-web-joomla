@@ -22,7 +22,7 @@ class EcuserModelUser extends EcModelItem	{
 		$jform = $app->input->post->get('jform', array(), 'array');
 		if($bool) $bool = ($table->username == $jform['username']);
 		if($bool) $bool = ($table->email == $jform['email']);
-		if($bool) $bool = ($app->login($jform, array()) === true);
+		if($bool) $bool = password_verify($jform['password'], $table->password);
 
 		return $bool;
 	}
