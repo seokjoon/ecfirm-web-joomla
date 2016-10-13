@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.7" type="module" client="site" method="upgrade">
+
     <name>ECFIRM GitHub Module</name>
     <author>Seok Joon Lee</author>
     <authorEmail>seokjoon@kilmeny.net</authorEmail>
@@ -9,8 +10,6 @@
     <version>3.7.0</version>
     <description>MOD_ECGITHUB_XML_DESCRIPTION</description>
 
-
-
     <files>
         <folder>tmpl</folder>
         <filename module="mod_ecgithub">mod_ecgithub.php</filename>
@@ -18,8 +17,6 @@
         <filename>mod_ecgithub.xml</filename>
         <filename>index.html</filename>
     </files>
-
-
 
     <languages>
         <language tag="ko-KR">language/ko-KR/ko-KR.mod_ecgithub.ini</language>
@@ -29,7 +26,9 @@
 
 
     <config>
+    
         <fields name="params">
+        
             <fieldset name="basic">
                 <field name="layout" type="modulelayout" 
                 	label="JFIELD_ALT_LAYOUT_LABEL" 
@@ -44,6 +43,7 @@
         			label="COM_MODULES_FIELD_CACHE_TIME_LABEL" 
         			description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
             </fieldset>
+            
             <fieldset name="github">
             	<field name="username" type="text" 
             		label="MOD_ECGITHUB_FIELD_USERNAME_LABEL" 
@@ -85,7 +85,9 @@
             		label="MOD_ECGITHUB_FIELD_WIDTH_ITEM_LABEL" 
             		description="MOD_ECGITHUB_FIELD_WIDTH_ITEM_DESC" />
             </fieldset>
+            
         </fields>
+        
     </config>
 
 </extension>

@@ -1,5 +1,4 @@
 <?php
-
 /** 
  * @package joomla.ecfirm.net
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.

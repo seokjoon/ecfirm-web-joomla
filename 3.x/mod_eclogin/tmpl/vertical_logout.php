@@ -6,8 +6,6 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-
-
 JLoader::register('EcUrl', JPATH_SITE . '/components/com_ec/helpers/ecUrl.php');
 JHtml::_('behavior.keepalive');
 
@@ -28,8 +26,6 @@ $lblLogout = JText::_('JLOGOUT');
 
 
 <div><p><?php echo $msg; ?></p></div>
-
-
 
 <form action="<?php $urlFormAction; ?>" method="post" id="login-form" class="form-vertical">
 	<div class="logout-button">

@@ -1,16 +1,16 @@
-<?php 
+<?php
 /** 
  * @package joomla.ecfirm.net
- * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
+ * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
 defined('_JEXEC') or die('Restricted access');
 
+class EcuserControllerDelete extends EcControllerForm
+{
 
-
-class EcuserControllerDelete extends EcControllerForm {
-
-	public function confirm() {
+	public function confirm()
+	{
 		$this->input->set('layout', 'delete');
 		$this->useForm();
 	}

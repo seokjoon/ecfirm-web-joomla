@@ -6,8 +6,6 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-
-
 JLoader::register('EcUrl', JPATH_SITE . '/components/com_ec/helpers/ecUrl.php');
 JHtml::_('behavior.keepalive');
 

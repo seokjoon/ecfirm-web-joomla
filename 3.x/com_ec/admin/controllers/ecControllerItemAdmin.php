@@ -1,11 +1,13 @@
-<?php /** @package joomla.ecfirm.net
+<?php
+/**
+ * @package joomla.ecfirm.net
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
- * @license GNU General Public License version 2 or later. */
+ * @license GNU General Public License version 2 or later.
+ */
 defined('_JEXEC') or die('Restricted access');
 
-
-
-class EcControllerItemAdmin extends JControllerForm {
+class EcControllerItemAdmin extends JControllerForm
+{
 
 	/**
 	 * Constructor.
@@ -13,7 +15,8 @@ class EcControllerItemAdmin extends JControllerForm {
 	 * @see     JControllerLegacy
 	 * @since   12.2
 	 * @throws  Exception */
-	public function __construct($config = array()) {
+	public function __construct($config = array())
+	{
 		parent::__construct($config);
 		//EcDebug::log($this->view_item.':'.$this->view_list, __method__);
 	}
