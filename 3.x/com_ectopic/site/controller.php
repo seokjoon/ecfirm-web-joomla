@@ -1,20 +1,24 @@
-<?php /** @package joomla.ecfirm.net
-* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+<?php
+
+/**
+ * @package joomla.ecfirm.net
+ * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later.
+ */
 defined('_JEXEC') or die('Restricted access');
 
+class EctopicController extends EcControllerLegacy
+{
 
-
-class EctopicController extends EcControllerLegacy {
-	
-	public function display($cachable = false, $urlparams = array()) {
+	public function display($cachable = false, $urlparams = array())
+	{
 		$nameView = $this->input->get('view');
 		switch ($nameView) {
-			case 'topic' :
+			case 'topic':
 				$this->setViewModel('topiccmtform', $nameView);
 				$this->setViewModel('topiccmts', $nameView);
 				break;
-			case 'topics' : 
+			case 'topics':
 				$this->setViewModel('topiccat');
 				break;
 		}

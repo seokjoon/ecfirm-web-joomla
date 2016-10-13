@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.7">
+
 	<name>COM_ECTOPIC</name>
 	<creationDate>2016/07/16</creationDate>
 	<author>Seok Joon Lee</author>
@@ -8,13 +9,17 @@
 	<copyright>Copyright (C) joomla.ecfirm.net. All rights reserved.</copyright>
 	<license>License GNU General Public License version 2 or later</license>
 	<version>3.7</version>
+	
 	<scriptfile>script.php</scriptfile>
+	
 	<install><sql>
 		<file driver="mysql" charset="utf8">sql/install.ectopic.mysql.utf8.sql</file>
 	</sql></install>
+	
 	<uninstall><sql>
 		<file driver="mysql" charset="utf8">sql/uninstall.ectopic.mysql.utf8.sql</file>
 	</sql></uninstall>
+	
 	<files folder="site">
 		<filename>controller.php</filename>
 		<filename>ectopic.php</filename>
@@ -26,15 +31,21 @@
 		<folder>models</folder>
 		<folder>views</folder>
 	</files>
+	
 	<languages folder="site">
 		<language tag="en-GB">language/en-GB/en-GB.com_ectopic.ini</language>
 		<language tag="ko-KR">language/ko-KR/ko-KR.com_ectopic.ini</language>
 	</languages>
+	
 	<media destination="com_ectopic" folder="media">
 		<filename>index.html</filename>
 		<folder>images</folder>
 	</media>
+	
+	
+	
 	<administration>
+	
 		<menu>COM_ECTOPIC_MENU</menu>
 		<submenu>
 			<!-- Note that all & must be escaped to &amp; for the file to be valid
@@ -46,6 +57,7 @@
 				COM_ECTOPICCAT
 			</menu>
 		</submenu>
+	
 		<files folder="admin">
 			<filename>access.xml</filename>
 			<filename>config.xml</filename>
@@ -59,11 +71,14 @@
 			<folder>tables</folder>
 			<folder>views</folder>
 		</files>
+		
 		<languages folder="admin">
 			<language tag="en-GB">language/en-GB/en-GB.com_ectopic.ini</language>
 			<language tag="en-GB">language/en-GB/en-GB.com_ectopic.sys.ini</language>
 			<language tag="ko-KR">language/ko-KR/ko-KR.com_ectopic.ini</language>
 			<language tag="ko-KR">language/ko-KR/ko-KR.com_ectopic.sys.ini</language>
 		</languages>
+		
 	</administration>
+	
 </extension>
