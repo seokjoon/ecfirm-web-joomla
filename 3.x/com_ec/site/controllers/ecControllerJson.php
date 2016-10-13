@@ -12,7 +12,8 @@ class EcControllerJson extends EcControllerLegacy
 	/**
 	 * Method to add a new record.
 	 * @return  mixed  True if the record can be added, a error object if not.
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	public function add()
 	{
 		echo new JResponseJson(null, null, ! (parent::add()));
@@ -22,7 +23,8 @@ class EcControllerJson extends EcControllerLegacy
 	 * Method to cancel an edit.
 	 * @param   string  $nameKey  The name of the primary key of the URL variable.
 	 * @return  boolean  True if access level checks pass, false otherwise.
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	public function cancel($nameKey = null)
 	{
 		echo new JResponseJson(null, null, ! (parent::cancel()));
@@ -30,7 +32,8 @@ class EcControllerJson extends EcControllerLegacy
 
 	/** * Removes an item.
 	 * @return  void
-	 * @since   12.2 JControllerAdmin */
+	 * @since   12.2 JControllerAdmin
+	 */
 	public function delete()
 	{
 		echo new JResponseJson(null, null, ! (parent::delete()));
@@ -50,7 +53,8 @@ class EcControllerJson extends EcControllerLegacy
 	 * @param   string  $urlVar  The name of the URL variable if different from the primary key
 	 * (sometimes required to avoid router collisions).
 	 * @return  boolean  True if access level check and checkout passes, false otherwise.
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	public function edit($nameKey = null, $urlVar = null)
 	{
 		echo new JResponseJson(null, null, ! (parent::edit($nameKey, $urlVar)));
@@ -89,7 +93,8 @@ class EcControllerJson extends EcControllerLegacy
 	 * @param   string  $nameKey     The name of the primary key of the URL variable.
 	 * @param   string  $urlVar  The name of the URL variable if different from the primary key (sometimes required to avoid router collisions).
 	 * @return  boolean  True if successful, false otherwise.
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	public function save($nameKey = null, $urlVar = null)
 	{
 		echo new JResponseJson(null, null, ! (parent::save($nameKey, $urlVar)));

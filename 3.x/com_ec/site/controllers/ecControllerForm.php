@@ -20,7 +20,8 @@ class EcControllerForm extends EcControllerLegacy
 	/**
 	 * Method to add a new record.
 	 * @return  mixed  True if the record can be added, a error object if not.
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	public function add()
 	{
 		if (parent::add()) {
@@ -44,7 +45,8 @@ class EcControllerForm extends EcControllerLegacy
 	 * Method to cancel an edit.
 	 * @param   string  $nameKey  The name of the primary key of the URL variable.
 	 * @return  boolean  True if access level checks pass, false otherwise.
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	public function cancel($nameKey = null)
 	{
 		if (parent::cancel())
@@ -56,7 +58,8 @@ class EcControllerForm extends EcControllerLegacy
 
 	/** * Removes an item.
 	 * @return  boolean
-	 * @since   12.2 JControllerAdmin */
+	 * @since   12.2 JControllerAdmin
+	 */
 	public function delete()
 	{
 		JSession::checkToken() or die(JText::_('JINVALID_TOKEN')); //XXX
@@ -80,7 +83,8 @@ class EcControllerForm extends EcControllerLegacy
 	 * @param   string  $urlVar  The name of the URL variable if different from the primary key
 	 * (sometimes required to avoid router collisions).
 	 * @return  boolean  True if access level check and checkout passes, false otherwise.
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	public function edit($nameKey = null, $urlVar = null)
 	{
 		if (empty($nameKey))
@@ -124,7 +128,8 @@ class EcControllerForm extends EcControllerLegacy
 	 * @param   string  $nameKey     The name of the primary key of the URL variable.
 	 * @param   string  $urlVar  The name of the URL variable if different from the primary key (sometimes required to avoid router collisions).
 	 * @return  boolean  True if successful, false otherwise.
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	public function save($nameKey = null, $urlVar = null)
 	{
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));

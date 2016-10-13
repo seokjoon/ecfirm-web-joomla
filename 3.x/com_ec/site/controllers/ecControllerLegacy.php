@@ -28,7 +28,8 @@ class EcControllerLegacy extends JControllerLegacy
 	/**
 	 * Method to add a new record.
 	 * @return  mixed  True if the record can be added, a error object if not.
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	protected function add()
 	{
 		if (! ($this->allowAdd())) {
@@ -47,7 +48,8 @@ class EcControllerLegacy extends JControllerLegacy
 	 * Extended classes can override this if necessary.
 	 * @param   array  $data  An array of input data.
 	 * @return  boolean
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	protected function allowAdd($data = array())
 	{ //XXX
 		$user = JFactory::getUser();
@@ -61,7 +63,8 @@ class EcControllerLegacy extends JControllerLegacy
 	 * @param   array   $data  An array of input data.
 	 * @param   string  $nameKey   The name of the key for the primary key; default is id.
 	 * @return  boolean
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	protected function allowEdit($data = array(), $nameKey = null)
 	{
 		//if(empty($nameKey)) $nameKey = $this->nameKey;
@@ -74,7 +77,8 @@ class EcControllerLegacy extends JControllerLegacy
 	 * @param   array   $data  An array of input data.
 	 * @param   string  $nameKey   The name of the key for the primary key.
 	 * @return  boolean
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	protected function allowSave($data, $nameKey = null)
 	{
 		if (empty($nameKey))
@@ -92,7 +96,8 @@ class EcControllerLegacy extends JControllerLegacy
 	 * Method to cancel an edit.
 	 * @param   string  $nameKey  The name of the primary key of the URL variable.
 	 * @return  boolean  True if access level checks pass, false otherwise.
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	protected function cancel($nameKey = null)
 	{
 		//if(empty($nameKey)) $nameKey = $this->nameKey;
@@ -103,7 +108,8 @@ class EcControllerLegacy extends JControllerLegacy
 
 	/** * Removes an item.
 	 * @return  boolean
-	 * @since   12.2 JControllerAdmin */
+	 * @since   12.2 JControllerAdmin
+	 */
 	protected function delete()
 	{
 		$valueKeys = $this->input->get($this->nameKey, array(), 'array');
@@ -140,7 +146,8 @@ class EcControllerLegacy extends JControllerLegacy
 	 * @param   string  $urlVar  The name of the URL variable if different from the primary key
 	 * (sometimes required to avoid router collisions).
 	 * @return  boolean  True if access level check and checkout passes, false otherwise.
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	protected function edit($nameKey = null, $urlVar = null)
 	{
 		if (empty($nameKey))
@@ -189,7 +196,8 @@ class EcControllerLegacy extends JControllerLegacy
 	 * @param   string  $prefix  The class prefix. Optional.
 	 * @param   array   $config  Configuration array for model. Optional.
 	 * @return  object  The model.
-	 * @since   12.2 JControllerLegacy */
+	 * @since   12.2 JControllerLegacy
+	 */
 	public function getModel($name = null, $prefix = null, $config = array())
 	{
 		if (empty($name))
@@ -249,7 +257,8 @@ class EcControllerLegacy extends JControllerLegacy
 	 * @param   JModelLegacy  $model  The data model object.
 	 * @param   integer       $id     The validated data.
 	 * @return  void
-	 * @since   12.2 JControllerAdmin */
+	 * @since   12.2 JControllerAdmin
+	 */
 	protected function postDeleteHook(JModelLegacy $model, $id = null)
 	{}
 
@@ -259,7 +268,8 @@ class EcControllerLegacy extends JControllerLegacy
 	 * @param   JModelLegacy  $model      The data model object.
 	 * @param   array         $validData  The validated data.
 	 * @return  void
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	protected function postSaveHook(JModelLegacy $model, $validData = array())
 	{}
 
@@ -268,7 +278,8 @@ class EcControllerLegacy extends JControllerLegacy
 	 * @param   string  $nameKey     The name of the primary key of the URL variable.
 	 * @param   string  $urlVar  The name of the URL variable if different from the primary key (sometimes required to avoid router collisions).
 	 * @return  boolean  True if successful, false otherwise.
-	 * @since   12.2 JControllerForm */
+	 * @since   12.2 JControllerForm
+	 */
 	protected function save($nameKey = null, $urlVar = null)
 	{
 		if (empty($nameKey))

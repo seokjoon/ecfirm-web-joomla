@@ -48,7 +48,8 @@ class EcBtn {
 	/**
 	 * @param array $params
 	 * - essential: optionCom, nameKey, task
-	 * - optional: valueKey, nameCol, valueCol, nameCols, idPostfix, ajax, validate, li, class, disable */
+	 * - optional: valueKey, nameCol, valueCol, nameCols, idPostfix, ajax, validate, li, class, disable
+	 */
 	public static function submit($params = array()) { //EcDebug::lp($params); 
 		extract($params);
 		$icon = self::icon($task);
