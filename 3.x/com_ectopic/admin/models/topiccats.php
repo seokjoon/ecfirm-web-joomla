@@ -32,7 +32,7 @@ class EctopicModelTopiccats extends EcModelListAdmin
 	{
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('tc.topiccat, tc.modified, tc.parent, tc.state, tc.title')
+		$query->select('*')
 			->from('#__ec_topiccat as tc');
 		
 		$state = $this->getState('get.state');

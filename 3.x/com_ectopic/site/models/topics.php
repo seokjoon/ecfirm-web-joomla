@@ -33,12 +33,12 @@ class EctopicModelTopics extends EcModelList
 	{
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('t.topic, t.modified, t.created, t.topiccat, t.user, t.state, t.title, t.hits, t.topiccmt, t.topiclike, t.options, t.body, t.imgs, t.files')->from('#__ec_topic as t');
+		$query->select('*')->from('#__ec_topic as t');
 		$query->select('ju.username as username')->join('INNER', '#__users as ju ON ju.id =t.user');
 		
 		$app = JFactory::getApplication();
 		$input = $app->input;
-
+		
 		$order = $this->getState('get.order');
 		if (empty($order))
 			$order = $this->getState('filter.order');
@@ -47,7 +47,7 @@ class EctopicModelTopics extends EcModelList
 			$app->setUserState('com_ectopic.topics.order', $order);
 		} else
 			$query->order('t.topic DESC');
-
+		
 		$topiccat = $this->getState('get.topiccat');
 		if (empty($topiccat))
 			$topiccat = $this->getState('filter.topiccat');
@@ -55,7 +55,7 @@ class EctopicModelTopics extends EcModelList
 			$query->where('t.topiccat = "' . $topiccat . '"');
 			$app->setUserState('com_ectopic.topics.topiccat', $topiccat);
 		}
-
+		
 		$modified = $this->getState('get.modified');
 		if (empty($modified))
 			$modified = $this->getState('filter.modified');
@@ -64,12 +64,12 @@ class EctopicModelTopics extends EcModelList
 				$modified = date('Y-m-d H:i:s', $modified);
 			$query->where('t.modified >= "' . $modified . '"');
 		}
-
+		
 		$search = $this->getState('filter.search');
 		if (! empty($search))
 			$query->where('t.title LIKE ' . $db->quote('%' . $search . '%') . ' OR t.body LIKE ' . $db->quote('%' . $search . '%'));
-
-		//$this->setError($query);
+			
+			//$this->setError($query);
 		return $query;
 	}
 }
