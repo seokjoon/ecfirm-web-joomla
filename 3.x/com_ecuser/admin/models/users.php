@@ -33,7 +33,8 @@ class EcuserModelUsers extends EcModelListAdmin
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 		
-		$query->select('*')->from('#__ec_user as u');
+		$query->select('user, modified, term, hits, options, profiles, imgs, urls')
+			->from('#__ec_user as u');
 		$query->select('ju.username as username, ju.name as name,
 			ju.email as email, ju.block as block, ju.sendEmail as sendEmail, 
 			ju.registerDate as registerDate, ju.lastvisitDate as lastvisitDate, 
@@ -52,7 +53,7 @@ class EcuserModelUsers extends EcModelListAdmin
 		if (! empty($search))
 			$query->where('ju.username LIKE ' . $db->quote('%' . $search . '%'));
 			
-			//$this->setError($query);
+		//$this->setError($query);
 		return $query;
 	}
 }

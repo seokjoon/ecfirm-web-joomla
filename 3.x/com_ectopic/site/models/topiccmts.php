@@ -31,7 +31,7 @@ class EctopicModelTopiccmts extends EcModelList
 	{
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('*')
+		$query->select('topiccmt, modified, topic, user, options, body')
 			->from('#__ec_topiccmt as tc')
 			->order('tc.topiccmt DESC');
 		$query->select('ju.username as username')->join('INNER', '#__users as ju ON ju.id =tc.user');
@@ -45,7 +45,7 @@ class EctopicModelTopiccmts extends EcModelList
 		if (! empty($search))
 			$query->where('tc.body LIKE ' . $db->quote('%' . $search . '%'));
 			
-			//$this->setError($query);
+		//$this->setError($query);
 		return $query;
 	}
 }

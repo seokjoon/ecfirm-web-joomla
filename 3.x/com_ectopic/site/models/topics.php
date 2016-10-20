@@ -33,7 +33,8 @@ class EctopicModelTopics extends EcModelList
 	{
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('*')->from('#__ec_topic as t');
+		$query->select('topic, modified, created, topiccat, user, state, title, hits, topiccmt, topiclike, options, body, imgs, files')
+			->from('#__ec_topic as t');
 		$query->select('ju.username as username')->join('INNER', '#__users as ju ON ju.id =t.user');
 		
 		$app = JFactory::getApplication();
@@ -69,7 +70,7 @@ class EctopicModelTopics extends EcModelList
 		if (! empty($search))
 			$query->where('t.title LIKE ' . $db->quote('%' . $search . '%') . ' OR t.body LIKE ' . $db->quote('%' . $search . '%'));
 			
-			//$this->setError($query);
+		//$this->setError($query);
 		return $query;
 	}
 }
