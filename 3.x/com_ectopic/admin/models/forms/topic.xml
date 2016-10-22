@@ -2,27 +2,41 @@
 <form>
 
 	<fieldset name="topic">
-		<field name="topic" type="text" value="0" readonly="true" />
+		<field name="topic" type="text" value="0" readonly="true"
+			label="COM_ECTOPIC_TOPIC_TOPIC_LABEL"
+			description="COM_ECTOPIC_TOPIC_TOPIC_DESC" />
         <field name="modified" type="calendar" format="%Y-%m-%d %H:%M:%S" size="22" class=""
         	label="COM_ECTOPIC_TOPIC_MODIFIED_LABEL"
             description="COM_ECTOPIC_TOPIC_MODIFIED_DESC" />
         <field name="created" type="calendar" format="%Y-%m-%d %H:%M:%S" size="22" class=""
         	label="COM_ECTOPIC_TOPIC_CREATED_LABEL"
             description="COM_ECTOPIC_TOPIC_CREATED_DESC" />
-		<field name="topiccat" type="topiccat" value="0" />
-		<field name="user" type="user" value="0" />
-		<field name="state" type="topicstate" value="" />
+		<field name="topiccat" type="topiccat" value="0"
+			label="COM_ECTOPIC_TOPIC_TOPICCAT_LABEL"
+			description="COM_ECTOPIC_TOPIC_TOPICCAT_DESC" />
+		<field name="user" type="user" value="0"
+			label="COM_ECTOPIC_TOPIC_USER_LABEL"
+			description="COM_ECTOPIC_TOPIC_USER_DESC" />
+		<field name="state" type="topicstate" value=""
+			label="COM_ECTOPIC_TOPIC_STATE_LABEL"
+			description="COM_ECTOPIC_TOPIC_STATE_DESC" />
 		<field name="title" id="title" type="text" class="inputbox input-xxlarge" required="true"
 		   label="COM_ECTOPIC_TOPIC_TITLE_LABEL" 
 		   description="COM_ECTOPIC_TOPIC_TITLE_DESC"
 		   hint="COM_ECTOPIC_TOPIC_TITLE_DESC" />
-		<field name="hits" type="text" value="0" />
-		<field name="topiccmt" type="text" value="0" readonly="true" />
-		<field name="topiclike" type="text" value="0" readonly="true" />
+		<field name="hits" type="text" value="0"
+			label="COM_ECTOPIC_TOPIC_HITS_LABEL"
+			description="COM_ECTOPIC_TOPIC_HITS_DESC" />
+		<field name="topiccmt" type="text" value="0" readonly="true"
+			label="COM_ECTOPIC_TOPIC_TOPICCMT_LABEL"
+			description="COM_ECTOPIC_TOPIC_TOPICCMT_DESC" />
+		<field name="topiclike" type="text" value="0" readonly="true"
+			label="COM_ECTOPIC_TOPIC_TOPICLIKE_LABEL"
+			description="COM_ECTOPIC_TOPIC_TOPICLIKE_DESC" />
 		<field name="body" id="body" type="editor" buttons="false" class="" required="true"
 		   label="COM_ECTOPIC_TOPIC_BODY_LABEL" 
 		   description="COM_ECTOPIC_TOPIC_BODY_DESC"
-		   hint="COM_ECTOPIC_TOPIC_BODY_DESC" filter="JComponentHelper::filterText" />
+		   hint="COM_ECTOPIC_TOPIC_BODY_DESC" filter="safehtml" />
 	</fieldset>
 	
 	<fieldset name="file">

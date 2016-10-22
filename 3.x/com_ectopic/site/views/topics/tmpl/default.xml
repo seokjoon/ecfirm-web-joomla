@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
+
 	<layout title="COM_ECTOPIC_ECTOPICS_VIEW_DEFAULT_TITLE"
 			option="COM_ECTOPIC_ECTOPICS_VIEW_DEFAULT_DESC">
 		<help key="" />
 		<message><![CDATA[COM_ECTOPIC_TOPICS_VIEW_DEFAULT_DESC]]></message>
 	</layout>
-
-
 
 	<fields name="request">
 		<fieldset name="request"
@@ -18,11 +17,10 @@
 		</fieldset>
 	</fields>
 
-
-
 	<fields>
 		<fieldset name="params" lable="COM_ECTOPIC_TOPICS_PARAMS">
 
 		</fieldset>
 	</fields>
+
 </metadata>

@@ -6,11 +6,11 @@
 		<field name="search" type="text"
 		   hint="COM_ECTOPIC_TOPIC_FILTER_SEARCH_HINT" />
 		<field name="order" type="list" onchange="this.form.submit();" default="">
-			<option value="">COM_ECTOPIC_TOCPI_ORDER_VALUE_SELECT</option>
-			<option value="modified desc">COM_ECTOPIC_TOCPI_ORDER_VALUE_MODIFIED_DESC</option>
-			<option value="modified">COM_ECTOPIC_TOCPI_ORDER_VALUE_MODIFIED_ASC</option>
-			<option value="hits desc">COM_ECTOPIC_TOCPI_ORDER_VALUE_HITS_DESC</option>
-			<option value="hits">COM_ECTOPIC_TOCPI_ORDER_VALUE_HITS_ASC</option>
+			<option value="">COM_ECTOPIC_TOPIC_ORDER_VALUE_SELECT</option>
+			<option value="modified desc">COM_ECTOPIC_TOPIC_ORDER_VALUE_MODIFIED_DESC</option>
+			<option value="modified">COM_ECTOPIC_TOPIC_ORDER_VALUE_MODIFIED_ASC</option>
+			<option value="hits desc">COM_ECTOPIC_TOPIC_ORDER_VALUE_HITS_DESC</option>
+			<option value="hits">COM_ECTOPIC_TOPIC_ORDER_VALUE_HITS_ASC</option>
 		</field>
 	</fields>
 

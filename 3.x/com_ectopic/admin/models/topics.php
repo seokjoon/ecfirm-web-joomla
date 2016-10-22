@@ -34,7 +34,7 @@ class EctopicModelTopics extends EcModelListAdmin
 	{
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$query->select('*')
+		$query->select('topic, modified, created, topiccat, user, state, title, hits, topiccmt, topiclike, options, body, imgs, files')
 			->from('#__ec_topic as t');
 		$query->select('ju.username as username')
 			->join('INNER', '#__users as ju ON ju.id =t.user');
