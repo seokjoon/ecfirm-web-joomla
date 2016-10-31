@@ -139,6 +139,6 @@ $seperator = '&nbsp;&middot;&nbsp;';
 <?php if($this->pagination->pagesTotal > 1) : ?>
 <div class="pagination">
 	<p class="counter pull-right"><?php echo $this->pagination->getPagesCounter(); ?></p>
-	<?php echo $this->getPagesLinks(); ?>
+	<?php echo $this->pagination->getPagesLinks(); ?>
 </div>
 <?php endif; ?>	
