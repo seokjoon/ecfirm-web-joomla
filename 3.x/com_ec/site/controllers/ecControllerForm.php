@@ -174,7 +174,7 @@ class EcControllerForm extends EcControllerLegacy
 		$imgs = (array) EcFileImg::setFileImgByName($files[$nameCol], $this->nameKey, $nameCol); //EcDebug::lp($imgs); jexit(); 
 
 		//$jform['imgs'] = json_encode($imgsArray, JSON_UNESCAPED_SLASHES);
-		$reg = new JRegistry();
+		$reg = new JRegistry;
 		if (! empty($jform['imgs']))
 			$reg->loadString($jform['imgs']);
 		$reg->loadArray($imgs);
@@ -206,8 +206,8 @@ class EcControllerForm extends EcControllerLegacy
 				$imgs[$k] = $out;
 		}
 		
-		$reg = new JRegistry();
-		if (! (empty($jform['imgs'])))
+		$reg = new JRegistry;
+		if (!(empty($jform['imgs'])))
 			$reg->loadString($jform['imgs']);
 		$reg->loadArray($imgs);
 		$jform['imgs'] = stripslashes($reg->toString()); //EcDebug::log($jform);
