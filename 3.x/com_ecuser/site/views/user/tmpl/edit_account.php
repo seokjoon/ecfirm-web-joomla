@@ -1,52 +1,59 @@
-<?php /** @package joomla.ecfirm.net
-* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+<?php 
+/**
+ * @package joomla.ecfirm.net
+ * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later.
+ */
 defined('_JEXEC') or die('Restricted access');
-
-//TODO: reformatting
-
-
 
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidator');
 
-$item = $this->item; 
+$item = $this->item;
 $nameKey = $this->nameKey;
 $optionCom = $this->optionCom;
 $valueKey = (is_object($item)) ? $item->$nameKey : 0;
 
+$urlForm = JUri::getInstance()->toString();
+$formId = $nameKey . '_' . $valueKey . '_form';
+?>
 
 
-echo '<div id="'.$nameKey.'_'.$valueKey.'" class="well">';
-	echo '<form action="'.(JUri::getInstance()->toString()).'" method="post" id="'
-		.$nameKey.'_'.$valueKey.'_form" class="form-validate form-horizontal">';
+
+<div id="<?php echo $nameKey . '_' . $valueKey; ?>" class="well">
+	<form action="<?php echo $urlForm; ?>" method="post" id="<?php echo $formId; ?>" class="form-validate form-horizontal">
+	
+	<?php if(is_object($this->form)) : ?> 
+	
+		<?php foreach ($this->form->getFieldset('account') as $field) : ?>
+			<?php if(!($field->hidden)) : ?>
+			<div class="control-group">		
+				<div class="control-label"><?php echo $field->label; ?></div>
+				<div class="controls"><?php echo $field->input; ?></div>
+			</div>
+			<?php else : echo $field->input; endif; ?>
+		<?php endforeach; ?>
 		
-		if(is_object($this->form)) { //EcDebug::lp($this->form);
-			foreach($this->form->getFieldset('account') as $field) {
-				if($field->hidden) echo $field->input;
-				else {
-					echo '<div class="control-group">';
-						echo '<div class="control-label">'.$field->label.'</div>';
-						echo '<div class="controls">'.$field->input.'</div>';
-					echo '</div>';
-				}
-			} 
-		}
+	<?php endif; ?>	
+	
+		<div class="pull-right clearfix" align="right">
+			<div class="btn-group">
+			<?php 
+			$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
+				'valueKey' => $valueKey, 'task' => 'save', 'idPostfix' => 'form',
+				'class' => 'primary', 'btnType' => 'submit');
+			echo EcBtn::submit($params);
+			$params['btnType'] = 'button';
+			$params['class'] = 'default';
+			$params['task'] = 'cancel';
+			echo EcBtn::submit($params); 
+			?>
+			</div>
+		</div><br />
+	
+		<input type="hidden" name="task" value="" />
+		<?php echo JHtml::_('form.token'); ?>
+	
+	</form>
 
-		echo '<div class="pull-right clearfix" align="right" >';
-			echo '<div class="btn-group">';
-				$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
-					'valueKey' => $valueKey, 'task' => 'save', 'idPostfix' => 'form',
-					'class' => 'primary', 'btnType' => 'submit');
-				echo EcBtn::submit($params);
-				$params['btnType'] = 'button';
-				$params['class'] = 'default';
-				$params['task'] = 'cancel';
-				echo EcBtn::submit($params);
-			echo '</div>';
-		echo '</div><br />'; //EcDebug::lp($params);
-		
-		echo '<input type="hidden" name="task" value="" />';
-		echo JHtml::_('form.token');
-	echo '</form>';
-echo '</div>';
+</div>
