@@ -108,9 +108,17 @@ class EcuserModelUser extends EcModelItem
 		 * }
 		 */
 		
-		EcDml::insertRecord(array(
-			$this->name => $ju->id
-		), $this->name);
+		$item = false;
+		try {
+			$table = $this->getTable();
+			$item = $table->load($data['user']);
+		} catch (Exception $e) { /* //register */ }
+		
+		if ($item === false) {
+			EcDml::insertRecord(array(
+				$this->name => $ju->id
+			), $this->name);
+		}
 		
 		if ((isset($data['urlDefault'])) && (! empty($data['urlDefault']))) { //EcDebug::lp($data, true);
 			if ((strpos($data['urlDefault'], 'https://') !== false) || (strpos($data['urlDefault'], 'http://') !== false))

@@ -38,8 +38,8 @@ $formId = $nameKey . '_' . $valueKey;
 		<?php if($availableCaptcha) : ?>
 			<?php foreach ($this->form->getFieldset('captcha') as $field) : ?>
 			<div class="control-group">
-				<div class="control-label"><?php echo $field->lable; ?></div>
-				<div class="controls"><?php $field->input; ?></div>
+				<div class="control-label"><?php echo $field->label; ?></div>
+				<div class="controls"><?php echo $field->input; ?></div>
 			</div>	
 			<?php endforeach; ?>
 		<?php endif; ?>

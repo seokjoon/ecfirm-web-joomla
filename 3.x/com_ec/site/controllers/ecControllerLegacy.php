@@ -380,10 +380,12 @@ class EcControllerLegacy extends JControllerLegacy
 		'&format=' . ($this->input->get('format', 'html', 'string'));
 		$layout = (isset($params['layout'])) ? $params['layout'] : $this->input->get('layout', null, 'string');
 		$layout = (empty($layout)) ? '' : '&layout=' . $layout;
+		$tmpl = (isset($params['tmpl'])) ? $params['tmpl'] : $this->input->get('tmpl', null, 'string');
+		$tmpl = (empty($tmpl)) ? '' : '&tmpl=' . $tmpl;
 		$itemId = (isset($params['itemId'])) ? $params['itemId'] : EcUrl::getItemId();
 		$itemId = ($itemId > 0) ? '&Itemid=' . $itemId : '';
 		$etc = (isset($params['etc'])) ? '&' . $params['etc'] : '';
-		$url = (isset($url)) ? $params['url'] : $prefix . $option . $view . $task . $key . $format . $layout . $itemId . $etc;
+		$url = (isset($url)) ? $params['url'] : $prefix . $option . $view . $task . $key . $format . $layout . $tmpl . $itemId . $etc;
 		$msg = (isset($params['msg'])) ? $params['msg'] : null;
 		$type = (isset($params['type'])) ? $params['type'] : null;
 		//EcDebug::lp($url, 'url'); EcDebug::lp($msg, 'msg'); EcDebug::lp($type, 'type');
