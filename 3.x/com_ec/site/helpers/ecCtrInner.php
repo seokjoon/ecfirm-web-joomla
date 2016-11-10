@@ -59,9 +59,8 @@ abstract class EcCtrInner
 
 	public function test()
 	{
-		EcDebug::lp(self::$nameCom . '.' . self::$nameKey, 'ctr name');
+		EcDebug::lp(self::$nameCom . '.' . self::$nameKey);
 		EcDebug::lp(__method__);
-		EcDebug::log(self::$nameCom . '.' . self::$nameKey, 'ctr name');
-		EcDebug::log(__method__);
+		EcDebug::log(self::$nameCom . '.' . self::$nameKey, __method__);
 	}
 }
