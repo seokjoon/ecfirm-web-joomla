@@ -6,10 +6,6 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if((JFactory::getUser()->id) != ($this->item->user)) die('Restricted access');
-
-if((JFactory::getUser()->guest)) die('Restricted access'); //XX
-
 $item = $this->item; //EcDebug::lp($item);
 $optionCom = $this->optionCom;
 $nameKey = $this->nameKey;
