@@ -37,23 +37,26 @@ abstract class EcViewLegacy extends JViewLegacy
 		parent::display($tpl);
 	}
 
+	/**
+	 * @desc: $this->nameKey to $this->getName()
+	 */
 	protected function eventPlugin($dispatcher, &$item)
 	{
-		$dispatcher->trigger('on' . ucfirst($this->nameKey) . 'PrepareDisplay', array(
+		$dispatcher->trigger('on' . ucfirst($this->getName()) . 'PrepareDisplay', array(
 			$this->context,
 			&$item
 		));
 		
 		$item->event = new stdClass();
 		
-		$results = $dispatcher->trigger('on' . ucfirst($this->nameKey) . 'BeforeDisplay', array(
+		$results = $dispatcher->trigger('on' . ucfirst($this->getName()) . 'BeforeDisplay', array(
 			$this->context,
 			&$item
 		));
 		
 		$item->event->beforeDisplay = trim(implode($results));
 		
-		$results = $dispatcher->trigger('on' . ucfirst($this->nameKey) . 'AfterDisplay', array(
+		$results = $dispatcher->trigger('on' . ucfirst($this->getName()) . 'AfterDisplay', array(
 			$this->context,
 			&$item
 		));

@@ -20,7 +20,7 @@ class EcViewList extends EcViewLegacy
 		$this->nameKey = substr($this->getName(), 0, - 1);
 		$this->plural = true;
 	}
-
+	
 	/**
 	 * Execute and display a template script.
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
@@ -47,7 +47,7 @@ class EcViewList extends EcViewLegacy
 		$state = $this->get('State', $this->getName());
 		
 		if ((isset($state->enabledPlugin)) && ($state->enabledPlugin)) {
-			JPluginHelper::importPlugin(EcConst::getPrefix()); //('ec');
+			JPluginHelper::importPlugin(EcConst::getPrefix() . $this->getName()); //('ec');
 			$dispatcher = JEventDispatcher::getInstance();
 			foreach ($items as $item)
 				$this->eventPlugin($dispatcher, $item);

@@ -17,6 +17,11 @@ class EcViewItem extends EcViewLegacy
 		$this->nameKey = $this->getName();
 		$this->plural = false;
 	}
+	
+	protected function enablePlugin($item, $group = null)
+	{
+
+	}
 
 	/**
 	 * Execute and display a template script.
@@ -52,7 +57,7 @@ class EcViewItem extends EcViewLegacy
 		$state = $this->get('State', $this->nameKey);
 		
 		if ((isset($state->enabledPlugin)) && ($state->enabledPlugin)) {
-			JPluginHelper::importPlugin(EcConst::getPrefix()); //('ec');
+			JPluginHelper::importPlugin(EcConst::getPrefix() . $this->getName()); //('ec');
 			$dispatcher = JEventDispatcher::getInstance();
 			$item = $this->eventPlugin($dispatcher, $item);
 		}
