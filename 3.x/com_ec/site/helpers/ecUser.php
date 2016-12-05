@@ -9,9 +9,9 @@ defined('_JEXEC') or die('Restricted access');
 class EcUser
 {
 
-	public static function isGroup($in, $user = 0)
+	public static function isGroup($in, $user = null)
 	{
-		if ($user == 0)
+		if (empty($user))
 			$user = JFactory::getUser();
 		
 		foreach ($user->groups as $group)
