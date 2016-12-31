@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 	<div class="pull-right span5">
 		<div class="center"><?php echo $topiccatTitle.$seperator.$username; ?></div>
 	</div><div class="clearfix"></div>
-	<div style="border: solid 1px #dddddd; padding: 20px 10px 20px 10px;"><?php $item->body; ?></div>';
+	<div style="border: solid 1px #dddddd; padding: 20px 10px 20px 10px;"><?php echo $item->body; ?></div>
 </fieldset>
 
 

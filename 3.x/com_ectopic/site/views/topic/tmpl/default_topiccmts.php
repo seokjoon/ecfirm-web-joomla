@@ -1,27 +1,22 @@
-<?php /** @package joomla.ecfirm.net
+<?php
+/** 
+ * @package joomla.ecfirm.net
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
- * @license GNU General Public License version 2 or later. */
+ * @license GNU General Public License version 2 or later. 
+ */
 defined('_JEXEC') or die('Restricted access');
-
-//TODO reformatting
-
-
-
-echo '<div style="margin-top: 50px;">';
-	//echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
-	if(empty($this->topiccmts)) {
-		echo '<div class="alert alert-no-items">';
-			echo JText::_('COM_ECTOPIC_NO_MATCHING_RESULTS');
-		echo '</div>';
-	} else foreach ($this->topiccmts as $topiccmt) require 'default_topiccmt.php';
-echo '</div>';
-//echo $this->pagination->getListFooter();
+?>
 
 
 
-if ($this->topiccmtsPagination->pagesTotal > 1)	{
-	echo '<div class="pagination">';
-		echo '<p class="counter pull-right">'.$this->topiccmtsPagination->getPagesCounter().'</p>';
-		echo $this->topiccmtsPagination->getPagesLinks();
-	echo '</div>';
-}
+<div style="margin-top: 50px;">
+	<?php
+	if (empty($this->topiccmts))
+		echo '<div class="alert alert-no-items">' . JText::_('COM_ECTOPIC_NO_MATCHING_RESULTS') . '</div>';
+	else
+		foreach ($this->topiccmts as $topiccmt)
+			require 'default_topiccmt.php';
+	?>
+</div>
+
+<?php echo $this->topiccmtsPagination->getListFooter(); ?>
