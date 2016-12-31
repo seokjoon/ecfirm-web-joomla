@@ -60,7 +60,7 @@ $urlForm = JRoute::_(JUri::getInstance());
 					</td>
 					<td class="center hidden-phone">
 						<?php 
-						$stateValues = NsHelperCardcat::getStateValues();
+						$stateValues = EcHelperTopiccat::getStateValues();
 						echo $stateValues[$item->state];
 						?>
 					</td>

@@ -23,6 +23,23 @@ class EctopicControllerTopic extends EcControllerForm
 		$item = $model->getItem($valueKey);
 		return EcPermit::allowEdit($item);
 	}
+	
+	public function delete()
+	{
+		$bool = parent::delete();
+		
+		if($bool) {
+			$uri = JUri::getInstance();
+			$params = array(
+				'view' => $this->nameKey . 's',
+				'msg' => JText::_($this->option . '_' . $this->nameKey . '_DELETE_SUCCESS'),
+				'etc' => 'topiccat=' . $uri->getVar('topiccat', 0),
+			);
+			$this->setRedirectParams($params);
+		}
+		
+		return $bool;
+	}
 
 	public function save($nameKey = null, $urlVar = null)
 	{
