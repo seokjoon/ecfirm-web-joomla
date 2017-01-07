@@ -6,8 +6,7 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-JHtml::_('behavior.keepalive');
-JHtml::_('behavior.formvalidator');
+
 
 $item = $this->item; 
 $nameKey = $this->nameKey;
@@ -52,13 +51,21 @@ $formId = $nameKey.'_'.$valueKey;
 		
 		<div class="pull-right clearfix" align="right">
 			<div class="btn-group">
-				<?php $params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
-					'valueKey' => $valueKey, 'task' => 'login', 'class' => 'primary', 
-					'btnType' => 'submit');
+				<?php 
+				$params = array(
+					'optionCom' => $optionCom, 
+					'nameKey' => $nameKey, 
+					'valueKey' => $valueKey, 
+					'task' => 'login', 
+					'class' => 'primary',
+					'btnType' => 'submit',
+					'validate' => true,
+				);
 				echo EcBtn::submit($params);
 				$params['buttonType'] = 'button';
 				$params['class'] = 'default';
 				$params['task'] = 'registration';
+				$params['validate'] = false;
 				if(!$availableRegistration) $params['disable'] = true;
 				echo EcBtn::submit($params);
 				echo EcBtn::caret(true);

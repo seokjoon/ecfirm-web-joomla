@@ -6,8 +6,7 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-JHtml::_('behavior.keepalive');
-JHtml::_('behavior.formvalidator'); 
+
 
 $item = $this->item; 
 $nameKey = $this->nameKey;
@@ -22,7 +21,7 @@ $formId = $nameKey . '_' . $valueKey;
 
 
 <div id="<?php echo $nameKey; ?>" class="well">
-	<form action="<?php echo $urlForm; ?>" method="post" id="<?php echo $formId; ?>" class="form-validate form-horizontal" enctype="multipart/form-data">
+	<form action="<?php echo $urlForm; ?>" method="post" id="<?php echo $formId; ?>" class="form-validate form-horizontal">
 
 	<?php if(is_object($this->form)) : ?> 
 	
@@ -49,13 +48,20 @@ $formId = $nameKey . '_' . $valueKey;
 		<div class="pull-right clearfix" align="right">
 			<div class="btn-group">
 			<?php 
-			$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
-				'valueKey' => $valueKey, 'task' => 'register', 
-				'class' => 'primary', 'btnType' => 'submit');
+			$params = array(
+				'optionCom' => $optionCom, 
+				'nameKey' => $nameKey, 
+				'valueKey' => $valueKey, 
+				'task' => 'register', 
+				'class' => 'primary', 
+				'btnType' => 'submit',
+				'validate' => true,
+			);
 			echo EcBtn::submit($params);
 			$params['btnType'] = 'button';
 			$params['class'] = 'default';
 			$params['task'] = 'login';
+			$params['validate'] = false;
 			echo EcBtn::submit($params); 
 			echo EcBtn::caret(true);
 			echo '<ul class="dropdown-menu" style="right:0px;left:auto;" role="menu">';

@@ -33,8 +33,13 @@ $formId = $nameKey . '_' . $valueKey . '_form';
 		<div class="pull-right" style="" align="right">
 			<div class="btn-group">
 			<?php 
-			$params = array('optionCom' => $optionCom, 'nameKey' => $nameKey, 
-				'valueKey' => $valueKey, 'idPostfix' => 'form', 'task' => 'editProfile'); 
+			$params = array(
+				'optionCom' => $optionCom, 
+				'nameKey' => $nameKey, 
+				'valueKey' => $valueKey, 
+				'idPostfix' => 'form', 
+				'task' => 'editProfile',
+			); 
 			$params['disable'] = !(EcPermit::allowEdit($item));
 			echo EcBtn::submit($params);
 			echo EcBtn::caret(true);

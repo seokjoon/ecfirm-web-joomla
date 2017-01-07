@@ -2,7 +2,7 @@
 <form>
 
 	<fieldset name="profile">
-		<field id="name" name="name" type="text" class="inputbox" 
+		<field id="name" name="name" type="text" class="inputbox" required="true" 
 			label="COM_ECUSER_USER_NAME_LABEL" filter="string"
 			description="COM_ECUSER_USER_NAME_DESC"
 			hint="COM_ECUSER_USER_NAME_DESC" />

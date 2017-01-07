@@ -1,9 +1,10 @@
-<?php /** @package joomla.ecfirm.net
-* @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
-* @license GNU General Public License version 2 or later. */
+<?php 
+/** 
+ * @package joomla.ecfirm.net
+ * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
+ * @license GNU General Public License version 2 or later. 
+ */
 defined('_JEXEC') or die('Restricted access');
-
-//TODO: reformatting
 
 
 
@@ -26,60 +27,60 @@ $urlDefault = ((isset($urls['default'])) && (!empty($urls['default']))) ? $urls[
 if(!empty($urlDefault)) 
 	$urlDefault = '<a href="'.$urlDefault.'" target="_new" style="color: white">'.$urlDefault.'</a>';
 $hits = number_format($item->hits);
+?>
 
 
 
-
-echo '<div class="container-fluid">';
-
+<div class="container-fluid">
 
 
-	echo '<div class="pull-left span6">';
-		echo '<table class="category table table-bordered table-hover">';
-			echo '<tbody>';
-				echo '<tr><td class="center">';
-					echo $avatar;
-				echo '</td></tr>';
-			echo '</tbody>';
-		echo '</table>';
-	echo '</div>';
+
+	<div class="pull-left span6">
+		<table class="category table table-bordered table-hover">
+			<tbody>
+				<tr><td class="center">
+					<?php echo $avatar; ?>
+				</td></tr>
+			</tbody>
+		</table>
+	</div>
 
 	
 
-	echo '<div class="pull-right span6">';
-		echo '<table class="category table table-bordered table-hover">';
-			echo '<tbody>';
-				echo '<tr><td>';
-					echo JText::_('COM_ECUSER_USER_NAME_LABEL');
-					echo '<span class="label pull-right">'.$name.'</span>';
-				echo '<tr><td>';
-					echo JText::_('COM_ECUSER_USER_EMAIL_LABEL');
-					echo '<span class="label pull-right">'.$email.'</span>';
-				echo '</td></tr>';
-				echo '<tr><td>';
-					echo JText::_('COM_ECUSER_USER_GROUPS_LABEL');
-					echo '<span class="label pull-right">'.$groupTitle.'</span>';
-				echo '</td></tr>';
-				echo '<tr><td>';
-					echo JText::_('COM_ECUSER_USER_REGISTER_DATE_LABEL');
-					echo '<span class="label pull-right">'.$registerDate.'</span>';
-				echo '</td></tr>';
-				echo '<tr><td>';
-					echo JText::_('COM_ECUSER_USER_LASTVISIT_DATE_LABEL');
-					echo '<span class="label pull-right">'.$lastvisitDate.'</span>';
-				echo '</td></tr>';
-				echo '<tr><td>';
-					echo JText::_('COM_ECUSER_USER_URL_DEFAULT_LABEL');
-					echo '<span class="label pull-right">'.$urlDefault.'</span>';
-				echo '</td></tr>';
-				echo '<tr><td>';
-					echo JText::_('COM_ECUSER_USER_HITS_LABEL');
-					echo '<span class="label pull-right">'.$hits.'</span>';
-				echo '</td></tr>';
-			echo '</tbody>';
-		echo '</table>';
-	echo '</div>';
+	<div class="pull-right span6">
+		<table class="category table table-bordered table-hover">
+			<tbody>
+				<tr><td>
+					<?php echo JText::_('COM_ECUSER_USER_NAME_LABEL'); ?>
+					<span class="label pull-right"><?php echo $name; ?></span>
+				<tr><td>
+					<?php echo JText::_('COM_ECUSER_USER_EMAIL_LABEL'); ?>
+					<span class="label pull-right"><?php echo $email; ?></span>
+				</td></tr>
+				<tr><td>
+					<?php echo JText::_('COM_ECUSER_USER_GROUPS_LABEL'); ?>
+					<span class="label pull-right"><?php echo $groupTitle; ?></span>
+				</td></tr>
+				<tr><td>
+					<?php echo JText::_('COM_ECUSER_USER_REGISTER_DATE_LABEL'); ?>
+					<span class="label pull-right"><?php echo $registerDate; ?></span>
+				</td></tr>
+				<tr><td>
+					<?php echo JText::_('COM_ECUSER_USER_LASTVISIT_DATE_LABEL'); ?>
+					<span class="label pull-right"><?php echo $lastvisitDate; ?></span>
+				</td></tr>
+				<tr><td>
+					<?php echo JText::_('COM_ECUSER_USER_URL_DEFAULT_LABEL'); ?>
+					<span class="label pull-right"><?php echo $urlDefault; ?></span>
+				</td></tr>
+				<tr><td>
+					<?php echo JText::_('COM_ECUSER_USER_HITS_LABEL'); ?>
+					<span class="label pull-right"><?php echo $hits; ?></span>
+				</td></tr>
+			</tbody>
+		</table>
+	</div>
 
 
 
-echo '</div>';
+</div>
