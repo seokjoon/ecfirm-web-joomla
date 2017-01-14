@@ -69,7 +69,6 @@ $valueKey = (is_object($item)) ? $item->$nameKey : 0;
 		</span><div>&nbsp;</div>
 	
 		<input type="hidden" name="jform[topiccat]" value="<?php echo EctopicUrl::getTopiccat(); ?>" />
-		<input type="hidden" name="'.$nameKey.'" value="'.$valueKey.'" />
 		<input type="hidden" name="task" value="" />
 		<?php echo JHtml::_('form.token'); ?>
 	

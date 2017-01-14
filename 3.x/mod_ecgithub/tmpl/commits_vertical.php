@@ -1,34 +1,39 @@
-<?php /** @package joomla.ecfirm.net
+<?php
+/** 
+ * @package joomla.ecfirm.net
  * @copyright	Copyright (C) joomla.ecfirm.net. All rights reserved.
- * @license GNU General Public License version 2 or later. */
+ * @license GNU General Public License version 2 or later
+ */
 defined('_JEXEC') or die('Restricted access');
 
-//TODO reformatting
 
 
-
-$repository = $params->get('username').'/'.$params->get('repository');
-$repository = 'https://github.com/'.$repository.'/commit/';
+$repository = $params->get('username') . '/' . $params->get('repository');
+$repository = 'https://github.com/' . $repository . '/commit/';
 $lengthList = $params->get('length_list');
+?>
 
 
 
-foreach ($events as $count => $event) {
-	if($count >= $lengthList) break;
+<?php foreach ($events as $count => $event) : ?>
+	<?php
+	if ($count >= $lengthList) break;
 	$avatar = $event->actor->avatar_url;
 	$actorName = $event->actor->login;
-	$url = $repository.$event->payload->head;
+	$url = $repository . $event->payload->head;
 	$msg = $event->payload->commits[0]->message;
 	$msg = JHtml::_('string.truncateComplex', $msg, $params->get('length_item'));
 	$date = date('Y/m/d', strtotime($event->created_at));
-	
-	echo '<div class="clearfix">';
-		echo '<div class="pull-left" style="margin-right: 5px;">';
-			echo '<img src="'.$avatar.'" width="30px;" height="30px;" />';
-		echo '</div>';
-		echo '<div>';
-			echo '<div>['.$date.']&nbsp;'.$actorName.'</div>';
-			echo '<div><a href="'.$url.'" target="_new">'.$msg.'</a></div>';
-		echo '</div>';
-	echo '</div>';
-}
+	?>
+	<div class="clearfix">
+		<div class="pull-left" style="margin-right: 5px;">
+			<img src="<?php echo $avatar; ?>" width="30px;" height="30px;" />
+		</div>
+		<div>
+			<div>[<?php echo $date; ?>]&nbsp;<?php echo $actorName; ?></div>
+			<div>
+				<a href="<?php echo $url; ?>" target="_new"><?php echo $msg; ?></a>
+			</div>
+		</div>
+	</div>
+<?php endforeach; ?>
