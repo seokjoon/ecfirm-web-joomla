@@ -20,7 +20,7 @@ class EcFile
 			);
 			
 		foreach ($paths as &$path) {
-			$path = JPATH_SITE . '/' . $path; //EcDebug::log($path, 'loop');
+			$path = JPATH_SITE . '/upload/' . $path; //EcDebug::lp($path);
 			$bool = JFile::exists($path);
 			if (! $bool)
 				return false;
@@ -31,7 +31,7 @@ class EcFile
 
 	public static function deleteDir($path)
 	{
-		return JFolder::delete(JPATH_SITE . '/' . $path);
+		return JFolder::delete(JPATH_SITE . '/upload/' . $path);
 	}
 
 	/**
