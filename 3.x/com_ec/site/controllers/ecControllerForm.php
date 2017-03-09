@@ -161,16 +161,15 @@ class EcControllerForm extends EcControllerLegacy
 		return true;
 	}
 
-	protected function saveFileImg($nameCol = 'img')
+	protected function saveFileImg($nameCol = 'img', $isRatio = false)
 	{
 		$files = $this->input->files->get('jform'); //EcDebug::lp($files, true);
 		if ($files[$nameCol]['error'] != 0)
 			return false;
 		
 		$jform = $this->input->post->get('jform', array(), 'array');
-		
-		//$imgs = EcFileImg::setFileImgShop($jform, $files[$nameCol], $this->nameKey);
-		//$imgs = (array)EcFileImg::setFileImgByUser($files[$nameCol], $this->nameKey, $nameCol); //EcDebug::lp($imgs); jexit(); 
+
+		if($isRatio) $files[$nameCol]['ratio'] = $isRatio;
 		$imgs = (array) EcFileImg::setFileImgByName($files[$nameCol], $this->nameKey, $nameCol); //EcDebug::lp($imgs); jexit(); 
 
 		//$jform['imgs'] = json_encode($imgsArray, JSON_UNESCAPED_SLASHES);
