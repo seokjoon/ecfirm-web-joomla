@@ -32,11 +32,16 @@ class EcFileImg extends EcFile
 		JFile::upload($params['tmp_name'], $path . $nameFile);
 		
 		$jImg = new JImage($path . $nameFile);
+
+		$ratioUnit = 256;
+		if((isset($params['ratio'])) && ($params['ratio'])) {
+			$ratioHeight = $ratioUnit * ($jImg->getHeight() / $jImg->getWidth()); //EcDebug::log($ratioHeight);
+			if($ratioHeight > ($ratioUnit * 2)) $ratioHeight = $ratioUnit * 2;
+			$params['ratio'] = $ratioUnit . 'x' . $ratioHeight ;
+		} else $params['ratio'] = '256x256'; //EcDebug::log($params['ratio'], __method__); jexit();
 		
-		$params['rate'] = ((! (isset($params['rate']))) || (empty($params['rate']))) ? '256x256' : $params['rate'];
 		//3: 비율에 크기를 맞춤 //1: 크기에 비율을 맞춤 //5: 축소&crop하여 크기와 비율을 맞춤
-		
-		$thumbs = $jImg->createThumbs($params['rate'], 5);
+		$thumbs = $jImg->createThumbs($params['ratio'], 5);
 		
 		$src = basename($thumbs[0]->getPath()); //EcDebug::log($src, __method__);
 		$pathThumbs = $path . '/thumbs/'; //EcDebug::log($src.':'.$nameFile, __method__);
