@@ -232,12 +232,14 @@ class EcControllerForm extends EcControllerLegacy
 			$this->setRedirect($turnback);
 	}
 
-	protected function turnbackPush($task = null)
+	protected function turnbackPush($task = null, $url = null)
 	{ //EcDebug::log($task, __function__);
 		if (empty($task))
 			$task = $this->task;
 		
-		$this->setUserState($task, 'turnback', JUri::getInstance()->toString());
+		if(empty($url)) $url = JUri::getInstance()->toString();
+		
+		$this->setUserState($task, 'turnback', $url);
 	}
 
 	public function useForm($layout = null)
