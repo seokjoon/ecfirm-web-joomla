@@ -123,7 +123,7 @@ class EcModelForm extends JModelForm
 	 * @return  void
 	 * @since   3.1 JModelForm
 	 */
-	protected function preprocessData($context, &$data)
+	protected function preprocessData($context, &$data, $group = 'ec')
 	{
 		if (! ($this->getState('enabledPlugin', false)))
 			return;
