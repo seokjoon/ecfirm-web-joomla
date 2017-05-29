@@ -40,7 +40,7 @@ class EcViewItemAdmin extends EcViewLegacyAdmin
 	{
 		JFactory::getApplication()->input->set('hidemainmenu', true);
 
-		JToolbarHelper::cancel($this->getName() . '.cancel', 'JTOOLBAR_CLOSE');
+		JToolbarHelper::cancel($this->getName() . '.cancel', 'JTOOLBAR_CANCEL');
 		JToolbarHelper::divider();
 		JToolbarHelper::help('JHELP_CONTENT_ARTICLE_MANAGER_EDIT');
 	}
