@@ -8,23 +8,16 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcDml
 {
-	private static $db = null;
-	
+
 	public static function deleteByColumn($nameCol, $valueCol, $nameKey)
 	{
-		$db = self::getDbo(); //JFactory::getDbo();
+		$db = JFactory::getDbo();
 		$query = $db->getQuery(TRUE);
 		$query->delete('#__' . self::getPrefix() . '_' . $nameKey);
 		$query->where($nameCol . ' = ' . $valueCol);
 		$db->setQuery($query);
 		
 		return $db->execute();
-	}
-	
-	private static function getDbo()
-	{
-		if(!(self::$db)) return JFactory::getDbo();
-		else return self::$db;
 	}
 
 	private static function getPrefix()
@@ -34,7 +27,7 @@ class EcDml
 
 	public static function insertRecord($params, $nameKey)
 	{
-		$db = self::getDbo(); //JFactory::getDbo();
+		$db = JFactory::getDbo();
 		$query = $db->getQuery(TRUE);
 		$record = JArrayHelper::toObject($params);
 		
@@ -62,7 +55,7 @@ class EcDml
 	 */
 	public static function select($nameKey, $format = 'assocList')
 	{
-		$db = self::getDbo(); //JFactory::getDbo();
+		$db = JFactory::getDbo();
 		$query = $db->getQuery(TRUE);
 		$query->select('*')->from('#__' . self::getPrefix() . '_' . $nameKey);
 		$db->setQuery($query);
@@ -93,7 +86,7 @@ class EcDml
 				$where .= ' AND ';
 		} //EcDebug::log('===='); EcDebug::log($where); EcDebug::log('====');
 		
-		$db = self::getDbo(); //JFactory::getDbo();
+		$db = JFactory::getDbo();
 		$query = $db->getQuery(TRUE);
 		
 		$query->select($params['columns'])
@@ -111,11 +104,6 @@ class EcDml
 		//EcDebug::log($out); //EcDebug::log($db->$out());
 		
 		return $db->$out();
-	}
-	
-	public static function setDbo($db = null)
-	{
-		self::$db = $db;
 	}
 
 	/**
