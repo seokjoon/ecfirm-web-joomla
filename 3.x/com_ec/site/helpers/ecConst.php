@@ -8,6 +8,11 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcConst
 {
+	
+	const UNIXTIME_DAY = 86400;
+	
+	const UNIXTIME_WEEK = 604800;
+	
 	const USER_GROUP_ADMINISTRATOR = 7;
 
 	const USER_GROUP_AUTHOR = 3;
