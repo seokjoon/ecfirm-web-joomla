@@ -19,22 +19,25 @@ class EcFile
 	const PATH_BASE = 'upload';
 
 	public static function delete($paths)
-	{ //EcDebug::log($paths);
+	{	
 		if (! (is_array($paths)))
 			$paths = array(
 				$paths
 			);
 			
-		foreach ($paths as &$path) {
+		foreach ($paths as $i => &$path) {
 
 			$path = self::rmDuplicatePath($path);
 			//$path = JPATH_SITE . '/upload/' . $path; //EcDebug::lp($path);
 			$path = JPATH_SITE . '/' . self::PATH_BASE . '/' . $path; //EcDebug::lp($path);
 			
 			$bool = JFile::exists($path);
-			if (! $bool)
-				return false;
-		}
+			//if (! $bool) return false;
+			if(!($bool)) {
+				unset($paths[$i]);
+				continue;
+			}
+		} //EcDebug::log($paths, __method__);
 
 		return JFile::delete($paths);
 	}
