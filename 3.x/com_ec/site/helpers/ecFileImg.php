@@ -38,7 +38,12 @@ class EcFileImg extends EcFile
 			if($params['ratio'] === true) {
 				$ratioHeight = $ratioUnit * ($jImg->getHeight() / $jImg->getWidth()); //EcDebug::log($ratioHeight);
 				if($ratioHeight > ($ratioUnit * 2)) $ratioHeight = $ratioUnit * 2;
-				$params['ratio'] = $ratioUnit . 'x' . $ratioHeight ;
+				$params['ratio'] = $ratioUnit . 'x' . $ratioHeight;
+			} else if(strpos($params['ratio'], 'x') !== false) {
+				$ratioWidth = explode('x', $params['ratio'])[0];
+				$ratioHeight = $ratioWidth * ($jImg->getHeight() / $jImg->getWidth()); //EcDebug::log($ratioHeight);
+				if($ratioHeight > ($ratioWidth * 2)) $ratioHeight = $ratioWidth * 2 ;
+				$params['ratio'] = $ratioWidth . 'x' . $ratioHeight;
 			} //else custom WxH ratio
 		} else $params['ratio'] = $ratioUnit . 'x' . $ratioUnit; //EcDebug::log($params['ratio'], __method__); jexit();
 		
