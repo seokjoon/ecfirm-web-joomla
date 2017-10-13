@@ -34,11 +34,13 @@ class EcFileImg extends EcFile
 		$jImg = new JImage($path . $nameFile);
 
 		$ratioUnit = 256;
-		if((isset($params['ratio'])) && ($params['ratio'])) {
-			$ratioHeight = $ratioUnit * ($jImg->getHeight() / $jImg->getWidth()); //EcDebug::log($ratioHeight);
-			if($ratioHeight > ($ratioUnit * 2)) $ratioHeight = $ratioUnit * 2;
-			$params['ratio'] = $ratioUnit . 'x' . $ratioHeight ;
-		} else $params['ratio'] = '256x256'; //EcDebug::log($params['ratio'], __method__); jexit();
+		if((isset($params['ratio'])) && ($params['ratio'] !== false)) {
+			if($params['ratio'] === true) {
+				$ratioHeight = $ratioUnit * ($jImg->getHeight() / $jImg->getWidth()); //EcDebug::log($ratioHeight);
+				if($ratioHeight > ($ratioUnit * 2)) $ratioHeight = $ratioUnit * 2;
+				$params['ratio'] = $ratioUnit . 'x' . $ratioHeight ;
+			} //else custom WxH ratio
+		} else $params['ratio'] = $ratioUnit . 'x' . $ratioUnit; //EcDebug::log($params['ratio'], __method__); jexit();
 		
 		//3: 비율에 크기를 맞춤 //1: 크기에 비율을 맞춤 //5: 축소&crop하여 크기와 비율을 맞춤
 		$thumbs = $jImg->createThumbs($params['ratio'], 5);
