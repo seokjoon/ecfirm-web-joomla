@@ -161,21 +161,20 @@ class EcControllerForm extends EcControllerLegacy
 		return true;
 	}
 
-	protected function saveFileImg($nameCol = 'img', $isRatio = false)
+	
+	protected function saveFileImg($nameCol = 'img', $ratio = false)
 	{
 		$files = $this->input->files->get('jform'); //EcDebug::lp($files, true);
-		if ($files[$nameCol]['error'] != 0)
-			return false;
+		if($files[$nameCol]['error'] != 0) return false;
 		
 		$jform = $this->input->post->get('jform', array(), 'array');
 
-		if($isRatio) $files[$nameCol]['ratio'] = $isRatio;
+		$files[$nameCol]['ratio'] = $ratio; //if($isRatio) $files[$nameCol]['ratio'] = $isRatio;
 		$imgs = (array) EcFileImg::setFileImgByName($files[$nameCol], $this->nameKey, $nameCol); //EcDebug::lp($imgs); jexit(); 
 
 		//$jform['imgs'] = json_encode($imgsArray, JSON_UNESCAPED_SLASHES);
 		$reg = new JRegistry;
-		if (! empty($jform['imgs']))
-			$reg->loadString($jform['imgs']);
+		if(!(empty($jform['imgs']))) $reg->loadString($jform['imgs']);
 		$reg->loadArray($imgs);
 		$jform['imgs'] = stripslashes($reg->toString()); //EcDebug::log($jform);
 
@@ -184,7 +183,33 @@ class EcControllerForm extends EcControllerLegacy
 		return true;
 	}
 	
-	protected function saveFileImgs()
+	protected function saveFileImgs($nameCol = 'img', $ratio = false)
+	{
+		$files = $this->input->files->get('jform'); //EcDebug::log('----'); EcDebug::log(json_encode($files), __method__); 
+		if (count($files) == 0) return false;
+		$imgs = array(); 
+
+		foreach ($files[$nameCol] as &$file) { //EcDebug::log($file, __method__); 
+			if(((strpos($file['type'], 'image')) === false) || ($file['error'] != 0)) return false;
+			$file['ratio'] = $ratio; 
+			array_push($imgs, EcFileImg::setFileImgByName($file, $this->nameKey, $nameCol));
+		} //EcDebug::log(json_encode($imgs), __method__); 
+		
+		$jform = $this->input->post->get('jform', array(), 'array'); //EcDebug::log(json_encode($jform), __method__);
+		$reg = new JRegistry;
+		if (!(empty($jform['imgs']))) $reg->loadString($jform['imgs']);
+		$reg->loadArray($imgs);
+		$jform['imgs'] = stripslashes($reg->toString()); //EcDebug::log($jform['imgs'], __method__);
+
+		$this->input->post->set('jform', $jform);
+		
+		return true;
+	}
+	
+	/**
+	 * @deprecated
+	 */
+	protected function saveFileImgsLegacy()
 	{
 		$files = $this->input->files->get('jform'); //EcDebug::lp($files, true); 
 		if (count($files) == 0)
