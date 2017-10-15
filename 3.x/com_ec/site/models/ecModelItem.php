@@ -6,9 +6,14 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ItemModel;
+use Joomla\CMS\Plugin\PluginHelper;
+use Joomla\CMS\Table\Table;
 use Joomla\Registry\Registry;
+use Joomla\Utilities\ArrayHelper;
 
-class EcModelItem extends JModelItem
+class EcModelItem extends ItemModel //JModelItem
 {
 
 	protected $context;
@@ -32,7 +37,7 @@ class EcModelItem extends JModelItem
 	 */
 	protected function canDelete($record)
 	{
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 		
 		//return $user->authorise('core.delete', $this->option);
 		$nameKey = $this->name;
@@ -50,7 +55,7 @@ class EcModelItem extends JModelItem
 	{
 		if ($this->getState('enabledPlugin', false)) {
 			$dispatcher = JEventDispatcher::getInstance();
-			JPluginHelper::importPlugin(EcConst::getPrefix()); //('ec'); 
+			PluginHelper::importPlugin(EcConst::getPrefix()); //('ec');
 		}
 		
 		$valueKeys = (array) $valueKeys;
@@ -111,7 +116,7 @@ class EcModelItem extends JModelItem
 		if ($valueKey == 0)
 			$valueKey = $this->getState($this->name, 0);
 		if ($valueKey == 0)
-			$valueKey = JFactory::getApplication()->input->get($this->name, 0, 'uint');
+			$valueKey = Factory::getApplication()->input->get($this->name, 0, 'uint');
 		if ($valueKey == 0)
 			return false;
 		
@@ -125,7 +130,7 @@ class EcModelItem extends JModelItem
 		
 		$properties = $table->getProperties(1);
 		
-		$item = JArrayHelper::toObject($properties, 'JObject');
+		$item = ArrayHelper::toObject($properties, 'JObject');
 		
 		if (property_exists($item, 'options')) {
 			$reg = new Registry();
@@ -141,7 +146,7 @@ class EcModelItem extends JModelItem
 	 * @param   string  $name     The table name. Optional.
 	 * @param   string  $prefix   The class prefix. Optional.
 	 * @param   array   $options  Configuration array for model. Optional.
-	 * @return  JTable  A JTable object
+	 * @return bool|Table A Table object
 	 * @since   12.2 JModelLegacy
 	 * @throws  Exception
 	 */
@@ -152,7 +157,7 @@ class EcModelItem extends JModelItem
 		if (empty($type))
 			$type = $this->name;
 		
-		return JTable::getInstance($type, $prefix, $config);
+		return Table::getInstance($type, $prefix, $config);
 	}
 
 	/**
@@ -171,7 +176,7 @@ class EcModelItem extends JModelItem
 		
 		if ($this->getState('enabledPlugin', false)) {
 			$dispatcher = JEventDispatcher::getInstance();
-			JPluginHelper::importPlugin(EcConst::getPrefix()); //('ec'); 
+			PluginHelper::importPlugin(EcConst::getPrefix()); //('ec');
 		}
 		
 		$table = $this->getTable();

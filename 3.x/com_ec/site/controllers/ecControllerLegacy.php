@@ -4,9 +4,17 @@
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Uri\Uri;
+use Joomla\Utilities\ArrayHelper;
+
 defined('_JEXEC') or die('Restricted access');
 
-class EcControllerLegacy extends JControllerLegacy
+class EcControllerLegacy extends BaseController //JControllerLegacy
 {
 
 	protected $entity; //ex) examples or example(plural or singular)
@@ -33,7 +41,7 @@ class EcControllerLegacy extends JControllerLegacy
 	protected function add()
 	{
 		if (! ($this->allowAdd())) {
-			$this->setError(JText::_('JLIB_APPLICATION_ERROR_CREATE_RECORD_NOT_PERMITTED'));
+			$this->setError(Text::_('JLIB_APPLICATION_ERROR_CREATE_RECORD_NOT_PERMITTED'));
 			$this->setMessage($this->getError(), 'error');
 			return false;
 		}
@@ -52,7 +60,7 @@ class EcControllerLegacy extends JControllerLegacy
 	 */
 	protected function allowAdd($data = array())
 	{ //XXX
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 		
 		return ($user->authorise('core.create', $this->option) || count($user->getAuthorisedCategories($this->option, 'core.create')));
 	}
@@ -68,7 +76,7 @@ class EcControllerLegacy extends JControllerLegacy
 	protected function allowEdit($data = array(), $nameKey = null)
 	{
 		//if(empty($nameKey)) $nameKey = $this->nameKey;
-		return JFactory::getUser()->authorise('core.edit', $this->option);
+		return Factory::getUser()->authorise('core.edit', $this->option);
 	}
 
 	/**
@@ -126,10 +134,10 @@ class EcControllerLegacy extends JControllerLegacy
 		$model = $this->getModel(); //EcDebug::lp($model, true);
 		
 		jimport('joomla.utilities.arrayhelper');
-		JArrayHelper::toInteger($valueKeys);
+		ArrayHelper::toString($valueKeys);
 		
 		if ($model->delete($valueKeys))
-			$this->setMessage(JText::plural($this->option . '_' . $this->entity . '_N_ITEMS_DELETED', count($valueKeys)));
+			$this->setMessage(Text::plural($this->option . '_' . $this->entity . '_N_ITEMS_DELETED', count($valueKeys)));
 		else {
 			$this->setMessage($model->getError(), 'error');
 			return false;
@@ -218,9 +226,9 @@ class EcControllerLegacy extends JControllerLegacy
 	protected function getRedirectRequest()
 	{
 		//$request = $_SERVER['REQUEST_URI'];
-		$request = JUri::getInstance()->toString();
+		$request = Uri::getInstance()->toString();
 		
-		if (empty($request) || ! JUri::isInternal($request))
+		if (empty($request) || ! Uri::isInternal($request))
 			return $this->getRedirectReturn();
 		else
 			return $request;
@@ -232,21 +240,24 @@ class EcControllerLegacy extends JControllerLegacy
 
 		//if(empty($return) || !JUri::isInternal(base64_decode($return)))
 		if (empty($return))
-			return JUri::base();
+			return Uri::base();
 		else
 			return base64_decode($return);
 	}
 
+	/**
+	 * @deprecated DELETE ME
+	 */
 	protected function getUser()
 	{
-		return JFactory::getUser()->id;
+		return Factory::getUser()->id;
 	}
 
 	protected function getUserState($task, $key, $default)
 	{
 		$context = $this->option . '.' . $task . '.' . $this->nameKey . '.' . $key;
 		
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		return $app->getUserState($context, $default);
 	}
@@ -254,23 +265,23 @@ class EcControllerLegacy extends JControllerLegacy
 	/**
 	 * Function that allows child controller access to model data
 	 * after the item has been deleted.
-	 * @param   JModelLegacy  $model  The data model object.
+	 * @param BaseDatabaseModel $model
 	 * @param   integer       $id     The validated data.
 	 * @return  void
 	 * @since   12.2 JControllerAdmin
 	 */
-	protected function postDeleteHook(JModelLegacy $model, $id = null)
+	protected function postDeleteHook(BaseDatabaseModel $model, $id = null)
 	{}
 
 	/**
 	 * Function that allows child controller access to model data
 	 * after the data has been saved.
-	 * @param   JModelLegacy  $model      The data model object.
+	 * @param BaseDatabaseModel $model
 	 * @param   array         $validData  The validated data.
 	 * @return  void
 	 * @since   12.2 JControllerForm
 	 */
-	protected function postSaveHook(JModelLegacy $model, $validData = array())
+	protected function postSaveHook(BaseDatabaseModel $model, $validData = array())
 	{}
 
 	/**
@@ -285,8 +296,8 @@ class EcControllerLegacy extends JControllerLegacy
 		if (empty($nameKey))
 			$nameKey = $this->nameKey;
 		
-		$app = JFactory::getApplication();
-		$lang = JFactory::getLanguage();
+		$app = Factory::getApplication();
+		$lang = Factory::getLanguage();
 		$model = $this->getModel();
 		
 		$data = $this->input->post->get('jform', array(), 'array'); //EcDebug::log($data);
@@ -294,14 +305,14 @@ class EcControllerLegacy extends JControllerLegacy
 		//$this->input->get($nameKey, 0, 'uint') : 0;
 		
 		if (! ($this->allowSave($data, $nameKey))) {
-			$this->setError(JText::_('JLIB_APPLICATION_ERROR_SAVE_NOT_PERMITTED'));
+			$this->setError(Text::_('JLIB_APPLICATION_ERROR_SAVE_NOT_PERMITTED'));
 			$this->setMessage($this->getError(), 'error');
 			return false;
 		}
 		
 		////////
 		if (($nameKey != 'user') && (isset($data['user'])))
-			$data['user'] = JFactory::getUser()->id; //FIXME
+			$data['user'] = Factory::getUser()->id; //FIXME
 		////////
 		
 		////////
@@ -334,7 +345,7 @@ class EcControllerLegacy extends JControllerLegacy
 
 		if (! ($model->save($validData))) {
 			$this->setUserState('edit', 'data', $validData);
-			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_SAVE_FAILED', $model->getError()));
+			$this->setError(Text::sprintf('JLIB_APPLICATION_ERROR_SAVE_FAILED', $model->getError()));
 			$this->setMessage($this->getError(), 'error');
 			return false;
 		}
@@ -345,7 +356,7 @@ class EcControllerLegacy extends JControllerLegacy
 		if (! ($lang->hasKey($msg)))
 			$msg = 'JLIB_APPLICATION' . $postfix;
 		
-		$this->setMessage(JText::_($msg));
+		$this->setMessage(Text::_($msg));
 		$this->setUserState('edit', 'data', null);
 
 		return true;
@@ -364,7 +375,7 @@ class EcControllerLegacy extends JControllerLegacy
 		if (empty($nameView))
 			$nameView = $this->input->get('view');
 		
-		$view = $this->getView($nameView, JFactory::getDocument()->getType());
+		$view = $this->getView($nameView, Factory::getDocument()->getType());
 
 		return $view->setModel($model);
 	}
@@ -376,8 +387,8 @@ class EcControllerLegacy extends JControllerLegacy
 		$view = (isset($params['view'])) ? '&view=' . $params['view'] : '&view=' . ($this->input->get('view', null, 'string'));
 		$task = (isset($params['task'])) ? '&task=' . $params['task'] : '';
 		$key = ((isset($params['nameKey'])) && (isset($params['valueKey']))) ? '&' . $params['nameKey'] . '=' . $params['valueKey'] : '';
-		$format = (isset($params['format'])) ? '&format=' . $params['format'] : '';
-		'&format=' . ($this->input->get('format', 'html', 'string'));
+		$format = (isset($params['format'])) ? '&format=' . $params['format'] :
+			'&format=' . ($this->input->get('format', 'html', 'string'));
 		$layout = (isset($params['layout'])) ? $params['layout'] : $this->input->get('layout', null, 'string');
 		$layout = (empty($layout)) ? '' : '&layout=' . $layout;
 		$tmpl = (isset($params['tmpl'])) ? $params['tmpl'] : $this->input->get('tmpl', null, 'string');
@@ -398,7 +409,7 @@ class EcControllerLegacy extends JControllerLegacy
 	{
 		$context = $this->option . '.' . $task . '.' . $this->nameKey . '.' . $key;
 		
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		$app->setUserState($context, $value);
 	}

@@ -4,9 +4,13 @@
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\View\HtmlView;
+
 defined('_JEXEC') or die('Restricted access');
 
-abstract class EcViewLegacy extends JViewLegacy
+abstract class EcViewLegacy extends HtmlView //JViewLegacy
 {
 
 	protected $context;
@@ -25,14 +29,14 @@ abstract class EcViewLegacy extends JViewLegacy
 	{
 		parent::__construct($config);
 
-		$this->optionCom = JFactory::getApplication()->input->get('option');
+		$this->optionCom = Factory::getApplication()->input->get('option');
 	}
 
 	public function display($tpl = null)
 	{
 		$classNameArray = explode('View', get_called_class());
 		$this->context = 'com_' . strtolower($classNameArray[0]) . '.' . $this->nameKey;
-		$this->params = JFactory::getApplication()->getParams(); //$this->get('State')->get('params);
+		$this->params = Factory::getApplication()->getParams(); //$this->get('State')->get('params);
 
 		parent::display($tpl);
 	}
