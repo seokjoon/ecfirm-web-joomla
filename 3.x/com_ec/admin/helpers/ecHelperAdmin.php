@@ -4,15 +4,21 @@
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
+
+use Joomla\CMS\Access\Access;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Helper\ContentHelper;
+use Joomla\CMS\Object\CMSObject;
+
 defined('_JEXEC') or die('Restricted access');
 
-class EcHelperAdmin extends JHelperContent
+class EcHelperAdmin extends ContentHelper //JHelperContent
 {
 
 	public static function getActionsEc($id = null, $section = 'component')
 	{
-		$user = JFactory::getUser();
-		$result = new JObject();
+		$user = Factory::getUser();
+		$result = new CMSObject(); //new JObject();
 		
 		$path = JPATH_COMPONENT_ADMINISTRATOR . '/access.xml';
 		
@@ -24,7 +30,7 @@ class EcHelperAdmin extends JHelperContent
 		if (isset($id) && ! empty($id))
 			$assetName .= '.' . $id;
 		
-		$actions = JAccess::getActionsFromFile($path, "/access/section[@name='" . $section . "']/");
+		$actions = Access::getActionsFromFile($path, "/access/section[@name='" . $section . "']/");
 		
 		foreach ($actions as $action)
 			$result->set($action->name, $user->authorise($action->name, $assetName));

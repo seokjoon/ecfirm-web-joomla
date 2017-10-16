@@ -4,9 +4,15 @@
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Controller\AdminController;
+use Joomla\CMS\Session\Session;
+
 defined('_JEXEC') or die('Restricted access');
 
-class EcControllerListAdmin extends JControllerAdmin
+class EcControllerListAdmin extends AdminController //JControllerAdmin
 {
 
 	protected $entity;
@@ -37,9 +43,9 @@ class EcControllerListAdmin extends JControllerAdmin
 	 * @return void */
 	public function bool($attr = 'enable')
 	{
-		JSession::checkToken() or die(JText::_('JINVALID_TOKEN'));
+		Session::checkToken() or die(Text::_('JINVALID_TOKEN'));
 		
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 
 		$ids = $this->input->get('cid', array(), 'array');
 
@@ -53,12 +59,12 @@ class EcControllerListAdmin extends JControllerAdmin
 		foreach ($ids as $i => $id) {
 			if (! $user->authorise('core.edit.state', 'com_' . EcConst::getPrefix() . $this->nameKey . '.' . $this->nameKey . '.' . (int) $id)) {
 				unset($ids[$i]);
-				JError::raiseNotice(403, JText::_('JLIB_APPLICATION_ERROR_EDITSTATE_NOT_PERMITTED'));
+				JError::raiseNotice(403, Text::_('JLIB_APPLICATION_ERROR_EDITSTATE_NOT_PERMITTED'));
 			}
 		}
 		
 		if (empty($ids)) {
-			JError::raiseWarning(500, JText::_('JERROR_NO_ITEMS_SELECTED'));
+			JError::raiseWarning(500, Text::_('JERROR_NO_ITEMS_SELECTED'));
 		} else {
 			
 			$model = $this->getModel($this->nameKey);
@@ -67,9 +73,9 @@ class EcControllerListAdmin extends JControllerAdmin
 				JError::raiseWarning(500, $model->getError());
 			} else {
 				if ($value == 1)
-					$this->setMessage(JText::plural(JString::strtoupper($this->option) . '_ON_' . $attr . '_N', count($ids)));
+					$this->setMessage(Text::plural(JString::strtoupper($this->option) . '_ON_' . $attr . '_N', count($ids)));
 				elseif ($value == 2)
-					$this->setMessage(JText::plural(JString::strtoupper($this->option) . '_OFF_' . $attr . '_N', count($ids)));
+					$this->setMessage(Text::plural(JString::strtoupper($this->option) . '_OFF_' . $attr . '_N', count($ids)));
 			}
 		}
 		$this->setRedirect('index.php?option=' . $this->option . '&view=' . $this->view_list);

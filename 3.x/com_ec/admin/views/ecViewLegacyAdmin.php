@@ -4,9 +4,12 @@
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
+
+use Joomla\CMS\MVC\View\HtmlView;
+
 defined('_JEXEC') or die('Restricted access');
 
-abstract class EcViewLegacyAdmin extends JViewLegacy
+abstract class EcViewLegacyAdmin extends HtmlView //JViewLegacy
 {
 
 	protected $canDo; //JObject Object containing permissions for the item

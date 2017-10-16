@@ -4,9 +4,12 @@
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
+
+use Joomla\CMS\MVC\Controller\FormController;
+
 defined('_JEXEC') or die('Restricted access');
 
-class EcControllerItemAdmin extends JControllerForm
+class EcControllerItemAdmin extends FormController //JControllerForm
 {
 
 	/**

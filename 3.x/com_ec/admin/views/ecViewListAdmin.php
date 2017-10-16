@@ -4,6 +4,10 @@
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die('Restricted access');
 
 class EcViewListAdmin extends EcViewLegacyAdmin
@@ -52,12 +56,12 @@ class EcViewListAdmin extends EcViewLegacyAdmin
 	 */
 	protected function addToolbar()
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		
 		$this->option = $app->input->get('option', 'com_' . EcConst::getPrefix());
 		$this->canDo = EcHelperAdmin::getActionsEc($this->option);
 		
-		JToolbarHelper::title(JText::_(JString::strtoupper($this->option)), 'stack article');
+		JToolbarHelper::title(Text::_(JString::strtoupper($this->option)), 'stack article');
 		
 		if ($this->canDo->get('core.admin')) {
 			JToolbarHelper::divider();

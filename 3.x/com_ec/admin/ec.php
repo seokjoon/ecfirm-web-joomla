@@ -4,10 +4,15 @@
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\MVC\Controller\BaseController;
+
 defined('_JEXEC') or die('Restricted access');
 
-JHtml::_('behavior.tabstate');
-if (! JFactory::getUser()->authorise('core.manage', 'com_ec')) {
+HTMLHelper::_('behavior.tabstate');
+if (! Factory::getUser()->authorise('core.manage', 'com_ec')) {
 	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
 }
 
@@ -21,6 +26,6 @@ try {
 	throw new RuntimeException('HELPERS not loaded');
 }
 
-$controller = JControllerLegacy::getInstance('Ec');
-$controller->execute(JFactory::getApplication()->input->get('task'));
+$controller = BaseController::getInstance('Ec');
+$controller->execute(Factory::getApplication()->input->get('task'));
 $controller->redirect();

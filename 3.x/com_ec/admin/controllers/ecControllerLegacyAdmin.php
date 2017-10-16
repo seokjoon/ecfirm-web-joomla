@@ -4,9 +4,15 @@
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die('Restricted access');
 
-class EcControllerLegacyAdmin extends JControllerLegacy
+class EcControllerLegacyAdmin extends BaseController //JControllerLegacy
 {
 
 	protected $nameKey;
@@ -28,7 +34,7 @@ class EcControllerLegacyAdmin extends JControllerLegacy
 		if (! ($id))
 			return true; //jexit($context.':'.$id.':'.$this->nameKey);
 		
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		$values = (array) $app->getUserState($context . '.' . $this->nameKey);
 		//EcDebug::lp($values); jexit();
@@ -46,9 +52,9 @@ class EcControllerLegacyAdmin extends JControllerLegacy
 		$layout = $this->input->get('layout', '');
 		$key = $this->input->getInt($this->nameKey);
 		if (($layout == 'edit') && (! ($this->checkEditId($this->option . '.edit', $key)))) {
-			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $key));
+			$this->setError(Text::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $key));
 			$this->setMessage($this->getError(), 'error');
-			$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&view=' . $defaultView, false));
+			$this->setRedirect(Route::_('index.php?option=' . $this->option . '&view=' . $defaultView, false));
 			return false;
 		}
 		

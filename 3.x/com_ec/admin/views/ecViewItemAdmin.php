@@ -4,6 +4,9 @@
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
+
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die('Restricted access');
 
 class EcViewItemAdmin extends EcViewLegacyAdmin
@@ -38,7 +41,7 @@ class EcViewItemAdmin extends EcViewLegacyAdmin
 	 * @since   1.6 */
 	protected function addToolbar()
 	{
-		JFactory::getApplication()->input->set('hidemainmenu', true);
+		Factory::getApplication()->input->set('hidemainmenu', true);
 
 		JToolbarHelper::cancel($this->getName() . '.cancel', 'JTOOLBAR_CLOSE');
 		JToolbarHelper::divider();
