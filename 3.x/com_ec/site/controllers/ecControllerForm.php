@@ -36,7 +36,8 @@ class EcControllerForm extends EcControllerLegacy
 			
 			$this->setRedirectParams($params);
 		} else {
-			$this->setRedirect($this->getRedirectRequest());
+			$return = ($this->task != 'add') ? $this->getRedirectRequest() : $this->getRedirectReturn();
+			$this->setRedirect($return); //($this->getRedirectRequest());
 			$this->redirect();
 		}
 	}
@@ -101,7 +102,8 @@ class EcControllerForm extends EcControllerLegacy
 
 			$this->setRedirectParams($params);
 		} else {
-			$this->setRedirect($this->getRedirectRequest());
+			$return = ($this->task != 'edit') ? $this->getRedirectRequest() : $this->getRedirectReturn();
+			$this->setRedirect($return); //($this->getRedirectRequest());
 			$this->redirect();
 		}
 	}
