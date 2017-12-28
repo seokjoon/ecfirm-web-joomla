@@ -4,6 +4,13 @@
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Session\Session;
+use Joomla\CMS\Uri\Uri;
+use Joomla\Registry\Registry;
+
 defined('_JEXEC') or die('Restricted access');
 
 class EcControllerForm extends EcControllerLegacy
@@ -63,13 +70,13 @@ class EcControllerForm extends EcControllerLegacy
 	 */
 	public function delete()
 	{
-		JSession::checkToken() or die(JText::_('JINVALID_TOKEN')); //XXX
+		((Session::checkToken()) || (Session::checkToken('get'))) or die(Text::_('JINVALID_TOKEN')); //XXX
 
 		$bool = parent::delete();
 		
 		if ($bool) {
 			$params['view'] = $this->nameKey . 's';
-			$params['msg'] = JText::_($this->option . '_' . $this->nameKey . '_DELETE_SUCCESS');
+			$params['msg'] = Text::_($this->option . '_' . $this->nameKey . '_DELETE_SUCCESS');
 			$this->setRedirectParams($params);
 		} else {
 			$this->setRedirect($this->getRedirectRequest());
@@ -112,11 +119,11 @@ class EcControllerForm extends EcControllerLegacy
 	{
 		////////internal redirect check
 		$prev = $this->getUserState('edit', 'turnback', null); //EcDebug::lp($prev, true);
-		if ((empty($prev)) || ! JUri::isInternal($prev))
-			jexit(JText::_('JLIB_APPLICATION_ERROR_UNHELD_ID'));
+		if ((empty($prev)) || ! Uri::isInternal($prev))
+			jexit(Text::_('JLIB_APPLICATION_ERROR_UNHELD_ID'));
 		////////
 
-		$view = $this->getView($this->default_view, JFactory::getDocument()->getType(), '', array(
+		$view = $this->getView($this->default_view, Factory::getDocument()->getType(), '', array(
 			'layout' => 'edit'
 		));
 		
@@ -134,12 +141,12 @@ class EcControllerForm extends EcControllerLegacy
 	 */
 	public function save($nameKey = null, $urlVar = null)
 	{
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		((Session::checkToken()) || (Session::checkToken('get'))) or jexit(Text::_('JINVALID_TOKEN'));
 		
 		$bool = parent::save($nameKey, $urlVar);
 		
 		$msgPostfix = ($bool) ? 'SUCCESS' : 'FAILURE';
-		$this->setMessage(strtoupper(JText::_($this->option . '_' . $this->nameKey . '_SAVE_' . $msgPostfix)));
+		$this->setMessage(strtoupper(Text::_($this->option . '_' . $this->nameKey . '_SAVE_' . $msgPostfix)));
 		
 		$this->turnbackPop('edit');
 		
@@ -175,7 +182,7 @@ class EcControllerForm extends EcControllerLegacy
 		$imgs = (array) EcFileImg::setFileImgByName($files[$nameCol], $this->nameKey, $nameCol); //EcDebug::lp($imgs); jexit(); 
 
 		//$jform['imgs'] = json_encode($imgsArray, JSON_UNESCAPED_SLASHES);
-		$reg = new JRegistry;
+		$reg = new Registry();
 		if(!(empty($jform['imgs']))) $reg->loadString($jform['imgs']);
 		$reg->loadArray($imgs);
 		$jform['imgs'] = stripslashes($reg->toString()); //EcDebug::log($jform);
@@ -198,7 +205,7 @@ class EcControllerForm extends EcControllerLegacy
 		} //EcDebug::log(json_encode($imgs), __method__); 
 		
 		$jform = $this->input->post->get('jform', array(), 'array'); //EcDebug::log(json_encode($jform), __method__);
-		$reg = new JRegistry;
+		$reg = new Registry();
 		if (!(empty($jform['imgs']))) $reg->loadString($jform['imgs']);
 		$reg->loadArray($imgs);
 		$jform['imgs'] = stripslashes($reg->toString()); //EcDebug::log($jform['imgs'], __method__);
@@ -232,7 +239,7 @@ class EcControllerForm extends EcControllerLegacy
 				$imgs[$k] = $out;
 		}
 		
-		$reg = new JRegistry;
+		$reg = new Registry();
 		if (!(empty($jform['imgs'])))
 			$reg->loadString($jform['imgs']);
 		$reg->loadArray($imgs);
@@ -251,8 +258,8 @@ class EcControllerForm extends EcControllerLegacy
 		
 		$this->setUserState($task, 'turnback', null);
 		
-		if ($turnback == JUri::getInstance()->toString())
-			$turnback = JUri::base(); //avoid inifite loop
+		if ($turnback == Uri::getInstance()->toString())
+			$turnback = Uri::base(); //avoid inifite loop
 		
 
 		if (! (empty($turnback)))
@@ -264,7 +271,7 @@ class EcControllerForm extends EcControllerLegacy
 		if (empty($task))
 			$task = $this->task;
 		
-		if(empty($url)) $url = JUri::getInstance()->toString();
+		if(empty($url)) $url = Uri::getInstance()->toString();
 		
 		$this->setUserState($task, 'turnback', $url);
 	}
@@ -275,7 +282,7 @@ class EcControllerForm extends EcControllerLegacy
 		if (empty($layout))
 			$layout = $this->nameKey;
 		
-		$view = $this->getView($layout, JFactory::getDocument()->getType(), '', array(
+		$view = $this->getView($layout, Factory::getDocument()->getType(), '', array(
 			'layout' => $layout . 'form'
 		));
 		
