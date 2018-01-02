@@ -36,8 +36,10 @@ class EcBtn {
 	private static function joomlaSubmit($id) {
 		return '<script type="text/javascript">
 			Joomla.submitbutton = function(task) {
-				if(document.formvalidator.isValid(document.id("'.$id.'"))){'
-					.'Joomla.submitform(task, document.getElementById("'.$id.'")); } } 
+				if(document.formvalidator.isValid(document.id("'.$id.'")))
+					Joomla.submitform(task, document.getElementById("'.$id.'")); 
+				else jQuery("html, body").scrollTop(0);
+			} 
 		</script>';
 	}
 
