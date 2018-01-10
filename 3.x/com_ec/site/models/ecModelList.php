@@ -4,9 +4,13 @@
  * @copyright Copyright (C) joomla.ecfirm.net. All rights reserved.
  * @license GNU General Public License version 2 or later.
  */
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ListModel;
+
 defined('_JEXEC') or die('Restricted access');
 
-class EcModelList extends JModelList
+class EcModelList extends ListModel
 {
 
 	protected $keywords = array();
@@ -57,7 +61,7 @@ class EcModelList extends JModelList
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		$input = $app->input;
 		
 		try {
