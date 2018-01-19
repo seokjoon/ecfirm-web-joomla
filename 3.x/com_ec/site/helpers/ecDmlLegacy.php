@@ -6,7 +6,7 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-class EcDml
+class EcDmlLegacy
 {
 
 	public static function deleteByColumn($nameCol, $valueCol, $nameKey)
